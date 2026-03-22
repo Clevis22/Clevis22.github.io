@@ -1,0 +1,4 @@
+baseURL = "https://Clevis22.github.io/"
+languageCode = "en-us"
+title = "My Blog"
+theme = "PaperMod"
