@@ -1,109 +1,109 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Tags on Tiny Weights</title>
-    <link>https://clevis22.github.io/tags/</link>
-    <description>Recent content in Tags on Tiny Weights</description>
+    <title>Tags on TinyWeights.dev</title>
+    <link>https://tinyweights.dev/tags/</link>
+    <description>Recent content in Tags on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://clevis22.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tinyweights.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Api</title>
-      <link>https://clevis22.github.io/tags/api/</link>
+      <link>https://tinyweights.dev/tags/api/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/api/</guid>
+      <guid>https://tinyweights.dev/tags/api/</guid>
       <description></description>
     </item>
     <item>
       <title>Apple-Silicon</title>
-      <link>https://clevis22.github.io/tags/apple-silicon/</link>
+      <link>https://tinyweights.dev/tags/apple-silicon/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/apple-silicon/</guid>
+      <guid>https://tinyweights.dev/tags/apple-silicon/</guid>
       <description></description>
     </item>
     <item>
       <title>Edge-Ai</title>
-      <link>https://clevis22.github.io/tags/edge-ai/</link>
+      <link>https://tinyweights.dev/tags/edge-ai/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/edge-ai/</guid>
+      <guid>https://tinyweights.dev/tags/edge-ai/</guid>
       <description></description>
     </item>
     <item>
       <title>Gemma3</title>
-      <link>https://clevis22.github.io/tags/gemma3/</link>
+      <link>https://tinyweights.dev/tags/gemma3/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/gemma3/</guid>
+      <guid>https://tinyweights.dev/tags/gemma3/</guid>
       <description></description>
     </item>
     <item>
       <title>Gpt-5.4-Nano</title>
-      <link>https://clevis22.github.io/tags/gpt-5.4-nano/</link>
+      <link>https://tinyweights.dev/tags/gpt-5.4-nano/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/gpt-5.4-nano/</guid>
+      <guid>https://tinyweights.dev/tags/gpt-5.4-nano/</guid>
       <description></description>
     </item>
     <item>
       <title>Local-Inference</title>
-      <link>https://clevis22.github.io/tags/local-inference/</link>
+      <link>https://tinyweights.dev/tags/local-inference/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/local-inference/</guid>
+      <guid>https://tinyweights.dev/tags/local-inference/</guid>
       <description></description>
     </item>
     <item>
       <title>Lora</title>
-      <link>https://clevis22.github.io/tags/lora/</link>
+      <link>https://tinyweights.dev/tags/lora/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/lora/</guid>
+      <guid>https://tinyweights.dev/tags/lora/</guid>
       <description></description>
     </item>
     <item>
       <title>Mlx</title>
-      <link>https://clevis22.github.io/tags/mlx/</link>
+      <link>https://tinyweights.dev/tags/mlx/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/mlx/</guid>
+      <guid>https://tinyweights.dev/tags/mlx/</guid>
       <description></description>
     </item>
     <item>
       <title>On-Device-Ai</title>
-      <link>https://clevis22.github.io/tags/on-device-ai/</link>
+      <link>https://tinyweights.dev/tags/on-device-ai/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/on-device-ai/</guid>
+      <guid>https://tinyweights.dev/tags/on-device-ai/</guid>
       <description></description>
     </item>
     <item>
       <title>Openai</title>
-      <link>https://clevis22.github.io/tags/openai/</link>
+      <link>https://tinyweights.dev/tags/openai/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/openai/</guid>
+      <guid>https://tinyweights.dev/tags/openai/</guid>
       <description></description>
     </item>
     <item>
       <title>Quantization</title>
-      <link>https://clevis22.github.io/tags/quantization/</link>
+      <link>https://tinyweights.dev/tags/quantization/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/quantization/</guid>
+      <guid>https://tinyweights.dev/tags/quantization/</guid>
       <description></description>
     </item>
     <item>
       <title>Slm</title>
-      <link>https://clevis22.github.io/tags/slm/</link>
+      <link>https://tinyweights.dev/tags/slm/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/slm/</guid>
+      <guid>https://tinyweights.dev/tags/slm/</guid>
       <description></description>
     </item>
     <item>
       <title>Small-Models</title>
-      <link>https://clevis22.github.io/tags/small-models/</link>
+      <link>https://tinyweights.dev/tags/small-models/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/small-models/</guid>
+      <guid>https://tinyweights.dev/tags/small-models/</guid>
       <description></description>
     </item>
     <item>
       <title>SmolLM3</title>
-      <link>https://clevis22.github.io/tags/smollm3/</link>
+      <link>https://tinyweights.dev/tags/smollm3/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://clevis22.github.io/tags/smollm3/</guid>
+      <guid>https://tinyweights.dev/tags/smollm3/</guid>
       <description></description>
     </item>
   </channel>
