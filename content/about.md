@@ -1,6 +1,8 @@
 ---
 title: "About"
 layout: "page"
+hidemeta: true
+disableShare: true
 ---
 
 Tiny Weights is a blog focused on small language models — the Gemmas, SmolLMs, Phis, and Mistrals of the world.
