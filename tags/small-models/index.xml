@@ -16,6 +16,13 @@
       <description>Why the AI industry is pivoting from massive data centers to Small Language Models (SLMs) running locally on devices, factories, and 5G networks.</description>
     </item>
     <item>
+      <title>The &#39;Small&#39; Model That Does It All: How Mistral Small 4&#39;s Unified Architecture Kills the Need for Specialized AI</title>
+      <link>https://tinyweights.dev/posts/the/</link>
+      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/the/</guid>
+      <description>Discover how Mistral Small 4 unifies reasoning, multimodal, and coding into an efficient 119B MoE model that runs locally and slashes API costs.</description>
+    </item>
+    <item>
       <title>Fine-Tune Gemma 3 270M on Apple Silicon with MLX-LM and Python</title>
       <link>https://tinyweights.dev/posts/fi/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
