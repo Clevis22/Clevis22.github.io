@@ -1,6 +1,6 @@
-baseURL = "https://clevis22.github.io"
+baseURL = "https://tinyweights.dev"
 languageCode = "en-us"
-title = "Tiny Weights"
+title = "TinyWeights.dev"
 theme = "PaperMod"
 paginate = 10
 enableRobotsTXT = true
@@ -29,8 +29,8 @@ enableRobotsTXT = true
     Content = "A blog about small language models — Gemma, SmolLM, Phi, and everything in the SLM space. Running big ideas on small hardware."
 
   [[params.socialIcons]]
-    name = "github"
-    url = "https://github.com/Clevis22"
+    name = "bluesky"
+    url = "https://bsky.app/profile/edwinflannon.bsky.social"
 
 [menu]
   [[menu.main]]
@@ -41,7 +41,7 @@ enableRobotsTXT = true
     name = "Search"
     url = "/search/"
     weight = 2
-  [[menu.main]]
+    [[menu.main]]
     name = "About"
     url = "/about/"
     weight = 3

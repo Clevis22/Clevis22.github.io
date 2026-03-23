@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://tinyweights.dev/sitemap.xml
