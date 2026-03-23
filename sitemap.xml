@@ -2,16 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tinyweights.dev/categories/</loc>
+    <lastmod>2026-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/edge-ai/</loc>
+    <lastmod>2026-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/gemma-3n/</loc>
+    <lastmod>2026-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/posts/out-of-the-cloud-i/</loc>
+    <lastmod>2026-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/phi-4-mini/</loc>
+    <lastmod>2026-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/posts/</loc>
+    <lastmod>2026-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/slm/</loc>
+    <lastmod>2026-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/categories/small-ai-models/</loc>
+    <lastmod>2026-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/small-models/</loc>
+    <lastmod>2026-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/</loc>
+    <lastmod>2026-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/</loc>
+    <lastmod>2026-03-23T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://tinyweights.dev/tags/api/</loc>
     <lastmod>2026-03-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/apple-silicon/</loc>
-    <lastmod>2026-03-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/categories/</loc>
-    <lastmod>2026-03-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/edge-ai/</loc>
     <lastmod>2026-03-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/posts/fi/</loc>
@@ -41,31 +68,13 @@
     <loc>https://tinyweights.dev/tags/openai/</loc>
     <lastmod>2026-03-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tinyweights.dev/posts/</loc>
-    <lastmod>2026-03-22T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://tinyweights.dev/tags/quantization/</loc>
-    <lastmod>2026-03-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/slm/</loc>
-    <lastmod>2026-03-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/categories/small-ai-models/</loc>
-    <lastmod>2026-03-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/small-models/</loc>
     <lastmod>2026-03-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/smollm3/</loc>
     <lastmod>2026-03-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/posts/smollm3-3b-the-fully-ope/</loc>
-    <lastmod>2026-03-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/</loc>
-    <lastmod>2026-03-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/</loc>
     <lastmod>2026-03-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/about/</loc>

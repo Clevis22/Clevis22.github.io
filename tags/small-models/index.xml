@@ -6,8 +6,15 @@
     <description>Recent content in Small-Models on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/small-models/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Out of the Cloud, Into the Wild: How Small AI Models and Physical AI Are Taking Over the Edge</title>
+      <link>https://tinyweights.dev/posts/out-of-the-cloud-i/</link>
+      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/out-of-the-cloud-i/</guid>
+      <description>Why the AI industry is pivoting from massive data centers to Small Language Models (SLMs) running locally on devices, factories, and 5G networks.</description>
+    </item>
     <item>
       <title>Fine-Tune Gemma 3 270M on Apple Silicon with MLX-LM and Python</title>
       <link>https://tinyweights.dev/posts/fi/</link>
