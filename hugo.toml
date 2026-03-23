@@ -2,7 +2,7 @@ baseURL = "https://tinyweights.dev"
 languageCode = "en-us"
 title = "TinyWeights.dev"
 theme = "PaperMod"
-paginate = 10
+pagerSize = 10
 enableRobotsTXT = true
 
 [minify]
