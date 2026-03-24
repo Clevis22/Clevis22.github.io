@@ -6,13 +6,41 @@
     <description>Recent content in Tags on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Edge-Ai</title>
       <link>https://tinyweights.dev/tags/edge-ai/</link>
-      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/edge-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mistral Small 4</title>
+      <link>https://tinyweights.dev/tags/mistral-small-4/</link>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/mistral-small-4/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Open-Weight</title>
+      <link>https://tinyweights.dev/tags/open-weight/</link>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/open-weight/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Slm</title>
+      <link>https://tinyweights.dev/tags/slm/</link>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/slm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Small-Models</title>
+      <link>https://tinyweights.dev/tags/small-models/</link>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/small-models/</guid>
       <description></description>
     </item>
     <item>
@@ -27,20 +55,6 @@
       <link>https://tinyweights.dev/tags/phi-4-mini/</link>
       <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/phi-4-mini/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Slm</title>
-      <link>https://tinyweights.dev/tags/slm/</link>
-      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/slm/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Small-Models</title>
-      <link>https://tinyweights.dev/tags/small-models/</link>
-      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/small-models/</guid>
       <description></description>
     </item>
     <item>

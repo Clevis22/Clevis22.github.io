@@ -6,8 +6,15 @@
     <description>Recent content on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The &#39;Small&#39; Model That Does It All: How Mistral Small 4&#39;s Unified Architecture Kills the Need for Specialized AI</title>
+      <link>https://tinyweights.dev/posts/the/</link>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/the/</guid>
+      <description>Discover how Mistral Small 4 unifies reasoning, multimodal, and coding into an efficient 119B MoE model that runs locally and slashes API costs.</description>
+    </item>
     <item>
       <title>Out of the Cloud, Into the Wild: How Small AI Models and Physical AI Are Taking Over the Edge</title>
       <link>https://tinyweights.dev/posts/out-of-the-cloud-i/</link>
