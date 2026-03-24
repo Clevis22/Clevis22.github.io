@@ -10,9 +10,9 @@
     <atom:link href="https://tinyweights.dev/tags/gemma-3n/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Out of the Cloud, Into the Wild: How Small AI Models and Physical AI Are Taking Over the Edge</title>
-      <link>https://tinyweights.dev/posts/out-of-the-cloud-i/</link>
+      <link>https://tinyweights.dev/posts/out-of-the-cloud-into-the-wild/</link>
       <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/out-of-the-cloud-i/</guid>
+      <guid>https://tinyweights.dev/posts/out-of-the-cloud-into-the-wild/</guid>
       <description>Why the AI industry is pivoting from massive data centers to Small Language Models (SLMs) running locally on devices, factories, and 5G networks.</description>
     </item>
   </channel>
