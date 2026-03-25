@@ -1,0 +1,18 @@
+/* Anthropic-inspired Light Mode Colors */
+:root {
+    --theme: #1a1a1a;           /* Dark charcoal for links/accents */
+    --entry: #fbfaf6;           /* Warm off-white for post cards */
+    --primary: #191919;         /* Almost black for headings and titles */
+    --secondary: #555555;       /* Medium gray for dates and subtitles */
+    --tertiary: #e6e4df;        /* Warm light-gray for borders and dividers */
+    --content: #222222;         /* Deep gray for readability in body text */
+    --hljs-bg: #eeebe3;         /* Slightly darker warm tone for code blocks */
+    --code-bg: #eeebe3;         /* Inline code background */
+    --border: #e6e4df;          /* Global border color */
+}
+
+/* Set the overall page canvas to match the warm background */
+body {
+    background: #fbfaf6; 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
