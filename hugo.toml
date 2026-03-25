@@ -31,6 +31,9 @@ enableRobotsTXT = true
   [[params.socialIcons]]
     name = "bluesky"
     url = "https://bsky.app/profile/edwinflannon.bsky.social"
+  
+  [params.assets]
+    disableHLJS = true
 
 [menu]
   [[menu.main]]
