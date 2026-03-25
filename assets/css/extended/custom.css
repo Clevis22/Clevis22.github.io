@@ -16,3 +16,9 @@ body {
     background: #fbfaf6; 
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+/* Force code block wrappers to use the light background */
+.highlight, .highlight pre, .post-content pre {
+    background: #eeebe3 !important;
+    border: 1px solid #e6e4df;
+}
