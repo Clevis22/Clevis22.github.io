@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Tutorials on TinyWeights.dev</title>
-    <link>https://tinyweights.dev/categories/tutorials/</link>
-    <description>Recent content in Tutorials on TinyWeights.dev</description>
+    <title>Vision-Language-Models on TinyWeights.dev</title>
+    <link>https://tinyweights.dev/tags/vision-language-models/</link>
+    <description>Recent content in Vision-Language-Models on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://tinyweights.dev/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tinyweights.dev/tags/vision-language-models/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Deep Dive: Running Reka Edge Locally for Frontier-Level Vision AI on Mac and PC</title>
       <link>https://tinyweights.dev/posts/run-reka-edge-locally-vision-model-mac/</link>
       <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/posts/run-reka-edge-locally-vision-model-mac/</guid>
       <description>An in-depth look at Reka Edge, the 7B multimodal vision-language model. Learn about its ConvNeXt V2 architecture, token efficiency, and how to run it locally on consumer hardware.</description>
-    </item>
-    <item>
-      <title>The &#39;Small&#39; Model That Does It All: How Mistral Small 4&#39;s Unified Architecture Kills the Need for Specialized AI</title>
-      <link>https://tinyweights.dev/posts/the/</link>
-      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/the/</guid>
-      <description>Discover how Mistral Small 4 unifies reasoning, multimodal, and coding into an efficient 119B MoE model that runs locally and slashes API costs.</description>
     </item>
   </channel>
 </rss>
