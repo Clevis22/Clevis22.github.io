@@ -6,8 +6,15 @@
     <description>Recent content in Small-Ai-Models on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/categories/small-ai-models/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Developer&#39;s Guide to Qwen 3.5 0.8B: A Hands-On Tutorial for Local Deployment</title>
+      <link>https://tinyweights.dev/posts/developers-guide-to-qwen-3-5-0-8b-hands-on-tutorial-local-deployment/</link>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/developers-guide-to-qwen-3-5-0-8b-hands-on-tutorial-local-deployment/</guid>
+      <description>Learn how to locally deploy Qwen 3.5 0.8B, an efficient open-source Small Language Model (SLM) for edge AI, multimodal tasks, and on-device inference.</description>
+    </item>
     <item>
       <title>Deep Dive: Running Reka Edge Locally for Frontier-Level Vision AI on Mac and PC</title>
       <link>https://tinyweights.dev/posts/run-reka-edge-locally-vision-model-mac/</link>
