@@ -29,8 +29,8 @@ enableRobotsTXT = true
     Content = "A blog about small language models — Gemma, SmolLM, Phi, and everything in the SLM space. Running big ideas on small hardware."
 
   [[params.socialIcons]]
-    name = "bluesky"
-    url = "https://bsky.app/profile/edwinflannon.bsky.social"
+    name = "x"
+    url = "https://x.com/TinyWeightsAI"
 
 [menu]
   [[menu.main]]
