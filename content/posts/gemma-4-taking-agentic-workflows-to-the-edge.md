@@ -33,7 +33,7 @@ What makes these edge models truly remarkable is the **128K context window**, a 
 For developers equipped with Apple M-series chips or discrete Nvidia GPUs with generous VRAM, the larger workstation models deliver benchmark-breaking intelligence. These models expand the context window to a staggering **256K tokens**, making them ideal for heavy RAG document ingestion and multi-step agent planning.
 
 * **Gemma 4 26B A4B (Mixture of Experts):** Utilizing a sparse MoE architecture with 128 total experts (8 active per token) and one shared expert, this model packs 25.2 billion total parameters but only activates 3.8 billion per forward pass. The MoE structure drastically lowers compute overhead while preserving quality—it achieves a GPQA Diamond score of 82.3% and an MMLU Pro score of 82.6%. 
-* **Gemma 4 31B (Dense):** The flagship heavyweight of the family. With 60 layers and 30.7 billion parameters, it tops local intelligence charts with an 85.2% MMLU Pro score and strong code-generation capabilities (2150 ELO on Codeforces). It drops the audio encoder but retains the highly capable ~550M parameter vision encoder.
+* **Gemma 4 31B (Dense):** The flagship heavyweight of the family. With 30.7 billion parameters, it tops local intelligence charts with an 85.2% MMLU Pro score and strong code-generation capabilities (2150 ELO on Codeforces). It drops the audio encoder but retains the highly capable ~550M parameter vision encoder.
 
 ## A Massive Leap in Reasoning and "Thinking"
 
