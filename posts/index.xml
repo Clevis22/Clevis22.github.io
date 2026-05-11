@@ -6,8 +6,15 @@
     <description>Recent content in Posts on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Qwen3-Coder-Next: Run a Frontier-Level Coding Agent Locally on Consumer Hardware</title>
+      <link>https://tinyweights.dev/posts/qwen3-coder-next-local-coding-agent/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/qwen3-coder-next-local-coding-agent/</guid>
+      <description>Alibaba&amp;#39;s Qwen3-Coder-Next packs 80B total parameters into a 3B-active MoE, scores 70.6% on SWE-Bench Verified, and runs on a single RTX 5090 or 128GB Mac Studio.</description>
+    </item>
     <item>
       <title>Gemma 4: Taking Agentic Workflows to the Edge</title>
       <link>https://tinyweights.dev/posts/gemma-4-taking-agentic-workflows-to-the-edge/</link>

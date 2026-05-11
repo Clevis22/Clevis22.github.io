@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Local-Inference on TinyWeights.dev</title>
-    <link>https://tinyweights.dev/tags/local-inference/</link>
-    <description>Recent content in Local-Inference on TinyWeights.dev</description>
+    <title>Qwen3-Coder-Next on TinyWeights.dev</title>
+    <link>https://tinyweights.dev/tags/qwen3-coder-next/</link>
+    <description>Recent content in Qwen3-Coder-Next on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 11 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://tinyweights.dev/tags/local-inference/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tinyweights.dev/tags/qwen3-coder-next/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Qwen3-Coder-Next: Run a Frontier-Level Coding Agent Locally on Consumer Hardware</title>
       <link>https://tinyweights.dev/posts/qwen3-coder-next-local-coding-agent/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/posts/qwen3-coder-next-local-coding-agent/</guid>
       <description>Alibaba&amp;#39;s Qwen3-Coder-Next packs 80B total parameters into a 3B-active MoE, scores 70.6% on SWE-Bench Verified, and runs on a single RTX 5090 or 128GB Mac Studio.</description>
-    </item>
-    <item>
-      <title>SmolLM3-3B: The Fully Open Small Language Model That Punches Way Above Its Weight</title>
-      <link>https://tinyweights.dev/posts/smollm3-3b-the-fully-ope/</link>
-      <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/smollm3-3b-the-fully-ope/</guid>
-      <description>SmolLM3-3B from HuggingFace is a fully open 3B SLM with 128k context, dual-mode reasoning, and multilingual support. Here&amp;#39;s how to run it locally.</description>
     </item>
   </channel>
 </rss>
