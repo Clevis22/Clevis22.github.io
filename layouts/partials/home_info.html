@@ -1,10 +1,7 @@
 {{- with site.Params.homeInfoParams }}
 <article class="first-entry home-info">
     <header class="entry-header">
-        <div class="home-mascot">
-            <img src="/mascot.svg" alt="Tiny Weights mascot — a pixel-art character lifting a barbell" width="96" height="96">
-        </div>
-        <h1>{{ .Title | markdownify }}</h1>
+        <h1>{{ .Title | markdownify }} <img src="/mascot-transparent.svg" alt="Tiny Weights mascot" class="home-mascot-inline"></h1>
     </header>
     <div class="entry-content">
         {{ .Content | markdownify }}
