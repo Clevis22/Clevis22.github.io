@@ -6,8 +6,15 @@
     <description>Recent content in Slm on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/slm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Qwen3.5-0.8B: A Multimodal Thinking Model That Fits in 1 Gigabyte</title>
+      <link>https://tinyweights.dev/posts/qwen3-5-tiny-multimodal-thinking-model/</link>
+      <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/qwen3-5-tiny-multimodal-thinking-model/</guid>
+      <description>Qwen3.5-0.8B packs multimodal vision, a 262K context window, and an on-demand thinking mode into a 1GB file. Here&amp;#39;s the architecture behind it and how to run it locally.</description>
+    </item>
     <item>
       <title>Qwen3-Coder-Next: Run a Frontier-Level Coding Agent Locally on Consumer Hardware</title>
       <link>https://tinyweights.dev/posts/qwen3-coder-next-local-coding-agent/</link>
