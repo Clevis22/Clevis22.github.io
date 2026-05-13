@@ -42,11 +42,60 @@ slug: "url-slug"
 - Include practical code/commands where relevant.
 - Tone: direct, technically literate, peer-to-peer. No fluff.
 
-## Image sources (free to use)
-- HuggingFace CDN (model cards/blog posts)
-- Wikimedia Commons
-- Pexels (free license)
-- Official project/company blogs
+## Image rules
+
+**Never reuse an image URL already in the used list below.** Before selecting any image, check the list. Every post must use images not previously used anywhere on the blog.
+
+Always include: alt text, a caption, and source attribution (photographer + license).
+
+### Already used — do not reuse
+
+| URL | Used in |
+|---|---|
+| `commons/3/3d/Neural_network.svg` | gemma-4, qwen3-coder |
+| `commons/6/64/Dall-e_3_%28jan_%2724%29_artificial_intelligence_icon.png` | gemma-4, ai-in-your-pocket |
+| `commons/6/67/Neural_network_-_Midjourney_and_Grok.png` | the.md, run-reka-edge |
+| `commons/3/34/Edge_computing_paradigm%2C_2019-07-03.svg` | run-reka-edge, out-of-the-cloud-i |
+| `commons/7/74/Servers_in_a_Rack.jpg` | out-of-the-cloud-i |
+| `commons/0/02/Evolution_Directions_of_Mobile_Device.jpg` | ai-in-your-pocket |
+| `commons/M2_Macbook_Air_Midnight_model_-_1.jpg` | fi.md |
+| `commons/Colored_neural_network.svg` | fi.md |
+| `commons/A_2021_14-inch_Silver_MacBook_Pro.jpg` | fi.md |
+| `commons/Python-logo-notext.svg` | fi.md |
+| `commons/Apple_MacBook_Pro_15%22_%282017%29.jpg` | run-reka-edge |
+| `pexels-photo-4584612.jpeg` | smollm3 |
+| `pexels-photo-4508751.jpeg` | gpt-5-4-na |
+| `pexels-photo-965345.jpeg` | gpt-5-4-na |
+| `pexels-photo-5483075.jpeg` | gpt-5-4-na |
+| `pexels-photo-25626428.jpeg` | gpt-5-4-na |
+| `pexels-photo-17483874.png` | qwen3-5 |
+| `Raspberry_Pi_4_Model_B_-_Side.jpg` | qwen3-5 |
+
+### Image pool — verified free, not yet used
+
+Pick from here or find genuinely new images. Add any new image to the used list above after publishing.
+
+**Hardware & edge devices**
+- `https://images.pexels.com/photos/163073/raspberry-pi-computer-linux-163073.jpeg` — Raspberry Pi circuit board close-up (Pexels, free)
+- `https://images.pexels.com/photos/1472443/pexels-photo-1472443.jpeg` — electronics/microcontroller board (Pexels, free)
+- `https://images.pexels.com/photos/5276099/pexels-photo-5276099.jpeg` — embedded hardware (Pexels, free)
+
+**Servers & infrastructure**
+- `https://images.pexels.com/photos/17489152/pexels-photo-17489152.jpeg` — modern rack-mounted servers, blue lighting (Pexels, free)
+- `https://images.pexels.com/photos/5480781/pexels-photo-5480781.jpeg` — server cables in data centre (Pexels, free)
+- `https://images.pexels.com/photos/6466141/pexels-photo-6466141.jpeg` — server rack with network cables (Pexels, free)
+- `https://images.pexels.com/photos/5050305/pexels-photo-5050305.jpeg` — overhead view of server cable trays (Pexels, free)
+
+**Code & programming**
+- `https://images.pexels.com/photos/3872166/pexels-photo-3872166.jpeg` — multicoloured code on dark screen (Pexels, free)
+- `https://images.pexels.com/photos/16023919/pexels-photo-16023919.jpeg` — HTML/code on screen (Pexels, free)
+
+**AI / abstract**
+- `https://images.pexels.com/photos/17483873/pexels-photo-17483873.png` — abstract 3D AI render (Pexels, free)
+- `https://images.pexels.com/photos/18069490/pexels-photo-18069490.png` — abstract digital AI visualization, colourful 3D (Pexels, free)
+
+**Model-specific (use HuggingFace CDN)**
+- Pull benchmark charts directly from the model's HuggingFace card or blog post — these are the best images for model posts (unique to each model, highly relevant). Look for the image embed URL in the model card markdown or blog post HTML.
 
 ## Hugo commands
 ```powershell

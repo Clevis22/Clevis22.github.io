@@ -29,8 +29,8 @@ Qwen3.5 ships as a range of models, all sharing the same hybrid architecture and
 
 All variants — including the 0.8B — support text, image, and video input, thinking mode, and tool calling. For this blog, the 0.8B through 9B range is the most relevant: these are the sizes you can run on a laptop, a mini PC, or a modest VPS without exotic hardware.
 
-[![Neural Network Architecture](https://upload.wikimedia.org/wikipedia/commons/3/3d/Neural_network.svg)](https://commons.wikimedia.org/wiki/File:Neural_network.svg)
-*Neural Network. [Source](https://commons.wikimedia.org/wiki/File:Neural_network.svg) · Dake, Mysid (public domain)*
+![Neural networks visualization — abstract representation of AI model layers](https://images.pexels.com/photos/17483874/pexels-photo-17483874.png)
+*Neural networks visualization. Photo by [Tara Winstead](https://www.pexels.com/@tara-winstead/) on [Pexels](https://www.pexels.com/) — free to use*
 
 ## The Architecture: Why Gated DeltaNet Matters
 
@@ -88,8 +88,8 @@ The language benchmarks reflect the trade-off you'd expect at this scale: MMLU-P
 
 ## Running Locally
 
-[![AI chip hardware](https://upload.wikimedia.org/wikipedia/commons/6/64/Dall-e_3_%28jan_%2724%29_artificial_intelligence_icon.png)](https://commons.wikimedia.org/wiki/File:Dall-e_3_(jan_%2724)_artificial_intelligence_icon.png)
-*Artificial Intelligence. [Source](https://commons.wikimedia.org/wiki/File:Dall-e_3_(jan_%2724)_artificial_intelligence_icon.png) · JPxG (CC BY-SA 4.0)*
+[![Raspberry Pi 4 Model B — a typical edge inference target for small language models](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Raspberry_Pi_4_Model_B_-_Side.jpg/1280px-Raspberry_Pi_4_Model_B_-_Side.jpg)](https://commons.wikimedia.org/wiki/File:Raspberry_Pi_4_Model_B_-_Side.jpg)
+*Raspberry Pi 4 Model B. [Source](https://commons.wikimedia.org/wiki/File:Raspberry_Pi_4_Model_B_-_Side.jpg) · Michael H. (Laserlicht), CC BY-SA 4.0*
 
 ### Option 1: Ollama (Easiest)
 
