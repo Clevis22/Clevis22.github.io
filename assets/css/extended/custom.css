@@ -19,3 +19,16 @@
 body {
     background-color: var(--theme);
 }
+
+.home-mascot {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.home-mascot img {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    width: 96px;
+    height: 96px;
+}
