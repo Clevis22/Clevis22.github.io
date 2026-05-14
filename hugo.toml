@@ -12,7 +12,7 @@ enableRobotsTXT = true
 [params]
   env = "production"
   title = "Tiny Weights"
-  description = "A blog about small language models — Gemma, SmolLM, Phi, and the rest of the SLM landscape."
+  description = "Small language models — Gemma, Phi, SmolLM, Qwen, and the rest — are getting surprisingly capable. Benchmarks, local deployment, quantization, and hands-on guides for running small LLMs on real hardware."
   keywords = ["small language models", "SLM", "Gemma", "local AI", "edge AI"]
   author = "Clevis"
   defaultTheme = "auto"
@@ -26,7 +26,7 @@ enableRobotsTXT = true
 
   [params.homeInfoParams]
     Title = "Tiny Weights"
-    Content = "A blog about small language models — Gemma, SmolLM, Phi, and everything in the SLM space. Running big ideas on small hardware."
+    Content = "Small language models — Gemma, Phi, SmolLM, Qwen, and the rest — are getting surprisingly capable. Benchmarks, local deployment, quantization, and hands-on guides for running small LLMs on real hardware."
 
   [[params.socialIcons]]
     name = "bluesky"
