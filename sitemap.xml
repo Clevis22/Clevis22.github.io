@@ -11,7 +11,16 @@
     <loc>https://tinyweights.dev/tags/edge-ai/</loc>
     <lastmod>2026-05-14T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://tinyweights.dev/tags/llama.cpp/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://tinyweights.dev/tags/local-inference/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/ollama/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/posts/ollama-vs-lm-studio-vs-llama-cpp/</loc>
     <lastmod>2026-05-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/posts/</loc>
@@ -33,6 +42,9 @@
     <lastmod>2026-05-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/tools/</loc>
     <lastmod>2026-05-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/linear-attention/</loc>

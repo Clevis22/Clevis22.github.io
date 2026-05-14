@@ -9,6 +9,13 @@
     <lastBuildDate>Thu, 14 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Ollama vs LM Studio vs llama.cpp: Which Local AI Runtime Should You Use?</title>
+      <link>https://tinyweights.dev/posts/ollama-vs-lm-studio-vs-llama-cpp/</link>
+      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/ollama-vs-lm-studio-vs-llama-cpp/</guid>
+      <description>Ollama vs LM Studio vs llama.cpp compared: setup, performance, API support, and which runtime to pick for your hardware and use case in 2026.</description>
+    </item>
+    <item>
       <title>The Best Small Language Models in 2026: A Practical Comparison</title>
       <link>https://tinyweights.dev/posts/best-small-language-models-2026/</link>
       <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
