@@ -11,8 +11,6 @@
     --primary:      #1a1a1a;
     --secondary:    #4a4a4a;
     --border:       #ddd8cc;
-    --code-bg:      #0d0f1a;
-    --hljs-bg:      #0d0f1a;
 
     --accent:       #f5813f;
     --accent-dim:   #f99a5e;
@@ -22,14 +20,12 @@
     --yellow:       #f5c842;
 }
 
-.dark {
+[data-theme="dark"] {
     --theme:        #12100e;
     --entry:        #1c1916;
     --primary:      #f0ebe0;
     --secondary:    #a09890;
     --border:       #2e2a24;
-    --code-bg:      #0d0f1a;
-    --hljs-bg:      #0d0f1a;
 }
 
 /* ---------- Base typography ---------- */
@@ -114,8 +110,7 @@ code, kbd, pre, samp {
 /* ---------- Tags / categories ---------- */
 .post-tags a,
 .terms-tags a,
-a.tag,
-.paginav a {
+a.tag {
     background: color-mix(in srgb, var(--indigo) 12%, transparent);
     color: var(--indigo);
     border: 1px solid color-mix(in srgb, var(--indigo) 30%, transparent);
@@ -135,17 +130,17 @@ a.tag:hover {
     border-color: var(--indigo);
 }
 
-.dark .post-tags a,
-.dark .terms-tags a,
-.dark a.tag {
+[data-theme="dark"] .post-tags a,
+[data-theme="dark"] .terms-tags a,
+[data-theme="dark"] a.tag {
     background: color-mix(in srgb, var(--indigo-dim) 15%, transparent);
     color: var(--indigo-dim);
     border-color: color-mix(in srgb, var(--indigo-dim) 30%, transparent);
 }
 
-.dark .post-tags a:hover,
-.dark .terms-tags a:hover,
-.dark a.tag:hover {
+[data-theme="dark"] .post-tags a:hover,
+[data-theme="dark"] .terms-tags a:hover,
+[data-theme="dark"] a.tag:hover {
     background: var(--indigo-dim);
     color: var(--navy);
 }
@@ -155,10 +150,6 @@ a.tag:hover {
 .post-content h2 {
     border-bottom: 2px solid var(--border);
     padding-bottom: 0.25em;
-}
-
-.post-content h2 {
-    color: var(--primary);
 }
 
 .post-content a {
@@ -173,12 +164,12 @@ a.tag:hover {
     text-decoration-color: var(--indigo);
 }
 
-.dark .post-content a {
+[data-theme="dark"] .post-content a {
     color: var(--indigo-dim);
     text-decoration-color: color-mix(in srgb, var(--indigo-dim) 35%, transparent);
 }
 
-.dark .post-content a:hover {
+[data-theme="dark"] .post-content a:hover {
     text-decoration-color: var(--indigo-dim);
 }
 
@@ -194,14 +185,14 @@ a.tag:hover {
     padding: 0.1em 0.35em;
 }
 
-.dark .post-content p code,
-.dark .post-content li code,
-.dark .post-content td code {
+[data-theme="dark"] .post-content p code,
+[data-theme="dark"] .post-content li code,
+[data-theme="dark"] .post-content td code {
     background: color-mix(in srgb, var(--accent) 12%, var(--entry));
     color: var(--accent-dim);
 }
 
-/* ---------- Code blocks ---------- */
+/* ---------- Code blocks — always dark regardless of site theme ---------- */
 .highlight,
 pre {
     border-radius: 8px;
@@ -220,7 +211,6 @@ pre {
     line-height: 1.65;
 }
 
-/* Make code-block text readable on dark bg regardless of site theme */
 .highlight code,
 pre code {
     color: #e8ecff;
@@ -296,19 +286,10 @@ pre code {
     letter-spacing: 0.07em;
 }
 
-/* ---------- Post meta (date, reading time) ---------- */
+/* ---------- Post meta ---------- */
 .post-meta {
     font-size: 0.82rem;
     color: var(--secondary);
-}
-
-/* ---------- Share buttons ---------- */
-.share-buttons h3 {
-    color: var(--secondary);
-    font-size: 0.82rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
 }
 
 /* ---------- Social icons ---------- */
