@@ -46,5 +46,12 @@ enableRobotsTXT = true
     url = "/about/"
     weight = 3
 
+[markup.highlight]
+  noClasses = false
+  codeFences = true
+  guessSyntax = true
+  lineNos = false
+  lineNumbersInTable = false
+
 [outputs]
   home = ["HTML", "RSS", "JSON"]

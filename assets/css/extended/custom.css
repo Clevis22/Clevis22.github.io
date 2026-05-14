@@ -1,25 +1,339 @@
+/* =====================================================
+   Tiny Weights — custom theme
+   Palette: orange #f5813f, navy #0d0f1a, indigo #5b6af0
+   Fonts: Space Grotesk (UI) + JetBrains Mono (code)
+   ===================================================== */
+
+/* ---------- CSS variables ---------- */
 :root {
-    --theme:       #f5f0e8;
-    --entry:       #eee9dc;
-    --primary:     #1a1a1a;
-    --secondary:   #4a4a4a;
-    --border:      #d4cfc5;
-    --code-bg:     #e8e3d8;
-    --hljs-bg:     #e8e3d8;
-}
-.dark {
-    --theme:       #1a1814;
-    --entry:       #242018;
-    --primary:     #f0ebe0;
-    --secondary:   #b0ab9f;
-    --border:      #3a3630;
-    --code-bg:     #2a2620;
-    --hljs-bg:     #2a2620;
-}
-body {
-    background-color: var(--theme);
+    --theme:        #faf7f2;
+    --entry:        #f0ece3;
+    --primary:      #1a1a1a;
+    --secondary:    #4a4a4a;
+    --border:       #ddd8cc;
+    --code-bg:      #0d0f1a;
+    --hljs-bg:      #0d0f1a;
+
+    --accent:       #f5813f;
+    --accent-dim:   #f99a5e;
+    --indigo:       #5b6af0;
+    --indigo-dim:   #8899ff;
+    --navy:         #0d0f1a;
+    --yellow:       #f5c842;
 }
 
+.dark {
+    --theme:        #12100e;
+    --entry:        #1c1916;
+    --primary:      #f0ebe0;
+    --secondary:    #a09890;
+    --border:       #2e2a24;
+    --code-bg:      #0d0f1a;
+    --hljs-bg:      #0d0f1a;
+}
+
+/* ---------- Base typography ---------- */
+body {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    background-color: var(--theme);
+    color: var(--primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+code, kbd, pre, samp {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ---------- Navigation ---------- */
+.nav {
+    border-bottom: 1px solid var(--border);
+}
+
+.logo a {
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.03em;
+}
+
+.logo a:hover {
+    color: var(--accent);
+}
+
+#menu-btn,
+#theme-toggle {
+    color: var(--secondary);
+    transition: color 0.15s;
+}
+
+#menu-btn:hover,
+#theme-toggle:hover {
+    color: var(--accent);
+}
+
+/* ---------- Home info ---------- */
+.home-info .entry-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+}
+
+.home-info .entry-content {
+    font-size: 1.05rem;
+    color: var(--secondary);
+    line-height: 1.7;
+}
+
+/* ---------- Post list cards ---------- */
+.post-entry {
+    border: 1px solid var(--border);
+    border-left: 3px solid transparent;
+    border-radius: 6px;
+    transition: border-left-color 0.15s, background-color 0.15s;
+}
+
+.post-entry:hover {
+    border-left-color: var(--accent);
+    background-color: var(--entry);
+}
+
+.entry-header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.post-entry:hover .entry-header h2 {
+    color: var(--accent);
+}
+
+/* ---------- Tags / categories ---------- */
+.post-tags a,
+.terms-tags a,
+a.tag,
+.paginav a {
+    background: color-mix(in srgb, var(--indigo) 12%, transparent);
+    color: var(--indigo);
+    border: 1px solid color-mix(in srgb, var(--indigo) 30%, transparent);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+}
+
+.post-tags a:hover,
+.terms-tags a:hover,
+a.tag:hover {
+    background: var(--indigo);
+    color: #fff;
+    border-color: var(--indigo);
+}
+
+.dark .post-tags a,
+.dark .terms-tags a,
+.dark a.tag {
+    background: color-mix(in srgb, var(--indigo-dim) 15%, transparent);
+    color: var(--indigo-dim);
+    border-color: color-mix(in srgb, var(--indigo-dim) 30%, transparent);
+}
+
+.dark .post-tags a:hover,
+.dark .terms-tags a:hover,
+.dark a.tag:hover {
+    background: var(--indigo-dim);
+    color: var(--navy);
+}
+
+/* ---------- Post content headings ---------- */
+.post-content h1,
+.post-content h2 {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.25em;
+}
+
+.post-content h2 {
+    color: var(--primary);
+}
+
+.post-content a {
+    color: var(--indigo);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--indigo) 35%, transparent);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s;
+}
+
+.post-content a:hover {
+    text-decoration-color: var(--indigo);
+}
+
+.dark .post-content a {
+    color: var(--indigo-dim);
+    text-decoration-color: color-mix(in srgb, var(--indigo-dim) 35%, transparent);
+}
+
+.dark .post-content a:hover {
+    text-decoration-color: var(--indigo-dim);
+}
+
+/* ---------- Inline code ---------- */
+.post-content p code,
+.post-content li code,
+.post-content td code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    background: color-mix(in srgb, var(--accent) 10%, var(--entry));
+    color: #c45e20;
+    border-radius: 3px;
+    padding: 0.1em 0.35em;
+}
+
+.dark .post-content p code,
+.dark .post-content li code,
+.dark .post-content td code {
+    background: color-mix(in srgb, var(--accent) 12%, var(--entry));
+    color: var(--accent-dim);
+}
+
+/* ---------- Code blocks ---------- */
+.highlight,
+pre {
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+    overflow: hidden;
+    margin: 1.5em 0;
+}
+
+.highlight pre,
+pre {
+    background: var(--navy) !important;
+    padding: 1.1em 1.25em;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.65;
+}
+
+/* Make code-block text readable on dark bg regardless of site theme */
+.highlight code,
+pre code {
+    color: #e8ecff;
+    background: transparent !important;
+}
+
+/* ---------- Code copy button ---------- */
+.copy-code {
+    background: color-mix(in srgb, var(--accent) 20%, var(--navy));
+    color: var(--accent-dim);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--navy));
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.copy-code:hover {
+    background: var(--accent);
+    color: var(--navy);
+    border-color: var(--accent);
+}
+
+/* ---------- Blockquotes ---------- */
+.post-content blockquote {
+    border-left: 3px solid var(--indigo);
+    background: color-mix(in srgb, var(--indigo) 6%, var(--entry));
+    padding: 0.75em 1.1em;
+    border-radius: 0 6px 6px 0;
+    color: var(--secondary);
+    margin: 1.5em 0;
+}
+
+/* ---------- Tables ---------- */
+.post-content table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.93rem;
+}
+
+.post-content th {
+    background: color-mix(in srgb, var(--accent) 10%, var(--entry));
+    color: var(--primary);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.post-content th,
+.post-content td {
+    border: 1px solid var(--border);
+    padding: 0.55em 0.9em;
+}
+
+.post-content tr:nth-child(even) td {
+    background: var(--entry);
+}
+
+/* ---------- Pagination ---------- */
+.paginav {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+.paginav a:hover {
+    background: var(--entry);
+}
+
+.paginav .title {
+    color: var(--accent);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+/* ---------- Post meta (date, reading time) ---------- */
+.post-meta {
+    font-size: 0.82rem;
+    color: var(--secondary);
+}
+
+/* ---------- Share buttons ---------- */
+.share-buttons h3 {
+    color: var(--secondary);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+/* ---------- Social icons ---------- */
+.social-icons a:hover svg {
+    fill: var(--accent);
+}
+
+/* ---------- Breadcrumbs ---------- */
+.breadcrumbs {
+    font-size: 0.82rem;
+    color: var(--secondary);
+}
+
+.breadcrumbs a {
+    color: var(--indigo);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--secondary);
+}
+
+/* ---------- Home mascot inline ---------- */
 .home-mascot-inline {
     display: inline;
     vertical-align: middle;
@@ -27,4 +341,47 @@ body {
     width: auto;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
+}
+
+/* ---------- Search ---------- */
+#searchbox input {
+    font-family: 'Space Grotesk', sans-serif;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--entry);
+    color: var(--primary);
+    padding: 0.5em 0.85em;
+    font-size: 0.95rem;
+    transition: border-color 0.15s;
+}
+
+#searchbox input:focus {
+    outline: none;
+    border-color: var(--indigo);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--indigo) 20%, transparent);
+}
+
+/* ---------- TOC ---------- */
+.toc {
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--indigo);
+    border-radius: 6px;
+    background: var(--entry);
+    padding: 0.75em 1.1em;
+    font-size: 0.9rem;
+}
+
+.toc details summary {
+    font-weight: 600;
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.toc a {
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+.toc a:hover {
+    color: var(--indigo);
 }

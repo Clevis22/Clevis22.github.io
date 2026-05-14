@@ -1,0 +1,91 @@
+/* Chroma syntax highlighting — Tiny Weights palette
+   Targets the CSS classes emitted by Hugo when noClasses=false.
+   All code blocks sit on var(--navy) = #0d0f1a background. */
+
+/* Base */
+.chroma { background: #0d0f1a; color: #c8d0f0; }
+
+/* Keywords: orange */
+.chroma .k  { color: #f5813f; font-weight: 600; }
+.chroma .kc { color: #f5813f; }
+.chroma .kd { color: #f5813f; font-weight: 600; }
+.chroma .kn { color: #f5813f; }
+.chroma .kp { color: #f5813f; }
+.chroma .kr { color: #f5813f; font-weight: 600; }
+.chroma .kt { color: #8899ff; }
+
+/* Names */
+.chroma .n  { color: #e8ecff; }
+.chroma .na { color: #f99a5e; }  /* attribute: orange-dim */
+.chroma .nb { color: #8899ff; }  /* builtin: indigo-dim */
+.chroma .nc { color: #f5c842; font-weight: 600; } /* class: yellow */
+.chroma .nd { color: #8899ff; }  /* decorator */
+.chroma .ne { color: #f5813f; font-weight: 600; } /* exception */
+.chroma .nf { color: #f99a5e; font-weight: 600; } /* function: orange-dim */
+.chroma .ni { color: #e8ecff; }
+.chroma .nl { color: #e8ecff; }
+.chroma .nn { color: #f5c842; } /* namespace: yellow */
+.chroma .nt { color: #f5813f; } /* tag */
+.chroma .nv { color: #e8ecff; } /* variable */
+.chroma .nx { color: #f99a5e; }
+
+/* Literals */
+.chroma .l  { color: #a3e6a0; }  /* generic literal: soft green */
+.chroma .ld { color: #a3e6a0; }
+.chroma .s  { color: #a3e6a0; }  /* string: soft green */
+.chroma .sa { color: #a3e6a0; }
+.chroma .sb { color: #a3e6a0; }
+.chroma .sc { color: #a3e6a0; }
+.chroma .dl { color: #a3e6a0; }
+.chroma .sd { color: #7abf78; font-style: italic; }
+.chroma .s2 { color: #a3e6a0; }
+.chroma .se { color: #f5c842; font-weight: 600; }  /* escape: yellow */
+.chroma .sh { color: #a3e6a0; }
+.chroma .si { color: #f5c842; }
+.chroma .sx { color: #a3e6a0; }
+.chroma .sr { color: #5bbfff; }  /* regex: blue */
+.chroma .s1 { color: #a3e6a0; }
+.chroma .ss { color: #5bbfff; }
+
+/* Numbers: yellow */
+.chroma .m  { color: #f5c842; }
+.chroma .mb { color: #f5c842; }
+.chroma .mf { color: #f5c842; }
+.chroma .mh { color: #f5c842; }
+.chroma .mi { color: #f5c842; }
+.chroma .mo { color: #f5c842; }
+.chroma .mx { color: #f5c842; }
+
+/* Operators */
+.chroma .o  { color: #8899ff; }
+.chroma .ow { color: #f5813f; font-weight: 600; }
+
+/* Comments: muted slate */
+.chroma .c  { color: #5a6080; font-style: italic; }
+.chroma .ch { color: #5a6080; font-style: italic; }
+.chroma .cm { color: #5a6080; font-style: italic; }
+.chroma .c1 { color: #5a6080; font-style: italic; }
+.chroma .cs { color: #5a6080; font-weight: 600; font-style: italic; }
+.chroma .cp { color: #8899ff; font-weight: 600; }
+.chroma .cpf { color: #8899ff; }
+
+/* Punctuation */
+.chroma .p  { color: #c8d0f0; }
+.chroma .pi { color: #c8d0f0; }
+
+/* Generic */
+.chroma .g  { color: #e8ecff; }
+.chroma .gd { color: #ff6b6b; background: #2a0f0f; } /* deleted: red */
+.chroma .ge { font-style: italic; }
+.chroma .gr { color: #ff6b6b; }
+.chroma .gh { color: #f5c842; font-weight: 600; }
+.chroma .gi { color: #a3e6a0; background: #0a1f0a; } /* inserted: green */
+.chroma .go { color: #7a8090; }
+.chroma .gp { color: #5a6080; }
+.chroma .gs { font-weight: 600; }
+.chroma .gu { color: #8899ff; }
+.chroma .gt { color: #ff6b6b; }
+
+/* Line numbers */
+.chroma .ln { color: #3a4060; margin-right: 1em; user-select: none; }
+.chroma .lnt { color: #3a4060; user-select: none; }
