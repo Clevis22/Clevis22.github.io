@@ -66,7 +66,7 @@ Google has since released Gemma 4, which uses a sparse MoE architecture to push 
 Meta's Llama 3.2 3B is the benchmark everyone calibrates against: **63.4% MMLU** (5-shot) and **77.7% GSM8K** (8-shot CoT), widely supported by every inference framework and agent library. It's not the best model in this class anymore, but it's the safest choice if your RAG pipeline or agent framework was built before 2026 and you need guaranteed compatibility. Most tooling is tested against it first.
 
 - **Context window:** 128K tokens
-- **License:** Llama 3 Community License (commercial use allowed up to 700M monthly active users)
+- **License:** Llama 3.2 Community License (commercial use allowed up to 700M monthly active users)
 - **Run it:** `ollama run llama3.2:3b`
 
 ## The 7–8B class: power with manageable RAM
@@ -77,7 +77,7 @@ At 7–8B parameters you get a meaningful quality jump — particularly on codin
 
 ### Qwen3 8B — coding champion
 
-Alibaba's Qwen3 8B leads the 7–8B class on code-generation benchmarks, consistently outperforming same-class competitors on HumanEval and coding-specific evaluations. At Q4_K_M it uses roughly **5 GB of VRAM**, supports a 128K context window, and ships under Apache 2.0. It's the default upgrade path for any developer-focused workload once you've maxed out what a 3–4B model can do.
+Alibaba's Qwen3 8B leads the 7–8B class on code-generation benchmarks, consistently outperforming same-class competitors on HumanEval and coding-specific evaluations. At Q4_K_M it uses roughly **5 GB of VRAM**, supports a 32K native context window (extended to 128K via YaRN scaling, enabled by default in Ollama), and ships under Apache 2.0. It's the default upgrade path for any developer-focused workload once you've maxed out what a 3–4B model can do.
 
 - **Context window:** 128K tokens
 - **License:** Apache 2.0
@@ -104,7 +104,7 @@ Numbers sourced from each model's official HuggingFace model card or technical r
 | SmolLM3-3B | 3B | 44.1% ² | 67.6% ² | 30.5% ² | ~2 GB | 128K | Apache 2.0 |
 | Gemma 3 4B | 4B | 43.6% ³ | **89.2%** ⁴ | **71.3%** ⁴ | ~4.2 GB | 128K | Gemma |
 | Llama 3.2 3B | 3B | 63.4% ⁵ | 77.7% ⁵ | — | ~2 GB | 128K | Llama |
-| Qwen3 8B | 8B | — | — | ★ | ~5 GB | 128K | Apache 2.0 |
+| Qwen3 8B | 8B | — | — | ★ | ~5 GB | 32K / 128K ⁶ | Apache 2.0 |
 | Mistral 7B | 7B | — | — | — | ~4.5 GB | 32K | Apache 2.0 |
 
 ¹ MMLU 5-shot and GSM8K 8-shot CoT; from Phi-4-mini-instruct official model card.  
@@ -112,7 +112,8 @@ Numbers sourced from each model's official HuggingFace model card or technical r
 ³ MMLU-Pro (IT model); harder variant than MMLU 5-shot.  
 ⁴ GSM8K and HumanEval scores for the Gemma 3 4B instruction-tuned model, from the official model card.  
 ⁵ MMLU 5-shot, GSM8K 8-shot CoT; from Llama 3.2 3B instruction-tuned model card.  
-★ Leads the 7–8B class on code generation benchmarks per independent evaluations.
+★ Leads the 7–8B class on code generation benchmarks per independent evaluations.  
+⁶ Qwen3 8B native context is 32K tokens; YaRN scaling (enabled by default in Ollama) extends this to 128K.
 
 ## Which model is best for your use case?
 
