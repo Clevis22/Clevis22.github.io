@@ -2,19 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tinyweights.dev/tags/benchmark/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://tinyweights.dev/categories/</loc>
-    <lastmod>2026-05-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/edge-ai/</loc>
-    <lastmod>2026-05-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/local-inference/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/posts/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/slm/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/categories/small-ai-models/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/small-models/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/posts/best-small-language-models-2026/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/</loc>
+    <lastmod>2026-05-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/linear-attention/</loc>
     <lastmod>2026-05-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/multimodal/</loc>
-    <lastmod>2026-05-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/posts/</loc>
     <lastmod>2026-05-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/qwen/</loc>
@@ -23,25 +47,7 @@
     <loc>https://tinyweights.dev/posts/qwen3-5-tiny-multimodal-thinking-model/</loc>
     <lastmod>2026-05-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tinyweights.dev/tags/slm/</loc>
-    <lastmod>2026-05-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/categories/small-ai-models/</loc>
-    <lastmod>2026-05-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/small-models/</loc>
-    <lastmod>2026-05-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/</loc>
-    <lastmod>2026-05-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/</loc>
-    <lastmod>2026-05-13T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://tinyweights.dev/tags/coding-agents/</loc>
-    <lastmod>2026-05-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/local-inference/</loc>
     <lastmod>2026-05-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/moe/</loc>

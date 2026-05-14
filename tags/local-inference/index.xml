@@ -6,8 +6,15 @@
     <description>Recent content in Local-Inference on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/local-inference/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Best Small Language Models in 2026: A Practical Comparison</title>
+      <link>https://tinyweights.dev/posts/best-small-language-models-2026/</link>
+      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/best-small-language-models-2026/</guid>
+      <description>A practical guide to the best small language models in 2026—Phi-4-mini, SmolLM3-3B, Gemma 3 4B, Qwen3, and more—with benchmarks, VRAM requirements, and honest use-case picks.</description>
+    </item>
     <item>
       <title>Qwen3-Coder-Next: Run a Frontier-Level Coding Agent Locally on Consumer Hardware</title>
       <link>https://tinyweights.dev/posts/qwen3-coder-next-local-coding-agent/</link>

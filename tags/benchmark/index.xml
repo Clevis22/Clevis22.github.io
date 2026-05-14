@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Benchmark on TinyWeights.dev</title>
+    <link>https://tinyweights.dev/tags/benchmark/</link>
+    <description>Recent content in Benchmark on TinyWeights.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://tinyweights.dev/tags/benchmark/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Best Small Language Models in 2026: A Practical Comparison</title>
+      <link>https://tinyweights.dev/posts/best-small-language-models-2026/</link>
+      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/best-small-language-models-2026/</guid>
+      <description>A practical guide to the best small language models in 2026—Phi-4-mini, SmolLM3-3B, Gemma 3 4B, Qwen3, and more—with benchmarks, VRAM requirements, and honest use-case picks.</description>
+    </item>
+  </channel>
+</rss>
