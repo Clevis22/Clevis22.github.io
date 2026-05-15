@@ -16,10 +16,6 @@ The site follows five topics closely: model releases and head-to-head comparison
 
 The target reader is a developer or tinkerer who already knows what a language model is and wants specific, actionable information — not an introduction to AI.
 
-## Editorial approach
-
-Every benchmark figure is verified against the model's official HuggingFace model card or published technical report before it goes into a post. Claims that cannot be sourced are either removed or explicitly flagged as unverified. Posts are fact-checked after writing and corrected if the numbers do not match the primary source.
-
 ## Follow along
 
 New posts go out regularly. The fastest way to keep up is via [Bluesky (@tinyweights.bsky.social)](https://bsky.app/profile/tinyweights.bsky.social) or the [RSS feed](/index.xml).
