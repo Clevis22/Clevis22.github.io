@@ -6,8 +6,15 @@
     <description>Recent content in Small-Models on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/small-models/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GGUF vs ONNX vs MLX: Which Model Format Should You Use for Local Inference?</title>
+      <link>https://tinyweights.dev/posts/gguf-vs-onnx-vs-mlx/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/gguf-vs-onnx-vs-mlx/</guid>
+      <description>GGUF, ONNX, and MLX compared: what each format is for, which quantization levels to pick, and how to choose the right one for your hardware.</description>
+    </item>
     <item>
       <title>Ollama vs LM Studio vs llama.cpp: Which Local AI Runtime Should You Use?</title>
       <link>https://tinyweights.dev/posts/ollama-vs-lm-studio-vs-llama-cpp/</link>

@@ -6,20 +6,69 @@
     <description>Recent content in Tags on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Edge-Ai</title>
+      <link>https://tinyweights.dev/tags/edge-ai/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/edge-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gguf</title>
+      <link>https://tinyweights.dev/tags/gguf/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/gguf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Local-Inference</title>
+      <link>https://tinyweights.dev/tags/local-inference/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/local-inference/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mlx</title>
+      <link>https://tinyweights.dev/tags/mlx/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/mlx/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Onnx</title>
+      <link>https://tinyweights.dev/tags/onnx/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/onnx/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Quantization</title>
+      <link>https://tinyweights.dev/tags/quantization/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/quantization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Slm</title>
+      <link>https://tinyweights.dev/tags/slm/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/slm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Small-Models</title>
+      <link>https://tinyweights.dev/tags/small-models/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/small-models/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Benchmark</title>
       <link>https://tinyweights.dev/tags/benchmark/</link>
       <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/benchmark/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Edge-Ai</title>
-      <link>https://tinyweights.dev/tags/edge-ai/</link>
-      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/edge-ai/</guid>
       <description></description>
     </item>
     <item>
@@ -30,31 +79,10 @@
       <description></description>
     </item>
     <item>
-      <title>Local-Inference</title>
-      <link>https://tinyweights.dev/tags/local-inference/</link>
-      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/local-inference/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Ollama</title>
       <link>https://tinyweights.dev/tags/ollama/</link>
       <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/ollama/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Slm</title>
-      <link>https://tinyweights.dev/tags/slm/</link>
-      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/slm/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Small-Models</title>
-      <link>https://tinyweights.dev/tags/small-models/</link>
-      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/small-models/</guid>
       <description></description>
     </item>
     <item>
@@ -212,13 +240,6 @@
       <description></description>
     </item>
     <item>
-      <title>Mlx</title>
-      <link>https://tinyweights.dev/tags/mlx/</link>
-      <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/mlx/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>On-Device-Ai</title>
       <link>https://tinyweights.dev/tags/on-device-ai/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
@@ -230,13 +251,6 @@
       <link>https://tinyweights.dev/tags/openai/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/openai/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Quantization</title>
-      <link>https://tinyweights.dev/tags/quantization/</link>
-      <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/quantization/</guid>
       <description></description>
     </item>
     <item>
