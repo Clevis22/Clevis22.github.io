@@ -100,20 +100,11 @@
       <description>SmolLM3-3B from HuggingFace is a fully open 3B SLM with 128k context, dual-mode reasoning, and multilingual support. Here&amp;#39;s how to run it locally.</description>
     </item>
     <item>
-      <title>About</title>
+      <title>About Tiny Weights</title>
       <link>https://tinyweights.dev/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/about/</guid>
-      <description>&lt;p&gt;Tiny Weights is a blog focused on small language models — the Gemmas, SmolLMs, Phis, and Mistrals of the world.&lt;/p&gt;
-&lt;p&gt;The goal is simple: cut through the hype and focus on what actually runs well on modest hardware. Every post is written with the assumption that you have a laptop, a cheap VPS, or a Raspberry Pi — not a data centre.&lt;/p&gt;
-&lt;p&gt;Topics covered:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Model releases and benchmarks&lt;/li&gt;
-&lt;li&gt;Running models locally with Ollama, llama.cpp, and LlamaEdge&lt;/li&gt;
-&lt;li&gt;Quantization and efficiency&lt;/li&gt;
-&lt;li&gt;Fine-tuning at small scale&lt;/li&gt;
-&lt;li&gt;Edge and on-device inference&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>Tiny Weights covers small language models — Gemma, Phi, SmolLM, Qwen, Mistral — with benchmarks, local deployment guides, and hands-on coverage for developers running AI on real hardware.</description>
     </item>
   </channel>
 </rss>
