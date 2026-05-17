@@ -6,8 +6,15 @@
     <description>Recent content in Slm on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/slm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Much RAM Do You Actually Need to Run Local LLMs?</title>
+      <link>https://tinyweights.dev/posts/how-much-ram-for-local-llms/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/how-much-ram-for-local-llms/</guid>
+      <description>Verified RAM and VRAM requirements for running local LLMs, with real Q4_K_M file size data for models from 1B to 32B parameters.</description>
+    </item>
     <item>
       <title>GGUF vs ONNX vs MLX: Which Model Format Should You Use for Local Inference?</title>
       <link>https://tinyweights.dev/posts/gguf-vs-onnx-vs-mlx/</link>
