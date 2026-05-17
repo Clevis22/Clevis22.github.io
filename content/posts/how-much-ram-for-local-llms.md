@@ -22,13 +22,13 @@ The model weights are the biggest item and the most predictable. For quantized G
 
 The KV cache is what most RAM guides skip over. It holds the key-value pairs from your conversation context. At a 2K–4K context window, it's small — a few hundred MB for a 7B model. Push the context to 32K and the same model's KV cache can exceed 4 GB. Push to 128K and it dominates everything else. Modern SLMs routinely support 128K+ context, so this number matters.
 
-Runtime overhead is the memory the inference engine itself consumes: process allocation, CUDA or Metal context, and graph operations. Ollama's Go server adds roughly 1–1.2 GB on top of model consumption. Bare llama.cpp adds around 200 MB. This overhead is fixed regardless of model size.
+Runtime overhead is the memory the inference engine itself consumes: process allocation, CUDA or Metal context, and graph operations. Ollama's backend adds roughly 0.5–1 GB on top of model consumption. llama.cpp's baseline overhead is around 0.75 GB. This overhead is fixed regardless of model size.
 
 Total RAM needed = model file size + KV cache + runtime overhead.
 
 ## Model Size Reference Table
 
-The table below shows verified Q4_K_M file sizes for five common parameter scales, pulled from bartowski's GGUF repos on HuggingFace in May 2026. Q4_K_M is the right default for most users: 4-bit mixed precision that retains roughly 92–95% of full-precision output quality at about 0.65 GB per billion parameters.
+The table below shows verified Q4_K_M file sizes for five common parameter scales, pulled from bartowski's GGUF repos on HuggingFace in May 2026. Q4_K_M is the right default for most users: 4-bit mixed precision with minimal quality loss, at about 0.65 GB per billion parameters.
 
 | Parameters | Example Model | Q4_K_M | Q8_0 | F16 |
 |---|---|---|---|---|
@@ -52,7 +52,7 @@ KV cache quantization is available in recent llama.cpp builds. Switching from FP
 
 ## CPU-Only vs GPU: Same Model, Different Rules
 
-On GPU, the model weights live in VRAM and everything runs from there. If the model overflows VRAM, llama.cpp starts offloading layers to system RAM — and inference speed collapses. Tests show a 5–20× slowdown once any layers hit system memory. Partial offloading is technically supported but in practice you want the whole model in VRAM.
+On GPU, the model weights live in VRAM and everything runs from there. If the model overflows VRAM, llama.cpp starts offloading layers to system RAM — and inference speed collapses. Tests show a 5–30× slowdown once any layers hit system memory. Partial offloading is technically supported but in practice you want the whole model in VRAM.
 
 On CPU-only hardware, the model loads into system RAM and runs there. The performance ceiling is lower — expect 2–8 tokens per second for a 7B model on a fast CPU, versus 30–80 tokens per second on a mid-range GPU. But a CPU system with enough RAM can run larger models than a consumer GPU allows. A machine with 64 GB of system RAM can run a 32B model at Q4_K_M on CPU where an 8 GB GPU cannot.
 
@@ -82,17 +82,17 @@ See the [best small language models comparison](/posts/best-small-language-model
 
 ### 64 GB and Above
 
-At 64 GB you can load 70B models at Q4_K_M (~40 GB). This is workstation territory: Mac Studio M3 Ultra, high-end Threadripper systems, or dual-GPU NVIDIA setups. Most people reading this guide aren't here yet, but a Mac Studio with 192 GB unified memory is now a viable single-machine inference server for production workloads.
+At 64 GB you can load 70B models at Q4_K_M (~43 GB). This is workstation territory: Mac Studio M3 Ultra, high-end Threadripper systems, or dual-GPU NVIDIA setups. Most people reading this guide aren't here yet, but a Mac Studio M3 Ultra with up to 256 GB unified memory is a viable single-machine inference server for production workloads.
 
 ## Quick Q&A
 
 ### How much RAM does a 7B model actually use in Ollama?
 
-For Qwen2.5-7B at Q4_K_M with a 4K context window: about 6–7 GB total (4.68 GB model + 1.2 GB Ollama overhead + ~0.5 GB KV cache). On an 8 GB machine, that leaves under 2 GB for the OS. Possible, but close.
+For Qwen2.5-7B at Q4_K_M with a 4K context window: about 6–7 GB total (4.68 GB model + up to 1 GB Ollama backend overhead + ~0.5 GB KV cache). On an 8 GB machine, that leaves under 2 GB for the OS. Possible, but close.
 
 ### What happens when a model doesn't fit?
 
-On GPU: llama.cpp offloads overflow layers to CPU RAM. Inference continues but slows 5–20× depending on how much overflows. On CPU: the OS may use swap space, which makes inference effectively unusable — swap access is thousands of times slower than RAM.
+On GPU: llama.cpp offloads overflow layers to CPU RAM. Inference continues but slows 5–30× depending on how much overflows. On CPU: the OS may use swap space, which makes inference effectively unusable — swap access is thousands of times slower than RAM.
 
 ### Does quantization level affect RAM more than quality?
 
@@ -100,7 +100,7 @@ Primarily RAM. Q8_0 uses roughly twice the memory of Q4_K_M for the same model. 
 
 ### Can a Raspberry Pi run a local LLM?
 
-Yes. A Raspberry Pi 5 with 8 GB RAM can load SmolLM3-3B at Q4_K_M (1.92 GB) and run inference at around 4–6 tokens per second. That's slow for real-time chat but workable for offline document processing or batch tasks.
+Yes. A Raspberry Pi 5 with 8 GB RAM can load SmolLM3-3B at Q4_K_M (1.92 GB) and run inference — community reports put CPU-only throughput in the low single digits of tokens per second. That's slow for real-time chat but workable for offline document processing or batch tasks.
 
 ## Practical Recommendations
 
