@@ -6,20 +6,62 @@
     <description>Recent content in Tags on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Edge-Ai</title>
       <link>https://tinyweights.dev/tags/edge-ai/</link>
-      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/edge-ai/</guid>
       <description></description>
     </item>
     <item>
       <title>Gguf</title>
       <link>https://tinyweights.dev/tags/gguf/</link>
-      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/gguf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Local-Inference</title>
+      <link>https://tinyweights.dev/tags/local-inference/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/local-inference/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microsoft</title>
+      <link>https://tinyweights.dev/tags/microsoft/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/microsoft/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ollama</title>
+      <link>https://tinyweights.dev/tags/ollama/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/ollama/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Phi</title>
+      <link>https://tinyweights.dev/tags/phi/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/phi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Slm</title>
+      <link>https://tinyweights.dev/tags/slm/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/slm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Small-Models</title>
+      <link>https://tinyweights.dev/tags/small-models/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/small-models/</guid>
       <description></description>
     </item>
     <item>
@@ -34,27 +76,6 @@
       <link>https://tinyweights.dev/tags/quantization/</link>
       <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/quantization/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Slm</title>
-      <link>https://tinyweights.dev/tags/slm/</link>
-      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/slm/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Small-Models</title>
-      <link>https://tinyweights.dev/tags/small-models/</link>
-      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/small-models/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Local-Inference</title>
-      <link>https://tinyweights.dev/tags/local-inference/</link>
-      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/local-inference/</guid>
       <description></description>
     </item>
     <item>
@@ -83,13 +104,6 @@
       <link>https://tinyweights.dev/tags/llama.cpp/</link>
       <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/llama.cpp/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ollama</title>
-      <link>https://tinyweights.dev/tags/ollama/</link>
-      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/ollama/</guid>
       <description></description>
     </item>
     <item>

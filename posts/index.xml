@@ -6,8 +6,15 @@
     <description>Recent content in Posts on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Run Phi-4-mini Locally: Microsoft&#39;s 3.8B Model with 128K Context</title>
+      <link>https://tinyweights.dev/posts/run-phi-4-mini-locally/</link>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-phi-4-mini-locally/</guid>
+      <description>Step-by-step guide to running Phi-4-mini locally with Ollama, llama.cpp, and Python — with verified benchmarks and RAM requirements for Microsoft&amp;#39;s 3.8B reasoning model.</description>
+    </item>
     <item>
       <title>How Much RAM Do You Actually Need to Run Local LLMs?</title>
       <link>https://tinyweights.dev/posts/how-much-ram-for-local-llms/</link>
