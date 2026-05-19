@@ -6,8 +6,15 @@
     <description>Recent content in Mlx on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/mlx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Complete Guide to Running Small LLMs on Apple Silicon (2026)</title>
+      <link>https://tinyweights.dev/posts/run-small-llms-apple-silicon/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-small-llms-apple-silicon/</guid>
+      <description>Complete guide to running small language models on Apple Silicon — MLX vs Ollama, real benchmark data by chip generation, and setup commands for M1 through M5.</description>
+    </item>
     <item>
       <title>GGUF vs ONNX vs MLX: Which Model Format Should You Use for Local Inference?</title>
       <link>https://tinyweights.dev/posts/gguf-vs-onnx-vs-mlx/</link>
