@@ -6,8 +6,15 @@
     <description>Recent content in Small-Ai-Models on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/categories/small-ai-models/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Running LLMs on Raspberry Pi 5: A Practical Guide with Real Benchmarks</title>
+      <link>https://tinyweights.dev/posts/run-llms-raspberry-pi-5/</link>
+      <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-llms-raspberry-pi-5/</guid>
+      <description>How to run small language models on Raspberry Pi 5 using Ollama and llama.cpp, with real token-speed benchmarks by model size and specific model recommendations for the 8 GB Pi.</description>
+    </item>
     <item>
       <title>The Complete Guide to Running Small LLMs on Apple Silicon (2026)</title>
       <link>https://tinyweights.dev/posts/run-small-llms-apple-silicon/</link>
