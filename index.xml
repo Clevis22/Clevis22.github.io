@@ -6,8 +6,15 @@
     <description>Recent content on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 23 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Running Local LLMs on Low-VRAM Windows GPUs (6GB and 8GB Cards) in 2026</title>
+      <link>https://tinyweights.dev/posts/run-local-llms-low-vram-windows-gpu/</link>
+      <pubDate>Sat, 23 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-local-llms-low-vram-windows-gpu/</guid>
+      <description>Practical guide to running small language models on budget Windows GPUs with 6 GB or 8 GB of VRAM, with real token-speed benchmarks for RTX 3050, RTX 4060, and RTX 3060.</description>
+    </item>
     <item>
       <title>What Can You Actually Do With a Local Small LLM? A Practical Guide</title>
       <link>https://tinyweights.dev/posts/what-can-you-do-with-local-small-llm/</link>
