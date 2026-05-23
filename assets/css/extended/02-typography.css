@@ -47,7 +47,6 @@ textarea {
   color: var(--primary);
   font-size: var(--tw-fs-body);
   line-height: 1.7;
-  max-width: 72ch;
   text-wrap: pretty;
   margin: 0 0 16px;
 }

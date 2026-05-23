@@ -60,7 +60,6 @@ body {
 .entry-content li,
 .post-content li {
   margin: 0 0 4px;
-  max-width: 72ch;
 }
 .entry-content li::marker,
 .post-content li::marker {
@@ -109,7 +108,6 @@ body {
   color: var(--secondary);
   font-size: var(--tw-fs-meta);
   font-style: normal;
-  max-width: 72ch;
 }
 .entry-content figcaption a,
 .post-content figcaption a {
