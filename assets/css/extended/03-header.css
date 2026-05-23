@@ -64,15 +64,21 @@
   border: 0;
 }
 
-/* Push the menu (nav items + theme toggle) to the right. */
+/* Push the menu (nav items + theme toggle) to the right.
+ * flex-wrap lets items reflow onto a second row on narrow viewports instead
+ * of forcing the header (and the whole page) wider than the screen. */
 #menu,
 .menu {
   margin-left: auto;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 4px;
   list-style: none;
   padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /* Each top-level nav link gets the prompt-button treatment. */

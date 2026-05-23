@@ -27,9 +27,10 @@
 .tw-prompt-cmd { color: var(--primary); }
 
 /* ASCII logo block — generated as a <pre class="tw-ascii">.
- * Scales down on narrow viewports so the banner fits without horizontal scroll.
- * Banner is ~58 chars wide; clamp keeps each char readable while ensuring fit.
- */
+ * Scales down on narrow viewports so the banner fits without overflow.
+ * Banner is ~58 chars wide; clamp keeps each char readable while ensuring
+ * fit at all reasonable widths. overflow:hidden silently clips any 1-2px
+ * sub-pixel overhang so we don't get a stray horizontal scrollbar. */
 .tw-ascii {
   color: var(--tw-accent);
   font-family: var(--tw-font-mono);
@@ -38,7 +39,7 @@
   letter-spacing: 0;
   white-space: pre;
   margin: 8px 0 4px;
-  overflow-x: auto;
+  overflow: hidden;
   max-width: 100%;
 }
 

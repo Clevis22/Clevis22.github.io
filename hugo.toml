@@ -31,12 +31,12 @@ enableRobotsTXT = true
 
 [menu]
   [[menu.main]]
-    name = "~"
+    name = "/home"
     title = "Home"
     url = "/"
     weight = 1
   [[menu.main]]
-    name = "~/posts"
+    name = "/home/posts"
     title = "Posts"
     url = "/posts/"
     weight = 2
@@ -46,7 +46,7 @@ enableRobotsTXT = true
     url = "/search/"
     weight = 3
   [[menu.main]]
-    name = "~/about"
+    name = "/home/about"
     title = "About"
     url = "/about/"
     weight = 4
