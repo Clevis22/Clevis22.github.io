@@ -39,13 +39,16 @@
   border-color: var(--tw-accent);
 }
 
-/* Decorative double-line rules wrapping the title (aria-hidden in markup) */
+/* Decorative double-line rules wrapping the title (aria-hidden in markup).
+ * Rules are 64 chars of ═ — scale down on narrow viewports so they fit
+ * without horizontal overflow. */
 .tw-rule-top,
 .tw-rule-bottom {
   color: var(--tw-very-dim);
-  font-size: var(--tw-fs-ascii);
+  font-size: clamp(6.5px, 1.6vw, 11.5px);
   white-space: pre;
   font-family: var(--tw-font-mono);
+  overflow: hidden;
 }
 .tw-rule-top { margin: 14px 0 8px; }
 .tw-rule-bottom { margin: 6px 0 22px; }

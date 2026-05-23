@@ -26,16 +26,19 @@
 .tw-prompt-dollar { color: var(--secondary); }
 .tw-prompt-cmd { color: var(--primary); }
 
-/* ASCII logo block — generated as a <pre class="tw-ascii"> */
+/* ASCII logo block — generated as a <pre class="tw-ascii">.
+ * Scales down on narrow viewports so the banner fits without horizontal scroll.
+ * Banner is ~58 chars wide; clamp keeps each char readable while ensuring fit.
+ */
 .tw-ascii {
   color: var(--tw-accent);
   font-family: var(--tw-font-mono);
-  font-size: var(--tw-fs-ascii);
+  font-size: clamp(7px, 1.8vw, 11.5px);
   line-height: 1.05;
   letter-spacing: 0;
   white-space: pre;
   margin: 8px 0 4px;
-  overflow: hidden;
+  overflow-x: auto;
   max-width: 100%;
 }
 

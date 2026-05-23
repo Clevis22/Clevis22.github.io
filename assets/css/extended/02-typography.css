@@ -115,6 +115,18 @@ a:hover,
   margin: 8px 0 24px;
   width: 100%;
 }
+
+/* On mobile, switch tables to block+scroll so 4+ column tables don't
+ * push the whole page sideways. Slight readability cost vs. desktop
+ * table layout but the alternative is unreadable. */
+@media (max-width: 768px) {
+  .entry-content table {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+}
 .entry-content thead th {
   color: var(--tw-accent);
   text-align: left;
