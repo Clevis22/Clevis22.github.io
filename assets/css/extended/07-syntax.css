@@ -1,0 +1,98 @@
+/* 07-syntax.css — Chroma syntax highlighting on the terminal palette.
+ *
+ * Targets the CSS classes Hugo's Chroma emits when noClasses=false.
+ * Code blocks sit inside `.entry-content pre` which 02-typography.css already
+ * styles (background var(--entry), amber left-bar, mono). This file colors the
+ * actual tokens inside. All colors reference --tw-* tokens so both modes work.
+ */
+
+/* Chroma container — keep transparent so pre's background shows through */
+.chroma { background: transparent; color: var(--primary); }
+
+/* Comments — dim */
+.chroma .c,
+.chroma .ch,
+.chroma .cm,
+.chroma .c1,
+.chroma .cs,
+.chroma .cp,
+.chroma .cpf { color: var(--secondary); font-style: italic; }
+
+/* Keywords — amber */
+.chroma .k,
+.chroma .kc,
+.chroma .kd,
+.chroma .kn,
+.chroma .kp,
+.chroma .kr { color: var(--tw-accent); font-weight: 600; }
+.chroma .kt { color: var(--tw-cyan); }
+
+/* Names */
+.chroma .n  { color: var(--primary); }
+.chroma .na { color: var(--tw-accent); }
+.chroma .nb { color: var(--tw-cyan); }
+.chroma .nc { color: var(--tw-cyan); font-weight: 600; }
+.chroma .no { color: var(--tw-magenta); }
+.chroma .nd { color: var(--tw-magenta); }
+.chroma .ni { color: var(--primary); }
+.chroma .ne { color: var(--tw-accent); font-weight: 600; }
+.chroma .nf { color: var(--tw-green); }
+.chroma .nl { color: var(--tw-accent); }
+.chroma .nn { color: var(--tw-cyan); }
+.chroma .nt { color: var(--tw-accent); }
+.chroma .nv,
+.chroma .vc,
+.chroma .vg,
+.chroma .vi { color: var(--primary); }
+
+/* Literals & strings — green */
+.chroma .l  { color: var(--tw-green); }
+.chroma .ld { color: var(--tw-green); }
+.chroma .s,
+.chroma .sa,
+.chroma .sb,
+.chroma .sc,
+.chroma .dl,
+.chroma .sd,
+.chroma .s2,
+.chroma .se,
+.chroma .sh,
+.chroma .si,
+.chroma .sx,
+.chroma .sr,
+.chroma .s1,
+.chroma .ss { color: var(--tw-green); }
+
+/* Numbers — magenta */
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .il,
+.chroma .mo { color: var(--tw-magenta); }
+
+/* Operators & punctuation */
+.chroma .o,
+.chroma .ow { color: var(--tw-accent); }
+.chroma .p  { color: var(--secondary); }
+
+/* Generic — diffs, headings, etc. */
+.chroma .ge { font-style: italic; }
+.chroma .gs { font-weight: 600; }
+.chroma .gh { color: var(--tw-accent); font-weight: 600; }
+.chroma .gu { color: var(--tw-cyan); font-weight: 600; }
+.chroma .gd { color: #d27a7a; background: rgba(210, 122, 122, 0.08); }
+.chroma .gi { color: var(--tw-green); background: rgba(126, 201, 106, 0.08); }
+.chroma .gr { color: #d27a7a; }
+.chroma .gt { color: var(--tw-accent); }
+
+/* Error */
+.chroma .err { color: #d27a7a; }
+
+/* Line highlight */
+.chroma .hl { background: var(--tw-selection); }
+
+/* Line numbers — keep readable but dim */
+.chroma .lnt,
+.chroma .ln { color: var(--tertiary); }

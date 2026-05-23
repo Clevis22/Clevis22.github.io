@@ -1,9 +1,21 @@
 ---
 title: "About Tiny Weights"
 description: "Tiny Weights covers small language models — Gemma, Phi, SmolLM, Qwen, Mistral — with benchmarks, local deployment guides, and hands-on coverage for developers running AI on real hardware."
-layout: "page"
+layout: "about"
 hidemeta: true
 disableShare: true
+stack:
+  - hugo
+  - papermod
+  - jetbrains mono
+  - llama.cpp
+  - ollama
+  - lm studio
+rigs:
+  - { name: "raspberry pi 5", ram: "8GB", role: "edge tests" }
+links:
+  - { label: "bluesky", value: "@tinyweights.bsky.social", url: "https://bsky.app/profile/tinyweights.bsky.social" }
+  - { label: "rss",     value: "/index.xml",                url: "/index.xml" }
 ---
 
 Tiny Weights is a blog about small language models: the sub-10B parameter models that run on a laptop, a Raspberry Pi, or a cheap VPS without a cloud subscription or a rack of GPUs.

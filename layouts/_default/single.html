@@ -1,0 +1,75 @@
+{{- /*
+  single.html — overrides themes/PaperMod/layouts/_default/single.html
+
+  Renders a single post with the terminal treatment:
+    1. `← cd ..` back button
+    2. `clevis@tinyweights:~/posts/<slug>$ cat <slug>.md` prompt
+    3. ╔══════╗ top rule (decorative)
+    4. Post title in amber
+    5. Meta line: @ date · Nmin read · words · hardware
+    6. #tag chips
+    7. ╚══════╝ bottom rule
+    8. {{ .Content }}
+    9. End-of-post prompt: echo $? && cd .. → 0
+
+  Hardware label uses front-matter `hardware:` or `params.hardware:`. Falls
+  back to nothing if unset.
+*/ -}}
+
+{{- define "main" -}}
+
+<article class="post-single">
+
+  <a class="tw-back" href="{{ .Site.BaseURL }}">← cd ..</a>
+
+  <div class="tw-prompt" aria-label="terminal prompt">
+    <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">~/posts/{{ .File.ContentBaseName }}</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">cat {{ .File.ContentBaseName }}.md</span>
+  </div>
+
+  <div class="tw-rule-top" aria-hidden="true">╔══════════════════════════════════════════════════════════════╗</div>
+
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+
+    <div class="post-meta">
+      <span class="tw-meta-at">@</span><span>{{ .Date.Format "2006-01-02" }}</span>
+      {{- if site.Params.ShowReadingTime }}
+      <span class="tw-meta-sep">·</span><span>{{ .ReadingTime }} min read</span>
+      {{- end }}
+      {{- if site.Params.ShowWordCount }}
+      <span class="tw-meta-sep">·</span><span>{{ .WordCount }} words</span>
+      {{- end }}
+      {{- with .Params.hardware }}
+      <span class="tw-meta-sep">·</span><span class="tw-meta-hardware">{{ . }}</span>
+      {{- end }}
+    </div>
+
+    {{- if .Params.tags }}
+    <div class="post-tags">
+      {{- range .Params.tags }}
+      <a href="{{ "tags/" | absURL }}{{ . | urlize }}/">{{ . }}</a>
+      {{- end }}
+    </div>
+    {{- end }}
+  </header>
+
+  <div class="tw-rule-bottom" aria-hidden="true">╚══════════════════════════════════════════════════════════════╝</div>
+
+  <div class="post-content entry-content">
+    {{- .Content -}}
+  </div>
+
+  <div class="tw-eof">
+    <div class="tw-prompt" aria-hidden="true">
+      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">~/posts/{{ .File.ContentBaseName }}</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">echo $? && cd ..</span>
+    </div>
+    <div class="tw-eof-result">0</div>
+  </div>
+
+  {{- if .Params.ShowPostNavLinks | default site.Params.ShowPostNavLinks -}}
+    {{- partial "post_nav_links.html" . -}}
+  {{- end -}}
+
+</article>
+
+{{- end -}}

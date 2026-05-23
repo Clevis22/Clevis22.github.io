@@ -1,0 +1,27 @@
+{{- /*
+  terms.html — overrides themes/PaperMod/layouts/_default/terms.html
+
+  Renders /tags/ and /categories/ index pages as a terminal `ls` of taxonomy
+  values. Each value is a magenta `#tag` chip followed by its post count.
+*/ -}}
+
+{{- define "main" -}}
+
+<div class="tw-terms-page">
+  <div class="tw-prompt" aria-label="terminal prompt">
+    <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">~{{ .RelPermalink | strings.TrimRight "/" }}</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">ls -1</span>
+  </div>
+
+  <ul class="tw-terms">
+    {{- range $.Data.Terms.Alphabetical }}
+    <li class="tw-term">
+      <a href="{{ .Page.Permalink }}">
+        <span class="tw-term-name">#{{ .Name }}</span>
+        <span class="tw-term-count">({{ .Count }})</span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+</div>
+
+{{- end -}}

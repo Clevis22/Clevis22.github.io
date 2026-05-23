@@ -1,0 +1,96 @@
+/* 06b-about.css — About page styles (layouts/page.html)
+ *
+ * Sections driven by front-matter arrays. Tokens follow README §5.
+ */
+
+.tw-about .post-title {
+  font-size: 22px;
+  color: var(--tw-accent);
+  margin: 8px 0 14px;
+}
+
+.tw-mascot {
+  margin: 14px 0 18px;
+  font-size: var(--tw-fs-ascii);
+  line-height: 1.1;
+}
+
+.tw-about-body p {
+  max-width: 64ch;
+  font-size: 15px;
+}
+
+.tw-about-section {
+  margin: 28px 0 0;
+}
+
+/* Stack chips */
+.tw-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.tw-stack-chip {
+  border: 1px solid var(--border);
+  color: var(--tw-cyan);
+  padding: 4px 10px;
+  border-radius: var(--tw-radius);
+  font-size: var(--tw-fs-meta);
+  font-family: var(--tw-font-mono);
+  background: transparent;
+}
+
+/* Rigs panel */
+.tw-rigs {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--tw-radius);
+  padding: 12px 16px;
+  margin-top: 10px;
+  font-family: var(--tw-font-mono);
+  font-size: var(--tw-fs-meta);
+}
+.tw-rigs-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: 16px;
+  padding: 4px 0;
+}
+.tw-rigs-row + .tw-rigs-row {
+  border-top: 1px dashed var(--border);
+}
+.tw-rigs-name { color: var(--tw-accent); }
+.tw-rigs-ram  { color: var(--tw-cyan); }
+.tw-rigs-role { color: var(--secondary); }
+
+/* Links list */
+.tw-links {
+  margin-top: 10px;
+  font-family: var(--tw-font-mono);
+  font-size: var(--tw-fs-meta);
+}
+.tw-links-row {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 16px;
+  padding: 4px 0;
+}
+.tw-links-label {
+  color: var(--tw-magenta);
+}
+.tw-links-value {
+  color: var(--primary);
+}
+a.tw-links-value {
+  color: var(--tw-accent);
+  border-bottom: 1px dashed transparent;
+}
+a.tw-links-value:hover {
+  border-bottom-color: var(--tw-accent);
+}
+
+@media (max-width: 768px) {
+  .tw-rigs-row { grid-template-columns: 1fr; gap: 4px; }
+  .tw-links-row { grid-template-columns: 60px 1fr; gap: 10px; }
+}

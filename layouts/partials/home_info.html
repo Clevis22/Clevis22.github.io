@@ -1,13 +1,47 @@
-{{- with site.Params.homeInfoParams }}
-<article class="first-entry home-info">
-    <header class="entry-header">
-        <h1>{{ .Title | markdownify }} <img src="/mascot-transparent.svg" alt="Tiny Weights mascot" class="home-mascot-inline"></h1>
-    </header>
-    <div class="entry-content">
-        {{ .Content | markdownify }}
-    </div>
-    <footer class="entry-footer">
-        {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
-    </footer>
-</article>
-{{- end -}}
+{{- /*
+  home_info.html — overrides themes/PaperMod/layouts/partials/home_info.html
+
+  Renders the home-page hero as a terminal-style block:
+    1. Prompt line: `clevis@tinyweights:~$ cat ./welcome.txt`
+    2. ASCII TINY WEIGHTS banner (var(--tw-accent))
+    3. MOTD: site description + post-count footer
+
+  Site title and description are read from hugo.toml:
+    title = "TinyWeights.dev"
+    [params]
+      description = "Field notes on small language models..."
+
+  If you change the brand/path text, also update the path string below.
+*/ -}}
+
+{{- $postCount := len (where site.RegularPages "Type" "in" site.Params.mainSections) -}}
+{{- $latest := index (where site.RegularPages "Type" "in" site.Params.mainSections) 0 -}}
+
+<section class="home-info tw-home-info">
+  <div class="tw-prompt" aria-label="terminal prompt">
+    <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">~</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">cat ./welcome.txt</span>
+  </div>
+
+  <pre class="tw-ascii" aria-hidden="true">
+ ████████╗██╗███╗   ██╗██╗   ██╗
+ ╚══██╔══╝██║████╗  ██║╚██╗ ██╔╝
+    ██║   ██║██╔██╗ ██║ ╚████╔╝
+    ██║   ██║██║╚██╗██║  ╚██╔╝
+    ██║   ██║██║ ╚████║   ██║
+    ╚═╝   ╚═╝╚═╝  ╚═══╝   ╚═╝
+
+ ██╗    ██╗███████╗██╗ ██████╗ ██╗  ██╗████████╗███████╗
+ ██║    ██║██╔════╝██║██╔════╝ ██║  ██║╚══██╔══╝██╔════╝
+ ██║ █╗ ██║█████╗  ██║██║  ███╗███████║   ██║   ███████╗
+ ██║███╗██║██╔══╝  ██║██║   ██║██╔══██║   ██║   ╚════██║
+ ╚███╔███╔╝███████╗██║╚██████╔╝██║  ██║   ██║   ███████║
+  ╚══╝╚══╝ ╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝
+  </pre>
+
+  <div class="tw-motd">
+&gt; {{ site.Params.description | default "Field notes on small language models. Gemma. Phi. SmolLM. Qwen. Mistral." }}
+&gt; Benchmarks, deployment guides, and hands-on for devs running AI on real hardware.
+
+  {{ $postCount }} posts · last updated {{ $latest.Date.Format "2006-01-02" }} · all writing CC BY 4.0
+  </div>
+</section>

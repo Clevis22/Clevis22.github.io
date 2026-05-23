@@ -1,0 +1,71 @@
+{{- /*
+  list.html — overrides themes/PaperMod/layouts/_default/list.html
+
+  Renders the home page AND any list/section page as a terminal `ls -lh` table.
+
+  Structure on home:
+    {{ partial "home_info.html" }}          (ASCII banner + MOTD)
+    section label `$ ls -lh --sort=time`
+    <header row>
+    {{ range posts }} one row per post {{ end }}
+    trailing blinking prompt
+
+  Structure on /posts/ or /tags/<x>/ list page:
+    section label `$ ls -lh ./<path>/`
+    <header row>
+    {{ range posts }} one row per post {{ end }}
+
+  Each row is a single <a> (so the whole line is clickable AND announces as
+  a link to assistive tech). Row internals are spans inside a CSS grid.
+*/ -}}
+
+{{- define "main" -}}
+
+  {{- /* Home page only — render the hero. */ -}}
+  {{- if .IsHome -}}
+    {{- partial "home_info.html" . -}}
+  {{- end -}}
+
+  <div class="tw-home-info">
+    {{- /* Section label — context-sensitive command */ -}}
+    <div class="tw-prompt" aria-label="terminal prompt">
+      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">~{{ if not .IsHome }}{{ .RelPermalink | strings.TrimRight "/" }}{{ end }}</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">ls -lh --sort=time</span>
+    </div>
+
+    <div class="tw-listhead" aria-hidden="true">
+      <span>date</span>
+      <span>read</span>
+      <span>tag</span>
+      <span>title</span>
+    </div>
+
+    {{- $pages := where .RegularPages "Type" "in" site.Params.mainSections -}}
+    {{- if .IsHome -}}
+      {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections -}}
+    {{- end -}}
+
+    {{- range $pages }}
+    <a class="tw-postrow" href="{{ .Permalink }}">
+      <span class="tw-col-date">{{ .Date.Format "01-02" }}</span>
+      <span class="tw-col-read">{{ .ReadingTime }}min</span>
+      <span class="tw-col-tag">{{- with (index .Params.tags 0) -}}#{{ . }}{{- end -}}</span>
+      <span class="tw-col-title">{{ .Title }}</span>
+    </a>
+    {{- end }}
+
+    {{- /* Pagination (when more than one page of results) */ -}}
+    {{- if gt .Paginator.TotalPages 1 }}
+    <nav class="pagination" aria-label="Pagination">
+      {{- if .Paginator.HasPrev }}<a class="page-link" href="{{ .Paginator.Prev.URL }}">← prev</a>{{- else }}<span></span>{{- end }}
+      {{- if .Paginator.HasNext }}<a class="page-link" href="{{ .Paginator.Next.URL }}">next →</a>{{- end }}
+    </nav>
+    {{- end }}
+
+    {{- if .IsHome }}
+    <div class="tw-prompt" aria-hidden="true" style="margin-top: 32px;">
+      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">~</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">_</span><span class="tw-cursor">▊</span>
+    </div>
+    {{- end }}
+  </div>
+
+{{- end -}}

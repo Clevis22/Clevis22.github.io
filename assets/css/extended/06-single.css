@@ -1,0 +1,151 @@
+/* 06-single.css — single-post page (`/posts/<slug>/`)
+ *
+ * PaperMod's single.html structure:
+ *   <article class="post-single">
+ *     <header class="post-header">
+ *       <h1 class="post-title">...</h1>
+ *       <div class="post-meta">...</div>
+ *     </header>
+ *     <div class="post-content">...</div>
+ *     <footer class="post-footer">...</footer>
+ *   </article>
+ *
+ * Our override of single.html injects the `← cd ..` back button, the
+ * top prompt line, and the ASCII ╔═══╗ rules around the title block. The
+ * styles below apply to those + PaperMod's existing post-content markup.
+ */
+
+.post-single,
+.main .post-single {
+  padding: 32px 0 60px;
+}
+
+/* `← cd ..` back button — emitted at the top of single.html */
+.tw-back {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--tw-accent);
+  font-family: var(--tw-font-mono);
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: var(--tw-radius);
+  display: inline-block;
+  margin-bottom: 24px;
+  text-decoration: none;
+  transition: border-color 0.12s, background-color 0.12s;
+}
+.tw-back:hover {
+  background: var(--tw-selection);
+  border-color: var(--tw-accent);
+}
+
+/* Decorative double-line rules wrapping the title (aria-hidden in markup) */
+.tw-rule-top,
+.tw-rule-bottom {
+  color: var(--tw-very-dim);
+  font-size: var(--tw-fs-ascii);
+  white-space: pre;
+  font-family: var(--tw-font-mono);
+}
+.tw-rule-top { margin: 14px 0 8px; }
+.tw-rule-bottom { margin: 6px 0 22px; }
+
+/* Post title — replace PaperMod's default sans-serif large heading */
+.post-title,
+.post-header .post-title {
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--tw-accent);
+  font-weight: 600;
+  font-family: var(--tw-font-mono);
+  margin: 0 0 6px;
+}
+
+/* Meta line — `@ YYYY-MM-DD · 10 min read · 1,926 words · hardware` */
+.post-meta,
+.post-header .post-meta {
+  color: var(--secondary);
+  font-size: var(--tw-fs-meta);
+  font-family: var(--tw-font-mono);
+  margin-bottom: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 4px;
+}
+.post-meta .tw-meta-at       { color: var(--tw-green); margin-right: 4px; }
+.post-meta .tw-meta-sep      { color: var(--tw-very-dim); margin: 0 8px; }
+.post-meta .tw-meta-hardware { color: var(--tw-cyan); }
+
+/* Tag chips under the meta line */
+.post-tags {
+  margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 10px;
+  font-size: 12px;
+}
+.post-tags a {
+  color: var(--tw-magenta);
+  border-bottom: none;
+}
+.post-tags a::before { content: "#"; }
+.post-tags a:hover { color: var(--tw-accent); }
+
+/* Post body container */
+.post-content,
+.entry-content {
+  font-family: var(--tw-font-mono);
+}
+
+/* End-of-post prompt block — emitted at the bottom of single.html */
+.tw-eof {
+  margin-top: 32px;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+  color: var(--secondary);
+  font-size: var(--tw-fs-meta);
+}
+.tw-eof-result {
+  color: var(--tw-green);
+  margin-top: 4px;
+}
+
+/* Post nav (PaperMod's prev/next links at bottom) */
+.paginav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 36px;
+}
+.paginav .prev,
+.paginav .next {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  border-radius: var(--tw-radius);
+  text-decoration: none;
+  color: var(--primary);
+}
+.paginav .prev:hover,
+.paginav .next:hover {
+  border-color: var(--tw-accent);
+}
+.paginav .title {
+  display: block;
+  color: var(--tw-accent);
+  font-size: 13.5px;
+  margin-top: 2px;
+}
+.paginav span:first-child {
+  color: var(--secondary);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .post-single { padding: 20px 0 48px; }
+  .post-title { font-size: 18px; }
+  .paginav { grid-template-columns: 1fr; }
+}

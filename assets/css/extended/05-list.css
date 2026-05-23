@@ -1,0 +1,227 @@
+/* 05-list.css — post list as `$ ls -lh` table rows
+ *
+ * PaperMod's default markup for the post list:
+ *   <article class="first-entry"> ... </article>   (the most-recent post, larger)
+ *   <article class="post-entry"> ... </article>    (one per remaining post)
+ *
+ * Each article contains:
+ *   .entry-header > h2 (title)
+ *   .entry-meta (date · read time · words · author)
+ *   .entry-content (excerpt)
+ *   <a class="entry-link" href="..."> (covering link)
+ *
+ * We compress all of this into a 4-column grid row to mimic an `ls` listing.
+ * The shipped list.html override (see layouts/_default/list.html) already
+ * emits the exact markup we want; this CSS styles it.
+ */
+
+/* Column-header row, sits under the section label */
+.tw-listhead {
+  color: var(--secondary);
+  font-size: 12px;
+  padding: 6px 12px;
+  border-bottom: 1px dashed var(--border);
+  display: grid;
+  grid-template-columns: 88px 56px 80px 1fr;
+  gap: 16px;
+}
+
+/* Each post row */
+.tw-postrow,
+article.post-entry,
+article.first-entry {
+  display: grid;
+  grid-template-columns: 88px 56px 80px 1fr;
+  gap: 16px;
+  padding: 7px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 13.5px;
+  align-items: baseline;
+  transition: background-color 0.12s;
+  background: transparent;
+  border: 0; /* kill PaperMod's card border */
+  box-shadow: none;
+  margin: 0;
+}
+.tw-postrow:hover,
+article.post-entry:hover,
+article.first-entry:hover {
+  background: var(--tw-selection);
+}
+
+.tw-postrow .tw-col-date    { color: var(--secondary); }
+.tw-postrow .tw-col-read    { color: var(--tw-cyan); }
+.tw-postrow .tw-col-tag     { color: var(--tw-magenta); }
+.tw-postrow .tw-col-title   { color: var(--primary); }
+.tw-postrow .tw-col-title::before {
+  content: "› ";
+  color: var(--tw-accent);
+  margin-right: 6px;
+}
+
+/* Hide PaperMod's default entry-content / excerpt / footer on the listing — 
+   our row markup is one line per post. */
+article.post-entry .entry-content,
+article.post-entry .entry-footer,
+article.first-entry .entry-content,
+article.first-entry .entry-footer {
+  display: none;
+}
+
+/* The covering <a> — PaperMod uses it as a full-card overlay. Reset it. */
+.entry-link {
+  position: static !important;
+  height: auto !important;
+  width: auto !important;
+}
+
+/* Pagination — `← prev` / `next →` styled like nav buttons */
+.pagination,
+.page-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 32px;
+  font-size: 12.5px;
+}
+.pagination a,
+.page-link {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--secondary);
+  padding: 4px 10px;
+  border-radius: var(--tw-radius);
+  font-family: var(--tw-font-mono);
+}
+.pagination a:hover,
+.page-link:hover {
+  color: var(--tw-accent);
+  border-color: var(--tw-accent);
+}
+
+/* ─────────────── Search ─────────────── */
+.tw-search { padding-top: 24px; }
+
+.tw-search .tw-prompt {
+  font-size: 13.5px;
+  white-space: normal;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+input#searchInput,
+.tw-search-input {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px dashed var(--border);
+  color: var(--tw-accent);
+  font-family: var(--tw-font-mono);
+  font-size: 13.5px;
+  padding: 0 4px;
+  min-width: 240px;
+  flex: 0 1 320px;
+  outline: none;
+}
+input#searchInput:focus,
+.tw-search-input:focus {
+  border-bottom-color: var(--tw-accent);
+}
+
+.tw-search-results,
+#searchResults {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+}
+/* fuse.js renders `<li class="post-entry"><header class="entry-header">Title »</header><a href="..."></a></li>` */
+#searchResults li.post-entry,
+.tw-search-results li.post-entry {
+  position: relative;
+  padding: 7px 12px;
+  border-radius: 2px;
+  font-size: 13.5px;
+  color: var(--primary);
+  background: transparent;
+  transition: background-color 0.12s;
+  display: block;
+  border: 0;
+  margin: 0;
+  grid-template-columns: none;
+  cursor: pointer;
+}
+#searchResults li.post-entry:hover,
+.tw-search-results li.post-entry:hover {
+  background: var(--tw-selection);
+}
+#searchResults li.post-entry .entry-header,
+.tw-search-results li.post-entry .entry-header {
+  color: var(--primary);
+  font-size: 13.5px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+#searchResults li.post-entry .entry-header::before,
+.tw-search-results li.post-entry .entry-header::before {
+  content: "› ";
+  color: var(--tw-accent);
+}
+#searchResults li.post-entry a,
+.tw-search-results li.post-entry a {
+  position: absolute;
+  inset: 0;
+  border: 0;
+}
+#searchResults li.post-entry.focus,
+#searchResults li.post-entry:focus-within {
+  background: var(--tw-selection);
+  outline: 1px solid var(--tw-accent);
+}
+
+/* ─────────────── Taxonomy index (/tags/, /categories/) ─────────────── */
+.tw-terms-page { padding-top: 24px; }
+.tw-terms {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 13.5px;
+}
+.tw-term a {
+  color: var(--tw-magenta);
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  padding: 2px 4px;
+  border-radius: 2px;
+  transition: background-color 0.12s, border-color 0.12s;
+}
+.tw-term a:hover {
+  background: var(--tw-selection);
+  border-bottom-color: var(--tw-magenta);
+}
+.tw-term-name { color: var(--tw-magenta); }
+.tw-term-count { color: var(--secondary); margin-left: 2px; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .tw-listhead,
+  .tw-postrow,
+  article.post-entry,
+  article.first-entry {
+    grid-template-columns: 64px 1fr;
+    gap: 10px;
+  }
+  /* Collapse: hide read+tag on mobile to keep the row readable */
+  .tw-listhead > :nth-child(2),
+  .tw-listhead > :nth-child(3),
+  .tw-postrow .tw-col-read,
+  .tw-postrow .tw-col-tag {
+    display: none;
+  }
+}

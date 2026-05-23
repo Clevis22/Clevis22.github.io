@@ -1,0 +1,26 @@
+{{- define "main" -}}
+
+<div class="tw-404">
+  <div class="tw-prompt" aria-label="terminal prompt">
+    <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">~</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">cd <span id="tw-404-typed-path">.</span></span>
+  </div>
+  <div class="tw-404-msg">bash: cd: <span class="tw-404-path" id="tw-404-msg-path">.</span>: No such file or directory</div>
+  <div class="tw-404-exit">exit code: 1</div>
+
+  <div class="tw-prompt" style="margin-top: 28px;" aria-label="terminal prompt">
+    <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">~</span><span class="tw-prompt-dollar">$</span>
+    <a href="{{ .Site.BaseURL }}" class="tw-404-link">cd ~</a>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var p = window.location.pathname || "/";
+    var typed = document.getElementById("tw-404-typed-path");
+    var msg = document.getElementById("tw-404-msg-path");
+    if (typed) typed.textContent = p;
+    if (msg) msg.textContent = p;
+  })();
+</script>
+
+{{- end -}}

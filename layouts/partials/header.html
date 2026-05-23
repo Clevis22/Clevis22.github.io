@@ -1,0 +1,51 @@
+{{- /*
+  header.html — overrides themes/PaperMod/layouts/partials/header.html
+
+  Adds:
+    - macOS-style traffic-light dots (decorative, aria-hidden)
+    - A `clevis@tinyweights — zsh — 132×38` window title (.tw-window-title)
+    - Standard PaperMod nav rendering (preserved so .menu / .active work)
+    - Theme toggle button (PaperMod's existing #theme-toggle)
+*/ -}}
+
+<header class="header">
+  <nav class="nav">
+    <div class="tw-tl" aria-hidden="true">
+      <span class="tw-tl-dot tw-tl-dot--r"></span>
+      <span class="tw-tl-dot tw-tl-dot--y"></span>
+      <span class="tw-tl-dot tw-tl-dot--g"></span>
+    </div>
+    <span class="tw-window-title" aria-hidden="true">clevis@tinyweights — zsh — 132×38</span>
+
+    <ul id="menu" class="menu">
+      {{- range site.Menus.main }}
+      {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL)) | absLangURL }}
+      {{- $page_url := $.Page.Permalink | absLangURL }}
+      {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
+      <li>
+        <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (printf "(Alt + /)" | safeHTML) ""}}"
+           {{- if (or (eq $menu_item_url $page_url) (eq .Name $.Title)) }} class="active"{{- end -}}
+           {{- if $is_search }} accesskey="/"{{- end -}}
+        >
+          {{- .Pre }}
+          <span>
+            {{- .Name -}}
+            {{- if (findRE "://" .URL) }}&nbsp;
+              <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></svg>
+            {{- end -}}
+          </span>
+          {{- .Post -}}
+        </a>
+      </li>
+      {{- end }}
+      {{- if (not site.Params.disableThemeToggle) }}
+      <li>
+        <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+          <span class="tw-toggle-icon-light">☀ light</span>
+          <span class="tw-toggle-icon-dark">☾ dark</span>
+        </button>
+      </li>
+      {{- end }}
+    </ul>
+  </nav>
+</header>

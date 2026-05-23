@@ -1,0 +1,156 @@
+/* 03-header.css — terminal-window-style site header
+ *
+ * Targets PaperMod's .header / .nav / .logo / .menu structure. Some of this
+ * will require the partial override (see layouts/partials/header.html) to
+ * insert the traffic-light dots and prompt segments, but most chromework
+ * can be done with CSS alone against PaperMod's existing markup.
+ */
+
+.header {
+  background: var(--entry);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 28px;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: none;
+  padding: 0;
+}
+
+/* Traffic-light dots — injected by the header.html partial */
+.tw-tl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.tw-tl-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.tw-tl-dot--r { background: var(--tw-tl-red); }
+.tw-tl-dot--y { background: var(--tw-tl-yellow); }
+.tw-tl-dot--g { background: var(--tw-tl-green); }
+
+/* Window title — `clevis@tinyweights — zsh — 132×38` */
+.tw-window-title {
+  color: var(--secondary);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  margin-left: 4px;
+}
+
+/* PaperMod renders the site title as .logo > a. Override its look. */
+.logo,
+.logo a {
+  font-family: var(--tw-font-mono);
+  font-size: 12px;
+  color: var(--secondary);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  border: 0;
+}
+
+/* Push the menu (nav items + theme toggle) to the right. */
+#menu,
+.menu {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+}
+
+/* Each top-level nav link gets the prompt-button treatment. */
+#menu li a,
+.menu li a {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--secondary);
+  font-size: 12.5px;
+  padding: 4px 10px;
+  border-radius: var(--tw-radius);
+  letter-spacing: 0.02em;
+  transition: background-color 0.12s, color 0.12s, border-color 0.12s;
+}
+#menu li a:hover,
+.menu li a:hover {
+  color: var(--tw-accent);
+}
+/* Active page — PaperMod adds .active to the current nav link */
+#menu li a.active,
+.menu li a.active {
+  background: var(--tw-selection);
+  border-color: var(--tw-accent);
+  color: var(--tw-accent);
+}
+
+/* Theme toggle (#theme-toggle on PaperMod) — sized to match nav buttons */
+#theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--secondary);
+  font-family: var(--tw-font-mono);
+  font-size: 11.5px;
+  padding: 4px 8px;
+  border-radius: var(--tw-radius);
+  margin-left: 8px;
+  cursor: pointer;
+  line-height: 1;
+}
+#theme-toggle:hover { color: var(--tw-accent); border-color: var(--tw-accent); }
+#theme-toggle svg { width: 14px; height: 14px; vertical-align: middle; }
+
+/* Show the right toggle label based on active theme. */
+:root .tw-toggle-icon-light { display: inline; }
+:root .tw-toggle-icon-dark  { display: none; }
+.dark .tw-toggle-icon-light,
+[data-theme="dark"] .tw-toggle-icon-light { display: none; }
+.dark .tw-toggle-icon-dark,
+[data-theme="dark"] .tw-toggle-icon-dark { display: inline; }
+
+/* --- Mobile (TODO: refine against real device sizes) --- */
+@media (max-width: 768px) {
+  .header { padding: 10px 16px; }
+  .tw-window-title { display: none; }
+  .nav { gap: 8px; flex-wrap: wrap; }
+  #menu li a, .menu li a { font-size: 12px; padding: 4px 8px; }
+}
+
+/* ─────────────────────────────────────────────
+ * Footer (kept here because it's site-chrome twin to the header)
+ * ───────────────────────────────────────────── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 48px;
+  max-width: var(--tw-measure);
+  margin: 40px auto 0;
+  color: var(--secondary);
+  font-size: 12px;
+  font-family: var(--tw-font-mono);
+  background: transparent;
+}
+.tw-footer-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.tw-footer-sep { color: var(--tw-very-dim); }
+.tw-footer-spacer { margin-left: auto; }
+.tw-footer-credit { color: var(--tw-very-dim); }
+.footer a { color: var(--tw-accent); }
+
+@media (max-width: 768px) {
+  .footer { padding: 16px; gap: 8px; flex-wrap: wrap; }
+  .tw-footer-inner { gap: 8px; flex-wrap: wrap; }
+}

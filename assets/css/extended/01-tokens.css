@@ -1,0 +1,87 @@
+/* 01-tokens.css — color tokens, base resets, font stack
+ *
+ * Overrides PaperMod's CSS variables for the terminal aesthetic.
+ * PaperMod defines theme colors on :root (light) and .dark (dark).
+ * We replace those values AND add custom --tw-* tokens used throughout.
+ *
+ * Load order: this is file 01 so it lands first; subsequent CSS files
+ * can read these tokens.
+ */
+
+:root {
+  /* --- PaperMod tokens (light mode) — replace stock values --- */
+  --theme: #f4eedf;
+  --entry: #ebe2cc;
+  --primary: #1a1612;
+  --secondary: #6b5e3f;
+  --tertiary: #a89c7a;
+  --content: #1a1612;
+  --code-block-bg: #ebe2cc;
+  --code-bg: #d8cdb0;
+  --border: #c9bd9d;
+
+  /* --- terminal-aesthetic accents (light) --- */
+  --tw-accent: #9a5a00;          /* amber */
+  --tw-green: #4a7a2a;           /* unix green */
+  --tw-cyan: #2a6a72;            /* path cyan */
+  --tw-magenta: #8a3060;         /* tag magenta */
+  --tw-selection: rgba(154, 90, 0, 0.15);
+  --tw-very-dim: #a89c7a;
+
+  /* --- traffic lights (constant across modes) --- */
+  --tw-tl-red: #f25f56;
+  --tw-tl-yellow: #f8b53b;
+  --tw-tl-green: #54c443;
+
+  /* --- type --- */
+  --tw-font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --tw-fs-body: 14px;
+  --tw-lh-body: 1.55;
+  --tw-fs-meta: 12.5px;
+  --tw-fs-ascii: 11.5px;
+
+  /* --- layout --- */
+  --tw-measure: 1200px;
+  --tw-radius: 3px;
+}
+
+.dark,
+[data-theme="dark"] {
+  /* --- PaperMod tokens (dark mode) --- */
+  --theme: #0d0c0a;
+  --entry: #15130f;
+  --primary: #e8d5a3;
+  --secondary: #8a7c5c;
+  --tertiary: #4a4332;
+  --content: #e8d5a3;
+  --code-block-bg: #15130f;
+  --code-bg: #1a1813;
+  --border: #2a2519;
+
+  /* --- terminal accents (dark) --- */
+  --tw-accent: #f0a020;
+  --tw-green: #7ec96a;
+  --tw-cyan: #6ec3c9;
+  --tw-magenta: #d27aa0;
+  --tw-selection: rgba(240, 160, 32, 0.18);
+  --tw-very-dim: #4a4332;
+}
+
+/* Base resets — keep PaperMod's structure but drop default heading colors etc. */
+html, body {
+  background: var(--theme);
+  color: var(--primary);
+  font-family: var(--tw-font-mono);
+  font-size: var(--tw-fs-body);
+  line-height: var(--tw-lh-body);
+}
+
+/* Hide PaperMod's default scrollbar styling on hover cards if it clashes;
+   keep native scrollbars elsewhere. */
+::selection { background: var(--tw-selection); color: var(--primary); }
+
+/* Reduced motion: disable our cursor blink and row-hover transition. */
+@media (prefers-reduced-motion: reduce) {
+  .tw-cursor { animation: none !important; }
+  .post-entry, .first-entry, .tw-postrow { transition: none !important; }
+}

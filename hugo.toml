@@ -15,18 +15,15 @@ enableRobotsTXT = true
   description = "Small language models — Gemma, Phi, SmolLM, Qwen, and the rest — are getting surprisingly capable. Benchmarks, local deployment, quantization, and hands-on guides for running small LLMs on real hardware."
   keywords = ["small language models", "SLM", "Gemma", "local AI", "edge AI"]
   author = "Clevis"
-  defaultTheme = "auto"
+  defaultTheme = "dark"
   ShowReadingTime = true
-  ShowShareButtons = true
+  ShowShareButtons = false
   ShowPostNavLinks = true
-  ShowBreadCrumbs = true
+  ShowBreadCrumbs = false
   ShowCodeCopyButtons = true
   ShowWordCount = true
   UseHugoToc = true
-
-  [params.homeInfoParams]
-    Title = "Tiny Weights"
-    Content = "Small language models — Gemma, Phi, SmolLM, Qwen, and the rest — are getting surprisingly capable. Benchmarks, local deployment, quantization, and hands-on guides for running small LLMs on real hardware."
+  mainSections = ["posts"]
 
   [[params.socialIcons]]
     name = "bluesky"
@@ -34,17 +31,25 @@ enableRobotsTXT = true
 
 [menu]
   [[menu.main]]
-    name = "Posts"
-    url = "/posts/"
+    name = "~"
+    title = "Home"
+    url = "/"
     weight = 1
   [[menu.main]]
-    name = "Search"
-    url = "/search/"
+    name = "~/posts"
+    title = "Posts"
+    url = "/posts/"
     weight = 2
-    [[menu.main]]
-    name = "About"
-    url = "/about/"
+  [[menu.main]]
+    name = "/search"
+    title = "Search"
+    url = "/search/"
     weight = 3
+  [[menu.main]]
+    name = "~/about"
+    title = "About"
+    url = "/about/"
+    weight = 4
 
 [markup.highlight]
   noClasses = false

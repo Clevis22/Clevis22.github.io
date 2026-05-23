@@ -1,0 +1,78 @@
+/* 04-home.css — home page hero (ASCII logo + MOTD + section label)
+ *
+ * PaperMod renders the home page as layouts/index.html which calls
+ * partials/home_info.html (when params.homeInfoParams is set OR via the
+ * overridden partial we ship). All of the home-page hero markup is
+ * produced by our home_info.html override; this file just styles it.
+ */
+
+.home-info,
+.tw-home-info {
+  padding: 32px 0 0;
+}
+
+/* Prompt line container — used both at top of home and at top of single. */
+.tw-prompt {
+  font-size: 13.5px;
+  margin-bottom: 4px;
+  font-family: var(--tw-font-mono);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tw-prompt-user { color: var(--tw-green); }
+.tw-prompt-sep  { color: var(--secondary); }
+.tw-prompt-path { color: var(--tw-cyan); }
+.tw-prompt-dollar { color: var(--secondary); }
+.tw-prompt-cmd { color: var(--primary); }
+
+/* ASCII logo block — generated as a <pre class="tw-ascii"> */
+.tw-ascii {
+  color: var(--tw-accent);
+  font-family: var(--tw-font-mono);
+  font-size: var(--tw-fs-ascii);
+  line-height: 1.05;
+  letter-spacing: 0;
+  white-space: pre;
+  margin: 8px 0 4px;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/* MOTD — the welcome text block under the ASCII logo */
+.tw-motd {
+  color: var(--secondary);
+  font-size: var(--tw-fs-meta);
+  margin: 12px 0 28px;
+  white-space: pre-wrap;
+  max-width: 72ch;
+}
+
+/* Section label — `$ ls -lh --sort=time` style heading above each section */
+.tw-section-label {
+  color: var(--tw-green);
+  margin: 28px 0 8px;
+  font-size: var(--tw-fs-meta);
+  font-family: var(--tw-font-mono);
+}
+
+/* Trailing blinking cursor */
+.tw-cursor {
+  color: var(--tw-accent);
+  animation: twBlink 1s steps(1) infinite;
+}
+@keyframes twBlink { 50% { opacity: 0; } }
+
+/* PaperMod sets .home-info.profile vs non-profile differently — neutralize
+ * any centering or large-avatar styles from its default. */
+.home-info.profile,
+.profile {
+  text-align: left;
+  min-height: auto;
+  display: block;
+}
+.profile_inner,
+.profile img {
+  /* PaperMod's profile-mode avatar — hidden, we use ASCII logo instead. */
+  display: none !important;
+}

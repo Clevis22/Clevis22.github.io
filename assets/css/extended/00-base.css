@@ -1,0 +1,224 @@
+/* 00-base.css — baseline layout + chrome
+ *
+ * Replaces what PaperMod's common/*.css previously provided. Loads BEFORE
+ * 01-tokens.css alphabetically but mostly relies on tokens for colors —
+ * the CSS variables are defined in 01-tokens.css and resolved at use site,
+ * so order doesn't matter for var() references.
+ */
+
+/* ---------- Document defaults ---------- */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: var(--theme);
+  color: var(--primary);
+  font-family: var(--tw-font-mono);
+  font-size: var(--tw-fs-body);
+  line-height: var(--tw-lh-body);
+  text-align: left;
+}
+
+/* ---------- Top-level structure ---------- */
+.main {
+  max-width: var(--tw-measure);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 48px 80px;
+  text-align: left;
+}
+
+/* Neutralize PaperMod profile-mode if it ever sneaks in */
+.profile,
+.home-info.profile {
+  display: block !important;
+  text-align: left !important;
+  min-height: auto !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+}
+.profile_inner { display: block !important; }
+.profile img { display: none !important; }
+
+/* ---------- Lists in post content ---------- */
+.entry-content ul,
+.entry-content ol,
+.post-content ul,
+.post-content ol {
+  margin: 0 0 16px;
+  padding-left: 22px;
+  font-size: var(--tw-fs-body);
+  line-height: 1.7;
+  color: var(--primary);
+}
+.entry-content li,
+.post-content li {
+  margin: 0 0 4px;
+  max-width: 72ch;
+}
+.entry-content li::marker,
+.post-content li::marker {
+  color: var(--tw-accent);
+}
+
+/* ---------- Headings (in post content) ---------- */
+.entry-content h1,
+.post-content h1 {
+  font-size: 20px;
+  color: var(--tw-accent);
+  font-weight: 600;
+  margin: 32px 0 12px;
+  line-height: 1.3;
+}
+
+/* h2/h3 already styled in 02-typography.css with green + amber # prefix */
+
+.entry-content h4,
+.post-content h4 {
+  font-size: 13.5px;
+  color: var(--tw-cyan);
+  font-weight: 600;
+  margin: 20px 0 6px;
+}
+
+/* ---------- Images & figures ---------- */
+.entry-content figure,
+.post-content figure {
+  margin: 16px 0 24px;
+  max-width: 100%;
+}
+.entry-content figure img,
+.post-content figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--tw-radius);
+}
+.entry-content figcaption,
+.post-content figcaption,
+.entry-content figcaption p,
+.post-content figcaption p {
+  margin-top: 6px;
+  color: var(--secondary);
+  font-size: var(--tw-fs-meta);
+  font-style: normal;
+  max-width: 72ch;
+}
+.entry-content figcaption a,
+.post-content figcaption a {
+  color: var(--tw-accent);
+}
+
+/* ---------- Inline elements ---------- */
+.entry-content strong,
+.post-content strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+.entry-content em,
+.post-content em {
+  color: var(--tw-cyan);
+  font-style: normal;
+}
+
+/* ---------- Scroll-to-top button ---------- */
+.top-link {
+  visibility: hidden;
+  position: fixed;
+  bottom: 60px;
+  right: 30px;
+  z-index: 99;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--tw-radius);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tw-accent);
+  opacity: 0;
+  transition: opacity 0.16s, border-color 0.16s, visibility 0.16s;
+}
+.top-link:hover {
+  border-color: var(--tw-accent);
+}
+.top-link svg {
+  fill: currentColor;
+}
+
+/* ---------- 404 page ---------- */
+.tw-404 { padding-top: 24px; font-size: 13.5px; }
+.tw-404-msg {
+  margin-top: 8px;
+  color: #d27a7a;
+  font-family: var(--tw-font-mono);
+}
+.tw-404-path { color: var(--tw-cyan); }
+.tw-404-exit {
+  color: var(--secondary);
+  margin-top: 4px;
+}
+.tw-404-link {
+  color: var(--tw-accent);
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  margin-left: 4px;
+}
+.tw-404-link:hover { border-bottom-color: var(--tw-accent); }
+
+/* ---------- Code-copy button ---------- */
+.highlight {
+  position: relative;
+}
+.copy-code {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--tw-accent);
+  font-family: var(--tw-font-mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.16s, border-color 0.16s, background-color 0.16s;
+}
+.highlight:hover .copy-code,
+pre:hover .copy-code {
+  opacity: 1;
+}
+.copy-code:hover {
+  background: var(--tw-selection);
+  border-color: var(--tw-accent);
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background: var(--tw-selection);
+  color: var(--primary);
+}
+
+/* ---------- Focus ring (keyboard nav) ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--tw-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+  .main { padding: 0 16px 60px; }
+  .top-link { bottom: 24px; right: 16px; }
+}

@@ -1,0 +1,122 @@
+{{- /*
+  head.html — overrides themes/PaperMod/layouts/partials/head.html
+
+  PaperMod's stock head bundles common/*.css (post-single, post-entry,
+  profile-mode, main, header, footer, archive, search, terms, 404) plus
+  theme-vars.css, chroma-styles.css, chroma-mod.css, includes/scroll-bar.css,
+  and zmedia.css. Those are highly specific and fight our terminal styles.
+
+  We load only:
+    - license.css   (theme attribution — kept for legal)
+    - reset.css     (PaperMod's standard normalize — safe, low-specificity)
+    - extended/*    (our terminal styles, which now own ALL visual rules)
+*/ -}}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
+<meta name="robots" content="index, follow">
+{{- else }}
+<meta name="robots" content="noindex, nofollow">
+{{- end }}
+
+<title>{{ if .IsHome }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ end }}{{ site.Title }}</title>
+
+{{- if .IsHome }}
+{{ with site.Params.keywords -}}<meta name="keywords" content="{{- range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}">{{ end }}
+{{- else }}
+<meta name="keywords" content="{{ if .Params.keywords -}}
+    {{- range $i, $e := .Params.keywords }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- else }}
+    {{- range $i, $e := .Params.tags }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- end -}}">
+{{- end }}
+<meta name="description" content="{{- with .Description }}{{ . }}{{- else }}{{- if or .IsPage .IsSection}}
+    {{- .Summary | default (printf "%s - %s" .Title  site.Title) }}{{- else }}
+    {{- with site.Params.description }}{{ . }}{{- end }}{{- end }}{{- end -}}">
+<meta name="author" content="{{ (partial "author.html" . ) }}">
+<link rel="canonical" href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
+
+{{- /* --- Slim stylesheet bundle (no common/*, no zmedia, no chroma) --- */ -}}
+{{- $reset := (resources.Get "css/core/reset.css") }}
+{{- $license_css := (resources.Get "css/core/license.css") }}
+{{- $extended := (resources.Match "css/extended/*.css") | resources.Concat "assets/css/extended.css" | resources.Minify }}
+{{- $stylesheet := (slice $license_css $reset $extended) | resources.Concat "assets/css/stylesheet.css" }}
+
+{{- if not site.Params.assets.disableFingerprinting }}
+{{- $stylesheet := $stylesheet | fingerprint }}
+<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" integrity="{{ $stylesheet.Data.Integrity }}" rel="preload stylesheet" as="style">
+{{- else }}
+<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="preload stylesheet" as="style">
+{{- end }}
+
+{{- /* Search assets — preserved from PaperMod */ -}}
+{{- if (eq .Layout `search`) -}}
+<link crossorigin="anonymous" rel="preload" as="fetch" href="../index.json">
+{{- $fastsearch := resources.Get "js/fastsearch.js" | js.Build (dict "params" (dict "fuseOpts" site.Params.fuseOpts)) | resources.Minify }}
+{{- $fusejs := resources.Get "js/fuse.basic.min.js" }}
+{{- $license_js := resources.Get "js/license.js" }}
+{{- if not site.Params.assets.disableFingerprinting }}
+{{- $search := (slice $fusejs $license_js $fastsearch ) | resources.Concat "assets/js/search.js" | fingerprint }}
+<script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}"></script>
+{{- else }}
+{{- $search := (slice $fusejs $fastsearch ) | resources.Concat "assets/js/search.js" }}
+<script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}"></script>
+{{- end }}
+{{- end -}}
+
+{{- /* Favicons */ -}}
+<link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
+<link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
+<meta name="theme-color" content="{{ site.Params.assets.theme_color | default "#0d0c0a" }}">
+
+{{- /* RSS / JSON alternates */ -}}
+{{ range .AlternativeOutputFormats -}}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ .Name }}">
+{{ end -}}
+{{- range .AllTranslations -}}
+<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+{{ end -}}
+
+<noscript>
+  <style>
+    #theme-toggle, .top-link { display: none; }
+  </style>
+</noscript>
+
+{{- /* Initial theme application — defaults to dark unless light is in localStorage */ -}}
+{{- if (not site.Params.disableThemeToggle) }}
+{{- if (eq site.Params.defaultTheme "dark") }}
+<script>
+  if (localStorage.getItem("pref-theme") === "light") {
+    document.querySelector("html").dataset.theme = 'light';
+  }
+</script>
+{{- else if (eq site.Params.defaultTheme "light") }}
+<script>
+  if (localStorage.getItem("pref-theme") === "dark") {
+    document.querySelector("html").dataset.theme = 'dark';
+  }
+</script>
+{{- else }}
+<script>
+  if (localStorage.getItem("pref-theme") === "dark") {
+    document.querySelector("html").dataset.theme = 'dark';
+  } else if (localStorage.getItem("pref-theme") === "light") {
+    document.querySelector("html").dataset.theme = 'light';
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.querySelector("html").dataset.theme = 'dark';
+  } else {
+    document.querySelector("html").dataset.theme = 'light';
+  }
+</script>
+{{- end }}
+{{- end }}
+
+{{- partial "extend_head.html" . -}}
+
+{{- if hugo.IsProduction | or (eq site.Params.env "production") }}
+{{- partial "templates/opengraph.html" . }}
+{{- partial "templates/twitter_cards.html" . }}
+{{- partial "templates/schema_json.html" . }}
+{{- end -}}
