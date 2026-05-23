@@ -23,22 +23,27 @@
   padding: 0;
 }
 
-/* Traffic-light dots — injected by the header.html partial */
-.tw-tl {
-  display: flex;
+/* Mascot home link — replaces the old macOS-style traffic-light dots.
+ * Sits in the top-left of the header and links back to the site root. */
+.tw-header-mascot {
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
   flex-shrink: 0;
+  padding: 2px;
+  border: 1px solid transparent;
+  border-radius: var(--tw-radius);
+  line-height: 0;
+  transition: border-color 0.12s, background-color 0.12s;
 }
-.tw-tl-dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  display: inline-block;
+.tw-header-mascot:hover {
+  border-color: var(--tw-accent);
+  background: var(--tw-selection);
 }
-.tw-tl-dot--r { background: var(--tw-tl-red); }
-.tw-tl-dot--y { background: var(--tw-tl-yellow); }
-.tw-tl-dot--g { background: var(--tw-tl-green); }
+.tw-header-mascot img {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
 
 /* Window title — `clevis@tinyweights — zsh — 132×38` */
 .tw-window-title {

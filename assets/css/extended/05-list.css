@@ -53,7 +53,13 @@ article.first-entry:hover {
 .tw-postrow .tw-col-date    { color: var(--secondary); }
 .tw-postrow .tw-col-read    { color: var(--tw-cyan); }
 .tw-postrow .tw-col-tag     { color: var(--tw-magenta); }
-.tw-postrow .tw-col-title   { color: var(--primary); }
+.tw-postrow .tw-col-title   {
+  color: var(--primary);
+  /* min-width:0 lets the grid column shrink below its content's intrinsic
+   * width so long titles wrap instead of pushing the page past viewport. */
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 .tw-postrow .tw-col-title::before {
   content: "› ";
   color: var(--tw-accent);

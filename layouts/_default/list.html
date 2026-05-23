@@ -29,7 +29,7 @@
   <div class="tw-home-info">
     {{- /* Section label — context-sensitive command */ -}}
     <div class="tw-prompt" aria-label="terminal prompt">
-      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">~{{ if not .IsHome }}{{ .RelPermalink | strings.TrimRight "/" }}{{ end }}</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">ls -lh --sort=time</span>
+      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home{{ if not .IsHome }}{{ .RelPermalink | strings.TrimRight "/" }}{{ end }}</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">ls -lh --sort=time</span>
     </div>
 
     <div class="tw-listhead" aria-hidden="true">
@@ -63,7 +63,7 @@
 
     {{- if .IsHome }}
     <div class="tw-prompt" aria-hidden="true" style="margin-top: 32px;">
-      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">~</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">_</span><span class="tw-cursor">▊</span>
+      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">_</span><span class="tw-cursor">▊</span>
     </div>
     {{- end }}
   </div>
