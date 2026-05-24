@@ -13,7 +13,7 @@
       <link>https://tinyweights.dev/posts/medgemma-1-5/</link>
       <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/posts/medgemma-1-5/</guid>
-      <description>MedGemma 1.5 is Google&amp;#39;s 4B medical multimodal model — Gemma 3 backbone, MedSigLIP encoder, 128K context. Runs in 3.3GB on Ollama. Benchmarks, deployment, and the limits.</description>
+      <description>MedGemma 1.5 is Google&amp;#39;s 4B medical multimodal model: Gemma 3 backbone, MedSigLIP encoder, 128K context. Runs in 3.3GB on Ollama. Benchmarks, deployment, and the limits.</description>
     </item>
     <item>
       <title>Qwen3.5-0.8B: A Multimodal Thinking Model That Fits in 1 Gigabyte</title>

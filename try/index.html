@@ -1,10 +1,11 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Try a Small LLM in Your Browser | TinyWeights.dev</title><meta name=keywords content><meta name=description content="Run Qwen2.5-0.5B locally in your browser via WebGPU. No backend, no API key, no install — a live demo of a small language model executing entirely on your hardware."><meta name=author content="Clevis"><link rel=canonical href=https://tinyweights.dev/try/><link crossorigin=anonymous href=/assets/css/stylesheet.e6a609c9c07e236b39ca4ea6990fa3ea36173a68083723cd70a64870fca84131.css integrity="sha256-5qYJycB+I2s5yk6mmQ+j6jYXOmgINyPNcKZIcPyoQTE=" rel="preload stylesheet" as=style><link rel=icon href=https://tinyweights.dev/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://tinyweights.dev/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://tinyweights.dev/favicon-32x32.png><link rel=apple-touch-icon href=https://tinyweights.dev/apple-touch-icon.png><meta name=theme-color content="#0d0c0a"><link rel=alternate hreflang=en href=https://tinyweights.dev/try/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel=stylesheet><script data-goatcounter=https://tinyweights.goatcounter.com/count async src=//gc.zgo.at/count.js></script><meta property="og:url" content="https://tinyweights.dev/try/"><meta property="og:site_name" content="TinyWeights.dev"><meta property="og:title" content="Try a Small LLM in Your Browser"><meta property="og:description" content="Run Qwen2.5-0.5B locally in your browser via WebGPU. No backend, no API key, no install — a live demo of a small language model executing entirely on your hardware."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta name=twitter:card content="summary"><meta name=twitter:title content="Try a Small LLM in Your Browser"><meta name=twitter:description content="Run Qwen2.5-0.5B locally in your browser via WebGPU. No backend, no API key, no install — a live demo of a small language model executing entirely on your hardware."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Try a Small LLM in Your Browser","item":"https://tinyweights.dev/try/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Try a Small LLM in Your Browser","name":"Try a Small LLM in Your Browser","description":"Run Qwen2.5-0.5B locally in your browser via WebGPU. No backend, no API key, no install — a live demo of a small language model executing entirely on your hardware.","keywords":[],"articleBody":"This page is the thesis of the whole blog made tangible. A 500-million-parameter chat model is being downloaded to your browser, compiled to GPU shaders, and run on your own hardware. There is no server doing the inference. Your prompts never leave this tab.\nWhat’s actually running The model is Qwen2.5-0.5B-Instruct, released by Alibaba’s Qwen team in September 2024 under Apache 2.0. At 4-bit quantization (the q4f16_1 MLC build) the weights are roughly 280 MB. That’s the entire model: vocabulary, attention layers, MLP weights, everything. Small enough to fit in a single CDN download and live comfortably inside a browser tab.\nIt is not a smart model. A 0.5B parameter chat model is not going to beat foundation models at anything. The point is not capability; the point is that this works at all — that you can have a conversation with a real instruction-tuned LLM with zero install and zero network calls after the initial weight download.\nHow it works The stack is short:\nWebLLM — MLC AI’s in-browser inference runtime. It takes a quantized model in MLC format and runs it through WebGPU, the modern browser API that exposes GPU compute to JavaScript. WebGPU — the actual GPU API. Available in Chrome/Edge 113+, Safari 18+, and Firefox with a flag. Falls back to WebAssembly + CPU on unsupported browsers, but it’s much slower there. IndexedDB — once the weights download, they’re cached locally. Refresh this page and the model loads instantly the second time. The model itself — Qwen2.5-0.5B-Instruct, pre-compiled by the MLC team into a format WebLLM can stream into GPU memory. When you hit “send”, your prompt goes into the model’s tokenizer, the resulting tokens flow through the attention layers on your GPU, and tokens stream back into the output panel — exactly the same loop that runs on a server, just running on the silicon already in front of you.\nWhy this matters Most “AI demos” you see on the web are a thin chat UI wrapped around a hosted API. They cost the operator money per call, they require a network round-trip per token, and they collect every prompt for training.\nA model that runs in your browser inverts all of that. It costs the host nothing. It works on a plane. It works in a hospital. It works after the API provider shuts down the endpoint or 10x’s the price. The trade-off is capability — a 0.5B model is dramatically less smart than a frontier model — but it’s also the trade-off the entire small-models movement is built on. The bet of this blog is that “less smart but runs anywhere” wins for more workloads than people currently realise.\nLimitations of this specific demo First load takes 30–90 seconds depending on your connection. After that, the model is cached. Needs WebGPU. On Chrome/Edge 113+, Safari 18+, or Firefox with dom.webgpu.enabled set in about:config. On unsupported browsers the demo will tell you so. Mobile is hit-or-miss. Some phones have WebGPU; many don’t have enough free memory for the weights. A 0.5B model hallucinates a lot. Treat outputs as a tech demo, not a reference. If you want to actually use a small model for real work, the rest of the blog covers how to run bigger ones — 3B, 4B, 7B — locally via Ollama, llama.cpp, and LM Studio.\n","wordCount":"555","inLanguage":"en","datePublished":"0001-01-01T00:00:00Z","dateModified":"0001-01-01T00:00:00Z","author":{"@type":"Person","name":"Clevis"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://tinyweights.dev/try/"},"publisher":{"@type":"Organization","name":"TinyWeights.dev","logo":{"@type":"ImageObject","url":"https://tinyweights.dev/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><a class=tw-header-mascot href=https://tinyweights.dev/ aria-label=Home><img src=https://tinyweights.dev/mascot-transparent.svg alt width=28 height=28>
+<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Try a Small LLM in Your Browser | TinyWeights.dev</title><meta name=keywords content><meta name=description content="Run Qwen2.5-0.5B locally in your browser via WebGPU. No backend, no API key, no install — a live demo of a small language model executing entirely on your hardware."><meta name=author content="Clevis"><link rel=canonical href=https://tinyweights.dev/try/><link crossorigin=anonymous href=/assets/css/stylesheet.3d461ca90d4f7b335becca3a352547b63f6910fec6f17789f126b206038f661d.css integrity="sha256-PUYcqQ1PezNb7Mo6NSVHtj9pEP7G8XeJ8SayBgOPZh0=" rel="preload stylesheet" as=style><link rel=icon href=https://tinyweights.dev/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://tinyweights.dev/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://tinyweights.dev/favicon-32x32.png><link rel=apple-touch-icon href=https://tinyweights.dev/apple-touch-icon.png><meta name=theme-color content="#0d0c0a"><link rel=alternate hreflang=en href=https://tinyweights.dev/try/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel=stylesheet><script data-goatcounter=https://tinyweights.goatcounter.com/count async src=//gc.zgo.at/count.js></script><meta property="og:url" content="https://tinyweights.dev/try/"><meta property="og:site_name" content="TinyWeights.dev"><meta property="og:title" content="Try a Small LLM in Your Browser"><meta property="og:description" content="Run Qwen2.5-0.5B locally in your browser via WebGPU. No backend, no API key, no install — a live demo of a small language model executing entirely on your hardware."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta name=twitter:card content="summary"><meta name=twitter:title content="Try a Small LLM in Your Browser"><meta name=twitter:description content="Run Qwen2.5-0.5B locally in your browser via WebGPU. No backend, no API key, no install — a live demo of a small language model executing entirely on your hardware."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Try a Small LLM in Your Browser","item":"https://tinyweights.dev/try/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Try a Small LLM in Your Browser","name":"Try a Small LLM in Your Browser","description":"Run Qwen2.5-0.5B locally in your browser via WebGPU. No backend, no API key, no install — a live demo of a small language model executing entirely on your hardware.","keywords":[],"articleBody":"This page is the thesis of the whole blog made tangible. A 500-million-parameter chat model is being downloaded to your browser, compiled to GPU shaders, and run on your own hardware. There is no server doing the inference. Your prompts never leave this tab.\nWhat’s actually running The model is Qwen2.5-0.5B-Instruct, released by Alibaba’s Qwen team in September 2024 under Apache 2.0. At 4-bit quantization (the q4f16_1 MLC build) the weights are roughly 280 MB. That’s the entire model: vocabulary, attention layers, MLP weights, everything. Small enough to fit in a single CDN download and live comfortably inside a browser tab.\nIt is not a smart model. A 0.5B parameter chat model is not going to beat foundation models at anything. The point is not capability; the point is that this works at all — that you can have a conversation with a real instruction-tuned LLM with zero install and zero network calls after the initial weight download.\nHow it works The stack is short:\nWebLLM — MLC AI’s in-browser inference runtime. It takes a quantized model in MLC format and runs it through WebGPU, the modern browser API that exposes GPU compute to JavaScript. WebGPU — the actual GPU API. Available in Chrome/Edge 113+, Safari 18+, and Firefox with a flag. Falls back to WebAssembly + CPU on unsupported browsers, but it’s much slower there. IndexedDB — once the weights download, they’re cached locally. Refresh this page and the model loads instantly the second time. The model itself — Qwen2.5-0.5B-Instruct, pre-compiled by the MLC team into a format WebLLM can stream into GPU memory. When you hit “send”, your prompt goes into the model’s tokenizer, the resulting tokens flow through the attention layers on your GPU, and tokens stream back into the output panel — exactly the same loop that runs on a server, just running on the silicon already in front of you.\nWhy this matters Most “AI demos” you see on the web are a thin chat UI wrapped around a hosted API. They cost the operator money per call, they require a network round-trip per token, and they collect every prompt for training.\nA model that runs in your browser inverts all of that. It costs the host nothing. It works on a plane. It works in a hospital. It works after the API provider shuts down the endpoint or 10x’s the price. The trade-off is capability — a 0.5B model is dramatically less smart than a frontier model — but it’s also the trade-off the entire small-models movement is built on. The bet of this blog is that “less smart but runs anywhere” wins for more workloads than people currently realise.\nLimitations of this specific demo First load takes 30–90 seconds depending on your connection. After that, the model is cached. Needs WebGPU. On Chrome/Edge 113+, Safari 18+, or Firefox with dom.webgpu.enabled set in about:config. On unsupported browsers the demo will tell you so. Mobile is hit-or-miss. Some phones have WebGPU; many don’t have enough free memory for the weights. A 0.5B model hallucinates a lot. Treat outputs as a tech demo, not a reference. If you want to actually use a small model for real work, the rest of the blog covers how to run bigger ones — 3B, 4B, 7B — locally via Ollama, llama.cpp, and LM Studio.\n","wordCount":"555","inLanguage":"en","datePublished":"0001-01-01T00:00:00Z","dateModified":"0001-01-01T00:00:00Z","author":{"@type":"Person","name":"Clevis"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://tinyweights.dev/try/"},"publisher":{"@type":"Organization","name":"TinyWeights.dev","logo":{"@type":"ImageObject","url":"https://tinyweights.dev/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><a class=tw-header-mascot href=https://tinyweights.dev/ aria-label=Home><img src=https://tinyweights.dev/mascot-transparent.svg alt width=28 height=28>
 </a><span class=tw-window-title aria-hidden=true>clevis@tinyweights — zsh — 132×38</span><ul id=menu class=menu><li><a href=https://tinyweights.dev/ title=Home><span>/home</span></a></li><li><a href=https://tinyweights.dev/posts/ title=Posts><span>/posts</span></a></li><li><a href=https://tinyweights.dev/search/ title="Search(Alt + /)" accesskey=/><span>/search</span></a></li><li><a href=https://tinyweights.dev/try/ title="Try a model in-browser" class=active><span>/try</span></a></li><li><a href=https://tinyweights.dev/about/ title=About><span>/about</span></a></li><li><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
 <span class=tw-toggle-icon-light>☀ light</span>
-<span class=tw-toggle-icon-dark>☾ dark</span></button></li></ul></nav></header><main class=main><article class="post-single tw-try"><a class=tw-back href=https://tinyweights.dev/>← cd ..</a><div class=tw-prompt aria-label="terminal prompt"><span class=tw-prompt-user>clevis@tinyweights</span><span class=tw-prompt-sep>:</span><span class=tw-prompt-path>/home</span><span class=tw-prompt-dollar>$</span> <span class=tw-prompt-cmd>./run-llm-in-browser.sh</span></div><div class=tw-try-tag aria-hidden=true>[ live · in-browser · webgpu · qwen2.5-0.5b ]</div><header class=post-header><h1 class=post-title>Try a Small LLM in Your Browser</h1></header><section class=tw-demo aria-label="In-browser LLM demo"><div class=tw-bootlog id=tw-bootlog role=log aria-live=polite><div class="tw-bootline tw-boot-init">[ INIT ] tinyweights demo runtime v0.1</div><div class=tw-bootline id=tw-boot-status>[ WAIT ] tap "start runtime" to load the model</div><div class="tw-bootline tw-boot-hint">[ HINT ] cold start downloads ~280MB; cached on reload</div><button type=button class=tw-boot-start id=tw-boot-start>
-<span class=tw-prompt-dollar>$</span> <span class=tw-prompt-cmd>./start --model qwen2.5-0.5b</span></button><div class=tw-progress-wrap id=tw-progress-wrap hidden><div class=tw-progress-label id=tw-progress-label>downloading weights…</div><div class=tw-progress-bar aria-hidden=true><div class=tw-progress-fill id=tw-progress-fill></div></div><div class=tw-progress-pct id=tw-progress-pct>0%</div></div></div><div class=tw-chat id=tw-chat hidden><div class=tw-chat-meta id=tw-chat-meta><span class="tw-tl tw-tl-green" aria-hidden=true></span>
+<span class=tw-toggle-icon-dark>☾ dark</span></button></li></ul></nav></header><main class=main><article class="post-single tw-try"><a class=tw-back href=https://tinyweights.dev/>← cd ..</a><div class=tw-prompt aria-label="terminal prompt"><span class=tw-prompt-user>clevis@tinyweights</span><span class=tw-prompt-sep>:</span><span class=tw-prompt-path>/home</span><span class=tw-prompt-dollar>$</span> <span class=tw-prompt-cmd>./run-llm-in-browser.sh</span></div><div class=tw-try-tag aria-hidden=true>[ live · in-browser · webgpu · qwen2.5-0.5b ]</div><header class=post-header><h1 class=post-title>Try a Small LLM in Your Browser</h1></header><section class=tw-demo aria-label="In-browser LLM demo"><div class=tw-bootlog id=tw-bootlog role=log aria-live=polite><div class="tw-bootline tw-boot-init">[ INIT ] tinyweights demo runtime v0.1</div><div class=tw-bootline id=tw-boot-status>[ WAIT ] pick a model and tap start to load</div><div class="tw-bootline tw-boot-hint">[ HINT ] downloads range ~200MB to ~840MB; each model caches separately</div><div class=tw-boot-select-row><label class=tw-boot-select-label for=tw-boot-model><span class=tw-prompt-dollar>$</span> <span class=tw-prompt-cmd>pick model:</span>
+</label><select class=tw-boot-select id=tw-boot-model><option value=smollm2-360m>SmolLM2-360M · ~200 MB · fastest, less coherent</option><option value=qwen2.5-0.5b selected>Qwen2.5-0.5B · ~280 MB · balanced default</option><option value=llama-3.2-1b>Llama-3.2-1B · ~670 MB · noticeably smarter</option><option value=qwen2.5-1.5b>Qwen2.5-1.5B · ~840 MB · best quality, big load</option></select></div><button type=button class=tw-boot-start id=tw-boot-start>
+<span class=tw-prompt-dollar>$</span> <span class=tw-prompt-cmd>./start --model <span id=tw-boot-start-name>qwen2.5-0.5b</span></span></button><div class=tw-progress-wrap id=tw-progress-wrap hidden><div class=tw-progress-label id=tw-progress-label>downloading weights…</div><div class=tw-progress-bar aria-hidden=true><div class=tw-progress-fill id=tw-progress-fill></div></div><div class=tw-progress-pct id=tw-progress-pct>0%</div></div></div><div class=tw-chat id=tw-chat hidden><div class=tw-chat-meta id=tw-chat-meta><span class="tw-tl tw-tl-green" aria-hidden=true></span>
 <span class=tw-chat-meta-label>model:</span>
-<span class=tw-chat-meta-val id=tw-chat-model>Qwen2.5-0.5B-Instruct (q4f16_1)</span>
+<span class=tw-chat-meta-val id=tw-chat-model>—</span>
 <span class=tw-chat-meta-sep>·</span>
 <span class=tw-chat-meta-label>first-token:</span>
 <span class=tw-chat-meta-val id=tw-chat-ttft>—</span>
@@ -13,7 +14,9 @@
 <span class=tw-chat-meta-val id=tw-chat-tps>—</span>
 <span class=tw-chat-meta-sep>·</span>
 <span class="tw-chat-status tw-chat-status-idle" id=tw-chat-status><span class=tw-chat-status-dot aria-hidden=true></span>
-<span class=tw-chat-status-label id=tw-chat-status-label>idle</span></span></div><div class=tw-chat-stream id=tw-chat-stream aria-live=polite></div><div class=tw-chat-suggest id=tw-chat-suggest><span class=tw-chat-suggest-label>try:</span>
+<span class=tw-chat-status-label id=tw-chat-status-label>idle</span>
+</span><button type=button class=tw-chat-clear id=tw-chat-clear title="Start a new conversation. History is not saved.">
+<span class=tw-prompt-dollar>$</span> clear</button></div><div class=tw-chat-stream id=tw-chat-stream aria-live=polite></div><div class=tw-chat-suggest id=tw-chat-suggest><span class=tw-chat-suggest-label>try:</span>
 <button type=button class=tw-chat-suggest-btn data-prompt="Write a haiku about running language models on a Raspberry Pi.">haiku about a pi running llms</button>
 <button type=button class=tw-chat-suggest-btn data-prompt="Explain what quantization is to a software engineer who knows nothing about ML.">explain quantization</button>
 <button type=button class=tw-chat-suggest-btn data-prompt="What are the trade-offs of running a small model locally vs. calling a hosted API?">local vs api trade-offs</button></div><form class=tw-chat-form id=tw-chat-form autocomplete=off><label class=tw-chat-promptlabel for=tw-chat-input><span class=tw-prompt-user>you</span><span class=tw-prompt-sep>@</span><span class=tw-prompt-path>browser</span><span class=tw-prompt-dollar>$</span>
@@ -43,8 +46,28 @@
   
   
   
-  const MODEL_F16 = 'Qwen2.5-0.5B-Instruct-q4f16_1-MLC';
-  const MODEL_F32 = 'Qwen2.5-0.5B-Instruct-q4f32_1-MLC';
+  const MODELS = {
+    'smollm2-360m':  { label: 'SmolLM2-360M-Instruct (q4)',
+                       f16: 'SmolLM2-360M-Instruct-q4f16_1-MLC',
+                       f32: 'SmolLM2-360M-Instruct-q4f32_1-MLC' },
+    'qwen2.5-0.5b':  { label: 'Qwen2.5-0.5B-Instruct (q4)',
+                       f16: 'Qwen2.5-0.5B-Instruct-q4f16_1-MLC',
+                       f32: 'Qwen2.5-0.5B-Instruct-q4f32_1-MLC' },
+    'llama-3.2-1b':  { label: 'Llama-3.2-1B-Instruct (q4)',
+                       f16: 'Llama-3.2-1B-Instruct-q4f16_1-MLC',
+                       f32: 'Llama-3.2-1B-Instruct-q4f32_1-MLC' },
+    'qwen2.5-1.5b':  { label: 'Qwen2.5-1.5B-Instruct (q4)',
+                       f16: 'Qwen2.5-1.5B-Instruct-q4f16_1-MLC',
+                       f32: 'Qwen2.5-1.5B-Instruct-q4f32_1-MLC' },
+  };
+
+  
+  
+  const modelSelect = $('tw-boot-model');
+  const startNameEl = $('tw-boot-start-name');
+  modelSelect.addEventListener('change', () => {
+    startNameEl.textContent = modelSelect.value;
+  });
 
   
   const appendBootLine = (text, cls = '') => {
@@ -95,7 +118,11 @@
     loading = true;
     startBtn.disabled = true;
     startBtn.style.opacity = '0.5';
+    modelSelect.disabled = true;
     bootStatus.textContent = '[ BOOT  ] requesting WebGPU adapter…';
+
+    
+    const choice = MODELS[modelSelect.value] || MODELS['qwen2.5-0.5b'];
 
     
     let hasShaderF16 = false;
@@ -137,7 +164,7 @@
     
     
     
-    const attempts = hasShaderF16 ? [MODEL_F16, MODEL_F32] : [MODEL_F32];
+    const attempts = hasShaderF16 ? [choice.f16, choice.f32] : [choice.f32];
     let lastErr = null;
 
     for (let i = 0; i < attempts.length; i++) {
@@ -146,7 +173,7 @@
       appendBootLine(
         (isFallback ? '[ RETRY ] ' : '[ FETCH ] ')
         + 'model: ' + id
-        + (id === MODEL_F32 ? ' (fp32-compatible)' : '')
+        + (id === choice.f32 ? ' (fp32-compatible)' : '')
       );
       bootStatus.textContent = isFallback
         ? '[ LOAD  ] retrying with fp32 build…'
@@ -160,7 +187,7 @@
         appendBootLine('[ OK    ] model resident · loaded in ' + dt + 's');
         appendBootLine('[ READY ] you can now chat below ↓', 'tw-boot-ready');
 
-        $('tw-chat-model').textContent = id.replace('-MLC', '').replace('-Instruct', '-Instruct ');
+        $('tw-chat-model').textContent = choice.label + (id === choice.f32 ? ' fp32' : '');
 
         setTimeout(() => {
           bootlog.classList.add('tw-bootlog-done');
@@ -184,9 +211,10 @@
 
     
     appendBootLine('[ ERR   ] could not initialise model on this device.', 'tw-boot-err');
-    appendBootLine('[ INFO  ] this usually means a WebGPU driver issue. try a different browser, update GPU drivers, or read about local-model deployment in the posts below.', 'tw-boot-err');
+    appendBootLine('[ INFO  ] try a smaller model from the dropdown, update GPU drivers, or read about local-model deployment in the posts below.', 'tw-boot-err');
     startBtn.disabled = false;
     startBtn.style.opacity = '1';
+    modelSelect.disabled = false;
     loading = false;
   });
 
@@ -199,10 +227,29 @@
   });
 
   
-  const messages = [
-    { role: 'system', content: 'You are a small, friendly assistant running locally in the user\'s browser. Keep answers concise. If asked, you are Qwen2.5-0.5B-Instruct, a 500-million parameter model.' }
-  ];
+  
+  
+  const SYSTEM_PROMPT = 'You are a small, friendly assistant running locally in the user\'s browser via WebGPU. Keep answers concise. You are a sub-2B-parameter open model; the user picked which one from a dropdown.';
+  const messages = [{ role: 'system', content: SYSTEM_PROMPT }];
   let generating = false;
+
+  
+  const clearBtn = $('tw-chat-clear');
+  clearBtn.addEventListener('click', async () => {
+    if (generating) return;
+    
+    messages.length = 1;
+    
+    chatStream.innerHTML = '';
+    ttftLabel.textContent = '—';
+    tpsLabel.textContent  = '—';
+    setStatus('idle', 'idle');
+    
+    if (engine && typeof engine.resetChat === 'function') {
+      try { await engine.resetChat(); } catch (err) { console.warn('resetChat failed:', err); }
+    }
+    chatInput.focus();
+  });
 
   
   const statusEl      = $('tw-chat-status');
@@ -224,6 +271,7 @@
 
     chatInput.value = '';
     chatSend.disabled = true;
+    clearBtn.disabled = true;
     generating = true;
 
     renderMessage('user', text);
@@ -298,6 +346,7 @@
       target.classList.remove('tw-msg-streaming');
       setStatus('idle', 'idle');
       chatSend.disabled = false;
+      clearBtn.disabled = false;
       generating = false;
       chatInput.focus();
     }
