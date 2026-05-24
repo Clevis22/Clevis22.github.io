@@ -10,6 +10,17 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* Bound the page to the actual viewport width. Without this, any element
+   * even 1px wider than the screen (long URL, wide table, ascii banner)
+   * makes mobile Safari render the whole page at desktop width and visually
+   * shrink it to fit — which prevents mobile @media queries from firing and
+   * leaves all text tiny. overflow:clip (not :hidden) does this without
+   * creating a new scrolling context, so position:sticky on the header
+   * continues to work. */
+  overflow-x: clip;
+}
+body {
+  max-width: 100vw;
 }
 
 body {
