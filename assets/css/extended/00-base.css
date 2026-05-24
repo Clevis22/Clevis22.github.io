@@ -23,10 +23,6 @@ body {
   font-size: var(--tw-fs-body);
   line-height: var(--tw-lh-body);
   text-align: left;
-  /* Safety net: any single element that ends up wider than the viewport
-   * (long unbreakable strings, wide menus, etc.) gets clipped here instead
-   * of triggering Safari's "shrink-to-fit" zoom on mobile. */
-  overflow-x: hidden;
 }
 
 /* ---------- Top-level structure ---------- */

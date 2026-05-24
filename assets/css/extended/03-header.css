@@ -130,12 +130,38 @@
 .dark .tw-toggle-icon-dark,
 [data-theme="dark"] .tw-toggle-icon-dark { display: inline; }
 
-/* --- Mobile (TODO: refine against real device sizes) --- */
+/* --- Mobile --- */
 @media (max-width: 768px) {
-  .header { padding: 10px 16px; }
+  .header { padding: 10px 12px; }
   .tw-window-title { display: none; }
-  .nav { gap: 8px; flex-wrap: wrap; }
-  #menu li a, .menu li a { font-size: 12px; padding: 4px 8px; }
+  /* Keep mascot and menu on the same row; menu shrinks and wraps its
+   * items internally rather than spilling onto its own row at full width. */
+  .nav {
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+  .menu {
+    /* min-width:0 lets the menu shrink below intrinsic content width
+     * inside its flex parent, which makes the inner flex-wrap actually fire. */
+    min-width: 0;
+  }
+  #menu li,
+  .menu li {
+    /* Belt-and-suspenders: menu li shouldn't itself overflow */
+    min-width: 0;
+  }
+  #menu li a,
+  .menu li a {
+    font-size: 11px;
+    padding: 3px 6px;
+    /* Long items like /home/posts shouldn't break mid-word */
+    white-space: nowrap;
+  }
+  #theme-toggle {
+    font-size: 10.5px;
+    padding: 3px 6px;
+    margin-left: 4px;
+  }
 }
 
 /* ─────────────────────────────────────────────

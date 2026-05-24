@@ -56,9 +56,22 @@ article.first-entry:hover {
 .tw-postrow .tw-col-title   {
   color: var(--primary);
   /* min-width:0 lets the grid column shrink below its content's intrinsic
-   * width so long titles wrap instead of pushing the page past viewport. */
+   * width so long titles wrap instead of pushing the page past viewport.
+   * The wrap properties are belt-and-suspenders for older Safari. */
   min-width: 0;
   overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Make sure the grid row itself can shrink with its container.
+ * Without min-width:0, a grid container inside a flex/grid parent
+ * sizes by content (max-content), pushing past the viewport. */
+.tw-postrow,
+article.post-entry,
+article.first-entry,
+.tw-listhead {
+  min-width: 0;
+  max-width: 100%;
 }
 .tw-postrow .tw-col-title::before {
   content: "› ";
