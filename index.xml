@@ -162,5 +162,12 @@
       <guid>https://tinyweights.dev/about/</guid>
       <description>Tiny Weights covers small language models — Gemma, Phi, SmolLM, Qwen, Mistral — with benchmarks, local deployment guides, and hands-on coverage for developers running AI on real hardware.</description>
     </item>
+    <item>
+      <title>Try a Small LLM in Your Browser</title>
+      <link>https://tinyweights.dev/try/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/try/</guid>
+      <description>Run Qwen2.5-0.5B locally in your browser via WebGPU. No backend, no API key, no install — a live demo of a small language model executing entirely on your hardware.</description>
+    </item>
   </channel>
 </rss>

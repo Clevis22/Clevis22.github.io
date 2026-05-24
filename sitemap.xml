@@ -233,5 +233,7 @@
     <loc>https://tinyweights.dev/about/</loc>
   </url><url>
     <loc>https://tinyweights.dev/search/</loc>
+  </url><url>
+    <loc>https://tinyweights.dev/try/</loc>
   </url>
 </urlset>
