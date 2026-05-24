@@ -233,8 +233,11 @@ input#searchInput:focus,
   .tw-postrow,
   article.post-entry,
   article.first-entry {
-    grid-template-columns: 64px 1fr;
-    gap: 10px;
+    grid-template-columns: 56px 1fr;
+    gap: 12px;
+    /* Bump row text up on mobile to match the larger body type. */
+    font-size: 15px;
+    padding: 10px 12px;
   }
   /* Collapse: hide read+tag on mobile to keep the row readable */
   .tw-listhead > :nth-child(2),
@@ -243,4 +246,5 @@ input#searchInput:focus,
   .tw-postrow .tw-col-tag {
     display: none;
   }
+  .tw-listhead { font-size: 13px; }
 }

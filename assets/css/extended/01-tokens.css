@@ -45,6 +45,20 @@
   --tw-radius: 3px;
 }
 
+/* ─────────────────────────────────────────────
+ * Responsive type — bump core sizes on small viewports so post content
+ * is comfortably readable on a phone. Tokens cascade everywhere they're
+ * referenced (body copy, post meta, code blocks, tables, footer, etc.)
+ * so this single block adapts the whole site at once.
+ * ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --tw-fs-body: 16px;
+    --tw-lh-body: 1.65;
+    --tw-fs-meta: 13.5px;
+  }
+}
+
 .dark,
 [data-theme="dark"] {
   /* --- PaperMod tokens (dark mode) — soft Gruvbox-style warm dark --- */
