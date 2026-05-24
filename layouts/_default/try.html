@@ -1,17 +1,20 @@
 {{- /*
   try.html — layout for the in-browser LLM demo page.
 
-  Structure:
-    1. `← cd ..` back link
-    2. Terminal prompt line
-    3. ASCII header
-    4. Demo container (boot log → chat UI). All driven by inline module.
-    5. Markdown explanation from content/try.md (.Content)
-    6. Trailing prompt
+  Single always-visible chat surface. The boot log + progress bar are
+  rendered inline above the message stream and only displayed while a
+  model is loading; once a model is resident they hide and the chat
+  stream takes over the space.
 
-  The interactive runtime lives entirely in the inline <script type="module">.
-  It pulls @mlc-ai/web-llm from a CDN (only on this page), checks WebGPU,
-  streams weights, and pipes everything through a fake-terminal UI.
+  State machine driven by the inline <script type="module">:
+    INIT       → no engine, dropdown picks what to load
+    LOADING    → weights streaming / kernels compiling
+    IDLE       → model resident, ready to chat
+    GENERATING → currently streaming a response
+
+  Submitting a prompt while INIT triggers the model load and queues the
+  prompt so it auto-sends as soon as the model is ready. Changing the
+  model dropdown while IDLE triggers an in-place engine swap.
 */ -}}
 
 {{- define "main" -}}
@@ -24,7 +27,7 @@
     <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">./run-llm-in-browser.sh</span>
   </div>
 
-  <div class="tw-try-tag" aria-hidden="true">[ live · in-browser · webgpu · qwen2.5-0.5b ]</div>
+  <div class="tw-try-tag" aria-hidden="true">[ live · in-browser · webgpu · pick-your-model ]</div>
 
   <header class="post-header">
     <h1 class="post-title">{{ .Title }}</h1>
@@ -33,43 +36,18 @@
   <!-- ─────────────────  DEMO CONTAINER  ───────────────── -->
   <section class="tw-demo" aria-label="In-browser LLM demo">
 
-    <!-- Boot log: visible during load, hides once model is ready. -->
-    <div class="tw-bootlog" id="tw-bootlog" role="log" aria-live="polite">
-      <div class="tw-bootline tw-boot-init">[ INIT  ] tinyweights demo runtime v0.1</div>
-      <div class="tw-bootline" id="tw-boot-status">[ WAIT  ] pick a model and tap start to load</div>
-      <div class="tw-bootline tw-boot-hint">[ HINT  ] downloads range ~200MB to ~840MB; each model caches separately</div>
+    <div class="tw-chat" id="tw-chat">
 
-      <div class="tw-boot-select-row">
-        <label class="tw-boot-select-label" for="tw-boot-model">
-          <span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">pick model:</span>
-        </label>
-        <select class="tw-boot-select" id="tw-boot-model">
-          <option value="smollm2-360m">SmolLM2-360M    · ~200 MB · fastest, less coherent</option>
-          <option value="qwen2.5-0.5b" selected>Qwen2.5-0.5B    · ~280 MB · balanced default</option>
-          <option value="llama-3.2-1b">Llama-3.2-1B    · ~670 MB · noticeably smarter</option>
-          <option value="qwen2.5-1.5b">Qwen2.5-1.5B    · ~840 MB · best quality, big load</option>
-        </select>
-      </div>
-
-      <button type="button" class="tw-boot-start" id="tw-boot-start">
-        <span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">./start --model <span id="tw-boot-start-name">qwen2.5-0.5b</span></span>
-      </button>
-
-      <div class="tw-progress-wrap" id="tw-progress-wrap" hidden>
-        <div class="tw-progress-label" id="tw-progress-label">downloading weights…</div>
-        <div class="tw-progress-bar" aria-hidden="true">
-          <div class="tw-progress-fill" id="tw-progress-fill"></div>
-        </div>
-        <div class="tw-progress-pct" id="tw-progress-pct">0%</div>
-      </div>
-    </div>
-
-    <!-- Chat surface: revealed once model is loaded. -->
-    <div class="tw-chat" id="tw-chat" hidden>
+      <!-- Meta row: mascot · model dropdown · metrics · status · clear -->
       <div class="tw-chat-meta" id="tw-chat-meta">
-        <span class="tw-tl tw-tl-green" aria-hidden="true"></span>
+        <img class="tw-mascot-mark" src="{{ "mascot-transparent.svg" | absURL }}" alt="" width="20" height="20" aria-hidden="true">
         <span class="tw-chat-meta-label">model:</span>
-        <span class="tw-chat-meta-val" id="tw-chat-model">—</span>
+        <select class="tw-meta-select" id="tw-model-select" aria-label="Pick the model to load">
+          <option value="smollm2-360m">SmolLM2-360M  · ~200 MB</option>
+          <option value="qwen2.5-0.5b" selected>Qwen2.5-0.5B  · ~280 MB</option>
+          <option value="llama-3.2-1b">Llama-3.2-1B  · ~670 MB</option>
+          <option value="qwen2.5-1.5b">Qwen2.5-1.5B  · ~840 MB</option>
+        </select>
         <span class="tw-chat-meta-sep">·</span>
         <span class="tw-chat-meta-label">first-token:</span>
         <span class="tw-chat-meta-val" id="tw-chat-ttft">—</span>
@@ -77,16 +55,35 @@
         <span class="tw-chat-meta-label">throughput:</span>
         <span class="tw-chat-meta-val" id="tw-chat-tps">—</span>
         <span class="tw-chat-meta-sep">·</span>
-        <span class="tw-chat-status tw-chat-status-idle" id="tw-chat-status">
+        <span class="tw-chat-status tw-chat-status-init" id="tw-chat-status">
           <span class="tw-chat-status-dot" aria-hidden="true"></span>
-          <span class="tw-chat-status-label" id="tw-chat-status-label">idle</span>
+          <span class="tw-chat-status-label" id="tw-chat-status-label">not loaded</span>
         </span>
-        <button type="button" class="tw-chat-clear" id="tw-chat-clear" title="Start a new conversation. History is not saved.">
+        <button type="button" class="tw-chat-clear" id="tw-chat-clear" disabled title="Start a new conversation. History is not saved.">
           <span class="tw-prompt-dollar">$</span> clear
         </button>
       </div>
 
-      <div class="tw-chat-stream" id="tw-chat-stream" aria-live="polite"></div>
+      <!-- Fixed-height content slot. Holds (one of) the boot log, the
+           empty-state hint, or the message stream; switches between them
+           without changing the demo's outer dimensions. -->
+      <div class="tw-chat-area">
+        <div class="tw-bootlog" id="tw-bootlog" role="log" aria-live="polite" hidden>
+          <div class="tw-progress-wrap" id="tw-progress-wrap" hidden>
+            <div class="tw-progress-label" id="tw-progress-label">downloading weights…</div>
+            <div class="tw-progress-bar" aria-hidden="true">
+              <div class="tw-progress-fill" id="tw-progress-fill"></div>
+            </div>
+            <div class="tw-progress-pct" id="tw-progress-pct">0%</div>
+          </div>
+        </div>
+
+        <div class="tw-empty" id="tw-empty">
+          <span class="tw-prompt-dollar">$</span> pick a model above (or use the default Qwen2.5-0.5B), then type below to load it and chat. weights download once, then run entirely in this tab.
+        </div>
+
+        <div class="tw-chat-stream" id="tw-chat-stream" aria-live="polite"></div>
+      </div>
 
       <div class="tw-chat-suggest" id="tw-chat-suggest">
         <span class="tw-chat-suggest-label">try:</span>
@@ -99,7 +96,7 @@
         <label class="tw-chat-promptlabel" for="tw-chat-input">
           <span class="tw-prompt-user">you</span><span class="tw-prompt-sep">@</span><span class="tw-prompt-path">browser</span><span class="tw-prompt-dollar">$</span>
         </label>
-        <input class="tw-chat-input" id="tw-chat-input" type="text" placeholder="ask the model anything…" />
+        <input class="tw-chat-input" id="tw-chat-input" type="text" placeholder="type a message — model loads on first send…" />
         <button type="submit" class="tw-chat-send" id="tw-chat-send">send</button>
       </form>
     </div>
@@ -109,7 +106,7 @@
       <div class="tw-bootline tw-boot-err">[ ERR ] WebGPU is not available in this browser.</div>
       <div class="tw-bootline">[ INFO ] this demo needs WebGPU to run the model on your GPU.</div>
       <div class="tw-bootline">[ INFO ] supported: chrome/edge 113+, safari 18+, firefox (with flag).</div>
-      <div class="tw-bootline">[ INFO ] try opening this page in a different browser — or read about <a class="tw-link" href="/posts/">local-model deployment</a> instead.</div>
+      <div class="tw-bootline">[ INFO ] try opening this page in a different browser, or read about <a class="tw-link" href="/posts/">local-model deployment</a> instead.</div>
     </div>
 
   </section>
@@ -128,29 +125,32 @@
 </article>
 
 <script type="module">
-  // ─── Runtime: load WebLLM, manage boot log, drive the chat ──────────
+  // ─── Runtime: WebLLM engine + state machine ──────────────────────
   const $ = (id) => document.getElementById(id);
 
+  const chat         = $('tw-chat');
   const bootlog      = $('tw-bootlog');
-  const bootStatus   = $('tw-boot-status');
-  const startBtn     = $('tw-boot-start');
   const progressWrap = $('tw-progress-wrap');
   const progressLbl  = $('tw-progress-label');
   const progressFill = $('tw-progress-fill');
   const progressPct  = $('tw-progress-pct');
-  const chat         = $('tw-chat');
+  const empty        = $('tw-empty');
   const chatStream   = $('tw-chat-stream');
   const chatForm     = $('tw-chat-form');
   const chatInput    = $('tw-chat-input');
   const chatSend     = $('tw-chat-send');
   const ttftLabel    = $('tw-chat-ttft');
   const tpsLabel     = $('tw-chat-tps');
+  const statusEl     = $('tw-chat-status');
+  const statusLabel  = $('tw-chat-status-label');
+  const modelSelect  = $('tw-model-select');
+  const clearBtn     = $('tw-chat-clear');
   const unsupported  = $('tw-unsupported');
 
   // Each model ships in two MLC builds. q4f16_1 has smaller activations and
   // is faster but requires WebGPU's "shader-f16" feature; q4f32_1 uses fp32
   // activations and works on every GPU. We pick at runtime based on adapter
-  // features and also fall back to fp32 if the f16 build fails to compile —
+  // features and also fall back to fp32 if the f16 build fails to compile;
   // some drivers report shader-f16 but error on actual kernel use.
   const MODELS = {
     'smollm2-360m':  { label: 'SmolLM2-360M-Instruct (q4)',
@@ -167,22 +167,59 @@
                        f32: 'Qwen2.5-1.5B-Instruct-q4f32_1-MLC' },
   };
 
-  // Mirror the dropdown choice into the fake terminal command on the start
-  // button so the user can see exactly which model they're about to load.
-  const modelSelect = $('tw-boot-model');
-  const startNameEl = $('tw-boot-start-name');
-  modelSelect.addEventListener('change', () => {
-    startNameEl.textContent = modelSelect.value;
-  });
+  // ── State ────────────────────────────────────────────────────────
+  // INIT → no engine. LOADING → fetching/compiling. IDLE → ready.
+  // GENERATING → streaming a response. All UI toggles go through setState.
+  let state         = 'INIT';
+  let engine        = null;
+  let webllm        = null;          // lazy-imported once on first load
+  let hasShaderF16  = false;         // probed once on first load
+  let currentSlug   = null;          // which dropdown key is currently loaded
+  let pendingPrompt = null;          // queued user message to auto-send after load
+
+  const SYSTEM_PROMPT =
+    "You are a small, friendly assistant running locally in the user's browser via WebGPU. " +
+    "Keep answers concise. You are a sub-2B-parameter open model; the user picked which one from a dropdown.";
+  const messages = [{ role: 'system', content: SYSTEM_PROMPT }];
+
+  const SPINNER = ['⠋','⠙','⠹','⠸','⠼','⠴','⠦','⠧','⠇','⠏'];
+  const DOTS    = ['', '.', '..', '...'];
+
+  const setStatus = (kind, label) => {
+    statusEl.classList.remove(
+      'tw-chat-status-init', 'tw-chat-status-loading',
+      'tw-chat-status-idle', 'tw-chat-status-thinking',
+      'tw-chat-status-streaming', 'tw-chat-status-error',
+    );
+    statusEl.classList.add('tw-chat-status-' + kind);
+    statusLabel.textContent = label;
+  };
+
+  const setState = (next) => {
+    state = next;
+    // Dropdown: lockable; clear: only sensible when IDLE; send: blocked while
+    // LOADING or GENERATING (LOADING accepts as queued via the form handler).
+    modelSelect.disabled = (state === 'LOADING' || state === 'GENERATING');
+    clearBtn.disabled    = (state !== 'IDLE');
+    chatSend.disabled    = (state === 'GENERATING');
+    chatInput.disabled   = (state === 'GENERATING');
+  };
 
   // ── Helpers ───────────────────────────────────────────────────────
   const appendBootLine = (text, cls = '') => {
     const div = document.createElement('div');
     div.className = 'tw-bootline ' + cls;
     div.textContent = text;
-    // Insert before the progress wrap so log grows above it.
     bootlog.insertBefore(div, progressWrap);
     bootlog.scrollTop = bootlog.scrollHeight;
+  };
+
+  const clearBootLog = () => {
+    [...bootlog.querySelectorAll('.tw-bootline')].forEach((el) => el.remove());
+    progressWrap.hidden = true;
+    progressFill.style.width = '0%';
+    progressPct.textContent = '0%';
+    progressLbl.textContent = 'downloading weights…';
   };
 
   const setProgress = (pct, label) => {
@@ -193,6 +230,7 @@
   };
 
   const renderMessage = (role, text) => {
+    empty.hidden = true;  // hide the intro hint as soon as any message appears
     const wrap = document.createElement('div');
     wrap.className = 'tw-msg tw-msg-' + role;
     const label = document.createElement('span');
@@ -206,32 +244,19 @@
     wrap.append(label, body);
     chatStream.append(wrap);
     chatStream.scrollTop = chatStream.scrollHeight;
-    return body;  // streaming target
+    return body;
   };
 
   // ── WebGPU support check ──────────────────────────────────────────
   if (!('gpu' in navigator)) {
-    bootlog.hidden = true;
+    chat.hidden = true;
     unsupported.hidden = false;
   }
 
-  // ── Boot: lazy-load WebLLM only when the user clicks start ────────
-  let engine = null;
-  let loading = false;
-
-  startBtn.addEventListener('click', async () => {
-    if (loading || engine) return;
-    loading = true;
-    startBtn.disabled = true;
-    startBtn.style.opacity = '0.5';
-    modelSelect.disabled = true;
-    bootStatus.textContent = '[ BOOT  ] requesting WebGPU adapter…';
-
-    // Resolve the dropdown choice to its f16/f32 build pair.
-    const choice = MODELS[modelSelect.value] || MODELS['qwen2.5-0.5b'];
-
-    // Probe the adapter so we can name the GPU and pick the right model build.
-    let hasShaderF16 = false;
+  // ── Adapter probe + WebLLM import (run once, lazily) ──────────────
+  const ensureRuntime = async () => {
+    if (webllm) return;
+    appendBootLine('[ BOOT  ] requesting WebGPU adapter…');
     try {
       const adapter = await navigator.gpu.requestAdapter();
       const info = adapter && (adapter.info || (await adapter.requestAdapterInfo?.()));
@@ -242,36 +267,53 @@
     } catch {
       appendBootLine('[ WARN  ] could not probe adapter, continuing');
     }
-
     appendBootLine('[ FETCH ] @mlc-ai/web-llm runtime…');
-    let webllm;
+    webllm = await import('https://esm.run/@mlc-ai/web-llm@0.2.83');
+    appendBootLine('[ OK    ] runtime loaded');
+  };
+
+  // ── Load (or swap) a model ────────────────────────────────────────
+  const loadModel = async (slug) => {
+    if (state === 'LOADING') return;
+    const choice = MODELS[slug] || MODELS['qwen2.5-0.5b'];
+    setState('LOADING');
+    setStatus('loading', 'loading ' + slug);
+    bootlog.hidden = false;
+    empty.hidden = true;
+    clearBootLog();
+
     try {
-      webllm = await import('https://esm.run/@mlc-ai/web-llm@0.2.83');
-      appendBootLine('[ OK    ] runtime loaded');
+      await ensureRuntime();
     } catch (err) {
       console.error(err);
       appendBootLine('[ ERR   ] could not load WebLLM runtime: ' + (err.message || err), 'tw-boot-err');
-      startBtn.disabled = false;
-      startBtn.style.opacity = '1';
-      loading = false;
-      return;
+      setStatus('error', 'load failed');
+      setState('INIT');
+      return false;
+    }
+
+    // If we already have an engine for a different model, unload it first
+    // so GPU memory is freed before the new model's kernels compile.
+    if (engine && currentSlug !== slug) {
+      appendBootLine('[ INFO  ] unloading current model (' + currentSlug + ')…');
+      try { await engine.unload(); } catch (err) { console.warn('unload failed:', err); }
+      engine = null;
+      currentSlug = null;
     }
 
     const initProgressCallback = (report) => {
       const pct = (report.progress || 0) * 100;
       let label = report.text || 'loading…';
-      // Trim verbose vendor messages to keep the bar readable.
       if (label.length > 80) label = label.slice(0, 77) + '…';
-      setProgress(pct, label);
+      // Only reveal the bar once WebLLM is actually downloading or compiling
+      // (pct > 0). Showing "0%" up-front confuses first-time visitors into
+      // thinking something is stuck when really the runtime is still doing
+      // pre-download setup. The boot-log lines above carry the activity
+      // signal during that gap.
+      if (pct > 0) setProgress(pct, label);
     };
 
-    // Try the f16 build first if supported, then fall back to f32.
-    // Some drivers advertise shader-f16 but still fail to compile certain
-    // kernels (most commonly `index_kernel` on Windows/Intel); catching
-    // that failure and retrying with the f32 build covers both cases in
-    // one path. f32 weights are a separate download but more compatible.
     const attempts = hasShaderF16 ? [choice.f16, choice.f32] : [choice.f32];
-    let lastErr = null;
 
     for (let i = 0; i < attempts.length; i++) {
       const id = attempts[i];
@@ -281,11 +323,6 @@
         + 'model: ' + id
         + (id === choice.f32 ? ' (fp32-compatible)' : '')
       );
-      bootStatus.textContent = isFallback
-        ? '[ LOAD  ] retrying with fp32 build…'
-        : '[ LOAD  ] streaming weights into GPU memory…';
-      setProgress(0, 'starting…');
-
       try {
         const t0 = performance.now();
         engine = await webllm.CreateMLCEngine(id, { initProgressCallback });
@@ -293,92 +330,37 @@
         appendBootLine('[ OK    ] model resident · loaded in ' + dt + 's');
         appendBootLine('[ READY ] you can now chat below ↓', 'tw-boot-ready');
 
-        $('tw-chat-model').textContent = choice.label + (id === choice.f32 ? ' fp32' : '');
+        currentSlug = slug;
+        $('tw-chat-ttft').textContent = '—';
+        $('tw-chat-tps').textContent  = '—';
+        setStatus('idle', 'idle');
+        setState('IDLE');
 
-        setTimeout(() => {
-          bootlog.classList.add('tw-bootlog-done');
-          chat.hidden = false;
-          chatInput.focus();
-        }, 400);
-        return;  // success — stop trying further attempts
+        // Briefly leave the READY line up, then hide the boot panel.
+        setTimeout(() => { bootlog.hidden = true; chatInput.focus(); }, 600);
+        return true;
       } catch (err) {
         console.error(err);
-        lastErr = err;
         const msg = String(err.message || err);
-        // Truncate verbose WebGPU error text so the log stays scannable.
         const short = msg.length > 160 ? msg.slice(0, 157) + '…' : msg;
         appendBootLine('[ FAIL  ] ' + short, 'tw-boot-err');
-        // If we have another attempt queued, narrate the fallback decision.
         if (i < attempts.length - 1) {
           appendBootLine('[ INFO  ] falling back to fp32 build (works on more GPUs)…');
         }
       }
     }
 
-    // All attempts failed.
     appendBootLine('[ ERR   ] could not initialise model on this device.', 'tw-boot-err');
     appendBootLine('[ INFO  ] try a smaller model from the dropdown, update GPU drivers, or read about local-model deployment in the posts below.', 'tw-boot-err');
-    startBtn.disabled = false;
-    startBtn.style.opacity = '1';
-    modelSelect.disabled = false;
-    loading = false;
-  });
-
-  // ── Suggested-prompt chips ────────────────────────────────────────
-  document.querySelectorAll('.tw-chat-suggest-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      chatInput.value = btn.dataset.prompt;
-      chatInput.focus();
-    });
-  });
-
-  // ── Chat submission ───────────────────────────────────────────────
-  // System prompt stays constant across clears; user/assistant messages get
-  // wiped when "clear" is hit. Conversations are never persisted anywhere.
-  const SYSTEM_PROMPT = 'You are a small, friendly assistant running locally in the user\'s browser via WebGPU. Keep answers concise. You are a sub-2B-parameter open model; the user picked which one from a dropdown.';
-  const messages = [{ role: 'system', content: SYSTEM_PROMPT }];
-  let generating = false;
-
-  // ── Clear / new-conversation button ───────────────────────────────
-  const clearBtn = $('tw-chat-clear');
-  clearBtn.addEventListener('click', async () => {
-    if (generating) return;
-    // Wipe in-memory history, leaving only the system prompt.
-    messages.length = 1;
-    // Reset chat UI: messages, metrics, status pill.
-    chatStream.innerHTML = '';
-    ttftLabel.textContent = '—';
-    tpsLabel.textContent  = '—';
-    setStatus('idle', 'idle');
-    // Reset the engine's KV cache so the next turn doesn't carry stale state.
-    if (engine && typeof engine.resetChat === 'function') {
-      try { await engine.resetChat(); } catch (err) { console.warn('resetChat failed:', err); }
-    }
-    chatInput.focus();
-  });
-
-  // ── Status-pill driver: animates the dot + label in the meta row ──
-  const statusEl      = $('tw-chat-status');
-  const statusLabelEl = $('tw-chat-status-label');
-  const SPINNER       = ['⠋','⠙','⠹','⠸','⠼','⠴','⠦','⠧','⠇','⠏'];
-  const DOTS          = ['', '.', '..', '...'];
-
-  const setStatus = (state, label) => {
-    statusEl.classList.remove('tw-chat-status-idle', 'tw-chat-status-thinking', 'tw-chat-status-streaming');
-    statusEl.classList.add('tw-chat-status-' + state);
-    statusLabelEl.textContent = label;
+    setStatus('error', 'load failed');
+    setState('INIT');
+    return false;
   };
 
-  chatForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!engine || generating) return;
-    const text = chatInput.value.trim();
-    if (!text) return;
-
-    chatInput.value = '';
-    chatSend.disabled = true;
-    clearBtn.disabled = true;
-    generating = true;
+  // ── Run one chat turn ─────────────────────────────────────────────
+  const sendMessage = async (text) => {
+    if (!engine || state !== 'IDLE') return;
+    setState('GENERATING');
 
     renderMessage('user', text);
     messages.push({ role: 'user', content: text });
@@ -386,23 +368,20 @@
     const target = renderMessage('assistant', '');
     target.classList.add('tw-msg-streaming');
 
-    // Insert a pre-first-token "thinking" indicator inside the empty body.
-    // It gets cleared the moment the first token arrives (target.textContent
-    // assignment replaces all children).
+    // Pre-first-token "thinking" indicator inside the empty body.
     const thinking = document.createElement('span');
     thinking.className = 'tw-thinking';
-    const spinEl  = document.createElement('span');
+    const spinEl = document.createElement('span');
     spinEl.className = 'tw-thinking-spinner';
     spinEl.textContent = SPINNER[0];
     const labelEl = document.createElement('span');
     labelEl.className = 'tw-thinking-label';
     labelEl.textContent = ' running inference';
-    const dotsEl  = document.createElement('span');
+    const dotsEl = document.createElement('span');
     dotsEl.className = 'tw-thinking-dots';
     thinking.append(spinEl, labelEl, dotsEl);
     target.appendChild(thinking);
 
-    // Single timer drives both the inline spinner/dots and the meta-row dot.
     let frame = 0;
     setStatus('thinking', 'thinking');
     const spinnerTimer = setInterval(() => {
@@ -413,17 +392,13 @@
 
     const t0 = performance.now();
     let firstTokenAt = null;
-    let tokenCount   = 0;
+    let tokenCount = 0;
     let acc = '';
 
     try {
       const stream = await engine.chat.completions.create({
-        messages,
-        stream: true,
-        temperature: 0.7,
-        max_tokens: 400,
+        messages, stream: true, temperature: 0.7, max_tokens: 400,
       });
-
       for await (const chunk of stream) {
         const delta = chunk.choices?.[0]?.delta?.content || '';
         if (!delta) continue;
@@ -435,10 +410,9 @@
         }
         tokenCount += 1;
         acc += delta;
-        target.textContent = acc;  // first assignment replaces the thinking span
+        target.textContent = acc;
         chatStream.scrollTop = chatStream.scrollHeight;
       }
-
       const dt = (performance.now() - (firstTokenAt ?? t0)) / 1000;
       const tps = dt > 0 ? (tokenCount / dt).toFixed(1) : '—';
       tpsLabel.textContent = tps + ' tok/s';
@@ -451,12 +425,82 @@
       clearInterval(spinnerTimer);
       target.classList.remove('tw-msg-streaming');
       setStatus('idle', 'idle');
-      chatSend.disabled = false;
-      clearBtn.disabled = false;
-      generating = false;
+      setState('IDLE');
       chatInput.focus();
     }
+  };
+
+  // ── Form submit: handles INIT (auto-load), LOADING (queue), IDLE (send) ──
+  chatForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    if (state === 'INIT') {
+      pendingPrompt = text;
+      chatInput.value = '';
+      const ok = await loadModel(modelSelect.value);
+      if (ok && pendingPrompt) {
+        const queued = pendingPrompt;
+        pendingPrompt = null;
+        await sendMessage(queued);
+      }
+      return;
+    }
+    if (state === 'LOADING') {
+      // Just queue / overwrite the queued prompt; it sends when load finishes.
+      pendingPrompt = text;
+      chatInput.value = '';
+      return;
+    }
+    if (state === 'IDLE') {
+      chatInput.value = '';
+      await sendMessage(text);
+    }
+    // GENERATING: send is disabled at the input layer; ignore here.
   });
+
+  // ── Model dropdown ────────────────────────────────────────────────
+  // INIT/LOADING: just updates which model loads next. IDLE: triggers an
+  // in-place engine swap and clears the conversation (model context changes).
+  modelSelect.addEventListener('change', async () => {
+    const slug = modelSelect.value;
+    if (state === 'INIT' || state === 'LOADING') return;
+    if (state !== 'IDLE') return;
+    if (slug === currentSlug) return;
+    // Reset conversation; new model has its own context window.
+    messages.length = 1;
+    chatStream.innerHTML = '';
+    ttftLabel.textContent = '—';
+    tpsLabel.textContent  = '—';
+    empty.hidden = false;
+    await loadModel(slug);
+  });
+
+  // ── Suggested-prompt chips ────────────────────────────────────────
+  document.querySelectorAll('.tw-chat-suggest-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      chatInput.value = btn.dataset.prompt;
+      chatInput.focus();
+    });
+  });
+
+  // ── Clear / new-conversation ──────────────────────────────────────
+  clearBtn.addEventListener('click', async () => {
+    if (state !== 'IDLE') return;
+    messages.length = 1;
+    chatStream.innerHTML = '';
+    ttftLabel.textContent = '—';
+    tpsLabel.textContent  = '—';
+    if (engine && typeof engine.resetChat === 'function') {
+      try { await engine.resetChat(); } catch (err) { console.warn('resetChat failed:', err); }
+    }
+    chatInput.focus();
+  });
+
+  // Initial paint reflects the starting state.
+  setState('INIT');
+  setStatus('init', 'not loaded');
 </script>
 
 {{- end -}}

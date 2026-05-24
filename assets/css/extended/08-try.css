@@ -1,18 +1,20 @@
 /* 08-try.css — in-browser LLM demo page
  *
- * Styles the /try/ page demo: boot log, progress bar, chat surface,
- * suggested-prompt chips, prose body. Everything matches the terminal
- * aesthetic from 04-home.css / 06-single.css.
- *
- * Visual model: a single CRT-ish panel framed by a 1px border. Boot log
- * lives inside it during load; once ready, the panel keeps its frame
- * but the inside switches to chat. The status bar at the top of the
- * chat shows mac-style traffic lights for theme consistency.
+ * Always-visible chat surface. The boot log + progress bar are inline
+ * elements that show only during a model load. The model dropdown lives
+ * in the chat-meta row; the mascot mark sits to its left.
  */
+
+/* CRITICAL: any element with explicit display:flex/grid/etc. silently
+ * overrides the [hidden] attribute's default UA `display:none`. This rule
+ * restores correct hidden-attribute behavior across the demo so the boot
+ * log and progress bar don't render as empty boxes before they should. */
+.tw-try [hidden] { display: none !important; }
 
 .tw-try {
   padding-top: 8px;
 }
+
 /* Sub-title tag under the prompt — matches the [ INIT ]/[ OK ] style
  * used in the boot log so the whole page reads as one continuous terminal. */
 .tw-try-tag {
@@ -23,7 +25,7 @@
   letter-spacing: 0.02em;
 }
 
-/* The single demo container — boot log → chat. */
+/* The single demo container. */
 .tw-demo {
   background: var(--code-block-bg);
   border: 1px solid var(--border);
@@ -36,125 +38,45 @@
   color: var(--secondary);
 }
 
-/* ─── Boot log ─────────────────────────────────────── */
+/* ─── Fixed-height content slot ─── */
+/* Holds the empty-state hint, the boot log during loading, and the chat
+ * stream once messages exist. Single height + overflow-y means the demo's
+ * outer footprint never changes; only the inner content swaps. */
+.tw-chat-area {
+  height: 420px;
+  overflow-y: auto;
+  padding: 12px;
+  background: var(--code-bg);
+  border: 1px dashed var(--border);
+  border-radius: var(--tw-radius);
+  /* Each child below renders flush against the slot's padding; no need
+   * for the inner blocks to draw their own borders or backgrounds. */
+}
+
+/* ─── Boot log (inline, shown only during loading) ─── */
 .tw-bootlog {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  min-height: 140px;
-}
-.tw-bootlog-done {
-  display: none;
+  font-size: 12.5px;
 }
 
 .tw-bootline {
   white-space: pre-wrap;
   word-break: break-word;
 }
-.tw-bootline.tw-boot-init {
-  color: var(--tw-accent);
-}
-.tw-bootline.tw-boot-hint {
-  color: var(--tw-very-dim);
-}
-.tw-bootline.tw-boot-err {
-  color: var(--tw-tl-red);
-}
-.tw-bootline.tw-boot-ready {
-  color: var(--tw-green);
-  font-weight: 600;
-}
-.tw-bootline .tw-link {
-  color: var(--tw-cyan);
-  text-decoration: underline;
-}
+.tw-bootline.tw-boot-init  { color: var(--tw-accent); }
+.tw-bootline.tw-boot-hint  { color: var(--tw-very-dim); }
+.tw-bootline.tw-boot-err   { color: var(--tw-tl-red); }
+.tw-bootline.tw-boot-ready { color: var(--tw-green); font-weight: 600; }
+.tw-bootline .tw-link      { color: var(--tw-cyan); text-decoration: underline; }
 
-/* Model selector row — terminal-styled `<select>`. Sits between the boot
- * log hints and the start button so the user picks size before loading. */
-.tw-boot-select-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-top: 14px;
-}
-.tw-boot-select-label {
-  font-family: var(--tw-font-mono);
-  font-size: 13px;
-  color: var(--primary);
-  white-space: nowrap;
-}
-.tw-boot-select {
-  /* Drop the native chrome and adopt the same dashed-border look as the
-   * start button so the boot panel reads as one continuous form. */
-  appearance: none;
-  -webkit-appearance: none;
-  background: var(--code-bg);
-  border: 1px dashed var(--border);
-  color: var(--primary);
-  padding: 6px 28px 6px 10px;
-  font-family: var(--tw-font-mono);
-  font-size: 13px;
-  border-radius: var(--tw-radius);
-  cursor: pointer;
-  /* Custom amber chevron rendered as inline SVG via CSS background. */
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f0a020' stroke-width='1.5'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 10px 7px;
-  transition: border-color 120ms, color 120ms;
-  min-width: 0;
-  max-width: 100%;
-}
-.tw-boot-select:hover,
-.tw-boot-select:focus {
-  border-color: var(--tw-accent);
-  color: var(--tw-accent);
-  outline: none;
-}
-.tw-boot-select:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-.tw-boot-select option {
-  /* Dropdown items render in the OS default popup; force monospace for the
-   * chrome that respects it (Chromium/Firefox on most platforms). */
-  background: var(--theme);
-  color: var(--primary);
-  font-family: var(--tw-font-mono);
-}
-
-/* The "start runtime" button — looks like a typed command. */
-.tw-boot-start {
-  align-self: flex-start;
-  background: transparent;
-  border: 1px dashed var(--border);
-  color: var(--primary);
-  padding: 8px 12px;
-  margin-top: 12px;
-  font-family: var(--tw-font-mono);
-  font-size: 13.5px;
-  cursor: pointer;
-  border-radius: var(--tw-radius);
-  text-align: left;
-  transition: border-color 120ms, background 120ms;
-}
-.tw-boot-start:hover {
-  border-color: var(--tw-accent);
-  background: var(--code-bg);
-}
-.tw-boot-start:disabled {
-  cursor: not-allowed;
-}
-
-/* Progress bar — appears after start clicked. */
+/* Progress bar inside the boot log. */
 .tw-progress-wrap {
-  margin-top: 16px;
+  margin-top: 8px;
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-areas:
-    "label pct"
-    "bar bar";
+  grid-template-areas: "label pct" "bar bar";
   gap: 4px 12px;
   align-items: center;
 }
@@ -175,7 +97,7 @@
 .tw-progress-bar {
   grid-area: bar;
   height: 8px;
-  background: var(--code-bg);
+  background: var(--code-block-bg);
   border: 1px solid var(--border);
   border-radius: 2px;
   overflow: hidden;
@@ -184,13 +106,8 @@
 .tw-progress-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(
-    90deg,
-    var(--tw-accent) 0%,
-    var(--tw-accent) 100%
-  );
+  background: var(--tw-accent);
   transition: width 200ms ease-out;
-  /* Subtle scanning shimmer so an idle 0%→1% bar looks alive. */
   position: relative;
 }
 .tw-progress-fill::after {
@@ -199,10 +116,8 @@
   inset: 0;
   background: repeating-linear-gradient(
     -45deg,
-    rgba(0,0,0,0) 0,
-    rgba(0,0,0,0) 6px,
-    rgba(0,0,0,0.12) 6px,
-    rgba(0,0,0,0.12) 12px
+    rgba(0,0,0,0) 0, rgba(0,0,0,0) 6px,
+    rgba(0,0,0,0.12) 6px, rgba(0,0,0,0.12) 12px
   );
   animation: twBarShimmer 1.2s linear infinite;
 }
@@ -214,7 +129,7 @@
   .tw-progress-fill::after { animation: none; }
 }
 
-/* ─── Chat surface ─────────────────────────────────── */
+/* ─── Chat surface (always visible) ────────────────── */
 .tw-chat {
   display: flex;
   flex-direction: column;
@@ -231,8 +146,59 @@
   padding-bottom: 8px;
   border-bottom: 1px dashed var(--border);
 }
-/* Clear button sits flush-right in the meta row by absorbing the leftover
- * horizontal space; on mobile it just wraps to the next line. */
+.tw-chat-meta-label { color: var(--tw-very-dim); }
+.tw-chat-meta-val   { color: var(--primary); font-variant-numeric: tabular-nums; }
+.tw-chat-meta-sep   { color: var(--tw-very-dim); }
+
+/* Inline mascot — the same SVG used as favicon + top-nav logo, sized to
+ * fit the meta-row baseline so it sits as a small branded marker next to
+ * the model name. */
+.tw-mascot-mark {
+  width: 20px;
+  height: 20px;
+  margin-right: 2px;
+  vertical-align: -5px;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* In-meta `<select>` that doubles as "current model" and "swap to another". */
+.tw-meta-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  padding: 2px 22px 2px 8px;
+  font-family: var(--tw-font-mono);
+  font-size: 12px;
+  border-radius: var(--tw-radius);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f0a020' stroke-width='1.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  background-size: 9px 6px;
+  transition: border-color 120ms, color 120ms;
+  min-width: 0;
+  max-width: 100%;
+}
+.tw-meta-select:hover,
+.tw-meta-select:focus {
+  border-color: var(--tw-accent);
+  color: var(--tw-accent);
+  outline: none;
+}
+.tw-meta-select:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.tw-meta-select option {
+  background: var(--theme);
+  color: var(--primary);
+  font-family: var(--tw-font-mono);
+}
+
+/* Clear button — flush-right via auto margin, wraps on mobile. */
 .tw-chat-clear {
   margin-left: auto;
   background: transparent;
@@ -245,36 +211,27 @@
   cursor: pointer;
   transition: color 120ms, border-color 120ms;
 }
-.tw-chat-clear:hover {
+.tw-chat-clear:hover:not(:disabled) {
   color: var(--tw-accent);
   border-color: var(--tw-accent);
 }
 .tw-chat-clear:disabled {
-  opacity: 0.45;
+  opacity: 0.4;
   cursor: not-allowed;
 }
-.tw-chat-meta-label { color: var(--tw-very-dim); }
-.tw-chat-meta-val   { color: var(--primary); font-variant-numeric: tabular-nums; }
-.tw-chat-meta-sep   { color: var(--tw-very-dim); }
 
-/* Mini traffic-light dot in the meta row. */
-.tw-tl {
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  margin-right: 4px;
+/* Empty state hint inside the chat-area slot (visible when INIT, no messages). */
+.tw-empty {
+  color: var(--secondary);
+  font-size: 12.5px;
+  line-height: 1.5;
 }
-.tw-tl-green { background: var(--tw-tl-green); box-shadow: 0 0 6px var(--tw-tl-green); }
+.tw-empty .tw-prompt-dollar { color: var(--tw-accent); margin-right: 4px; }
 
 .tw-chat-stream {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  min-height: 80px;
-  max-height: 460px;
-  overflow-y: auto;
-  padding: 4px 2px;
 }
 
 .tw-msg {
@@ -322,14 +279,17 @@
 .tw-thinking-dots {
   color: var(--secondary);
   display: inline-block;
-  width: 3ch; /* reserve space so the row doesn't reflow each frame */
+  width: 3ch;
   text-align: left;
 }
 
-/* Status pill in the chat-meta row.
- *  - idle:      green dot, "idle" text
- *  - thinking:  amber pulsing dot, "thinking"
- *  - streaming: amber blinking dot, "generating"
+/* Status pill — five states:
+ *  init       grey dot, "not loaded"
+ *  loading    amber pulsing dot, "loading X"
+ *  idle       green dot, "idle"
+ *  thinking   amber pulsing dot, "thinking"
+ *  streaming  amber blinking dot, "generating"
+ *  error      red dot, "load failed"
  */
 .tw-chat-status {
   display: inline-flex;
@@ -345,27 +305,19 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--tw-tl-green);
-  box-shadow: 0 0 4px var(--tw-tl-green);
+  background: var(--tw-very-dim);
 }
-.tw-chat-status-thinking {
-  border-color: var(--tw-accent);
-  color: var(--tw-accent);
-}
-.tw-chat-status-thinking .tw-chat-status-dot {
-  background: var(--tw-accent);
-  box-shadow: 0 0 6px var(--tw-accent);
-  animation: twPulse 1s ease-in-out infinite;
-}
-.tw-chat-status-streaming {
-  border-color: var(--tw-accent);
-  color: var(--tw-accent);
-}
-.tw-chat-status-streaming .tw-chat-status-dot {
-  background: var(--tw-accent);
-  box-shadow: 0 0 6px var(--tw-accent);
-  animation: twBlink 0.6s steps(1) infinite;
-}
+.tw-chat-status-init      { /* default, grey */ }
+.tw-chat-status-idle      { }
+.tw-chat-status-idle      .tw-chat-status-dot { background: var(--tw-tl-green); box-shadow: 0 0 4px var(--tw-tl-green); }
+.tw-chat-status-loading   { border-color: var(--tw-accent); color: var(--tw-accent); }
+.tw-chat-status-loading   .tw-chat-status-dot { background: var(--tw-accent); box-shadow: 0 0 6px var(--tw-accent); animation: twPulse 1s ease-in-out infinite; }
+.tw-chat-status-thinking  { border-color: var(--tw-accent); color: var(--tw-accent); }
+.tw-chat-status-thinking  .tw-chat-status-dot { background: var(--tw-accent); box-shadow: 0 0 6px var(--tw-accent); animation: twPulse 1s ease-in-out infinite; }
+.tw-chat-status-streaming { border-color: var(--tw-accent); color: var(--tw-accent); }
+.tw-chat-status-streaming .tw-chat-status-dot { background: var(--tw-accent); box-shadow: 0 0 6px var(--tw-accent); animation: twBlink 0.6s steps(1) infinite; }
+.tw-chat-status-error     { border-color: var(--tw-tl-red); color: var(--tw-tl-red); }
+.tw-chat-status-error     .tw-chat-status-dot { background: var(--tw-tl-red); box-shadow: 0 0 6px var(--tw-tl-red); }
 @keyframes twPulse {
   0%, 100% { transform: scale(1);   opacity: 1; }
   50%      { transform: scale(1.5); opacity: 0.55; }
@@ -428,12 +380,10 @@
   transition: border-color 120ms;
   min-width: 0;
 }
-.tw-chat-input:focus {
-  border-color: var(--tw-accent);
-}
-.tw-chat-input::placeholder {
-  color: var(--tw-very-dim);
-}
+.tw-chat-input:focus { border-color: var(--tw-accent); }
+.tw-chat-input::placeholder { color: var(--tw-very-dim); }
+.tw-chat-input:disabled { opacity: 0.6; cursor: not-allowed; }
+
 .tw-chat-send {
   background: var(--tw-accent);
   color: var(--theme);
@@ -447,10 +397,7 @@
   transition: opacity 120ms;
 }
 .tw-chat-send:hover { opacity: 0.85; }
-.tw-chat-send:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+.tw-chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* Unsupported-browser panel. */
 .tw-unsupported .tw-bootline { padding: 2px 0; }
@@ -475,8 +422,16 @@
 /* ─── Mobile tweaks ────────────────────────────────── */
 @media (max-width: 640px) {
   .tw-demo { padding: 12px; font-size: 13px; }
+  .tw-chat-area { height: 360px; padding: 10px; }
   .tw-msg { grid-template-columns: 48px 1fr; gap: 8px; }
   .tw-chat-form { grid-template-columns: 1fr auto; }
   .tw-chat-promptlabel { display: none; }
-  .tw-chat-stream { max-height: 360px; }
+  .tw-chat-clear { margin-left: 0; }
+  /* Meta row gets cramped — shrink the dropdown so model name + status pill
+   * + clear button all wrap cleanly without overflowing horizontally. */
+  .tw-meta-select { font-size: 11.5px; padding: 2px 20px 2px 6px; }
+  .tw-chat-meta { gap: 4px; font-size: 11.5px; }
+}
+@media (max-width: 400px) {
+  .tw-chat-area { height: 320px; }
 }
