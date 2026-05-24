@@ -10,7 +10,7 @@ slug: "qwen3-5-4b-vs-phi-4-mini"
 
 Two 4B models. Both run in under 3.5 GB of VRAM at Q4 quantization. Both handle 100,000+ token contexts on a single consumer GPU. But they make very different bets about what a 4B model should be.
 
-Qwen3.5-4B is a multimodal model with a 262K-token context window, native image and video input, on-demand extended thinking, and 201-language coverage — released by Alibaba's Qwen team in February 2026 under Apache 2.0. Phi-4-mini is a text-only dense transformer purpose-built for math and structured reasoning — released by Microsoft in February 2025 under MIT license. At Q4 quantization they're within 0.25 GB of each other on disk, yet they're optimised for completely different workloads.
+Qwen3.5-4B is a multimodal model with a 262K-token context window, native image and video input, on-demand extended thinking, and 201-language coverage. Alibaba's Qwen team released it in February 2026 under Apache 2.0. Phi-4-mini is a text-only dense transformer purpose-built for math and structured reasoning, released by Microsoft in February 2025 under MIT license. At Q4 quantization they're within 0.25 GB of each other on disk, yet they're optimised for completely different workloads.
 
 This post runs the two side by side on specs, benchmarks, and deployment so you can pick the one that fits your actual use case. Both models have dedicated posts on this blog already: [Phi-4-mini local setup and benchmarks](/posts/run-phi-4-mini-locally/), and the [Qwen3.5-0.8B architecture explainer](/posts/qwen3-5-tiny-multimodal-thinking-model/) covers the Gated DeltaNet hybrid attention design shared across the whole Qwen3.5 family.
 
@@ -37,20 +37,20 @@ On hardware, both models are essentially tied. At Q4\_K\_M, Qwen3.5-4B requires 
 Ollama handles both in a single command:
 
 ```bash
-# Qwen3.5-4B — 3.4 GB download
+# Qwen3.5-4B: 3.4 GB download
 ollama run qwen3.5:4b
 
-# Phi-4-mini — 2.5 GB download
+# Phi-4-mini: 2.5 GB download
 ollama run phi4-mini
 ```
 
-Qwen3.5-4B starts with thinking mode on by default. To suppress the extended reasoning chain, prepend `/no_think` to your first message. For compute-sensitive workloads — streaming chat, autocomplete, anything where latency matters — turn thinking off or you'll pay 1–3× in added generation time before you see output.
+Qwen3.5-4B starts with thinking mode on by default. To suppress the extended reasoning chain, prepend `/no_think` to your first message. For compute-sensitive workloads (streaming chat, autocomplete, anything where latency matters), turn thinking off or you'll pay 1–3× in added generation time before you see output.
 
 For GGUF / llama.cpp, the quantization files are at `unsloth/Qwen3.5-4B-GGUF` and `unsloth/Phi-4-mini-instruct-GGUF` on HuggingFace. Q4\_K\_M is the right starting point for both; Unsloth's dynamic quantization skips quantizing the most sensitive attention layers, which preserves more accuracy than a flat 4-bit pass. For a full breakdown of when to pick GGUF over MLX or ONNX, see the [format comparison guide](/posts/gguf-vs-onnx-vs-mlx/).
 
 ## Benchmarks
 
-One caveat before the numbers: **Qwen3.5-4B's benchmark scores are almost certainly measured with thinking mode enabled**, which means the model runs an extended internal reasoning chain before producing output. Phi-4-mini's scores are measured with standard chain-of-thought prompting only. This caveat applies most to tasks involving deep reasoning — particularly GPQA Diamond.
+One caveat before the numbers: **Qwen3.5-4B's benchmark scores are almost certainly measured with thinking mode enabled**, which means the model runs an extended internal reasoning chain before producing output. Phi-4-mini's scores are measured with standard chain-of-thought prompting only. This caveat applies most to tasks involving deep reasoning, particularly GPQA Diamond.
 
 | Benchmark | Qwen3.5-4B | Phi-4-mini | Protocol |
 |---|---|---|---|
@@ -65,7 +65,7 @@ One caveat before the numbers: **Qwen3.5-4B's benchmark scores are almost certai
 
 Sources: [Qwen/Qwen3.5-4B model card](https://huggingface.co/Qwen/Qwen3.5-4B), [microsoft/Phi-4-mini-instruct model card](https://huggingface.co/microsoft/Phi-4-mini-instruct).
 
-The GPQA Diamond figure (76.2 vs 25.2) illustrates why the protocol caveat matters. A GPQA Diamond score of 76.2 would put a 4B model above GPT-4o (~53%) and Claude 3.5 Sonnet (~65%) when those models were released — a result that is only coherent if extended thinking is running and contributing substantially to the answer. The more meaningful comparison is Phi-4-mini's standard-CoT GSM8K and MATH scores against Qwen3.5-4B run with `/no_think`: that comparison exists in the community (the [CloudNinjas benchmark post](https://cloudninjas.ca/ai/local-llm-benchmark-2026-comparing-open-source-models-for-ai-inference-on-consumer-hardware/) covers Qwen3.5 models under comparable conditions), and the Phi-4-mini advantage on pure arithmetic narrows but does not disappear.
+The GPQA Diamond figure (76.2 vs 25.2) illustrates why the protocol caveat matters. A GPQA Diamond score of 76.2 would put a 4B model above GPT-4o (~53%) and Claude 3.5 Sonnet (~65%) when those models were released, a result that is only coherent if extended thinking is running and contributing substantially to the answer. The more meaningful comparison is Phi-4-mini's standard-CoT GSM8K and MATH scores against Qwen3.5-4B run with `/no_think`: that comparison exists in the community (the [CloudNinjas benchmark post](https://cloudninjas.ca/ai/local-llm-benchmark-2026-comparing-open-source-models-for-ai-inference-on-consumer-hardware/) covers Qwen3.5 models under comparable conditions), and the Phi-4-mini advantage on pure arithmetic narrows but does not disappear.
 
 For math-specific workloads without thinking: Phi-4-mini's 88.6% GSM8K and 64% MATH are strong, well-documented numbers measured on a simple prompting baseline. Microsoft's synthetic training approach specifically targets step-by-step mathematical derivation, and it shows.
 
@@ -75,9 +75,9 @@ For math-specific workloads without thinking: Phi-4-mini's 88.6% GSM8K and 64% M
 
 Both context windows are large enough to load full codebases, long PDF documents, or extended conversation histories. The practical difference shows up at the architectural level.
 
-Phi-4-mini uses a standard KV cache that grows proportionally with context length. At the full 128K, you'll see several gigabytes of RAM usage on top of the base model weight — the [RAM guide](/posts/how-much-ram-for-local-llms/) explains how to estimate this for your target context depth.
+Phi-4-mini uses a standard KV cache that grows proportionally with context length. At the full 128K, you'll see several gigabytes of RAM usage on top of the base model weight. The [RAM guide](/posts/how-much-ram-for-local-llms/) explains how to estimate this for your target context depth.
 
-Qwen3.5-4B's Gated DeltaNet layers — covering three quarters of the model — replace the growing KV cache with a fixed-size compressed state. The remaining quarter uses standard softmax attention for precise token retrieval. In practice this means Qwen3.5-4B's memory overhead scales more predictably at long contexts than Phi-4-mini. If you're regularly operating at 100K+ tokens, that structural difference matters.
+Qwen3.5-4B's Gated DeltaNet layers (covering three quarters of the model) replace the growing KV cache with a fixed-size compressed state. The remaining quarter uses standard softmax attention for precise token retrieval. In practice this means Qwen3.5-4B's memory overhead scales more predictably at long contexts than Phi-4-mini. If you're regularly operating at 100K+ tokens, that structural difference matters.
 
 ## Multimodal input
 
@@ -112,13 +112,13 @@ print(processor.decode(outputs[0][inputs["input_ids"].shape[-1]:]))
 
 Ollama handles multimodal input as well, but at the time of writing the vision support works most reliably through the Transformers or vLLM paths for production use.
 
-{{< figure src="https://images.pexels.com/photos/4604607/pexels-photo-4604607.jpeg" alt="Close-up of a typewriter printing the words ARTIFICIAL INTELLIGENCE on white paper, representing the practical choice between language models" caption="Architecture shapes what a model can do — Qwen3.5-4B handles image input that Phi-4-mini cannot. Photo: Markus Winkler, Pexels" >}}
+{{< figure src="https://images.pexels.com/photos/4604607/pexels-photo-4604607.jpeg" alt="Close-up of a typewriter printing the words ARTIFICIAL INTELLIGENCE on white paper, representing the practical choice between language models" caption="Architecture shapes what a model can do. Qwen3.5-4B handles image input that Phi-4-mini cannot. Photo: Markus Winkler, Pexels" >}}
 
 ## Which model is right for your use case?
 
 ### For general development and coding
 
-Qwen3.5-4B's LiveCodeBench v6 score (55.8) and thinking mode combine well for iterative coding tasks — it reasons about the problem before writing code. It also has a context window large enough to load a full medium-sized codebase in a single call.
+Qwen3.5-4B's LiveCodeBench v6 score (55.8) and thinking mode combine well for iterative coding tasks. It reasons about the problem before writing code. It also has a context window large enough to load a full medium-sized codebase in a single call.
 
 If you need a dedicated coding-specialist model at the 7–9B scale, [Qwen3-Coder-Next](/posts/qwen3-coder-next-local-coding-agent/) is worth examining separately.
 
@@ -132,11 +132,11 @@ Qwen3.5-4B. Phi-4-mini cannot process images.
 
 ### For resource-constrained servers or edge deployments
 
-Both models have nearly identical VRAM footprints at Q4. The tiebreaker is whether you need thinking mode at all: if yes, Qwen3.5-4B; if you need the lightest possible latency and math output, Phi-4-mini. For sub-1 GB deployments, neither applies — see [Qwen3.5-0.8B](/posts/qwen3-5-tiny-multimodal-thinking-model/).
+Both models have nearly identical VRAM footprints at Q4. The tiebreaker is whether you need thinking mode at all: if yes, Qwen3.5-4B; if you need the lightest possible latency and math output, Phi-4-mini. For sub-1 GB deployments, neither applies. See [Qwen3.5-0.8B](/posts/qwen3-5-tiny-multimodal-thinking-model/).
 
 ## What is the better 4B model in 2026?
 
-**Qwen3.5-4B has the broader capability profile** — multimodal input, 262K context, stable thinking mode, 201 languages, and strong reasoning benchmarks when thinking is enabled. For most general-purpose local AI workloads, it does more with essentially the same hardware budget.
+**Qwen3.5-4B has the broader capability profile**: multimodal input, 262K context, stable thinking mode, 201 languages, and strong reasoning benchmarks when thinking is enabled. For most general-purpose local AI workloads, it does more with essentially the same hardware budget.
 
 Phi-4-mini's case rests on two specific advantages: cleaner math performance in fast-inference mode (no thinking latency), and a wider community of fine-tunes and quantization variants built up over the 15 months since its release. Both are genuine advantages depending on your use case.
 
@@ -144,10 +144,10 @@ Run both for your actual workload before committing. The [best small language mo
 
 ## Sources
 
-- [Qwen/Qwen3.5-4B — HuggingFace model card](https://huggingface.co/Qwen/Qwen3.5-4B)
-- [unsloth/Qwen3.5-4B-GGUF — quantization file sizes](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF)
-- [microsoft/Phi-4-mini-instruct — HuggingFace model card](https://huggingface.co/microsoft/Phi-4-mini-instruct)
+- [Qwen/Qwen3.5-4B, HuggingFace model card](https://huggingface.co/Qwen/Qwen3.5-4B)
+- [unsloth/Qwen3.5-4B-GGUF, quantization file sizes](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF)
+- [microsoft/Phi-4-mini-instruct, HuggingFace model card](https://huggingface.co/microsoft/Phi-4-mini-instruct)
 - [ollama.com/library/qwen3.5](https://ollama.com/library/qwen3.5)
 - [ollama.com/library/phi4-mini](https://ollama.com/library/phi4-mini)
-- [Qwen3.5 — official Qwen blog](https://qwen.ai/blog?id=qwen3.5)
-- [Local LLM Benchmark 2026 — CloudNinjas](https://cloudninjas.ca/ai/local-llm-benchmark-2026-comparing-open-source-models-for-ai-inference-on-consumer-hardware/)
+- [Qwen3.5, official Qwen blog](https://qwen.ai/blog?id=qwen3.5)
+- [Local LLM Benchmark 2026, CloudNinjas](https://cloudninjas.ca/ai/local-llm-benchmark-2026-comparing-open-source-models-for-ai-inference-on-consumer-hardware/)
