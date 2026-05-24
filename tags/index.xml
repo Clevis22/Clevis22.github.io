@@ -30,10 +30,45 @@
       <description></description>
     </item>
     <item>
+      <title>Gemma</title>
+      <link>https://tinyweights.dev/tags/gemma/</link>
+      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/gemma/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Local-Inference</title>
       <link>https://tinyweights.dev/tags/local-inference/</link>
       <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/local-inference/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Medgemma</title>
+      <link>https://tinyweights.dev/tags/medgemma/</link>
+      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/medgemma/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Medical-Ai</title>
+      <link>https://tinyweights.dev/tags/medical-ai/</link>
+      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/medical-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Multimodal</title>
+      <link>https://tinyweights.dev/tags/multimodal/</link>
+      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/multimodal/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ollama</title>
+      <link>https://tinyweights.dev/tags/ollama/</link>
+      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/ollama/</guid>
       <description></description>
     </item>
     <item>
@@ -83,13 +118,6 @@
       <link>https://tinyweights.dev/tags/nvidia/</link>
       <pubDate>Sat, 23 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/nvidia/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ollama</title>
-      <link>https://tinyweights.dev/tags/ollama/</link>
-      <pubDate>Sat, 23 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/ollama/</guid>
       <description></description>
     </item>
     <item>
@@ -181,13 +209,6 @@
       <link>https://tinyweights.dev/tags/linear-attention/</link>
       <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/linear-attention/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Multimodal</title>
-      <link>https://tinyweights.dev/tags/multimodal/</link>
-      <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/multimodal/</guid>
       <description></description>
     </item>
     <item>

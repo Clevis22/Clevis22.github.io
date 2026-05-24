@@ -9,6 +9,13 @@
     <lastBuildDate>Sun, 24 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/small-models/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>MedGemma 1.5: Google&#39;s 4B Medical Vision-Language Model You Can Run Locally</title>
+      <link>https://tinyweights.dev/posts/medgemma-1-5/</link>
+      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/medgemma-1-5/</guid>
+      <description>MedGemma 1.5 is Google&amp;#39;s 4B medical multimodal model — Gemma 3 backbone, MedSigLIP encoder, 128K context. Runs in 3.3GB on Ollama. Benchmarks, deployment, and the limits.</description>
+    </item>
+    <item>
       <title>Qwen3.5-4B vs Phi-4-mini: Choosing the Right 4B Model for Local Inference</title>
       <link>https://tinyweights.dev/posts/qwen3-5-4b-vs-phi-4-mini/</link>
       <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>

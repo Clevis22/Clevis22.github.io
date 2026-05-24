@@ -6,8 +6,15 @@
     <description>Recent content in Ollama on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 24 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/ollama/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MedGemma 1.5: Google&#39;s 4B Medical Vision-Language Model You Can Run Locally</title>
+      <link>https://tinyweights.dev/posts/medgemma-1-5/</link>
+      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/medgemma-1-5/</guid>
+      <description>MedGemma 1.5 is Google&amp;#39;s 4B medical multimodal model — Gemma 3 backbone, MedSigLIP encoder, 128K context. Runs in 3.3GB on Ollama. Benchmarks, deployment, and the limits.</description>
+    </item>
     <item>
       <title>Running Local LLMs on Low-VRAM Windows GPUs (6GB and 8GB Cards) in 2026</title>
       <link>https://tinyweights.dev/posts/run-local-llms-low-vram-windows-gpu/</link>

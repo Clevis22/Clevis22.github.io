@@ -14,7 +14,25 @@
     <loc>https://tinyweights.dev/tags/edge-ai/</loc>
     <lastmod>2026-05-24T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://tinyweights.dev/tags/gemma/</loc>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://tinyweights.dev/tags/local-inference/</loc>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/medgemma/</loc>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/posts/medgemma-1-5/</loc>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/medical-ai/</loc>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/multimodal/</loc>
+    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/ollama/</loc>
     <lastmod>2026-05-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/phi/</loc>
@@ -51,9 +69,6 @@
     <lastmod>2026-05-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/nvidia/</loc>
-    <lastmod>2026-05-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/ollama/</loc>
     <lastmod>2026-05-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/rtx/</loc>
@@ -120,9 +135,6 @@
     <lastmod>2026-05-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/linear-attention/</loc>
-    <lastmod>2026-05-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/multimodal/</loc>
     <lastmod>2026-05-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/posts/qwen3-5-tiny-multimodal-thinking-model/</loc>
