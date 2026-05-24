@@ -44,7 +44,9 @@
       {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections -}}
     {{- end -}}
 
-    {{- range $pages }}
+    {{- $paginator := .Paginate $pages -}}
+
+    {{- range $paginator.Pages }}
     <a class="tw-postrow" href="{{ .Permalink }}">
       <span class="tw-col-date">{{ .Date.Format "01-02" }}</span>
       <span class="tw-col-read">{{ .ReadingTime }}min</span>
@@ -54,10 +56,11 @@
     {{- end }}
 
     {{- /* Pagination (when more than one page of results) */ -}}
-    {{- if gt .Paginator.TotalPages 1 }}
+    {{- if gt $paginator.TotalPages 1 }}
     <nav class="pagination" aria-label="Pagination">
-      {{- if .Paginator.HasPrev }}<a class="page-link" href="{{ .Paginator.Prev.URL }}">← prev</a>{{- else }}<span></span>{{- end }}
-      {{- if .Paginator.HasNext }}<a class="page-link" href="{{ .Paginator.Next.URL }}">next →</a>{{- end }}
+      {{- if $paginator.HasPrev }}<a class="page-link" href="{{ $paginator.Prev.URL }}">← prev</a>{{- else }}<span></span>{{- end }}
+      <span class="page-indicator">page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+      {{- if $paginator.HasNext }}<a class="page-link" href="{{ $paginator.Next.URL }}">next →</a>{{- else }}<span></span>{{- end }}
     </nav>
     {{- end }}
 
