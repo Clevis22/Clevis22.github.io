@@ -167,7 +167,7 @@
       <link>https://tinyweights.dev/try/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/try/</guid>
-      <description>Run Qwen2.5-0.5B locally in your browser via WebGPU. No backend, no API key, no install — a live demo of a small language model executing entirely on your hardware.</description>
+      <description>Run a small open language model (Qwen, SmolLM, or Llama) locally in your browser via WebGPU. No backend, no API key, no install. A live demo of an SLM executing entirely on your hardware.</description>
     </item>
   </channel>
 </rss>
