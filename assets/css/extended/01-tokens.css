@@ -53,9 +53,9 @@
  * ───────────────────────────────────────────── */
 @media (max-width: 768px) {
   :root {
-    --tw-fs-body: 16px;
+    --tw-fs-body: 18px;
     --tw-lh-body: 1.65;
-    --tw-fs-meta: 13.5px;
+    --tw-fs-meta: 15px;
   }
 }
 
