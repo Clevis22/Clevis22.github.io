@@ -36,11 +36,23 @@
     <!-- Boot log: visible during load, hides once model is ready. -->
     <div class="tw-bootlog" id="tw-bootlog" role="log" aria-live="polite">
       <div class="tw-bootline tw-boot-init">[ INIT  ] tinyweights demo runtime v0.1</div>
-      <div class="tw-bootline" id="tw-boot-status">[ WAIT  ] tap "start runtime" to load the model</div>
-      <div class="tw-bootline tw-boot-hint">[ HINT  ] cold start downloads ~280MB; cached on reload</div>
+      <div class="tw-bootline" id="tw-boot-status">[ WAIT  ] pick a model and tap start to load</div>
+      <div class="tw-bootline tw-boot-hint">[ HINT  ] downloads range ~200MB to ~840MB; each model caches separately</div>
+
+      <div class="tw-boot-select-row">
+        <label class="tw-boot-select-label" for="tw-boot-model">
+          <span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">pick model:</span>
+        </label>
+        <select class="tw-boot-select" id="tw-boot-model">
+          <option value="smollm2-360m">SmolLM2-360M    · ~200 MB · fastest, less coherent</option>
+          <option value="qwen2.5-0.5b" selected>Qwen2.5-0.5B    · ~280 MB · balanced default</option>
+          <option value="llama-3.2-1b">Llama-3.2-1B    · ~670 MB · noticeably smarter</option>
+          <option value="qwen2.5-1.5b">Qwen2.5-1.5B    · ~840 MB · best quality, big load</option>
+        </select>
+      </div>
 
       <button type="button" class="tw-boot-start" id="tw-boot-start">
-        <span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">./start --model qwen2.5-0.5b</span>
+        <span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">./start --model <span id="tw-boot-start-name">qwen2.5-0.5b</span></span>
       </button>
 
       <div class="tw-progress-wrap" id="tw-progress-wrap" hidden>
@@ -57,7 +69,7 @@
       <div class="tw-chat-meta" id="tw-chat-meta">
         <span class="tw-tl tw-tl-green" aria-hidden="true"></span>
         <span class="tw-chat-meta-label">model:</span>
-        <span class="tw-chat-meta-val" id="tw-chat-model">Qwen2.5-0.5B-Instruct (q4f16_1)</span>
+        <span class="tw-chat-meta-val" id="tw-chat-model">—</span>
         <span class="tw-chat-meta-sep">·</span>
         <span class="tw-chat-meta-label">first-token:</span>
         <span class="tw-chat-meta-val" id="tw-chat-ttft">—</span>
@@ -69,6 +81,9 @@
           <span class="tw-chat-status-dot" aria-hidden="true"></span>
           <span class="tw-chat-status-label" id="tw-chat-status-label">idle</span>
         </span>
+        <button type="button" class="tw-chat-clear" id="tw-chat-clear" title="Start a new conversation. History is not saved.">
+          <span class="tw-prompt-dollar">$</span> clear
+        </button>
       </div>
 
       <div class="tw-chat-stream" id="tw-chat-stream" aria-live="polite"></div>
@@ -132,13 +147,33 @@
   const tpsLabel     = $('tw-chat-tps');
   const unsupported  = $('tw-unsupported');
 
-  // Two builds of the same model. q4f16_1 is smaller activations and faster
-  // but requires WebGPU's "shader-f16" feature; q4f32_1 works on every GPU
-  // but uses fp32 activations. We pick at runtime based on adapter features
-  // and also fall back to fp32 if the f16 build fails to compile (some
-  // drivers report shader-f16 but error on actual kernel use).
-  const MODEL_F16 = 'Qwen2.5-0.5B-Instruct-q4f16_1-MLC';
-  const MODEL_F32 = 'Qwen2.5-0.5B-Instruct-q4f32_1-MLC';
+  // Each model ships in two MLC builds. q4f16_1 has smaller activations and
+  // is faster but requires WebGPU's "shader-f16" feature; q4f32_1 uses fp32
+  // activations and works on every GPU. We pick at runtime based on adapter
+  // features and also fall back to fp32 if the f16 build fails to compile —
+  // some drivers report shader-f16 but error on actual kernel use.
+  const MODELS = {
+    'smollm2-360m':  { label: 'SmolLM2-360M-Instruct (q4)',
+                       f16: 'SmolLM2-360M-Instruct-q4f16_1-MLC',
+                       f32: 'SmolLM2-360M-Instruct-q4f32_1-MLC' },
+    'qwen2.5-0.5b':  { label: 'Qwen2.5-0.5B-Instruct (q4)',
+                       f16: 'Qwen2.5-0.5B-Instruct-q4f16_1-MLC',
+                       f32: 'Qwen2.5-0.5B-Instruct-q4f32_1-MLC' },
+    'llama-3.2-1b':  { label: 'Llama-3.2-1B-Instruct (q4)',
+                       f16: 'Llama-3.2-1B-Instruct-q4f16_1-MLC',
+                       f32: 'Llama-3.2-1B-Instruct-q4f32_1-MLC' },
+    'qwen2.5-1.5b':  { label: 'Qwen2.5-1.5B-Instruct (q4)',
+                       f16: 'Qwen2.5-1.5B-Instruct-q4f16_1-MLC',
+                       f32: 'Qwen2.5-1.5B-Instruct-q4f32_1-MLC' },
+  };
+
+  // Mirror the dropdown choice into the fake terminal command on the start
+  // button so the user can see exactly which model they're about to load.
+  const modelSelect = $('tw-boot-model');
+  const startNameEl = $('tw-boot-start-name');
+  modelSelect.addEventListener('change', () => {
+    startNameEl.textContent = modelSelect.value;
+  });
 
   // ── Helpers ───────────────────────────────────────────────────────
   const appendBootLine = (text, cls = '') => {
@@ -189,7 +224,11 @@
     loading = true;
     startBtn.disabled = true;
     startBtn.style.opacity = '0.5';
+    modelSelect.disabled = true;
     bootStatus.textContent = '[ BOOT  ] requesting WebGPU adapter…';
+
+    // Resolve the dropdown choice to its f16/f32 build pair.
+    const choice = MODELS[modelSelect.value] || MODELS['qwen2.5-0.5b'];
 
     // Probe the adapter so we can name the GPU and pick the right model build.
     let hasShaderF16 = false;
@@ -228,10 +267,10 @@
 
     // Try the f16 build first if supported, then fall back to f32.
     // Some drivers advertise shader-f16 but still fail to compile certain
-    // kernels (most commonly `index_kernel` on Windows/Intel) — catching
+    // kernels (most commonly `index_kernel` on Windows/Intel); catching
     // that failure and retrying with the f32 build covers both cases in
     // one path. f32 weights are a separate download but more compatible.
-    const attempts = hasShaderF16 ? [MODEL_F16, MODEL_F32] : [MODEL_F32];
+    const attempts = hasShaderF16 ? [choice.f16, choice.f32] : [choice.f32];
     let lastErr = null;
 
     for (let i = 0; i < attempts.length; i++) {
@@ -240,7 +279,7 @@
       appendBootLine(
         (isFallback ? '[ RETRY ] ' : '[ FETCH ] ')
         + 'model: ' + id
-        + (id === MODEL_F32 ? ' (fp32-compatible)' : '')
+        + (id === choice.f32 ? ' (fp32-compatible)' : '')
       );
       bootStatus.textContent = isFallback
         ? '[ LOAD  ] retrying with fp32 build…'
@@ -254,7 +293,7 @@
         appendBootLine('[ OK    ] model resident · loaded in ' + dt + 's');
         appendBootLine('[ READY ] you can now chat below ↓', 'tw-boot-ready');
 
-        $('tw-chat-model').textContent = id.replace('-MLC', '').replace('-Instruct', '-Instruct ');
+        $('tw-chat-model').textContent = choice.label + (id === choice.f32 ? ' fp32' : '');
 
         setTimeout(() => {
           bootlog.classList.add('tw-bootlog-done');
@@ -278,9 +317,10 @@
 
     // All attempts failed.
     appendBootLine('[ ERR   ] could not initialise model on this device.', 'tw-boot-err');
-    appendBootLine('[ INFO  ] this usually means a WebGPU driver issue. try a different browser, update GPU drivers, or read about local-model deployment in the posts below.', 'tw-boot-err');
+    appendBootLine('[ INFO  ] try a smaller model from the dropdown, update GPU drivers, or read about local-model deployment in the posts below.', 'tw-boot-err');
     startBtn.disabled = false;
     startBtn.style.opacity = '1';
+    modelSelect.disabled = false;
     loading = false;
   });
 
@@ -293,10 +333,29 @@
   });
 
   // ── Chat submission ───────────────────────────────────────────────
-  const messages = [
-    { role: 'system', content: 'You are a small, friendly assistant running locally in the user\'s browser. Keep answers concise. If asked, you are Qwen2.5-0.5B-Instruct, a 500-million parameter model.' }
-  ];
+  // System prompt stays constant across clears; user/assistant messages get
+  // wiped when "clear" is hit. Conversations are never persisted anywhere.
+  const SYSTEM_PROMPT = 'You are a small, friendly assistant running locally in the user\'s browser via WebGPU. Keep answers concise. You are a sub-2B-parameter open model; the user picked which one from a dropdown.';
+  const messages = [{ role: 'system', content: SYSTEM_PROMPT }];
   let generating = false;
+
+  // ── Clear / new-conversation button ───────────────────────────────
+  const clearBtn = $('tw-chat-clear');
+  clearBtn.addEventListener('click', async () => {
+    if (generating) return;
+    // Wipe in-memory history, leaving only the system prompt.
+    messages.length = 1;
+    // Reset chat UI: messages, metrics, status pill.
+    chatStream.innerHTML = '';
+    ttftLabel.textContent = '—';
+    tpsLabel.textContent  = '—';
+    setStatus('idle', 'idle');
+    // Reset the engine's KV cache so the next turn doesn't carry stale state.
+    if (engine && typeof engine.resetChat === 'function') {
+      try { await engine.resetChat(); } catch (err) { console.warn('resetChat failed:', err); }
+    }
+    chatInput.focus();
+  });
 
   // ── Status-pill driver: animates the dot + label in the meta row ──
   const statusEl      = $('tw-chat-status');
@@ -318,6 +377,7 @@
 
     chatInput.value = '';
     chatSend.disabled = true;
+    clearBtn.disabled = true;
     generating = true;
 
     renderMessage('user', text);
@@ -392,6 +452,7 @@
       target.classList.remove('tw-msg-streaming');
       setStatus('idle', 'idle');
       chatSend.disabled = false;
+      clearBtn.disabled = false;
       generating = false;
       chatInput.focus();
     }

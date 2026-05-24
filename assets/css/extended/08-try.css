@@ -69,6 +69,61 @@
   text-decoration: underline;
 }
 
+/* Model selector row — terminal-styled `<select>`. Sits between the boot
+ * log hints and the start button so the user picks size before loading. */
+.tw-boot-select-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+.tw-boot-select-label {
+  font-family: var(--tw-font-mono);
+  font-size: 13px;
+  color: var(--primary);
+  white-space: nowrap;
+}
+.tw-boot-select {
+  /* Drop the native chrome and adopt the same dashed-border look as the
+   * start button so the boot panel reads as one continuous form. */
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--code-bg);
+  border: 1px dashed var(--border);
+  color: var(--primary);
+  padding: 6px 28px 6px 10px;
+  font-family: var(--tw-font-mono);
+  font-size: 13px;
+  border-radius: var(--tw-radius);
+  cursor: pointer;
+  /* Custom amber chevron rendered as inline SVG via CSS background. */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f0a020' stroke-width='1.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 7px;
+  transition: border-color 120ms, color 120ms;
+  min-width: 0;
+  max-width: 100%;
+}
+.tw-boot-select:hover,
+.tw-boot-select:focus {
+  border-color: var(--tw-accent);
+  color: var(--tw-accent);
+  outline: none;
+}
+.tw-boot-select:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.tw-boot-select option {
+  /* Dropdown items render in the OS default popup; force monospace for the
+   * chrome that respects it (Chromium/Firefox on most platforms). */
+  background: var(--theme);
+  color: var(--primary);
+  font-family: var(--tw-font-mono);
+}
+
 /* The "start runtime" button — looks like a typed command. */
 .tw-boot-start {
   align-self: flex-start;
@@ -175,6 +230,28 @@
   color: var(--secondary);
   padding-bottom: 8px;
   border-bottom: 1px dashed var(--border);
+}
+/* Clear button sits flush-right in the meta row by absorbing the leftover
+ * horizontal space; on mobile it just wraps to the next line. */
+.tw-chat-clear {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--secondary);
+  padding: 2px 8px;
+  border-radius: var(--tw-radius);
+  font-family: var(--tw-font-mono);
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: color 120ms, border-color 120ms;
+}
+.tw-chat-clear:hover {
+  color: var(--tw-accent);
+  border-color: var(--tw-accent);
+}
+.tw-chat-clear:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 .tw-chat-meta-label { color: var(--tw-very-dim); }
 .tw-chat-meta-val   { color: var(--primary); font-variant-numeric: tabular-nums; }
