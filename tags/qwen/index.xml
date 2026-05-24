@@ -6,8 +6,15 @@
     <description>Recent content in Qwen on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 24 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/qwen/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Qwen3.5-4B vs Phi-4-mini: Choosing the Right 4B Model for Local Inference</title>
+      <link>https://tinyweights.dev/posts/qwen3-5-4b-vs-phi-4-mini/</link>
+      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/qwen3-5-4b-vs-phi-4-mini/</guid>
+      <description>Qwen3.5-4B vs Phi-4-mini: a direct comparison of benchmarks, VRAM, context windows, and multimodal support for the two best 4B local models in 2026.</description>
+    </item>
     <item>
       <title>Qwen3.5-0.8B: A Multimodal Thinking Model That Fits in 1 Gigabyte</title>
       <link>https://tinyweights.dev/posts/qwen3-5-tiny-multimodal-thinking-model/</link>
