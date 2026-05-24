@@ -11,7 +11,12 @@
   padding: 32px 0 0;
 }
 
-/* Prompt line container — used both at top of home and at top of single. */
+/* Prompt line container — used both at top of home and at top of single.
+ * The prompt is a single long monospace string ("clevis@tinyweights:/home/
+ * posts/long-slug$ cat long-slug.md") that easily exceeds mobile viewport
+ * width. white-space:nowrap + overflow:hidden clips it visually, but we
+ * also need max-width:100% + min-width:0 so the layout box can't push the
+ * document wider than the screen and trigger Safari's shrink-to-fit. */
 .tw-prompt {
   font-size: 13.5px;
   margin-bottom: 4px;
@@ -19,6 +24,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
+  min-width: 0;
 }
 .tw-prompt-user { color: var(--tw-green); }
 .tw-prompt-sep  { color: var(--secondary); }

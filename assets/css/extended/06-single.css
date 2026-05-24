@@ -41,7 +41,9 @@
 
 /* Decorative double-line rules wrapping the title (aria-hidden in markup).
  * Rules are 64 chars of ═ — scale down on narrow viewports so they fit
- * without horizontal overflow. */
+ * without horizontal overflow. max-width:100% + min-width:0 are belt-and-
+ * suspenders so the rule's intrinsic content width never inflates the
+ * containing block on mobile. */
 .tw-rule-top,
 .tw-rule-bottom {
   color: var(--tw-very-dim);
@@ -49,6 +51,8 @@
   white-space: pre;
   font-family: var(--tw-font-mono);
   overflow: hidden;
+  max-width: 100%;
+  min-width: 0;
 }
 .tw-rule-top { margin: 14px 0 8px; }
 .tw-rule-bottom { margin: 6px 0 22px; }
@@ -94,10 +98,18 @@
 .post-tags a::before { content: "#"; }
 .post-tags a:hover { color: var(--tw-accent); }
 
-/* Post body container */
+/* Post body container.
+ * overflow-wrap:anywhere lets long URLs and file paths break inside words
+ * so they wrap to the next line instead of pushing the page wider than
+ * the viewport. min-width:0 + max-width:100% defensively cap the
+ * container's contribution to the layout box. */
 .post-content,
 .entry-content {
   font-family: var(--tw-font-mono);
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* End-of-post prompt block — emitted at the bottom of single.html */

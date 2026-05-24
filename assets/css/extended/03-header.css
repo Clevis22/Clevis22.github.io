@@ -141,18 +141,21 @@
 
 /* --- Mobile --- */
 @media (max-width: 768px) {
-  .header { padding: 10px 12px; }
+  .header { padding: 8px 10px; }
   .tw-window-title { display: none; }
-  /* Keep mascot and menu on the same row; menu shrinks and wraps its
-   * items internally rather than spilling onto its own row at full width. */
+  /* Mascot and menu share the row. menu shrinks and wraps its items
+   * internally; if anything still wouldn't fit, the menu wraps onto its
+   * own row instead of forcing the header wider than the viewport. */
   .nav {
-    gap: 8px;
-    flex-wrap: nowrap;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-width: 0;
   }
   .menu {
     /* min-width:0 lets the menu shrink below intrinsic content width
      * inside its flex parent, which makes the inner flex-wrap actually fire. */
     min-width: 0;
+    gap: 2px;
   }
   #menu li,
   .menu li {
@@ -161,15 +164,15 @@
   }
   #menu li a,
   .menu li a {
-    font-size: 11px;
-    padding: 3px 6px;
+    font-size: 10.5px;
+    padding: 3px 5px;
     /* Long items like /home/posts shouldn't break mid-word */
     white-space: nowrap;
   }
   #theme-toggle {
-    font-size: 10.5px;
-    padding: 3px 6px;
-    margin-left: 4px;
+    font-size: 10px;
+    padding: 3px 5px;
+    margin-left: 2px;
   }
 }
 

@@ -69,7 +69,10 @@ textarea {
   font-size: 0.9em;
 }
 
-/* Code blocks */
+/* Code blocks — pre-wrap lets normal lines wrap, word-break:break-all
+ * forces unbreakable tokens (long file paths, URLs, hashes) to wrap too
+ * so the code block doesn't push the page wider than the viewport on
+ * mobile. max-width:100% caps the box explicitly. */
 .entry-content pre,
 .post-content pre {
   background: var(--entry);
@@ -80,7 +83,10 @@ textarea {
   font-size: var(--tw-fs-meta);
   color: var(--tw-green);
   white-space: pre-wrap;
-  overflow: auto;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  overflow-x: auto;
+  max-width: 100%;
   margin: 8px 0 20px;
 }
 .entry-content pre code {
