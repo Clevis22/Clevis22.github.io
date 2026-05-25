@@ -6,8 +6,15 @@
     <description>Recent content on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Run a Small LLM in Your Browser with WebLLM (No Install, No API)</title>
+      <link>https://tinyweights.dev/posts/run-llm-in-browser-webllm/</link>
+      <pubDate>Mon, 25 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-llm-in-browser-webllm/</guid>
+      <description>Run a small open LLM (Qwen2.5, SmolLM2, Llama-3.2) entirely in your browser using WebLLM and WebGPU. How it works, browser support, model sizes, and a live demo you can try right now.</description>
+    </item>
     <item>
       <title>MedGemma 1.5: Google&#39;s 4B Medical Vision-Language Model You Can Run Locally</title>
       <link>https://tinyweights.dev/posts/medgemma-1-5/</link>
