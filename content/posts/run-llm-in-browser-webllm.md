@@ -133,7 +133,7 @@ If your hardware allows it, the same idea scales up. With Ollama or LM Studio yo
 - [WebLLM GitHub repository](https://github.com/mlc-ai/web-llm)
 - [WebLLM: A High-Performance In-Browser LLM Inference Engine (Ruan et al., arXiv:2412.15803)](https://arxiv.org/abs/2412.15803)
 - [WebLLM documentation](https://webllm.mlc.ai/docs/)
-- [MLC AI prebuilt models](https://mlc.ai/models)
+- [MLC AI prebuilt models on HuggingFace](https://huggingface.co/mlc-ai)
 - [WebGPU browser support (caniuse.com)](https://caniuse.com/webgpu)
 - [WebGPU API reference (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API)
 - [WebGPU is now supported in major browsers (web.dev)](https://web.dev/blog/webgpu-supported-major-browsers)
