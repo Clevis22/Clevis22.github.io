@@ -16,6 +16,13 @@
       <description>Run a small open LLM (Qwen2.5, SmolLM2, Llama-3.2) entirely in your browser using WebLLM and WebGPU. How it works, browser support, model sizes, and a live demo you can try right now.</description>
     </item>
     <item>
+      <title>How to Run Ministral 3 Locally: Mistral&#39;s 3B, 8B, and 14B Vision Models</title>
+      <link>https://tinyweights.dev/posts/run-ministral-3-locally/</link>
+      <pubDate>Mon, 25 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-ministral-3-locally/</guid>
+      <description>A practical guide to running Ministral-3 (3B, 8B, 14B) locally with Ollama and LM Studio: compact models with vision, tool use, and 256K context in under 10GB.</description>
+    </item>
+    <item>
       <title>MedGemma 1.5: Google&#39;s 4B Medical Vision-Language Model You Can Run Locally</title>
       <link>https://tinyweights.dev/posts/medgemma-1-5/</link>
       <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>

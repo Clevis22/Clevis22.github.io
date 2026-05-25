@@ -8,10 +8,22 @@
     <loc>https://tinyweights.dev/categories/</loc>
     <lastmod>2026-05-25T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://tinyweights.dev/tags/edge-ai/</loc>
+    <lastmod>2026-05-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://tinyweights.dev/posts/run-llm-in-browser-webllm/</loc>
     <lastmod>2026-05-25T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://tinyweights.dev/posts/run-ministral-3-locally/</loc>
+    <lastmod>2026-05-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://tinyweights.dev/tags/local-inference/</loc>
+    <lastmod>2026-05-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/ministral/</loc>
+    <lastmod>2026-05-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/mistral/</loc>
     <lastmod>2026-05-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/posts/</loc>
@@ -32,6 +44,9 @@
     <loc>https://tinyweights.dev/</loc>
     <lastmod>2026-05-25T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://tinyweights.dev/tags/vision/</loc>
+    <lastmod>2026-05-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://tinyweights.dev/tags/webgpu/</loc>
     <lastmod>2026-05-25T00:00:00+00:00</lastmod>
   </url><url>
@@ -42,9 +57,6 @@
     <lastmod>2026-05-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/comparison/</loc>
-    <lastmod>2026-05-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/edge-ai/</loc>
     <lastmod>2026-05-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/gemma/</loc>
