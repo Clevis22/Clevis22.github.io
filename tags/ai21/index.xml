@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Ai21 on TinyWeights.dev</title>
+    <link>https://tinyweights.dev/tags/ai21/</link>
+    <description>Recent content in Ai21 on TinyWeights.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://tinyweights.dev/tags/ai21/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Run Jamba Reasoning 3B Locally: AI21&#39;s Hybrid SSM-Transformer With a 256K Context</title>
+      <link>https://tinyweights.dev/posts/run-jamba-reasoning-3b-locally/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-jamba-reasoning-3b-locally/</guid>
+      <description>A practical guide to running AI21&amp;#39;s Jamba Reasoning 3B locally with Ollama and llama.cpp: a hybrid Mamba/Transformer 3B model with a 256K context window in under 2 GB at Q4.</description>
+    </item>
+  </channel>
+</rss>

@@ -3,6 +3,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tinyweights.dev/tags/ai21/</loc>
+    <lastmod>2026-05-27T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://tinyweights.dev/categories/</loc>
     <lastmod>2026-05-27T00:00:00+00:00</lastmod>
   </url><url>
@@ -15,7 +18,16 @@
     <loc>https://tinyweights.dev/posts/gguf-quantization-levels-q4-q5-q8/</loc>
     <lastmod>2026-05-27T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://tinyweights.dev/posts/run-jamba-reasoning-3b-locally/</loc>
+    <lastmod>2026-05-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/jamba/</loc>
+    <lastmod>2026-05-27T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://tinyweights.dev/tags/local-inference/</loc>
+    <lastmod>2026-05-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/mamba/</loc>
     <lastmod>2026-05-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/posts/</loc>
@@ -31,6 +43,9 @@
     <lastmod>2026-05-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/small-models/</loc>
+    <lastmod>2026-05-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/ssm/</loc>
     <lastmod>2026-05-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/</loc>

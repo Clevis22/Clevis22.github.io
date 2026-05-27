@@ -9,6 +9,13 @@
     <lastBuildDate>Wed, 27 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Ai21</title>
+      <link>https://tinyweights.dev/tags/ai21/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/ai21/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Edge-Ai</title>
       <link>https://tinyweights.dev/tags/edge-ai/</link>
       <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
@@ -23,10 +30,24 @@
       <description></description>
     </item>
     <item>
+      <title>Jamba</title>
+      <link>https://tinyweights.dev/tags/jamba/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/jamba/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Local-Inference</title>
       <link>https://tinyweights.dev/tags/local-inference/</link>
       <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/local-inference/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mamba</title>
+      <link>https://tinyweights.dev/tags/mamba/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/mamba/</guid>
       <description></description>
     </item>
     <item>
@@ -48,6 +69,13 @@
       <link>https://tinyweights.dev/tags/small-models/</link>
       <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/small-models/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ssm</title>
+      <link>https://tinyweights.dev/tags/ssm/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/ssm/</guid>
       <description></description>
     </item>
     <item>
