@@ -6,8 +6,15 @@
     <description>Recent content in Quantization on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/quantization/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GGUF Quantization Levels Explained: Q4, Q5, Q8, and IQ Quants</title>
+      <link>https://tinyweights.dev/posts/gguf-quantization-levels-q4-q5-q8/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/gguf-quantization-levels-q4-q5-q8/</guid>
+      <description>What Q4_K_M, Q5_K_M, Q8_0, and the IQ-series quants actually cost you in file size, quality, and speed, with real benchmark numbers.</description>
+    </item>
     <item>
       <title>How Much RAM Do You Actually Need to Run Local LLMs?</title>
       <link>https://tinyweights.dev/posts/how-much-ram-for-local-llms/</link>
