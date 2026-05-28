@@ -6,20 +6,62 @@
     <description>Recent content in Tags on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Edge-Ai</title>
+      <link>https://tinyweights.dev/tags/edge-ai/</link>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/edge-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lfm2</title>
+      <link>https://tinyweights.dev/tags/lfm2/</link>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/lfm2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Liquid-Ai</title>
+      <link>https://tinyweights.dev/tags/liquid-ai/</link>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/liquid-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Local-Inference</title>
+      <link>https://tinyweights.dev/tags/local-inference/</link>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/local-inference/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reasoning</title>
+      <link>https://tinyweights.dev/tags/reasoning/</link>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/reasoning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Slm</title>
+      <link>https://tinyweights.dev/tags/slm/</link>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/slm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Small-Models</title>
+      <link>https://tinyweights.dev/tags/small-models/</link>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/small-models/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Ai21</title>
       <link>https://tinyweights.dev/tags/ai21/</link>
       <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/ai21/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Edge-Ai</title>
-      <link>https://tinyweights.dev/tags/edge-ai/</link>
-      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/edge-ai/</guid>
       <description></description>
     </item>
     <item>
@@ -37,13 +79,6 @@
       <description></description>
     </item>
     <item>
-      <title>Local-Inference</title>
-      <link>https://tinyweights.dev/tags/local-inference/</link>
-      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/local-inference/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Mamba</title>
       <link>https://tinyweights.dev/tags/mamba/</link>
       <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
@@ -55,20 +90,6 @@
       <link>https://tinyweights.dev/tags/quantization/</link>
       <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/quantization/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Slm</title>
-      <link>https://tinyweights.dev/tags/slm/</link>
-      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/slm/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Small-Models</title>
-      <link>https://tinyweights.dev/tags/small-models/</link>
-      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/small-models/</guid>
       <description></description>
     </item>
     <item>
@@ -335,13 +356,6 @@
       <link>https://tinyweights.dev/tags/apollo/</link>
       <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/apollo/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>LFM2</title>
-      <link>https://tinyweights.dev/tags/lfm2/</link>
-      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/lfm2/</guid>
       <description></description>
     </item>
     <item>
