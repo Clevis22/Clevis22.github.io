@@ -6,8 +6,15 @@
     <description>Recent content in Edge-Ai on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/edge-ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Run ZAYA1-8B Locally: The 8B Reasoning MoE Trained on AMD</title>
+      <link>https://tinyweights.dev/posts/run-zaya1-8b-locally/</link>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-zaya1-8b-locally/</guid>
+      <description>How to run ZAYA1-8B locally: a 8.4B-total, 760M-active reasoning MoE from Zyphra, with setup steps, memory requirements, and benchmark numbers.</description>
+    </item>
     <item>
       <title>How to Run LFM2.5-1.2B-Thinking Locally: On-Device Reasoning Under 1GB</title>
       <link>https://tinyweights.dev/posts/run-lfm2-5-1-2b-thinking-locally/</link>
