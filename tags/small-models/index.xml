@@ -9,6 +9,13 @@
     <lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/small-models/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>1-bit LLMs Explained: How BitNet&#39;s Ternary Weights Actually Work</title>
+      <link>https://tinyweights.dev/posts/1-bit-llms-bitnet-ternary-weights/</link>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/1-bit-llms-bitnet-ternary-weights/</guid>
+      <description>A deep guide to 1-bit LLMs: how 1.58-bit ternary weights work, BitNet b1.58 2B4T benchmarks, running them on CPU with bitnet.cpp, and whether they beat 4-bit quantization.</description>
+    </item>
+    <item>
       <title>Run ZAYA1-8B Locally: The 8B Reasoning MoE Trained on AMD</title>
       <link>https://tinyweights.dev/posts/run-zaya1-8b-locally/</link>
       <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>

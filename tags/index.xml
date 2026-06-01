@@ -9,10 +9,24 @@
     <lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Bitnet</title>
+      <link>https://tinyweights.dev/tags/bitnet/</link>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/bitnet/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Edge-Ai</title>
       <link>https://tinyweights.dev/tags/edge-ai/</link>
       <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/edge-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Quantization</title>
+      <link>https://tinyweights.dev/tags/quantization/</link>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/quantization/</guid>
       <description></description>
     </item>
     <item>
@@ -37,7 +51,7 @@
       <description></description>
     </item>
     <item>
-      <title>Lfm2</title>
+      <title>LFM2</title>
       <link>https://tinyweights.dev/tags/lfm2/</link>
       <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/lfm2/</guid>
@@ -90,13 +104,6 @@
       <link>https://tinyweights.dev/tags/mamba/</link>
       <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/mamba/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Quantization</title>
-      <link>https://tinyweights.dev/tags/quantization/</link>
-      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/quantization/</guid>
       <description></description>
     </item>
     <item>

@@ -3,6 +3,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tinyweights.dev/posts/1-bit-llms-bitnet-ternary-weights/</loc>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/bitnet/</loc>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://tinyweights.dev/categories/</loc>
     <lastmod>2026-06-01T00:00:00+00:00</lastmod>
   </url><url>
@@ -10,6 +16,9 @@
     <lastmod>2026-06-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/posts/</loc>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/quantization/</loc>
     <lastmod>2026-06-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/posts/run-zaya1-8b-locally/</loc>
@@ -64,9 +73,6 @@
     <lastmod>2026-05-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/mamba/</loc>
-    <lastmod>2026-05-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/quantization/</loc>
     <lastmod>2026-05-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/ssm/</loc>
