@@ -565,3 +565,14 @@
 @media (max-width: 400px) {
   .tw-chat-area { height: 320px; }
 }
+
+/* ─── iOS focus-zoom fix ───────────────────────────── */
+/* iOS Safari auto-zooms the page when a focused field's font-size is
+ * under 16px. -webkit-touch-callout exists only on iOS, so this block
+ * scopes the 16px floor there without inflating the UI on desktop or
+ * Android. Must stay after the mobile media queries so it wins the
+ * cascade over their smaller sizes. */
+@supports (-webkit-touch-callout: none) {
+  .tw-chat-input  { font-size: 16px; }
+  .tw-meta-select { font-size: 16px; }
+}
