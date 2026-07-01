@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Ibm-Granite on TinyWeights.dev</title>
+    <link>https://tinyweights.dev/tags/ibm-granite/</link>
+    <description>Recent content in Ibm-Granite on TinyWeights.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 04 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://tinyweights.dev/tags/ibm-granite/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Run IBM Granite 4.1 Locally: 3B, 8B, and 30B Setup Guide</title>
+      <link>https://tinyweights.dev/posts/run-ibm-granite-4-1-locally/</link>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-ibm-granite-4-1-locally/</guid>
+      <description>How to run IBM Granite 4.1 locally with Ollama or llama.cpp. Full setup guide covering the 3B, 8B, and 30B models, hardware requirements, benchmark scores, and tool-calling.</description>
+    </item>
+  </channel>
+</rss>
