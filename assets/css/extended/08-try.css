@@ -1,8 +1,10 @@
 /* 08-try.css — in-browser LLM demo page
  *
- * Always-visible chat surface. The boot log + progress bar are inline
- * elements that show only during a model load. The model dropdown lives
- * in the chat-meta row; the mascot mark sits to its left.
+ * Chat surface follows the conventions of mainstream chat UIs (user
+ * messages as right-aligned bubbles, assistant replies full-width with
+ * an avatar row, centered empty state with suggestion prompts, stop
+ * button while streaming) rendered in the site's terminal idiom: mono
+ * font, prompt glyphs, boot log, dashed borders.
  */
 
 /* CRITICAL: any element with explicit display:flex/grid/etc. silently
@@ -39,9 +41,13 @@
 }
 
 /* ─── Fixed-height content slot ─── */
-/* Holds the empty-state hint, the boot log during loading, and the chat
- * stream once messages exist. Single height + overflow-y means the demo's
- * outer footprint never changes; only the inner content swaps. */
+/* Holds the empty-state greeting, the boot log during loading, and the
+ * chat stream once messages exist. Single height + overflow-y means the
+ * demo's outer footprint never changes; only the inner content swaps.
+ * The wrapper exists so the "↓ latest" button can anchor to the slot. */
+.tw-chat-areawrap {
+  position: relative;
+}
 .tw-chat-area {
   height: 420px;
   overflow-y: auto;
@@ -49,8 +55,27 @@
   background: var(--code-bg);
   border: 1px dashed var(--border);
   border-radius: var(--tw-radius);
-  /* Each child below renders flush against the slot's padding; no need
-   * for the inner blocks to draw their own borders or backgrounds. */
+}
+
+/* Reattach-to-stream button; visible only after the user scrolls up. */
+.tw-scrolldown {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  background: var(--code-block-bg);
+  border: 1px solid var(--border);
+  color: var(--secondary);
+  font-family: var(--tw-font-mono);
+  font-size: 11.5px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: color 120ms, border-color 120ms;
+}
+.tw-scrolldown:hover {
+  color: var(--tw-accent);
+  border-color: var(--tw-accent);
 }
 
 /* ─── Boot log (inline, shown only during loading) ─── */
@@ -147,7 +172,6 @@
   border-bottom: 1px dashed var(--border);
 }
 .tw-chat-meta-label { color: var(--tw-very-dim); }
-.tw-chat-meta-val   { color: var(--primary); font-variant-numeric: tabular-nums; }
 .tw-chat-meta-sep   { color: var(--tw-very-dim); }
 
 /* Inline mascot — the same SVG used as favicon + top-nav logo, sized to
@@ -220,47 +244,169 @@
   cursor: not-allowed;
 }
 
-/* Empty state hint inside the chat-area slot (visible when INIT, no messages). */
+/* ─── Empty state (centered greeting + suggestion prompts) ─── */
 .tw-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  height: 100%;
+  padding: 0 16px;
+}
+.tw-empty-mascot {
+  width: 44px;
+  height: 44px;
+  opacity: 0.9;
+  user-select: none;
+}
+.tw-empty-title {
+  color: var(--primary);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.tw-empty-sub {
   color: var(--secondary);
   font-size: 12.5px;
   line-height: 1.5;
+  max-width: 46ch;
 }
-.tw-empty .tw-prompt-dollar { color: var(--tw-accent); margin-right: 4px; }
+.tw-empty-sub .tw-prompt-dollar { color: var(--tw-accent); margin-right: 4px; }
 
+/* Suggestion chips inside the empty state; they disappear with it once
+ * the first message lands, same pattern as the mainstream chat UIs. */
+.tw-chat-suggest {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+.tw-chat-suggest-btn {
+  background: var(--code-block-bg);
+  border: 1px solid var(--border);
+  color: var(--secondary);
+  padding: 5px 12px;
+  border-radius: 14px;
+  font-family: var(--tw-font-mono);
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 120ms, border-color 120ms;
+}
+.tw-chat-suggest-btn:hover {
+  color: var(--tw-accent);
+  border-color: var(--tw-accent);
+}
+
+/* ─── Message stream ─── */
 .tw-chat-stream {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
-.tw-msg {
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 12px;
-  align-items: start;
+/* User turns: right-aligned bubble prefixed with the prompt dollar. */
+.tw-msg-user {
+  align-self: flex-end;
+  max-width: 85%;
 }
-.tw-msg-label {
+.tw-msg-bubble {
+  background: var(--code-block-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--tw-radius);
+  border-bottom-right-radius: 2px;
+  padding: 8px 12px;
+  color: var(--primary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.tw-msg-dollar { color: var(--tw-cyan); user-select: none; }
+
+/* Assistant turns: full-width, avatar + model tag header, optional
+ * per-turn stats footer (the LM Studio pattern). */
+.tw-msg-assistant {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tw-msg-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
   color: var(--tw-very-dim);
-  font-size: 12px;
-  text-transform: lowercase;
-  letter-spacing: 0.02em;
-  padding-top: 2px;
 }
-.tw-msg-user .tw-msg-label { color: var(--tw-cyan); }
-.tw-msg-assistant .tw-msg-label { color: var(--tw-accent); }
+.tw-msg-avatar {
+  width: 16px;
+  height: 16px;
+  user-select: none;
+  flex-shrink: 0;
+}
+.tw-msg-modeltag {
+  color: var(--tw-accent);
+  letter-spacing: 0.02em;
+}
+.tw-msg-copy {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--tw-very-dim);
+  font-family: var(--tw-font-mono);
+  font-size: 11px;
+  padding: 1px 8px;
+  border-radius: var(--tw-radius);
+  cursor: pointer;
+  transition: color 120ms, border-color 120ms;
+}
+.tw-msg-copy:hover {
+  color: var(--tw-accent);
+  border-color: var(--tw-accent);
+}
 .tw-msg-body {
   color: var(--primary);
   white-space: pre-wrap;
   word-break: break-word;
 }
-.tw-msg-streaming .tw-msg-body::after {
+.tw-msg-streaming::after {
   content: "▊";
   color: var(--tw-accent);
   margin-left: 2px;
   animation: twBlink 1s steps(1) infinite;
 }
-.tw-msg-err .tw-msg-body { color: var(--tw-tl-red); }
+.tw-msg-err { color: var(--tw-tl-red); }
+.tw-msg-stats {
+  color: var(--tw-very-dim);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Markdown-lite inside assistant replies. */
+.tw-msg-code {
+  background: var(--code-block-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--tw-radius);
+  padding: 8px 10px;
+  margin: 6px 0;
+  font-size: 12.5px;
+  overflow-x: auto;
+  white-space: pre;
+}
+.tw-msg-code code {
+  background: none;
+  padding: 0;
+  font-family: var(--tw-font-mono);
+}
+.tw-msg-icode {
+  background: var(--code-block-bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0 4px;
+  font-size: 12.5px;
+  font-family: var(--tw-font-mono);
+}
 
 /* Pre-first-token "running inference…" indicator inside an empty body. */
 .tw-thinking {
@@ -283,7 +429,7 @@
   text-align: left;
 }
 
-/* Status pill — five states:
+/* Status pill — six states:
  *  init       grey dot, "not loaded"
  *  loading    amber pulsing dot, "loading X"
  *  idle       green dot, "idle"
@@ -327,46 +473,19 @@
   .tw-thinking-spinner { animation: none !important; }
 }
 
-/* Suggested-prompt chips. */
-.tw-chat-suggest {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
-  font-size: 12px;
-}
-.tw-chat-suggest-label {
-  color: var(--tw-very-dim);
-  margin-right: 4px;
-}
-.tw-chat-suggest-btn {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--secondary);
-  padding: 3px 8px;
-  border-radius: var(--tw-radius);
-  font-family: var(--tw-font-mono);
-  font-size: 12px;
-  cursor: pointer;
-  transition: color 120ms, border-color 120ms;
-}
-.tw-chat-suggest-btn:hover {
-  color: var(--tw-accent);
-  border-color: var(--tw-accent);
-}
-
-/* Input row. */
+/* ─── Input row ─── */
 .tw-chat-form {
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: 8px;
-  align-items: center;
+  align-items: end;
   padding-top: 8px;
   border-top: 1px dashed var(--border);
 }
 .tw-chat-promptlabel {
   font-size: 13px;
   white-space: nowrap;
+  padding-bottom: 9px;
 }
 .tw-chat-input {
   background: var(--code-bg);
@@ -375,14 +494,17 @@
   padding: 8px 10px;
   font-family: var(--tw-font-mono);
   font-size: 13.5px;
+  line-height: 1.5;
   border-radius: var(--tw-radius);
   outline: none;
   transition: border-color 120ms;
   min-width: 0;
+  resize: none;
+  overflow-y: auto;
+  max-height: 140px;
 }
 .tw-chat-input:focus { border-color: var(--tw-accent); }
 .tw-chat-input::placeholder { color: var(--tw-very-dim); }
-.tw-chat-input:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .tw-chat-send {
   background: var(--tw-accent);
@@ -394,10 +516,17 @@
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 120ms;
+  transition: opacity 120ms, background 120ms, color 120ms;
+  min-width: 62px;
 }
 .tw-chat-send:hover { opacity: 0.85; }
 .tw-chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
+/* While generating the same button reads "stop": hollow, red accents. */
+.tw-chat-send.tw-chat-send-stop {
+  background: transparent;
+  color: var(--tw-tl-red);
+  border-color: var(--tw-tl-red);
+}
 
 /* Unsupported-browser panel. */
 .tw-unsupported .tw-bootline { padding: 2px 0; }
@@ -423,7 +552,7 @@
 @media (max-width: 640px) {
   .tw-demo { padding: 12px; font-size: 13px; }
   .tw-chat-area { height: 360px; padding: 10px; }
-  .tw-msg { grid-template-columns: 48px 1fr; gap: 8px; }
+  .tw-msg-user { max-width: 92%; }
   .tw-chat-form { grid-template-columns: 1fr auto; }
   .tw-chat-promptlabel { display: none; }
   .tw-chat-clear { margin-left: 0; }
@@ -431,6 +560,7 @@
    * + clear button all wrap cleanly without overflowing horizontally. */
   .tw-meta-select { font-size: 11.5px; padding: 2px 20px 2px 6px; }
   .tw-chat-meta { gap: 4px; font-size: 11.5px; }
+  .tw-empty-title { font-size: 14px; }
 }
 @media (max-width: 400px) {
   .tw-chat-area { height: 320px; }

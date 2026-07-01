@@ -1,10 +1,11 @@
 {{- /*
   try.html — layout for the in-browser LLM demo page.
 
-  Single always-visible chat surface. The boot log + progress bar are
-  rendered inline above the message stream and only displayed while a
-  model is loading; once a model is resident they hide and the chat
-  stream takes over the space.
+  Single always-visible chat surface styled after mainstream chat UIs
+  (right-aligned user bubbles, full-width assistant replies, centered
+  empty state with suggestion prompts, stop-while-generating) but kept
+  in the site's terminal idiom. The boot log + progress bar render
+  inline in the chat area and only display while a model is loading.
 
   State machine driven by the inline <script type="module">:
     INIT       → no engine, dropdown picks what to load
@@ -14,7 +15,8 @@
 
   Submitting a prompt while INIT triggers the model load and queues the
   prompt so it auto-sends as soon as the model is ready. Changing the
-  model dropdown while IDLE triggers an in-place engine swap.
+  model dropdown while IDLE triggers an in-place engine swap. While
+  GENERATING the send button becomes a stop button (interruptGenerate).
 */ -}}
 
 {{- define "main" -}}
@@ -38,7 +40,7 @@
 
     <div class="tw-chat" id="tw-chat">
 
-      <!-- Meta row: mascot · model dropdown · metrics · status · clear -->
+      <!-- Meta row: mascot · model dropdown · status · clear -->
       <div class="tw-chat-meta" id="tw-chat-meta">
         <img class="tw-mascot-mark" src="{{ "mascot-transparent.svg" | absURL }}" alt="" width="20" height="20" aria-hidden="true">
         <span class="tw-chat-meta-label">model:</span>
@@ -48,12 +50,6 @@
           <option value="llama-3.2-1b">Llama-3.2-1B  · ~670 MB</option>
           <option value="qwen2.5-1.5b">Qwen2.5-1.5B  · ~840 MB</option>
         </select>
-        <span class="tw-chat-meta-sep">·</span>
-        <span class="tw-chat-meta-label">first-token:</span>
-        <span class="tw-chat-meta-val" id="tw-chat-ttft">—</span>
-        <span class="tw-chat-meta-sep">·</span>
-        <span class="tw-chat-meta-label">throughput:</span>
-        <span class="tw-chat-meta-val" id="tw-chat-tps">—</span>
         <span class="tw-chat-meta-sep">·</span>
         <span class="tw-chat-status tw-chat-status-init" id="tw-chat-status">
           <span class="tw-chat-status-dot" aria-hidden="true"></span>
@@ -65,38 +61,47 @@
       </div>
 
       <!-- Fixed-height content slot. Holds (one of) the boot log, the
-           empty-state hint, or the message stream; switches between them
-           without changing the demo's outer dimensions. -->
-      <div class="tw-chat-area">
-        <div class="tw-bootlog" id="tw-bootlog" role="log" aria-live="polite" hidden>
-          <div class="tw-progress-wrap" id="tw-progress-wrap" hidden>
-            <div class="tw-progress-label" id="tw-progress-label">downloading weights…</div>
-            <div class="tw-progress-bar" aria-hidden="true">
-              <div class="tw-progress-fill" id="tw-progress-fill"></div>
+           empty-state greeting, or the message stream; switches between
+           them without changing the demo's outer dimensions. -->
+      <div class="tw-chat-areawrap">
+        <div class="tw-chat-area" id="tw-chat-area">
+          <div class="tw-bootlog" id="tw-bootlog" role="log" aria-live="polite" hidden>
+            <div class="tw-progress-wrap" id="tw-progress-wrap" hidden>
+              <div class="tw-progress-label" id="tw-progress-label">downloading weights…</div>
+              <div class="tw-progress-bar" aria-hidden="true">
+                <div class="tw-progress-fill" id="tw-progress-fill"></div>
+              </div>
+              <div class="tw-progress-pct" id="tw-progress-pct">0%</div>
             </div>
-            <div class="tw-progress-pct" id="tw-progress-pct">0%</div>
           </div>
+
+          <!-- Centered empty state with suggestion prompts; clicking one
+               sends it immediately (loading the model first if needed). -->
+          <div class="tw-empty" id="tw-empty">
+            <img class="tw-empty-mascot" src="{{ "mascot-transparent.svg" | absURL }}" alt="" width="44" height="44" aria-hidden="true">
+            <div class="tw-empty-title">chat with a model running in this tab</div>
+            <div class="tw-empty-sub">
+              <span class="tw-prompt-dollar">$</span> nothing loaded yet — send a message and the selected model streams in, weights cache after the first download. prompts never leave this tab.
+            </div>
+            <div class="tw-chat-suggest" id="tw-chat-suggest">
+              <button type="button" class="tw-chat-suggest-btn" data-prompt="Write a haiku about running language models on a Raspberry Pi.">haiku about a pi running llms</button>
+              <button type="button" class="tw-chat-suggest-btn" data-prompt="Explain what quantization is to a software engineer who knows nothing about ML.">explain quantization</button>
+              <button type="button" class="tw-chat-suggest-btn" data-prompt="What are the trade-offs of running a small model locally vs. calling a hosted API?">local vs api trade-offs</button>
+            </div>
+          </div>
+
+          <div class="tw-chat-stream" id="tw-chat-stream" aria-live="polite"></div>
         </div>
 
-        <div class="tw-empty" id="tw-empty">
-          <span class="tw-prompt-dollar">$</span> pick a model above (or use the default Qwen2.5-0.5B), then type below to load it and chat. weights download once, then run entirely in this tab.
-        </div>
-
-        <div class="tw-chat-stream" id="tw-chat-stream" aria-live="polite"></div>
-      </div>
-
-      <div class="tw-chat-suggest" id="tw-chat-suggest">
-        <span class="tw-chat-suggest-label">try:</span>
-        <button type="button" class="tw-chat-suggest-btn" data-prompt="Write a haiku about running language models on a Raspberry Pi.">haiku about a pi running llms</button>
-        <button type="button" class="tw-chat-suggest-btn" data-prompt="Explain what quantization is to a software engineer who knows nothing about ML.">explain quantization</button>
-        <button type="button" class="tw-chat-suggest-btn" data-prompt="What are the trade-offs of running a small model locally vs. calling a hosted API?">local vs api trade-offs</button>
+        <button type="button" class="tw-scrolldown" id="tw-scrolldown" hidden aria-label="Scroll to latest message">↓ latest</button>
       </div>
 
       <form class="tw-chat-form" id="tw-chat-form" autocomplete="off">
         <label class="tw-chat-promptlabel" for="tw-chat-input">
           <span class="tw-prompt-user">you</span><span class="tw-prompt-sep">@</span><span class="tw-prompt-path">browser</span><span class="tw-prompt-dollar">$</span>
         </label>
-        <input class="tw-chat-input" id="tw-chat-input" type="text" placeholder="type a message — model loads on first send…" />
+        <textarea class="tw-chat-input" id="tw-chat-input" rows="1"
+          placeholder="type a message — enter to send, shift+enter for newline…"></textarea>
         <button type="submit" class="tw-chat-send" id="tw-chat-send">send</button>
       </form>
     </div>
@@ -129,6 +134,7 @@
   const $ = (id) => document.getElementById(id);
 
   const chat         = $('tw-chat');
+  const chatArea     = $('tw-chat-area');
   const bootlog      = $('tw-bootlog');
   const progressWrap = $('tw-progress-wrap');
   const progressLbl  = $('tw-progress-label');
@@ -139,13 +145,14 @@
   const chatForm     = $('tw-chat-form');
   const chatInput    = $('tw-chat-input');
   const chatSend     = $('tw-chat-send');
-  const ttftLabel    = $('tw-chat-ttft');
-  const tpsLabel     = $('tw-chat-tps');
   const statusEl     = $('tw-chat-status');
   const statusLabel  = $('tw-chat-status-label');
   const modelSelect  = $('tw-model-select');
   const clearBtn     = $('tw-chat-clear');
+  const scrollBtn    = $('tw-scrolldown');
   const unsupported  = $('tw-unsupported');
+
+  const MASCOT = '{{ "mascot-transparent.svg" | absURL }}';
 
   // Each model ships in two MLC builds. q4f16_1 has smaller activations and
   // is faster but requires WebGPU's "shader-f16" feature; q4f32_1 uses fp32
@@ -176,6 +183,7 @@
   let hasShaderF16  = false;         // probed once on first load
   let currentSlug   = null;          // which dropdown key is currently loaded
   let pendingPrompt = null;          // queued user message to auto-send after load
+  let interrupted   = false;         // user hit stop during the current turn
 
   const SYSTEM_PROMPT =
     "You are a small, friendly assistant running locally in the user's browser via WebGPU. " +
@@ -197,13 +205,31 @@
 
   const setState = (next) => {
     state = next;
-    // Dropdown: lockable; clear: only sensible when IDLE; send: blocked while
-    // LOADING or GENERATING (LOADING accepts as queued via the form handler).
-    modelSelect.disabled = (state === 'LOADING' || state === 'GENERATING');
+    const generating = (state === 'GENERATING');
+    // Dropdown: lockable; clear: only sensible when IDLE. The send button
+    // doubles as a stop button while GENERATING, so it stays enabled; the
+    // input stays enabled too so the next message can be typed early.
+    modelSelect.disabled = (state === 'LOADING' || generating);
     clearBtn.disabled    = (state !== 'IDLE');
-    chatSend.disabled    = (state === 'GENERATING');
-    chatInput.disabled   = (state === 'GENERATING');
+    chatSend.textContent = generating ? 'stop' : 'send';
+    chatSend.classList.toggle('tw-chat-send-stop', generating);
   };
+
+  // ── Scrolling ─────────────────────────────────────────────────────
+  // Follow the stream only while the user is at (or near) the bottom.
+  // Scrolling up detaches; the "↓ latest" button reattaches.
+  let stick = true;
+  const syncScrollBtn = () => { scrollBtn.hidden = stick; };
+  chatArea.addEventListener('scroll', () => {
+    stick = (chatArea.scrollHeight - chatArea.scrollTop - chatArea.clientHeight) < 48;
+    syncScrollBtn();
+  });
+  const scrollToEnd = (force = false) => {
+    if (force) stick = true;
+    if (stick) chatArea.scrollTop = chatArea.scrollHeight;
+    syncScrollBtn();
+  };
+  scrollBtn.addEventListener('click', () => scrollToEnd(true));
 
   // ── Helpers ───────────────────────────────────────────────────────
   const appendBootLine = (text, cls = '') => {
@@ -211,7 +237,7 @@
     div.className = 'tw-bootline ' + cls;
     div.textContent = text;
     bootlog.insertBefore(div, progressWrap);
-    bootlog.scrollTop = bootlog.scrollHeight;
+    scrollToEnd(true);
   };
 
   const clearBootLog = () => {
@@ -229,22 +255,119 @@
     if (label) progressLbl.textContent = label;
   };
 
-  const renderMessage = (role, text) => {
-    empty.hidden = true;  // hide the intro hint as soon as any message appears
+  // ── Markdown-lite renderer ────────────────────────────────────────
+  // Small models emit markdown; render the common cases (fenced code,
+  // inline code, **bold**) without ever using innerHTML on model output.
+  // Everything lands in the DOM via textContent, so output is inert.
+  const renderInline = (text) => {
+    const frag = document.createDocumentFragment();
+    const re = /(`[^`\n]+`)|(\*\*[^*\n]+\*\*)/g;
+    let last = 0, m;
+    while ((m = re.exec(text))) {
+      if (m.index > last) frag.append(text.slice(last, m.index));
+      if (m[1]) {
+        const c = document.createElement('code');
+        c.className = 'tw-msg-icode';
+        c.textContent = m[1].slice(1, -1);
+        frag.append(c);
+      } else {
+        const b = document.createElement('strong');
+        b.textContent = m[2].slice(2, -2);
+        frag.append(b);
+      }
+      last = m.index + m[0].length;
+    }
+    if (last < text.length) frag.append(text.slice(last));
+    return frag;
+  };
+
+  const renderMarkdown = (container, text) => {
+    container.textContent = '';
+    // Odd-indexed parts are inside ``` fences. An unclosed trailing fence
+    // (mid-stream) still renders as code, which is the right live behavior.
+    const parts = text.split('```');
+    parts.forEach((part, i) => {
+      if (i % 2 === 1) {
+        let code = part;
+        const nl = part.indexOf('\n');
+        if (nl !== -1 && nl < 24 && /^[\w+-]*\s*$/.test(part.slice(0, nl))) {
+          code = part.slice(nl + 1);   // drop the language hint line
+        }
+        const pre = document.createElement('pre');
+        pre.className = 'tw-msg-code';
+        const codeEl = document.createElement('code');
+        codeEl.textContent = code.replace(/\n$/, '');
+        pre.appendChild(codeEl);
+        container.appendChild(pre);
+      } else if (part) {
+        container.appendChild(renderInline(part));
+      }
+    });
+  };
+
+  // ── Message construction ──────────────────────────────────────────
+  const addUserMessage = (text) => {
+    empty.hidden = true;
     const wrap = document.createElement('div');
-    wrap.className = 'tw-msg tw-msg-' + role;
-    const label = document.createElement('span');
-    label.className = 'tw-msg-label';
-    label.textContent = role === 'user' ? 'you'
-                      : role === 'assistant' ? 'model'
-                      : 'sys';
-    const body = document.createElement('div');
-    body.className = 'tw-msg-body';
+    wrap.className = 'tw-msg tw-msg-user';
+    const bubble = document.createElement('div');
+    bubble.className = 'tw-msg-bubble';
+    const dollar = document.createElement('span');
+    dollar.className = 'tw-msg-dollar';
+    dollar.textContent = '$ ';
+    const body = document.createElement('span');
+    body.className = 'tw-msg-usertext';
     body.textContent = text;
-    wrap.append(label, body);
+    bubble.append(dollar, body);
+    wrap.append(bubble);
     chatStream.append(wrap);
-    chatStream.scrollTop = chatStream.scrollHeight;
-    return body;
+    scrollToEnd(true);
+  };
+
+  const addAssistantMessage = () => {
+    empty.hidden = true;
+    const wrap = document.createElement('div');
+    wrap.className = 'tw-msg tw-msg-assistant';
+
+    const head = document.createElement('div');
+    head.className = 'tw-msg-head';
+    const avatar = document.createElement('img');
+    avatar.className = 'tw-msg-avatar';
+    avatar.src = MASCOT;
+    avatar.alt = '';
+    avatar.width = 16;
+    avatar.height = 16;
+    const tag = document.createElement('span');
+    tag.className = 'tw-msg-modeltag';
+    tag.textContent = 'model · ' + (currentSlug || '?');
+    const copyBtn = document.createElement('button');
+    copyBtn.type = 'button';
+    copyBtn.className = 'tw-msg-copy';
+    copyBtn.textContent = 'copy';
+    copyBtn.title = 'Copy the raw response';
+    head.append(avatar, tag, copyBtn);
+
+    const body = document.createElement('div');
+    body.className = 'tw-msg-body tw-msg-streaming';
+
+    const stats = document.createElement('div');
+    stats.className = 'tw-msg-stats';
+    stats.hidden = true;
+
+    wrap.append(head, body, stats);
+    chatStream.append(wrap);
+    scrollToEnd(true);
+
+    const ref = { text: '' };
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(ref.text);
+        copyBtn.textContent = 'copied';
+        setTimeout(() => { copyBtn.textContent = 'copy'; }, 1200);
+      } catch { /* clipboard unavailable; leave the label alone */ }
+    });
+
+    return { body, stats, ref };
   };
 
   // ── WebGPU support check ──────────────────────────────────────────
@@ -331,8 +454,6 @@
         appendBootLine('[ READY ] you can now chat below ↓', 'tw-boot-ready');
 
         currentSlug = slug;
-        $('tw-chat-ttft').textContent = '—';
-        $('tw-chat-tps').textContent  = '—';
         setStatus('idle', 'idle');
         setState('IDLE');
 
@@ -361,12 +482,12 @@
   const sendMessage = async (text) => {
     if (!engine || state !== 'IDLE') return;
     setState('GENERATING');
+    interrupted = false;
 
-    renderMessage('user', text);
+    addUserMessage(text);
     messages.push({ role: 'user', content: text });
 
-    const target = renderMessage('assistant', '');
-    target.classList.add('tw-msg-streaming');
+    const { body: target, stats, ref } = addAssistantMessage();
 
     // Pre-first-token "thinking" indicator inside the empty body.
     const thinking = document.createElement('span');
@@ -392,6 +513,7 @@
 
     const t0 = performance.now();
     let firstTokenAt = null;
+    let ttft = null;
     let tokenCount = 0;
     let acc = '';
 
@@ -404,19 +526,25 @@
         if (!delta) continue;
         if (firstTokenAt === null) {
           firstTokenAt = performance.now();
-          ttftLabel.textContent = ((firstTokenAt - t0) / 1000).toFixed(2) + 's';
+          ttft = (firstTokenAt - t0) / 1000;
           clearInterval(spinnerTimer);
           setStatus('streaming', 'generating');
         }
         tokenCount += 1;
         acc += delta;
-        target.textContent = acc;
-        chatStream.scrollTop = chatStream.scrollHeight;
+        ref.text = acc;
+        renderMarkdown(target, acc);
+        scrollToEnd();
       }
+      messages.push({ role: 'assistant', content: acc });
+
       const dt = (performance.now() - (firstTokenAt ?? t0)) / 1000;
       const tps = dt > 0 ? (tokenCount / dt).toFixed(1) : '—';
-      tpsLabel.textContent = tps + ' tok/s';
-      messages.push({ role: 'assistant', content: acc });
+      stats.textContent =
+        (interrupted ? '[stopped] · ' : '')
+        + (ttft !== null ? 'first-token ' + ttft.toFixed(2) + 's · ' : '')
+        + tps + ' tok/s · ' + tokenCount + ' tok';
+      stats.hidden = false;
     } catch (err) {
       console.error(err);
       target.textContent = '[ERR] ' + (err.message || String(err));
@@ -426,19 +554,35 @@
       target.classList.remove('tw-msg-streaming');
       setStatus('idle', 'idle');
       setState('IDLE');
+      scrollToEnd();
       chatInput.focus();
     }
   };
 
-  // ── Form submit: handles INIT (auto-load), LOADING (queue), IDLE (send) ──
+  // ── Form submit: INIT (auto-load), LOADING (queue), IDLE (send),
+  //    GENERATING (the button is a stop button) ──────────────────────
+  const resetInput = () => {
+    chatInput.value = '';
+    autosize();
+  };
+
   chatForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (state === 'GENERATING') {
+      interrupted = true;
+      if (engine && typeof engine.interruptGenerate === 'function') {
+        try { engine.interruptGenerate(); } catch (err) { console.warn('interrupt failed:', err); }
+      }
+      return;
+    }
+
     const text = chatInput.value.trim();
     if (!text) return;
 
     if (state === 'INIT') {
       pendingPrompt = text;
-      chatInput.value = '';
+      resetInput();
       const ok = await loadModel(modelSelect.value);
       if (ok && pendingPrompt) {
         const queued = pendingPrompt;
@@ -450,14 +594,28 @@
     if (state === 'LOADING') {
       // Just queue / overwrite the queued prompt; it sends when load finishes.
       pendingPrompt = text;
-      chatInput.value = '';
+      resetInput();
       return;
     }
     if (state === 'IDLE') {
-      chatInput.value = '';
+      resetInput();
       await sendMessage(text);
     }
-    // GENERATING: send is disabled at the input layer; ignore here.
+  });
+
+  // ── Textarea: enter sends, shift+enter breaks, height follows text ──
+  const autosize = () => {
+    chatInput.style.height = 'auto';
+    chatInput.style.height = Math.min(chatInput.scrollHeight, 140) + 'px';
+  };
+  chatInput.addEventListener('input', autosize);
+  chatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      // While GENERATING the submit path means "stop"; only the button
+      // should do that. Enter mid-stream just keeps the draft in place.
+      if (state !== 'GENERATING') chatForm.requestSubmit();
+    }
   });
 
   // ── Model dropdown ────────────────────────────────────────────────
@@ -471,17 +629,16 @@
     // Reset conversation; new model has its own context window.
     messages.length = 1;
     chatStream.innerHTML = '';
-    ttftLabel.textContent = '—';
-    tpsLabel.textContent  = '—';
     empty.hidden = false;
     await loadModel(slug);
   });
 
-  // ── Suggested-prompt chips ────────────────────────────────────────
+  // ── Suggested-prompt chips: send immediately, like the big chat UIs ──
   document.querySelectorAll('.tw-chat-suggest-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       chatInput.value = btn.dataset.prompt;
-      chatInput.focus();
+      autosize();
+      chatForm.requestSubmit();
     });
   });
 
@@ -490,17 +647,18 @@
     if (state !== 'IDLE') return;
     messages.length = 1;
     chatStream.innerHTML = '';
-    ttftLabel.textContent = '—';
-    tpsLabel.textContent  = '—';
+    empty.hidden = false;
     if (engine && typeof engine.resetChat === 'function') {
       try { await engine.resetChat(); } catch (err) { console.warn('resetChat failed:', err); }
     }
+    scrollToEnd(true);
     chatInput.focus();
   });
 
   // Initial paint reflects the starting state.
   setState('INIT');
   setStatus('init', 'not loaded');
+  autosize();
 </script>
 
 {{- end -}}
