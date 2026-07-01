@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Gemma on TinyWeights.dev</title>
-    <link>https://tinyweights.dev/tags/gemma/</link>
-    <description>Recent content in Gemma on TinyWeights.dev</description>
+    <title>Diffusion-Model on TinyWeights.dev</title>
+    <link>https://tinyweights.dev/tags/diffusion-model/</link>
+    <description>Recent content in Diffusion-Model on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 01 Jul 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://tinyweights.dev/tags/gemma/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tinyweights.dev/tags/diffusion-model/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DiffusionGemma: Google&#39;s Text-Diffusion Model That Generates 4x Faster, and How to Run It Locally</title>
       <link>https://tinyweights.dev/posts/run-diffusiongemma-locally/</link>
       <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/posts/run-diffusiongemma-locally/</guid>
       <description>DiffusionGemma is Google&amp;#39;s open-weight text-diffusion model: 25.2B total, 3.8B active, up to 4x faster generation than Gemma 4. How discrete text diffusion works, honest benchmarks, and how to run DiffusionGemma locally with vLLM, Transformers, and MLX.</description>
-    </item>
-    <item>
-      <title>MedGemma 1.5: Google&#39;s 4B Medical Vision-Language Model You Can Run Locally</title>
-      <link>https://tinyweights.dev/posts/medgemma-1-5/</link>
-      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/medgemma-1-5/</guid>
-      <description>MedGemma 1.5 is Google&amp;#39;s 4B medical multimodal model: Gemma 3 backbone, MedSigLIP encoder, 128K context. Runs in 3.3GB on Ollama. Benchmarks, deployment, and the limits.</description>
     </item>
   </channel>
 </rss>

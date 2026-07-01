@@ -6,8 +6,15 @@
     <description>Recent content on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DiffusionGemma: Google&#39;s Text-Diffusion Model That Generates 4x Faster, and How to Run It Locally</title>
+      <link>https://tinyweights.dev/posts/run-diffusiongemma-locally/</link>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-diffusiongemma-locally/</guid>
+      <description>DiffusionGemma is Google&amp;#39;s open-weight text-diffusion model: 25.2B total, 3.8B active, up to 4x faster generation than Gemma 4. How discrete text diffusion works, honest benchmarks, and how to run DiffusionGemma locally with vLLM, Transformers, and MLX.</description>
+    </item>
     <item>
       <title>How to Run LFM2.5-8B-A1B Locally: Liquid AI&#39;s On-Device Tool-Calling MoE</title>
       <link>https://tinyweights.dev/posts/run-lfm2-5-8b-a1b-locally/</link>
