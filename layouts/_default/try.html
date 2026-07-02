@@ -929,6 +929,18 @@
     chatInput.style.height = Math.min(chatInput.scrollHeight, 140) + 'px';
   };
   chatInput.addEventListener('input', autosize);
+
+  // iOS: the on-screen keyboard pans the visual viewport and can leave
+  // the page stuck scrolled after it closes; snap back once nothing is
+  // being typed into. Harmless elsewhere (the page can't scroll anyway).
+  const typing = () => {
+    const el = document.activeElement;
+    return !!el && (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT' || el.tagName === 'SELECT');
+  };
+  const snapBack = () => { if (!typing()) window.scrollTo(0, 0); };
+  window.visualViewport?.addEventListener('resize', snapBack);
+  document.addEventListener('focusout', () => setTimeout(snapBack, 60));
+
   chatInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();

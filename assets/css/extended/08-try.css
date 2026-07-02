@@ -18,20 +18,39 @@
   margin: 0;
 }
 
-/* Full-app takeover: on this page the app owns the whole viewport, like
- * a standalone chat client. Site header/footer hide and the content
- * container goes full-bleed. :has() is safe here: every browser with
- * WebGPU also has :has(), and without WebGPU the page shows only the
- * fallback notice, where the missing nav barely matters (the notice
- * links back into the site). */
-body:has(.tw-tryapp) { overflow: hidden; }
-body:has(.tw-tryapp) .header,
+/* App takeover: the site nav stays, the app fills everything below it.
+ * The body becomes a flex column sized to the viewport, so the header
+ * keeps its natural height (it can wrap on narrow screens) and the app
+ * gets the remainder — no hard-coded header math. :has() is safe here:
+ * every browser with WebGPU also has :has(), and without WebGPU the
+ * page shows only the fallback notice.
+ * overscroll-behavior stops iOS rubber-banding the page when an inner
+ * scroller hits its edge (body overflow:hidden alone is not enough on
+ * iOS Safari). */
+body:has(.tw-tryapp) {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+  display: flex;
+  flex-direction: column;
+}
 body:has(.tw-tryapp) .footer,
 body:has(.tw-tryapp) .top-link { display: none; }
 .main:has(.tw-tryapp) {
   max-width: 100%;
   margin: 0;
   padding: 0;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.tw-tryapp {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Visually hidden but present for search engines and screen readers. */
@@ -58,10 +77,10 @@ body:has(.tw-tryapp) .top-link { display: none; }
   font-size: 13.5px;
   line-height: 1.6;
   color: var(--secondary);
-  /* The whole viewport; dvh keeps the input above the iOS keyboard/URL
-   * bar on mobile, vh is the fallback for older engines. */
-  height: 100vh;
-  height: 100dvh;
+  /* Fills whatever the body flex column leaves below the site nav. */
+  flex: 1;
+  min-height: 0;
+  border-top: 1px solid var(--border);
 }
 
 /* ─── Sidebar ──────────────────────────────────────── */
@@ -119,6 +138,8 @@ body:has(.tw-tryapp) .top-link { display: none; }
   min-height: 0;
   overflow-y: auto;
   padding: 0 0 8px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tw-chatitem {
@@ -364,6 +385,14 @@ body:has(.tw-tryapp) .top-link { display: none; }
   overflow-y: auto;
   padding: 14px;
   background: var(--code-bg);
+  /* Column flex so the empty state can center via flex:1 without the
+   * "centered content clips at the top" overflow bug. contain stops
+   * iOS chaining the scroll to the page at the edges; the -webkit
+   * property keeps momentum scrolling on older iOS. */
+  display: flex;
+  flex-direction: column;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Reattach-to-stream button; visible only after the user scrolls up. */
@@ -393,6 +422,7 @@ body:has(.tw-tryapp) .top-link { display: none; }
   flex-direction: column;
   gap: 2px;
   font-size: 12.5px;
+  flex-shrink: 0;
 }
 
 .tw-bootline {
@@ -471,7 +501,10 @@ body:has(.tw-tryapp) .top-link { display: none; }
   justify-content: center;
   text-align: center;
   gap: 10px;
-  height: 100%;
+  /* Grow to fill the chat area (centers the greeting); when content is
+   * taller than the area (small screens, keyboard open) the item keeps
+   * its natural height and the area scrolls instead of clipping. */
+  flex: 1;
   padding: 0 16px;
 }
 .tw-empty-mascot {
@@ -524,6 +557,7 @@ body:has(.tw-tryapp) .top-link { display: none; }
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex-shrink: 0;
 }
 
 /* User turns: right-aligned bubble prefixed with the prompt dollar. */
@@ -722,6 +756,7 @@ body:has(.tw-tryapp) .top-link { display: none; }
   resize: none;
   overflow-y: auto;
   max-height: 140px;
+  overscroll-behavior: contain;
 }
 .tw-chat-input:focus { border-color: var(--tw-accent); }
 .tw-chat-input::placeholder { color: var(--tw-very-dim); }
