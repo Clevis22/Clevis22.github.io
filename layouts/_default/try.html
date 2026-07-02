@@ -126,7 +126,7 @@
         <button type="button" class="tw-scrolldown" id="tw-scrolldown" hidden aria-label="Scroll to latest message">↓ latest</button>
       </div>
 
-      <form class="tw-chat-form" id="tw-chat-form" autocomplete="off">
+      <form class="tw-chat-form" id="tw-chat-form" autocomplete="off" onsubmit="return false">
         <label class="tw-chat-promptlabel" for="tw-chat-input">
           <span class="tw-prompt-user">you</span><span class="tw-prompt-sep">@</span><span class="tw-prompt-path">browser</span><span class="tw-prompt-dollar">$</span>
         </label>
@@ -954,6 +954,10 @@
   });
 
   // ── Initial paint ─────────────────────────────────────────────────
+  // Phones: default to the smallest model. The larger downloads can
+  // blow Safari's per-tab memory budget on iPhones during load, and
+  // WebKit responds by killing and auto-reloading the page.
+  if (coarse) modelSelect.value = 'smollm2-360m';
   renderChatList();
   renderConversation();
   setState('INIT');

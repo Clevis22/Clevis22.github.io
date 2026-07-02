@@ -15,8 +15,8 @@ You get to pick from four open instruction-tuned models. All four are 4-bit quan
 
 | Model | Params | Download | Notes |
 |---|---|---|---|
-| SmolLM2-360M-Instruct | 360M | ~200 MB | HuggingFace's tiniest. Fast, often incoherent. |
-| Qwen2.5-0.5B-Instruct | 500M | ~280 MB | Default. Best balance of size and quality at this scale. |
+| SmolLM2-360M-Instruct | 360M | ~200 MB | HuggingFace's tiniest. Fast, often incoherent. Default on phones. |
+| Qwen2.5-0.5B-Instruct | 500M | ~280 MB | Default on desktop. Best balance of size and quality at this scale. |
 | Llama-3.2-1B-Instruct | 1B | ~670 MB | Meta's smallest Llama 3.2. Noticeably smarter. |
 | Qwen2.5-1.5B-Instruct | 1.5B | ~840 MB | Best quality on this page; biggest download. |
 
