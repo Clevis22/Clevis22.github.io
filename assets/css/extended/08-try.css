@@ -1,10 +1,10 @@
-/* 08-try.css — in-browser LLM demo page
+/* 08-try.css — in-browser LLM chat webapp (/try/)
  *
- * Chat surface follows the conventions of mainstream chat UIs (user
- * messages as right-aligned bubbles, assistant replies full-width with
- * an avatar row, centered empty state with suggestion prompts, stop
- * button while streaming) rendered in the site's terminal idiom: mono
- * font, prompt glyphs, boot log, dashed borders.
+ * ChatGPT/OpenWebUI-style application shell in the site's terminal
+ * idiom: conversation sidebar (off-canvas on mobile), main chat pane
+ * with model picker + status pill, collapsible settings panel, user
+ * bubbles right / assistant replies full-width, per-turn stats, and
+ * the boot log + progress bar inline during model loads.
  */
 
 /* CRITICAL: any element with explicit display:flex/grid/etc. silently
@@ -17,6 +17,18 @@
   padding-top: 8px;
 }
 
+/* Widen the page container for the app layout. PaperMod caps .main at
+ * --main-width (720px); a sidebar + chat pane needs more. :has() is safe
+ * here: every browser with WebGPU also has :has(), and without WebGPU the
+ * page shows only the fallback notice, where 720px is fine. */
+.main:has(.tw-tryapp) {
+  max-width: calc(1160px + var(--gap) * 2);
+}
+
+/* Compact page chrome above the app so the shell gets the viewport. */
+.tw-tryapp .post-header { margin: 6px 0 0; }
+.tw-tryapp .post-title  { font-size: 1.25em; margin-bottom: 10px; }
+
 /* Sub-title tag under the prompt — matches the [ INIT ]/[ OK ] style
  * used in the boot log so the whole page reads as one continuous terminal. */
 .tw-try-tag {
@@ -27,34 +39,295 @@
   letter-spacing: 0.02em;
 }
 
-/* The single demo container. */
-.tw-demo {
+/* ─── App shell ────────────────────────────────────── */
+.tw-app {
+  display: flex;
+  position: relative;
   background: var(--code-block-bg);
   border: 1px solid var(--border);
   border-radius: var(--tw-radius);
-  margin: 16px 0 24px;
-  padding: 16px;
+  overflow: hidden;
+  margin: 12px 0 24px;
   font-family: var(--tw-font-mono);
   font-size: 13.5px;
   line-height: 1.6;
   color: var(--secondary);
+  /* Fill the viewport below the site header + page chrome; dvh keeps the
+   * input above the iOS keyboard/URL bar. min-height guards short windows. */
+  height: calc(100vh - 250px);
+  height: calc(100dvh - 250px);
+  min-height: 460px;
 }
 
-/* ─── Fixed-height content slot ─── */
-/* Holds the empty-state greeting, the boot log during loading, and the
- * chat stream once messages exist. Single height + overflow-y means the
- * demo's outer footprint never changes; only the inner content swaps.
- * The wrapper exists so the "↓ latest" button can anchor to the slot. */
+/* ─── Sidebar ──────────────────────────────────────── */
+.tw-side {
+  width: 232px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px dashed var(--border);
+  background: var(--code-block-bg);
+}
+.tw-side-busy .tw-chatlist,
+.tw-side-busy .tw-newchat {
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.tw-newchat {
+  margin: 10px;
+  padding: 7px 10px;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--tw-radius);
+  color: var(--primary);
+  font-family: var(--tw-font-mono);
+  font-size: 12.5px;
+  text-align: left;
+  cursor: pointer;
+  transition: color 120ms, border-color 120ms;
+}
+.tw-newchat:hover:not(:disabled) {
+  color: var(--tw-accent);
+  border-color: var(--tw-accent);
+}
+.tw-newchat:disabled { cursor: not-allowed; }
+.tw-newchat .tw-prompt-dollar { color: var(--tw-accent); margin-right: 4px; }
+
+.tw-chatlist {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 0 8px;
+}
+
+.tw-chatitem {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 6px 6px 10px;
+  border-left: 2px solid transparent;
+}
+.tw-chatitem:hover { background: var(--code-bg); }
+.tw-chatitem-active {
+  border-left-color: var(--tw-accent);
+  background: var(--code-bg);
+}
+.tw-chatitem-main {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  font-family: var(--tw-font-mono);
+  cursor: pointer;
+  color: var(--secondary);
+}
+.tw-chatitem-title {
+  font-size: 12px;
+  color: var(--primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tw-chatitem-active .tw-chatitem-title { color: var(--tw-accent); }
+.tw-chatitem-sub {
+  font-size: 10.5px;
+  color: var(--tw-very-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tw-chatitem-del {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--tw-very-dim);
+  font-family: var(--tw-font-mono);
+  font-size: 14px;
+  line-height: 1;
+  padding: 4px 6px;
+  cursor: pointer;
+  border-radius: var(--tw-radius);
+  transition: color 120ms;
+}
+.tw-chatitem-del:hover { color: var(--tw-tl-red); }
+
+.tw-side-foot {
+  padding: 8px 12px;
+  border-top: 1px dashed var(--border);
+  font-size: 11.5px;
+}
+.tw-side-foot a {
+  color: var(--tw-very-dim);
+  text-decoration: none;
+  transition: color 120ms;
+}
+.tw-side-foot a:hover { color: var(--tw-accent); }
+
+/* Backdrop behind the off-canvas sidebar (mobile only). */
+.tw-side-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+}
+
+/* ─── Main pane ────────────────────────────────────── */
+.tw-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--code-block-bg);
+}
+
+.tw-chat-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--secondary);
+  padding: 8px 12px;
+  border-bottom: 1px dashed var(--border);
+}
+.tw-chat-meta-label { color: var(--tw-very-dim); }
+.tw-chat-meta-sep   { color: var(--tw-very-dim); }
+
+/* Hamburger — only rendered useful on mobile; hidden on desktop. */
+.tw-side-togglebtn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--secondary);
+  font-family: var(--tw-font-mono);
+  font-size: 14px;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: var(--tw-radius);
+  cursor: pointer;
+  transition: color 120ms, border-color 120ms;
+}
+.tw-side-togglebtn:hover { color: var(--tw-accent); border-color: var(--tw-accent); }
+
+/* Inline mascot — the same SVG used as favicon + top-nav logo. */
+.tw-mascot-mark {
+  width: 20px;
+  height: 20px;
+  margin-right: 2px;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* In-meta `<select>` that doubles as "current model" and "swap to another". */
+.tw-meta-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  padding: 2px 22px 2px 8px;
+  font-family: var(--tw-font-mono);
+  font-size: 12px;
+  border-radius: var(--tw-radius);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f0a020' stroke-width='1.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  background-size: 9px 6px;
+  transition: border-color 120ms, color 120ms;
+  min-width: 0;
+  max-width: 100%;
+}
+.tw-meta-select:hover,
+.tw-meta-select:focus {
+  border-color: var(--tw-accent);
+  color: var(--tw-accent);
+  outline: none;
+}
+.tw-meta-select:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.tw-meta-select option {
+  background: var(--theme);
+  color: var(--primary);
+  font-family: var(--tw-font-mono);
+}
+
+/* Header buttons (cfg) — flush-right via auto margin. */
+.tw-hdr-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--secondary);
+  padding: 2px 8px;
+  border-radius: var(--tw-radius);
+  font-family: var(--tw-font-mono);
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: color 120ms, border-color 120ms;
+}
+.tw-hdr-btn:hover {
+  color: var(--tw-accent);
+  border-color: var(--tw-accent);
+}
+.tw-hdr-btn[aria-expanded="true"] {
+  color: var(--tw-accent);
+  border-color: var(--tw-accent);
+}
+.tw-hdr-btn .tw-prompt-dollar { color: var(--tw-accent); }
+
+/* ─── Settings panel ───────────────────────────────── */
+.tw-settings {
+  display: grid;
+  grid-template-columns: 1fr 110px 110px;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px dashed var(--border);
+  background: var(--code-block-bg);
+}
+.tw-set-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.tw-set-label {
+  font-size: 10.5px;
+  color: var(--tw-very-dim);
+  letter-spacing: 0.03em;
+}
+.tw-set-input {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  padding: 5px 8px;
+  font-family: var(--tw-font-mono);
+  font-size: 12px;
+  border-radius: var(--tw-radius);
+  outline: none;
+  transition: border-color 120ms;
+  min-width: 0;
+  resize: none;
+}
+.tw-set-input:focus { border-color: var(--tw-accent); }
+
+/* ─── Scrollable content slot ──────────────────────── */
 .tw-chat-areawrap {
   position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
 }
 .tw-chat-area {
-  height: 420px;
+  flex: 1;
+  min-width: 0;
   overflow-y: auto;
-  padding: 12px;
+  padding: 14px;
   background: var(--code-bg);
-  border: 1px dashed var(--border);
-  border-radius: var(--tw-radius);
 }
 
 /* Reattach-to-stream button; visible only after the user scrolls up. */
@@ -154,96 +427,6 @@
   .tw-progress-fill::after { animation: none; }
 }
 
-/* ─── Chat surface (always visible) ────────────────── */
-.tw-chat {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.tw-chat-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--secondary);
-  padding-bottom: 8px;
-  border-bottom: 1px dashed var(--border);
-}
-.tw-chat-meta-label { color: var(--tw-very-dim); }
-.tw-chat-meta-sep   { color: var(--tw-very-dim); }
-
-/* Inline mascot — the same SVG used as favicon + top-nav logo, sized to
- * fit the meta-row baseline so it sits as a small branded marker next to
- * the model name. */
-.tw-mascot-mark {
-  width: 20px;
-  height: 20px;
-  margin-right: 2px;
-  vertical-align: -5px;
-  user-select: none;
-  flex-shrink: 0;
-}
-
-/* In-meta `<select>` that doubles as "current model" and "swap to another". */
-.tw-meta-select {
-  appearance: none;
-  -webkit-appearance: none;
-  background: var(--code-bg);
-  border: 1px solid var(--border);
-  color: var(--primary);
-  padding: 2px 22px 2px 8px;
-  font-family: var(--tw-font-mono);
-  font-size: 12px;
-  border-radius: var(--tw-radius);
-  cursor: pointer;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23f0a020' stroke-width='1.5'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 6px center;
-  background-size: 9px 6px;
-  transition: border-color 120ms, color 120ms;
-  min-width: 0;
-  max-width: 100%;
-}
-.tw-meta-select:hover,
-.tw-meta-select:focus {
-  border-color: var(--tw-accent);
-  color: var(--tw-accent);
-  outline: none;
-}
-.tw-meta-select:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-.tw-meta-select option {
-  background: var(--theme);
-  color: var(--primary);
-  font-family: var(--tw-font-mono);
-}
-
-/* Clear button — flush-right via auto margin, wraps on mobile. */
-.tw-chat-clear {
-  margin-left: auto;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--secondary);
-  padding: 2px 8px;
-  border-radius: var(--tw-radius);
-  font-family: var(--tw-font-mono);
-  font-size: 11.5px;
-  cursor: pointer;
-  transition: color 120ms, border-color 120ms;
-}
-.tw-chat-clear:hover:not(:disabled) {
-  color: var(--tw-accent);
-  border-color: var(--tw-accent);
-}
-.tw-chat-clear:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
 /* ─── Empty state (centered greeting + suggestion prompts) ─── */
 .tw-empty {
   display: flex;
@@ -324,13 +507,14 @@
 }
 .tw-msg-dollar { color: var(--tw-cyan); user-select: none; }
 
-/* Assistant turns: full-width, avatar + model tag header, optional
- * per-turn stats footer (the LM Studio pattern). */
+/* Assistant turns: full-width, avatar + model tag header, per-turn
+ * stats footer (the LM Studio pattern) and regen/copy actions. */
 .tw-msg-assistant {
   align-self: stretch;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  max-width: 78ch;
 }
 .tw-msg-head {
   display: flex;
@@ -348,9 +532,9 @@
 .tw-msg-modeltag {
   color: var(--tw-accent);
   letter-spacing: 0.02em;
+  margin-right: auto;
 }
-.tw-msg-copy {
-  margin-left: auto;
+.tw-msg-act {
   background: transparent;
   border: 1px solid transparent;
   color: var(--tw-very-dim);
@@ -361,7 +545,7 @@
   cursor: pointer;
   transition: color 120ms, border-color 120ms;
 }
-.tw-msg-copy:hover {
+.tw-msg-act:hover {
   color: var(--tw-accent);
   border-color: var(--tw-accent);
 }
@@ -479,7 +663,7 @@
   grid-template-columns: auto 1fr auto;
   gap: 8px;
   align-items: end;
-  padding-top: 8px;
+  padding: 10px 12px;
   border-top: 1px dashed var(--border);
 }
 .tw-chat-promptlabel {
@@ -528,12 +712,22 @@
   border-color: var(--tw-tl-red);
 }
 
-/* Unsupported-browser panel. */
+/* Unsupported-browser panel (shown instead of the app). */
+.tw-unsupported {
+  background: var(--code-block-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--tw-radius);
+  margin: 12px 0 24px;
+  padding: 16px;
+  font-family: var(--tw-font-mono);
+  font-size: 13px;
+}
 .tw-unsupported .tw-bootline { padding: 2px 0; }
 
-/* Body prose underneath the demo gets a clear visual gap. */
+/* Body prose underneath the app gets a clear visual gap. */
 .tw-try-body {
   margin-top: 24px;
+  max-width: 720px;
 }
 .tw-try-body h2 {
   color: var(--tw-accent);
@@ -548,22 +742,51 @@
   opacity: 0.6;
 }
 
-/* ─── Mobile tweaks ────────────────────────────────── */
-@media (max-width: 640px) {
-  .tw-demo { padding: 12px; font-size: 13px; }
-  .tw-chat-area { height: 360px; padding: 10px; }
+/* ─── Mobile: off-canvas sidebar + tighter chrome ──── */
+@media (max-width: 768px) {
+  .tw-app {
+    font-size: 13px;
+    height: calc(100vh - 190px);
+    height: calc(100dvh - 190px);
+    min-height: 430px;
+  }
+  .tw-try-tag { display: none; }
+  .tw-tryapp .post-title { font-size: 1.1em; }
+
+  .tw-side {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 240px;
+    z-index: 5;
+    transform: translateX(-105%);
+    transition: transform 180ms ease-out;
+    border-right: 1px solid var(--border);
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.3);
+  }
+  .tw-side.tw-side-open { transform: none; }
+  .tw-side-togglebtn { display: inline-block; }
+
+  .tw-chat-area { padding: 10px; }
   .tw-msg-user { max-width: 92%; }
-  .tw-chat-form { grid-template-columns: 1fr auto; }
+  .tw-chat-form { grid-template-columns: 1fr auto; padding: 8px 10px; }
   .tw-chat-promptlabel { display: none; }
-  .tw-chat-clear { margin-left: 0; }
+
+  .tw-settings { grid-template-columns: 1fr 1fr; }
+  .tw-set-system { grid-column: 1 / -1; }
+
   /* Meta row gets cramped — shrink the dropdown so model name + status pill
-   * + clear button all wrap cleanly without overflowing horizontally. */
+   * + cfg button all wrap cleanly without overflowing horizontally. */
   .tw-meta-select { font-size: 11.5px; padding: 2px 20px 2px 6px; }
-  .tw-chat-meta { gap: 4px; font-size: 11.5px; }
+  .tw-chat-meta { gap: 4px; font-size: 11.5px; padding: 8px 10px; }
   .tw-empty-title { font-size: 14px; }
 }
-@media (max-width: 400px) {
-  .tw-chat-area { height: 320px; }
+@media (min-width: 769px) {
+  /* Desktop: the sidebar is always in-flow; neutralise any leftover
+   * open/backdrop state from a resize while the drawer was open. */
+  .tw-side { transform: none !important; }
+  .tw-side-backdrop { display: none !important; }
 }
 
 /* ─── iOS focus-zoom fix ───────────────────────────── */
@@ -575,4 +798,5 @@
 @supports (-webkit-touch-callout: none) {
   .tw-chat-input  { font-size: 16px; }
   .tw-meta-select { font-size: 16px; }
+  .tw-set-input   { font-size: 16px; }
 }

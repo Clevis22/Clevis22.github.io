@@ -20,7 +20,9 @@ You get to pick from four open instruction-tuned models. All four are 4-bit quan
 | Llama-3.2-1B-Instruct | 1B | ~670 MB | Meta's smallest Llama 3.2. Noticeably smarter. |
 | Qwen2.5-1.5B-Instruct | 1.5B | ~840 MB | Best quality on this page; biggest download. |
 
-Picking from the dropdown above the chat tells the demo which model to load. Typing a message and hitting send before any model is loaded triggers a load of whichever one is currently selected; your message queues and auto-sends as soon as the model is ready. To switch models later, just change the dropdown. The current engine unloads, the new one streams in, and the conversation resets because the new model has its own context.
+Picking from the dropdown above the chat tells the demo which model to load. Typing a message and hitting send before any model is loaded triggers a load of whichever one is currently selected; your message queues and auto-sends as soon as the model is ready. To switch models later, just change the dropdown. The current engine unloads, the new one streams in, and your conversation carries over, since the full history is replayed to whichever model answers next.
+
+Conversations live in the sidebar and are saved to your browser's localStorage, so they survive a page reload but never leave your machine. The `$ cfg` button exposes the system prompt, temperature, and max-tokens settings if you want to poke at generation behaviour directly.
 
 None of these are smart models. A sub-2B parameter chat model is not going to beat foundation models at anything. The point is not capability; the point is that *this works at all*, that you can have a conversation with a real instruction-tuned LLM with zero install and zero network calls after the initial weight download.
 

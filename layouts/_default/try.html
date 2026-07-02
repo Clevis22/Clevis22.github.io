@@ -1,47 +1,65 @@
 {{- /*
-  try.html — layout for the in-browser LLM demo page.
+  try.html — full chat webapp for the in-browser LLM demo page.
 
-  Single always-visible chat surface styled after mainstream chat UIs
-  (right-aligned user bubbles, full-width assistant replies, centered
-  empty state with suggestion prompts, stop-while-generating) but kept
-  in the site's terminal idiom. The boot log + progress bar render
-  inline in the chat area and only display while a model is loading.
+  ChatGPT/OpenWebUI-style application shell in the site's terminal
+  idiom: a sidebar of conversations (persisted to localStorage — the
+  "nothing leaves your browser" thesis applies to chat history too), a
+  main pane with model picker + status, a settings panel (system
+  prompt / temperature / max tokens), per-turn stats, regenerate, stop,
+  markdown-lite rendering, and an off-canvas sidebar on mobile.
 
-  State machine driven by the inline <script type="module">:
+  Engine state machine (inline <script type="module">):
     INIT       → no engine, dropdown picks what to load
     LOADING    → weights streaming / kernels compiling
     IDLE       → model resident, ready to chat
     GENERATING → currently streaming a response
 
-  Submitting a prompt while INIT triggers the model load and queues the
-  prompt so it auto-sends as soon as the model is ready. Changing the
-  model dropdown while IDLE triggers an in-place engine swap. While
+  Submitting while INIT loads the model and queues the prompt; the
+  queue is flushed inside loadModel on success. Changing the dropdown
+  while IDLE swaps the engine in place and keeps the conversation (the
+  full history is replayed to whichever model answers next). While
   GENERATING the send button becomes a stop button (interruptGenerate).
+
+  Storage:
+    tw-try-chats-v1    {active, chats:[{id,title,model,t,messages}]}
+    tw-try-settings-v1 {system, temperature, maxTokens}
 */ -}}
 
 {{- define "main" -}}
 
-<article class="post-single tw-try">
-
-  <a class="tw-back" href="{{ .Site.BaseURL }}">← cd ..</a>
+<article class="post-single tw-try tw-tryapp">
 
   <div class="tw-prompt" aria-label="terminal prompt">
     <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">./run-llm-in-browser.sh</span>
   </div>
 
-  <div class="tw-try-tag" aria-hidden="true">[ live · in-browser · webgpu · pick-your-model ]</div>
+  <div class="tw-try-tag" aria-hidden="true">[ live · in-browser · webgpu · chats stay on your device ]</div>
 
   <header class="post-header">
     <h1 class="post-title">{{ .Title }}</h1>
   </header>
 
-  <!-- ─────────────────  DEMO CONTAINER  ───────────────── -->
-  <section class="tw-demo" aria-label="In-browser LLM demo">
+  <!-- ─────────────────  APP SHELL  ───────────────── -->
+  <section class="tw-app" id="tw-app" aria-label="In-browser LLM chat app">
 
-    <div class="tw-chat" id="tw-chat">
+    <!-- Sidebar: new chat + conversation list. Off-canvas on mobile. -->
+    <aside class="tw-side" id="tw-side">
+      <button type="button" class="tw-newchat" id="tw-newchat">
+        <span class="tw-prompt-dollar">$</span> new chat
+      </button>
+      <nav class="tw-chatlist" id="tw-chatlist" aria-label="Conversations"></nav>
+      <div class="tw-side-foot">
+        <a href="{{ .Site.BaseURL }}">← back to the blog</a>
+      </div>
+    </aside>
+    <div class="tw-side-backdrop" id="tw-side-backdrop" hidden></div>
 
-      <!-- Meta row: mascot · model dropdown · status · clear -->
+    <!-- Main pane -->
+    <div class="tw-main">
+
+      <!-- Header row: hamburger · mascot · model dropdown · status · cfg -->
       <div class="tw-chat-meta" id="tw-chat-meta">
+        <button type="button" class="tw-side-togglebtn" id="tw-side-toggle" aria-label="Toggle conversation list">☰</button>
         <img class="tw-mascot-mark" src="{{ "mascot-transparent.svg" | absURL }}" alt="" width="20" height="20" aria-hidden="true">
         <span class="tw-chat-meta-label">model:</span>
         <select class="tw-meta-select" id="tw-model-select" aria-label="Pick the model to load">
@@ -55,14 +73,28 @@
           <span class="tw-chat-status-dot" aria-hidden="true"></span>
           <span class="tw-chat-status-label" id="tw-chat-status-label">not loaded</span>
         </span>
-        <button type="button" class="tw-chat-clear" id="tw-chat-clear" disabled title="Start a new conversation. History is not saved.">
-          <span class="tw-prompt-dollar">$</span> clear
+        <button type="button" class="tw-hdr-btn" id="tw-settings-btn" title="Generation settings" aria-expanded="false">
+          <span class="tw-prompt-dollar">$</span> cfg
         </button>
       </div>
 
-      <!-- Fixed-height content slot. Holds (one of) the boot log, the
-           empty-state greeting, or the message stream; switches between
-           them without changing the demo's outer dimensions. -->
+      <!-- Settings panel (collapsed by default). -->
+      <div class="tw-settings" id="tw-settings" hidden>
+        <label class="tw-set-field tw-set-system">
+          <span class="tw-set-label">system prompt</span>
+          <textarea class="tw-set-input" id="tw-set-system" rows="2"></textarea>
+        </label>
+        <label class="tw-set-field">
+          <span class="tw-set-label">temperature</span>
+          <input class="tw-set-input" id="tw-set-temp" type="number" min="0" max="2" step="0.1">
+        </label>
+        <label class="tw-set-field">
+          <span class="tw-set-label">max tokens</span>
+          <input class="tw-set-input" id="tw-set-maxtok" type="number" min="64" max="1024" step="32">
+        </label>
+      </div>
+
+      <!-- Scrollable content slot: boot log, empty state, or messages. -->
       <div class="tw-chat-areawrap">
         <div class="tw-chat-area" id="tw-chat-area">
           <div class="tw-bootlog" id="tw-bootlog" role="log" aria-live="polite" hidden>
@@ -75,13 +107,11 @@
             </div>
           </div>
 
-          <!-- Centered empty state with suggestion prompts; clicking one
-               sends it immediately (loading the model first if needed). -->
           <div class="tw-empty" id="tw-empty">
             <img class="tw-empty-mascot" src="{{ "mascot-transparent.svg" | absURL }}" alt="" width="44" height="44" aria-hidden="true">
             <div class="tw-empty-title">chat with a model running in this tab</div>
             <div class="tw-empty-sub">
-              <span class="tw-prompt-dollar">$</span> nothing loaded yet — send a message and the selected model streams in, weights cache after the first download. prompts never leave this tab.
+              <span class="tw-prompt-dollar">$</span> send a message and the selected model streams in; weights cache after the first download. chats save to this browser only.
             </div>
             <div class="tw-chat-suggest" id="tw-chat-suggest">
               <button type="button" class="tw-chat-suggest-btn" data-prompt="Write a haiku about running language models on a Raspberry Pi.">haiku about a pi running llms</button>
@@ -104,17 +134,17 @@
           placeholder="type a message — enter to send, shift+enter for newline…"></textarea>
         <button type="submit" class="tw-chat-send" id="tw-chat-send">send</button>
       </form>
-    </div>
 
-    <!-- Unsupported-browser fallback. -->
-    <div class="tw-unsupported" id="tw-unsupported" hidden>
-      <div class="tw-bootline tw-boot-err">[ ERR ] WebGPU is not available in this browser.</div>
-      <div class="tw-bootline">[ INFO ] this demo needs WebGPU to run the model on your GPU.</div>
-      <div class="tw-bootline">[ INFO ] supported: chrome/edge 113+, safari 18+, firefox (with flag).</div>
-      <div class="tw-bootline">[ INFO ] try opening this page in a different browser, or read about <a class="tw-link" href="/posts/">local-model deployment</a> instead.</div>
     </div>
-
   </section>
+
+  <!-- Unsupported-browser fallback. -->
+  <div class="tw-unsupported" id="tw-unsupported" hidden>
+    <div class="tw-bootline tw-boot-err">[ ERR ] WebGPU is not available in this browser.</div>
+    <div class="tw-bootline">[ INFO ] this demo needs WebGPU to run the model on your GPU.</div>
+    <div class="tw-bootline">[ INFO ] supported: chrome/edge 113+, safari 18+, firefox (with flag).</div>
+    <div class="tw-bootline">[ INFO ] try opening this page in a different browser, or read about <a class="tw-link" href="/posts/">local-model deployment</a> instead.</div>
+  </div>
 
   <!-- ─────────────────  EXPLANATION PROSE  ───────────────── -->
   <div class="post-content entry-content tw-try-body">
@@ -130,10 +160,20 @@
 </article>
 
 <script type="module">
-  // ─── Runtime: WebLLM engine + state machine ──────────────────────
+  // ─── Runtime: WebLLM engine + chat store + state machine ──────────
   const $ = (id) => document.getElementById(id);
 
-  const chat         = $('tw-chat');
+  const app          = $('tw-app');
+  const side         = $('tw-side');
+  const sideToggle   = $('tw-side-toggle');
+  const sideBackdrop = $('tw-side-backdrop');
+  const chatListEl   = $('tw-chatlist');
+  const newChatBtn   = $('tw-newchat');
+  const settingsBtn  = $('tw-settings-btn');
+  const settingsEl   = $('tw-settings');
+  const sysInput     = $('tw-set-system');
+  const tempInput    = $('tw-set-temp');
+  const maxtokInput  = $('tw-set-maxtok');
   const chatArea     = $('tw-chat-area');
   const bootlog      = $('tw-bootlog');
   const progressWrap = $('tw-progress-wrap');
@@ -148,7 +188,6 @@
   const statusEl     = $('tw-chat-status');
   const statusLabel  = $('tw-chat-status-label');
   const modelSelect  = $('tw-model-select');
-  const clearBtn     = $('tw-chat-clear');
   const scrollBtn    = $('tw-scrolldown');
   const unsupported  = $('tw-unsupported');
 
@@ -174,21 +213,47 @@
                        f32: 'Qwen2.5-1.5B-Instruct-q4f32_1-MLC' },
   };
 
-  // ── State ────────────────────────────────────────────────────────
-  // INIT → no engine. LOADING → fetching/compiling. IDLE → ready.
-  // GENERATING → streaming a response. All UI toggles go through setState.
+  // ── Settings (persisted globally) ─────────────────────────────────
+  const SETTINGS_KEY = 'tw-try-settings-v1';
+  const DEFAULT_SYSTEM =
+    "You are a small, friendly assistant running locally in the user's browser via WebGPU. " +
+    'Keep answers concise.';
+  let settings = { system: DEFAULT_SYSTEM, temperature: 0.7, maxTokens: 400 };
+  try {
+    const s = JSON.parse(localStorage.getItem(SETTINGS_KEY) || 'null');
+    if (s && typeof s === 'object') settings = { ...settings, ...s };
+  } catch { /* private mode / disabled storage: run with defaults */ }
+  const saveSettings = () => {
+    try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch {}
+  };
+
+  // ── Conversation store (persisted, newest first) ──────────────────
+  const STORE_KEY = 'tw-try-chats-v1';
+  const MAX_CHATS = 40;
+  let chats = [];
+  let activeId = null;
+  try {
+    const s = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+    if (s && Array.isArray(s.chats)) {
+      chats = s.chats.filter((c) => c && c.id && Array.isArray(c.messages));
+      activeId = s.active && chats.some((c) => c.id === s.active) ? s.active : (chats[0]?.id ?? null);
+    }
+  } catch { /* corrupted or unavailable storage: start fresh in memory */ }
+  const persist = () => {
+    if (chats.length > MAX_CHATS) chats.length = MAX_CHATS;
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({ active: activeId, chats })); } catch {}
+  };
+  const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  const activeChat = () => chats.find((c) => c.id === activeId) || null;
+
+  // ── Engine state ──────────────────────────────────────────────────
   let state         = 'INIT';
   let engine        = null;
   let webllm        = null;          // lazy-imported once on first load
   let hasShaderF16  = false;         // probed once on first load
   let currentSlug   = null;          // which dropdown key is currently loaded
-  let pendingPrompt = null;          // queued user message to auto-send after load
+  let pendingPrompt = null;          // queued user message; flushed by loadModel
   let interrupted   = false;         // user hit stop during the current turn
-
-  const SYSTEM_PROMPT =
-    "You are a small, friendly assistant running locally in the user's browser via WebGPU. " +
-    "Keep answers concise. You are a sub-2B-parameter open model; the user picked which one from a dropdown.";
-  const messages = [{ role: 'system', content: SYSTEM_PROMPT }];
 
   const SPINNER = ['⠋','⠙','⠹','⠸','⠼','⠴','⠦','⠧','⠇','⠏'];
   const DOTS    = ['', '.', '..', '...'];
@@ -205,14 +270,17 @@
 
   const setState = (next) => {
     state = next;
+    const busy = (state === 'LOADING' || state === 'GENERATING');
     const generating = (state === 'GENERATING');
-    // Dropdown: lockable; clear: only sensible when IDLE. The send button
-    // doubles as a stop button while GENERATING, so it stays enabled; the
-    // input stays enabled too so the next message can be typed early.
-    modelSelect.disabled = (state === 'LOADING' || generating);
-    clearBtn.disabled    = (state !== 'IDLE');
+    // Dropdown locks while busy. The send button doubles as a stop button
+    // while GENERATING, so it stays enabled; the input stays enabled too so
+    // the next message can be typed early. Sidebar actions (switch/new/
+    // delete) pause while busy — the stream is bound to the visible DOM.
+    modelSelect.disabled = busy;
     chatSend.textContent = generating ? 'stop' : 'send';
     chatSend.classList.toggle('tw-chat-send-stop', generating);
+    side.classList.toggle('tw-side-busy', busy);
+    newChatBtn.disabled = busy;
   };
 
   // ── Scrolling ─────────────────────────────────────────────────────
@@ -231,7 +299,7 @@
   };
   scrollBtn.addEventListener('click', () => scrollToEnd(true));
 
-  // ── Helpers ───────────────────────────────────────────────────────
+  // ── Boot log ──────────────────────────────────────────────────────
   const appendBootLine = (text, cls = '') => {
     const div = document.createElement('div');
     div.className = 'tw-bootline ' + cls;
@@ -305,7 +373,7 @@
     });
   };
 
-  // ── Message construction ──────────────────────────────────────────
+  // ── Message DOM construction ──────────────────────────────────────
   const addUserMessage = (text) => {
     empty.hidden = true;
     const wrap = document.createElement('div');
@@ -324,7 +392,7 @@
     scrollToEnd(true);
   };
 
-  const addAssistantMessage = () => {
+  const addAssistantMessage = (modelSlug) => {
     empty.hidden = true;
     const wrap = document.createElement('div');
     wrap.className = 'tw-msg tw-msg-assistant';
@@ -339,16 +407,22 @@
     avatar.height = 16;
     const tag = document.createElement('span');
     tag.className = 'tw-msg-modeltag';
-    tag.textContent = 'model · ' + (currentSlug || '?');
+    tag.textContent = 'model · ' + (modelSlug || currentSlug || '?');
+    const regenBtn = document.createElement('button');
+    regenBtn.type = 'button';
+    regenBtn.className = 'tw-msg-act tw-msg-regen';
+    regenBtn.textContent = 'regen';
+    regenBtn.title = 'Regenerate this response';
+    regenBtn.hidden = true;
     const copyBtn = document.createElement('button');
     copyBtn.type = 'button';
-    copyBtn.className = 'tw-msg-copy';
+    copyBtn.className = 'tw-msg-act tw-msg-copy';
     copyBtn.textContent = 'copy';
     copyBtn.title = 'Copy the raw response';
-    head.append(avatar, tag, copyBtn);
+    head.append(avatar, tag, regenBtn, copyBtn);
 
     const body = document.createElement('div');
-    body.className = 'tw-msg-body tw-msg-streaming';
+    body.className = 'tw-msg-body';
 
     const stats = document.createElement('div');
     stats.className = 'tw-msg-stats';
@@ -366,13 +440,157 @@
         setTimeout(() => { copyBtn.textContent = 'copy'; }, 1200);
       } catch { /* clipboard unavailable; leave the label alone */ }
     });
+    regenBtn.addEventListener('click', () => regenerate());
 
-    return { body, stats, ref };
+    return { wrap, body, stats, ref };
   };
+
+  // Only the conversation-final assistant message can be regenerated.
+  const refreshRegen = () => {
+    const regens = chatStream.querySelectorAll('.tw-msg-regen');
+    regens.forEach((b) => { b.hidden = true; });
+    const c = activeChat();
+    if (!c || !c.messages.length) return;
+    if (c.messages[c.messages.length - 1].role !== 'assistant') return;
+    if (regens.length) regens[regens.length - 1].hidden = false;
+  };
+
+  // ── Sidebar: conversation list ────────────────────────────────────
+  const renderChatList = () => {
+    chatListEl.textContent = '';
+    for (const c of chats) {
+      const item = document.createElement('div');
+      item.className = 'tw-chatitem' + (c.id === activeId ? ' tw-chatitem-active' : '');
+
+      const main = document.createElement('button');
+      main.type = 'button';
+      main.className = 'tw-chatitem-main';
+      const title = document.createElement('div');
+      title.className = 'tw-chatitem-title';
+      title.textContent = c.title || 'untitled';
+      const sub = document.createElement('div');
+      sub.className = 'tw-chatitem-sub';
+      sub.textContent = c.model || '';
+      main.append(title, sub);
+      main.addEventListener('click', () => selectChat(c.id));
+
+      const del = document.createElement('button');
+      del.type = 'button';
+      del.className = 'tw-chatitem-del';
+      del.textContent = '×';
+      del.title = 'Delete this conversation';
+      del.setAttribute('aria-label', 'Delete conversation: ' + (c.title || 'untitled'));
+      del.addEventListener('click', (e) => {
+        e.stopPropagation();
+        deleteChat(c.id);
+      });
+
+      item.append(main, del);
+      chatListEl.append(item);
+    }
+  };
+
+  // Rebuild the message stream from a stored conversation.
+  const renderConversation = () => {
+    chatStream.innerHTML = '';
+    const c = activeChat();
+    if (!c || !c.messages.length) {
+      empty.hidden = false;
+      refreshRegen();
+      return;
+    }
+    empty.hidden = true;
+    for (const msg of c.messages) {
+      if (msg.role === 'user') {
+        addUserMessage(msg.content);
+      } else {
+        const { body, stats, ref } = addAssistantMessage(c.model);
+        ref.text = msg.content;
+        renderMarkdown(body, msg.content);
+        if (msg.stats) { stats.textContent = msg.stats; stats.hidden = false; }
+      }
+    }
+    refreshRegen();
+    scrollToEnd(true);
+  };
+
+  const ensureChat = () => {
+    let c = activeChat();
+    if (!c) {
+      c = { id: uid(), title: '', model: modelSelect.value, t: Date.now(), messages: [] };
+      chats.unshift(c);
+      activeId = c.id;
+      renderChatList();
+    }
+    return c;
+  };
+
+  const selectChat = (id) => {
+    if (state === 'LOADING' || state === 'GENERATING') return;
+    if (id === activeId) { closeSide(); return; }
+    activeId = id;
+    persist();
+    renderChatList();
+    renderConversation();
+    closeSide();
+    chatInput.focus();
+  };
+
+  const newChat = () => {
+    if (state === 'LOADING' || state === 'GENERATING') return;
+    const c = activeChat();
+    if (c && !c.messages.length) { closeSide(); chatInput.focus(); return; }  // reuse the empty one
+    activeId = null;
+    ensureChat();
+    persist();
+    renderChatList();
+    renderConversation();
+    closeSide();
+    chatInput.focus();
+  };
+
+  const deleteChat = (id) => {
+    if ((state === 'LOADING' || state === 'GENERATING') && id === activeId) return;
+    const wasActive = (id === activeId);
+    chats = chats.filter((c) => c.id !== id);
+    if (wasActive) activeId = chats[0]?.id ?? null;
+    persist();
+    renderChatList();
+    if (wasActive) renderConversation();
+  };
+
+  // ── Mobile sidebar ────────────────────────────────────────────────
+  const openSide  = () => { side.classList.add('tw-side-open'); sideBackdrop.hidden = false; };
+  const closeSide = () => { side.classList.remove('tw-side-open'); sideBackdrop.hidden = true; };
+  sideToggle.addEventListener('click', () => {
+    side.classList.contains('tw-side-open') ? closeSide() : openSide();
+  });
+  sideBackdrop.addEventListener('click', closeSide);
+
+  // ── Settings panel ────────────────────────────────────────────────
+  sysInput.value    = settings.system;
+  tempInput.value   = settings.temperature;
+  maxtokInput.value = settings.maxTokens;
+  settingsBtn.addEventListener('click', () => {
+    settingsEl.hidden = !settingsEl.hidden;
+    settingsBtn.setAttribute('aria-expanded', String(!settingsEl.hidden));
+  });
+  sysInput.addEventListener('input', () => {
+    settings.system = sysInput.value;
+    saveSettings();
+  });
+  tempInput.addEventListener('input', () => {
+    const v = parseFloat(tempInput.value);
+    if (!Number.isNaN(v)) { settings.temperature = Math.min(2, Math.max(0, v)); saveSettings(); }
+  });
+  maxtokInput.addEventListener('input', () => {
+    const v = parseInt(maxtokInput.value, 10);
+    if (!Number.isNaN(v)) { settings.maxTokens = Math.min(1024, Math.max(64, v)); saveSettings(); }
+  });
 
   // ── WebGPU support check ──────────────────────────────────────────
   if (!('gpu' in navigator)) {
-    chat.hidden = true;
+    app.hidden = true;
     unsupported.hidden = false;
   }
 
@@ -395,9 +613,20 @@
     appendBootLine('[ OK    ] runtime loaded');
   };
 
+  // On load failure, put a queued prompt back in the input so it isn't lost.
+  const restorePending = () => {
+    if (pendingPrompt) {
+      chatInput.value = pendingPrompt;
+      pendingPrompt = null;
+      autosize();
+    }
+    const c = activeChat();
+    if (!c || !c.messages.length) empty.hidden = false;
+  };
+
   // ── Load (or swap) a model ────────────────────────────────────────
   const loadModel = async (slug) => {
-    if (state === 'LOADING') return;
+    if (state === 'LOADING') return false;
     const choice = MODELS[slug] || MODELS['qwen2.5-0.5b'];
     setState('LOADING');
     setStatus('loading', 'loading ' + slug);
@@ -412,6 +641,7 @@
       appendBootLine('[ ERR   ] could not load WebLLM runtime: ' + (err.message || err), 'tw-boot-err');
       setStatus('error', 'load failed');
       setState('INIT');
+      restorePending();
       return false;
     }
 
@@ -458,7 +688,19 @@
         setState('IDLE');
 
         // Briefly leave the READY line up, then hide the boot panel.
-        setTimeout(() => { bootlog.hidden = true; chatInput.focus(); }, 600);
+        setTimeout(() => {
+          bootlog.hidden = true;
+          const c = activeChat();
+          if (!c || !c.messages.length) empty.hidden = false;
+          chatInput.focus();
+        }, 600);
+
+        // Flush a prompt queued while INIT or LOADING.
+        if (pendingPrompt) {
+          const queued = pendingPrompt;
+          pendingPrompt = null;
+          await sendMessage(queued);
+        }
         return true;
       } catch (err) {
         console.error(err);
@@ -475,19 +717,19 @@
     appendBootLine('[ INFO  ] try a smaller model from the dropdown, update GPU drivers, or read about local-model deployment in the posts below.', 'tw-boot-err');
     setStatus('error', 'load failed');
     setState('INIT');
+    restorePending();
     return false;
   };
 
-  // ── Run one chat turn ─────────────────────────────────────────────
-  const sendMessage = async (text) => {
-    if (!engine || state !== 'IDLE') return;
+  // ── Run one generation over the active conversation ──────────────
+  const generate = async () => {
+    const c = activeChat();
+    if (!engine || !c || state !== 'IDLE') return;
     setState('GENERATING');
     interrupted = false;
 
-    addUserMessage(text);
-    messages.push({ role: 'user', content: text });
-
-    const { body: target, stats, ref } = addAssistantMessage();
+    const { body: target, stats, ref } = addAssistantMessage(currentSlug);
+    target.classList.add('tw-msg-streaming');
 
     // Pre-first-token "thinking" indicator inside the empty body.
     const thinking = document.createElement('span');
@@ -518,8 +760,15 @@
     let acc = '';
 
     try {
+      const sendList = [
+        { role: 'system', content: (settings.system || '').trim() || DEFAULT_SYSTEM },
+        ...c.messages.map((m) => ({ role: m.role, content: m.content })),
+      ];
       const stream = await engine.chat.completions.create({
-        messages, stream: true, temperature: 0.7, max_tokens: 400,
+        messages: sendList,
+        stream: true,
+        temperature: settings.temperature,
+        max_tokens: settings.maxTokens,
       });
       for await (const chunk of stream) {
         const delta = chunk.choices?.[0]?.delta?.content || '';
@@ -536,15 +785,20 @@
         renderMarkdown(target, acc);
         scrollToEnd();
       }
-      messages.push({ role: 'assistant', content: acc });
 
       const dt = (performance.now() - (firstTokenAt ?? t0)) / 1000;
       const tps = dt > 0 ? (tokenCount / dt).toFixed(1) : '—';
-      stats.textContent =
+      const statsText =
         (interrupted ? '[stopped] · ' : '')
         + (ttft !== null ? 'first-token ' + ttft.toFixed(2) + 's · ' : '')
         + tps + ' tok/s · ' + tokenCount + ' tok';
+      stats.textContent = statsText;
       stats.hidden = false;
+
+      c.messages.push({ role: 'assistant', content: acc, stats: statsText });
+      c.model = currentSlug;
+      persist();
+      renderChatList();   // model sub-line may have changed
     } catch (err) {
       console.error(err);
       target.textContent = '[ERR] ' + (err.message || String(err));
@@ -554,9 +808,35 @@
       target.classList.remove('tw-msg-streaming');
       setStatus('idle', 'idle');
       setState('IDLE');
+      refreshRegen();
       scrollToEnd();
       chatInput.focus();
     }
+  };
+
+  const sendMessage = async (text) => {
+    if (!engine || state !== 'IDLE') return;
+    const c = ensureChat();
+    addUserMessage(text);
+    c.messages.push({ role: 'user', content: text });
+    if (!c.title) {
+      c.title = text.length > 48 ? text.slice(0, 48) + '…' : text;
+      renderChatList();
+    }
+    persist();
+    await generate();
+  };
+
+  const regenerate = async () => {
+    if (state !== 'IDLE' || !engine) return;
+    const c = activeChat();
+    if (!c || !c.messages.length) return;
+    if (c.messages[c.messages.length - 1].role !== 'assistant') return;
+    c.messages.pop();
+    persist();
+    const wraps = chatStream.querySelectorAll('.tw-msg-assistant');
+    if (wraps.length) wraps[wraps.length - 1].remove();
+    await generate();
   };
 
   // ── Form submit: INIT (auto-load), LOADING (queue), IDLE (send),
@@ -581,14 +861,9 @@
     if (!text) return;
 
     if (state === 'INIT') {
-      pendingPrompt = text;
+      pendingPrompt = text;      // flushed inside loadModel on success
       resetInput();
-      const ok = await loadModel(modelSelect.value);
-      if (ok && pendingPrompt) {
-        const queued = pendingPrompt;
-        pendingPrompt = null;
-        await sendMessage(queued);
-      }
+      await loadModel(modelSelect.value);
       return;
     }
     if (state === 'LOADING') {
@@ -619,19 +894,18 @@
   });
 
   // ── Model dropdown ────────────────────────────────────────────────
-  // INIT/LOADING: just updates which model loads next. IDLE: triggers an
-  // in-place engine swap and clears the conversation (model context changes).
+  // INIT: just changes which model loads on first send. IDLE: swaps the
+  // engine in place; the conversation is kept, because the full history
+  // is replayed to whichever model answers next.
   modelSelect.addEventListener('change', async () => {
     const slug = modelSelect.value;
-    if (state === 'INIT' || state === 'LOADING') return;
     if (state !== 'IDLE') return;
     if (slug === currentSlug) return;
-    // Reset conversation; new model has its own context window.
-    messages.length = 1;
-    chatStream.innerHTML = '';
-    empty.hidden = false;
     await loadModel(slug);
   });
+
+  // ── Sidebar actions ───────────────────────────────────────────────
+  newChatBtn.addEventListener('click', newChat);
 
   // ── Suggested-prompt chips: send immediately, like the big chat UIs ──
   document.querySelectorAll('.tw-chat-suggest-btn').forEach((btn) => {
@@ -642,20 +916,9 @@
     });
   });
 
-  // ── Clear / new-conversation ──────────────────────────────────────
-  clearBtn.addEventListener('click', async () => {
-    if (state !== 'IDLE') return;
-    messages.length = 1;
-    chatStream.innerHTML = '';
-    empty.hidden = false;
-    if (engine && typeof engine.resetChat === 'function') {
-      try { await engine.resetChat(); } catch (err) { console.warn('resetChat failed:', err); }
-    }
-    scrollToEnd(true);
-    chatInput.focus();
-  });
-
-  // Initial paint reflects the starting state.
+  // ── Initial paint ─────────────────────────────────────────────────
+  renderChatList();
+  renderConversation();
   setState('INIT');
   setStatus('init', 'not loaded');
   autosize();
