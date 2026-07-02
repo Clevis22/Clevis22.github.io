@@ -533,20 +533,20 @@
     renderChatList();
     renderConversation();
     closeSide();
-    chatInput.focus();
+    chatInput.focus({ preventScroll: true });
   };
 
   const newChat = () => {
     if (state === 'LOADING' || state === 'GENERATING') return;
     const c = activeChat();
-    if (c && !c.messages.length) { closeSide(); chatInput.focus(); return; }  // reuse the empty one
+    if (c && !c.messages.length) { closeSide(); chatInput.focus({ preventScroll: true }); return; }  // reuse the empty one
     activeId = null;
     ensureChat();
     persist();
     renderChatList();
     renderConversation();
     closeSide();
-    chatInput.focus();
+    chatInput.focus({ preventScroll: true });
   };
 
   const deleteChat = (id) => {
@@ -692,7 +692,7 @@
           bootlog.hidden = true;
           const c = activeChat();
           if (!c || !c.messages.length) empty.hidden = false;
-          chatInput.focus();
+          chatInput.focus({ preventScroll: true });
         }, 600);
 
         // Flush a prompt queued while INIT or LOADING.
@@ -810,7 +810,7 @@
       setState('IDLE');
       refreshRegen();
       scrollToEnd();
-      chatInput.focus();
+      chatInput.focus({ preventScroll: true });
     }
   };
 
@@ -884,6 +884,43 @@
     chatInput.style.height = Math.min(chatInput.scrollHeight, 140) + 'px';
   };
   chatInput.addEventListener('input', autosize);
+
+  // ── iOS keyboard scroll management ────────────────────────────────
+  // Safari always scrolls a focused field above the on-screen keyboard;
+  // there is no opt-out. So: pre-scroll to a spot Safari is already
+  // happy with (input in the upper third of the viewport), then restore
+  // the original scroll position once typing ends. Gated to coarse
+  // pointers so desktop never jumps.
+  const coarse = window.matchMedia('(pointer: coarse)').matches;
+  let preFocusY = null;
+  const typing = () => {
+    const el = document.activeElement;
+    return !!el && (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT' || el.tagName === 'SELECT');
+  };
+  chatInput.addEventListener('focus', () => {
+    if (!coarse) return;
+    if (preFocusY === null) preFocusY = window.scrollY;
+    const rect = chatInput.getBoundingClientRect();
+    window.scrollTo(0, window.scrollY + rect.top - window.innerHeight * 0.3);
+  });
+  document.addEventListener('focusout', () => {
+    if (!coarse) return;
+    setTimeout(() => {
+      if (typing() || preFocusY === null) return;
+      window.scrollTo(0, preFocusY);
+      preFocusY = null;
+    }, 80);
+  });
+  // The keyboard's dismiss button closes it without blurring the input;
+  // watch the visual viewport growing back to full height for that case.
+  window.visualViewport?.addEventListener('resize', () => {
+    if (!coarse || preFocusY === null) return;
+    if (window.visualViewport.height >= window.innerHeight - 60) {
+      window.scrollTo(0, preFocusY);
+      preFocusY = null;
+    }
+  });
+
   chatInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
