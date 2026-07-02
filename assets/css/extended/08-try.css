@@ -14,56 +14,29 @@
 .tw-try [hidden] { display: none !important; }
 
 .tw-try {
-  padding: 0;
-  margin: 0;
+  padding-top: 8px;
 }
 
-/* App takeover: the site nav stays, the app fills everything below it.
- * The body becomes a flex column sized to the viewport, so the header
- * keeps its natural height (it can wrap on narrow screens) and the app
- * gets the remainder — no hard-coded header math. :has() is safe here:
- * every browser with WebGPU also has :has(), and without WebGPU the
- * page shows only the fallback notice.
- * overscroll-behavior stops iOS rubber-banding the page when an inner
- * scroller hits its edge (body overflow:hidden alone is not enough on
- * iOS Safari). */
-body:has(.tw-tryapp) {
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
-  overscroll-behavior: none;
-  display: flex;
-  flex-direction: column;
-}
-body:has(.tw-tryapp) .footer,
-body:has(.tw-tryapp) .top-link { display: none; }
+/* Widen the page container for the app layout. PaperMod caps .main at
+ * --main-width (720px); a sidebar + chat pane needs more. :has() is safe
+ * here: every browser with WebGPU also has :has(), and without WebGPU the
+ * page shows only the fallback notice, where 720px is fine. */
 .main:has(.tw-tryapp) {
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-}
-.tw-tryapp {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
+  max-width: calc(1160px + var(--gap) * 2);
 }
 
-/* Visually hidden but present for search engines and screen readers. */
-.tw-sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+/* Compact page chrome above the app so the shell gets the viewport. */
+.tw-tryapp .post-header { margin: 6px 0 0; }
+.tw-tryapp .post-title  { font-size: 1.25em; margin-bottom: 10px; }
+
+/* Sub-title tag under the prompt — matches the [ INIT ]/[ OK ] style
+ * used in the boot log so the whole page reads as one continuous terminal. */
+.tw-try-tag {
+  margin: 12px 0 4px;
+  color: var(--tw-very-dim);
+  font-family: var(--tw-font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
 }
 
 /* ─── App shell ────────────────────────────────────── */
@@ -71,16 +44,19 @@ body:has(.tw-tryapp) .top-link { display: none; }
   display: flex;
   position: relative;
   background: var(--code-block-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--tw-radius);
   overflow: hidden;
-  margin: 0;
+  margin: 12px 0 24px;
   font-family: var(--tw-font-mono);
   font-size: 13.5px;
   line-height: 1.6;
   color: var(--secondary);
-  /* Fills whatever the body flex column leaves below the site nav. */
-  flex: 1;
-  min-height: 0;
-  border-top: 1px solid var(--border);
+  /* Fill the viewport below the site header + page chrome; dvh keeps the
+   * input above the iOS keyboard/URL bar. min-height guards short windows. */
+  height: calc(100vh - 250px);
+  height: calc(100dvh - 250px);
+  min-height: 460px;
 }
 
 /* ─── Sidebar ──────────────────────────────────────── */
@@ -91,21 +67,6 @@ body:has(.tw-tryapp) .top-link { display: none; }
   flex-direction: column;
   border-right: 1px dashed var(--border);
   background: var(--code-block-bg);
-}
-
-/* Brand row at the top of the sidebar — the page's only chrome now. */
-.tw-brand {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 12px 12px 4px;
-  font-size: 12.5px;
-  user-select: none;
-}
-.tw-brand-mark {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
 }
 .tw-side-busy .tw-chatlist,
 .tw-side-busy .tw-newchat {
@@ -138,8 +99,6 @@ body:has(.tw-tryapp) .top-link { display: none; }
   min-height: 0;
   overflow-y: auto;
   padding: 0 0 8px;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
 }
 
 .tw-chatitem {
@@ -196,10 +155,6 @@ body:has(.tw-tryapp) .top-link { display: none; }
 .tw-chatitem-del:hover { color: var(--tw-tl-red); }
 
 .tw-side-foot {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  align-items: flex-start;
   padding: 8px 12px;
   border-top: 1px dashed var(--border);
   font-size: 11.5px;
@@ -210,18 +165,6 @@ body:has(.tw-tryapp) .top-link { display: none; }
   transition: color 120ms;
 }
 .tw-side-foot a:hover { color: var(--tw-accent); }
-.tw-side-about {
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--tw-very-dim);
-  font-family: var(--tw-font-mono);
-  font-size: 11.5px;
-  cursor: pointer;
-  transition: color 120ms;
-}
-.tw-side-about:hover { color: var(--tw-accent); }
-.tw-side-about .tw-prompt-dollar { color: var(--tw-accent); margin-right: 3px; }
 
 /* Backdrop behind the off-canvas sidebar (mobile only). */
 .tw-side-backdrop {
@@ -385,14 +328,6 @@ body:has(.tw-tryapp) .top-link { display: none; }
   overflow-y: auto;
   padding: 14px;
   background: var(--code-bg);
-  /* Column flex so the empty state can center via flex:1 without the
-   * "centered content clips at the top" overflow bug. contain stops
-   * iOS chaining the scroll to the page at the edges; the -webkit
-   * property keeps momentum scrolling on older iOS. */
-  display: flex;
-  flex-direction: column;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
 }
 
 /* Reattach-to-stream button; visible only after the user scrolls up. */
@@ -422,7 +357,6 @@ body:has(.tw-tryapp) .top-link { display: none; }
   flex-direction: column;
   gap: 2px;
   font-size: 12.5px;
-  flex-shrink: 0;
 }
 
 .tw-bootline {
@@ -501,10 +435,7 @@ body:has(.tw-tryapp) .top-link { display: none; }
   justify-content: center;
   text-align: center;
   gap: 10px;
-  /* Grow to fill the chat area (centers the greeting); when content is
-   * taller than the area (small screens, keyboard open) the item keeps
-   * its natural height and the area scrolls instead of clipping. */
-  flex: 1;
+  height: 100%;
   padding: 0 16px;
 }
 .tw-empty-mascot {
@@ -557,7 +488,6 @@ body:has(.tw-tryapp) .top-link { display: none; }
   display: flex;
   flex-direction: column;
   gap: 16px;
-  flex-shrink: 0;
 }
 
 /* User turns: right-aligned bubble prefixed with the prompt dollar. */
@@ -756,7 +686,6 @@ body:has(.tw-tryapp) .top-link { display: none; }
   resize: none;
   overflow-y: auto;
   max-height: 140px;
-  overscroll-behavior: contain;
 }
 .tw-chat-input:focus { border-color: var(--tw-accent); }
 .tw-chat-input::placeholder { color: var(--tw-very-dim); }
@@ -788,43 +717,41 @@ body:has(.tw-tryapp) .top-link { display: none; }
   background: var(--code-block-bg);
   border: 1px solid var(--border);
   border-radius: var(--tw-radius);
-  margin: 16px;
+  margin: 12px 0 24px;
   padding: 16px;
   font-family: var(--tw-font-mono);
   font-size: 13px;
 }
 .tw-unsupported .tw-bootline { padding: 2px 0; }
 
-/* The "about this page" sys message: site prose cloned into the chat.
- * PaperMod's .post-content/.entry-content classes carry the typography;
- * these rules fit it to the chat scale and undo the stream's pre-wrap. */
-.tw-msg-about .tw-msg-body {
-  white-space: normal;
-  max-width: 72ch;
+/* Body prose underneath the app gets a clear visual gap. */
+.tw-try-body {
+  margin-top: 24px;
+  max-width: 720px;
 }
-.tw-msg-aboutbody {
-  font-size: 13.5px;
-  line-height: 1.65;
-}
-.tw-msg-aboutbody h2 {
+.tw-try-body h2 {
   color: var(--tw-accent);
   font-family: var(--tw-font-mono);
-  font-size: 1.1em;
-  margin: 20px 0 6px;
+  font-size: 1.15em;
+  margin-top: 28px;
+  margin-bottom: 8px;
 }
-.tw-msg-aboutbody p { margin: 8px 0; }
-.tw-msg-aboutbody ul { margin: 8px 0 8px 20px; }
-.tw-msg-aboutbody a { color: var(--tw-cyan); }
-.tw-msg-aboutbody table {
-  display: block;
-  overflow-x: auto;
-  font-size: 12.5px;
-  margin: 10px 0;
+.tw-try-body h2::before {
+  content: "## ";
+  color: var(--secondary);
+  opacity: 0.6;
 }
 
 /* ─── Mobile: off-canvas sidebar + tighter chrome ──── */
 @media (max-width: 768px) {
-  .tw-app { font-size: 13px; }
+  .tw-app {
+    font-size: 13px;
+    height: calc(100vh - 190px);
+    height: calc(100dvh - 190px);
+    min-height: 430px;
+  }
+  .tw-try-tag { display: none; }
+  .tw-tryapp .post-title { font-size: 1.1em; }
 
   .tw-side {
     position: absolute;

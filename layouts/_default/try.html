@@ -29,25 +29,26 @@
 
 <article class="post-single tw-try tw-tryapp">
 
-  <h1 class="tw-sr-only">{{ .Title }}</h1>
+  <div class="tw-prompt" aria-label="terminal prompt">
+    <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">./run-llm-in-browser.sh</span>
+  </div>
+
+  <div class="tw-try-tag" aria-hidden="true">[ live · in-browser · webgpu · chats stay on your device ]</div>
+
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+  </header>
 
   <!-- ─────────────────  APP SHELL  ───────────────── -->
   <section class="tw-app" id="tw-app" aria-label="In-browser LLM chat app">
 
     <!-- Sidebar: new chat + conversation list. Off-canvas on mobile. -->
     <aside class="tw-side" id="tw-side">
-      <div class="tw-brand" aria-hidden="true">
-        <img class="tw-brand-mark" src="{{ "mascot-transparent.svg" | absURL }}" alt="" width="18" height="18">
-        <span class="tw-prompt-user">tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/try</span>
-      </div>
       <button type="button" class="tw-newchat" id="tw-newchat">
         <span class="tw-prompt-dollar">$</span> new chat
       </button>
       <nav class="tw-chatlist" id="tw-chatlist" aria-label="Conversations"></nav>
       <div class="tw-side-foot">
-        <button type="button" class="tw-side-about" id="tw-about-btn">
-          <span class="tw-prompt-dollar">$</span> what is this?
-        </button>
         <a href="{{ .Site.BaseURL }}">← back to the blog</a>
       </div>
     </aside>
@@ -113,7 +114,6 @@
               <span class="tw-prompt-dollar">$</span> send a message and the selected model streams in; weights cache after the first download. chats save to this browser only.
             </div>
             <div class="tw-chat-suggest" id="tw-chat-suggest">
-              <button type="button" class="tw-chat-suggest-btn" data-action="about">what is this? (no download)</button>
               <button type="button" class="tw-chat-suggest-btn" data-prompt="Write a haiku about running language models on a Raspberry Pi.">haiku about a pi running llms</button>
               <button type="button" class="tw-chat-suggest-btn" data-prompt="Explain what quantization is to a software engineer who knows nothing about ML.">explain quantization</button>
               <button type="button" class="tw-chat-suggest-btn" data-prompt="What are the trade-offs of running a small model locally vs. calling a hosted API?">local vs api trade-offs</button>
@@ -146,13 +146,16 @@
     <div class="tw-bootline">[ INFO ] try opening this page in a different browser, or read about <a class="tw-link" href="/posts/">local-model deployment</a> instead.</div>
   </div>
 
-  <!-- Page explanation. Not rendered in the layout; the "what is this?"
-       action clones it into the chat stream as a sys message. -->
-  <template id="tw-about-tpl">
-    <div class="post-content entry-content tw-msg-aboutbody">
-      {{- .Content -}}
+  <!-- ─────────────────  EXPLANATION PROSE  ───────────────── -->
+  <div class="post-content entry-content tw-try-body">
+    {{- .Content -}}
+  </div>
+
+  <div class="tw-eof">
+    <div class="tw-prompt" aria-hidden="true">
+      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">cd ..</span><span class="tw-cursor">▊</span>
     </div>
-  </template>
+  </div>
 
 </article>
 
@@ -187,8 +190,6 @@
   const modelSelect  = $('tw-model-select');
   const scrollBtn    = $('tw-scrolldown');
   const unsupported  = $('tw-unsupported');
-  const aboutBtn     = $('tw-about-btn');
-  const aboutTpl     = $('tw-about-tpl');
 
   const MASCOT = '{{ "mascot-transparent.svg" | absURL }}';
 
@@ -442,52 +443,6 @@
     regenBtn.addEventListener('click', () => regenerate());
 
     return { wrap, body, stats, ref };
-  };
-
-  // ── "What is this?" — print the page explanation into the chat ────
-  // Ephemeral: not stored in the conversation, wiped by any re-render.
-  // The content is the site's own prose cloned from a <template>, so
-  // inserting it as DOM (not via the model-output renderer) is safe.
-  const showAbout = () => {
-    empty.hidden = true;
-    const wrap = document.createElement('div');
-    wrap.className = 'tw-msg tw-msg-assistant tw-msg-about';
-
-    const head = document.createElement('div');
-    head.className = 'tw-msg-head';
-    const avatar = document.createElement('img');
-    avatar.className = 'tw-msg-avatar';
-    avatar.src = MASCOT;
-    avatar.alt = '';
-    avatar.width = 16;
-    avatar.height = 16;
-    const tag = document.createElement('span');
-    tag.className = 'tw-msg-modeltag';
-    tag.textContent = 'sys · about this page';
-    const closeBtn = document.createElement('button');
-    closeBtn.type = 'button';
-    closeBtn.className = 'tw-msg-act';
-    closeBtn.textContent = 'close';
-    closeBtn.title = 'Dismiss';
-    head.append(avatar, tag, closeBtn);
-
-    const body = document.createElement('div');
-    body.className = 'tw-msg-body';
-    body.append(aboutTpl.content.cloneNode(true));
-
-    wrap.append(head, body);
-    chatStream.append(wrap);
-    closeSide();
-    // Long content: land the reader at its top, not the bottom.
-    stick = false;
-    wrap.scrollIntoView({ block: 'start' });
-    syncScrollBtn();
-
-    closeBtn.addEventListener('click', () => {
-      wrap.remove();
-      const c = activeChat();
-      if ((!c || !c.messages.length) && !chatStream.children.length) empty.hidden = false;
-    });
   };
 
   // Only the conversation-final assistant message can be regenerated.
@@ -929,18 +884,6 @@
     chatInput.style.height = Math.min(chatInput.scrollHeight, 140) + 'px';
   };
   chatInput.addEventListener('input', autosize);
-
-  // iOS: the on-screen keyboard pans the visual viewport and can leave
-  // the page stuck scrolled after it closes; snap back once nothing is
-  // being typed into. Harmless elsewhere (the page can't scroll anyway).
-  const typing = () => {
-    const el = document.activeElement;
-    return !!el && (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT' || el.tagName === 'SELECT');
-  };
-  const snapBack = () => { if (!typing()) window.scrollTo(0, 0); };
-  window.visualViewport?.addEventListener('resize', snapBack);
-  document.addEventListener('focusout', () => setTimeout(snapBack, 60));
-
   chatInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -967,14 +910,11 @@
   // ── Suggested-prompt chips: send immediately, like the big chat UIs ──
   document.querySelectorAll('.tw-chat-suggest-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-      if (btn.dataset.action === 'about') { showAbout(); return; }
       chatInput.value = btn.dataset.prompt;
       autosize();
       chatForm.requestSubmit();
     });
   });
-
-  aboutBtn.addEventListener('click', showAbout);
 
   // ── Initial paint ─────────────────────────────────────────────────
   renderChatList();
