@@ -14,29 +14,37 @@
 .tw-try [hidden] { display: none !important; }
 
 .tw-try {
-  padding-top: 8px;
+  padding: 0;
+  margin: 0;
 }
 
-/* Widen the page container for the app layout. PaperMod caps .main at
- * --main-width (720px); a sidebar + chat pane needs more. :has() is safe
- * here: every browser with WebGPU also has :has(), and without WebGPU the
- * page shows only the fallback notice, where 720px is fine. */
+/* Full-app takeover: on this page the app owns the whole viewport, like
+ * a standalone chat client. Site header/footer hide and the content
+ * container goes full-bleed. :has() is safe here: every browser with
+ * WebGPU also has :has(), and without WebGPU the page shows only the
+ * fallback notice, where the missing nav barely matters (the notice
+ * links back into the site). */
+body:has(.tw-tryapp) { overflow: hidden; }
+body:has(.tw-tryapp) .header,
+body:has(.tw-tryapp) .footer,
+body:has(.tw-tryapp) .top-link { display: none; }
 .main:has(.tw-tryapp) {
-  max-width: calc(1160px + var(--gap) * 2);
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/* Compact page chrome above the app so the shell gets the viewport. */
-.tw-tryapp .post-header { margin: 6px 0 0; }
-.tw-tryapp .post-title  { font-size: 1.25em; margin-bottom: 10px; }
-
-/* Sub-title tag under the prompt — matches the [ INIT ]/[ OK ] style
- * used in the boot log so the whole page reads as one continuous terminal. */
-.tw-try-tag {
-  margin: 12px 0 4px;
-  color: var(--tw-very-dim);
-  font-family: var(--tw-font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.02em;
+/* Visually hidden but present for search engines and screen readers. */
+.tw-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ─── App shell ────────────────────────────────────── */
@@ -44,19 +52,16 @@
   display: flex;
   position: relative;
   background: var(--code-block-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--tw-radius);
   overflow: hidden;
-  margin: 12px 0 24px;
+  margin: 0;
   font-family: var(--tw-font-mono);
   font-size: 13.5px;
   line-height: 1.6;
   color: var(--secondary);
-  /* Fill the viewport below the site header + page chrome; dvh keeps the
-   * input above the iOS keyboard/URL bar. min-height guards short windows. */
-  height: calc(100vh - 250px);
-  height: calc(100dvh - 250px);
-  min-height: 460px;
+  /* The whole viewport; dvh keeps the input above the iOS keyboard/URL
+   * bar on mobile, vh is the fallback for older engines. */
+  height: 100vh;
+  height: 100dvh;
 }
 
 /* ─── Sidebar ──────────────────────────────────────── */
@@ -67,6 +72,21 @@
   flex-direction: column;
   border-right: 1px dashed var(--border);
   background: var(--code-block-bg);
+}
+
+/* Brand row at the top of the sidebar — the page's only chrome now. */
+.tw-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 12px 4px;
+  font-size: 12.5px;
+  user-select: none;
+}
+.tw-brand-mark {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 .tw-side-busy .tw-chatlist,
 .tw-side-busy .tw-newchat {
@@ -155,6 +175,10 @@
 .tw-chatitem-del:hover { color: var(--tw-tl-red); }
 
 .tw-side-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
   padding: 8px 12px;
   border-top: 1px dashed var(--border);
   font-size: 11.5px;
@@ -165,6 +189,18 @@
   transition: color 120ms;
 }
 .tw-side-foot a:hover { color: var(--tw-accent); }
+.tw-side-about {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--tw-very-dim);
+  font-family: var(--tw-font-mono);
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: color 120ms;
+}
+.tw-side-about:hover { color: var(--tw-accent); }
+.tw-side-about .tw-prompt-dollar { color: var(--tw-accent); margin-right: 3px; }
 
 /* Backdrop behind the off-canvas sidebar (mobile only). */
 .tw-side-backdrop {
@@ -717,41 +753,43 @@
   background: var(--code-block-bg);
   border: 1px solid var(--border);
   border-radius: var(--tw-radius);
-  margin: 12px 0 24px;
+  margin: 16px;
   padding: 16px;
   font-family: var(--tw-font-mono);
   font-size: 13px;
 }
 .tw-unsupported .tw-bootline { padding: 2px 0; }
 
-/* Body prose underneath the app gets a clear visual gap. */
-.tw-try-body {
-  margin-top: 24px;
-  max-width: 720px;
+/* The "about this page" sys message: site prose cloned into the chat.
+ * PaperMod's .post-content/.entry-content classes carry the typography;
+ * these rules fit it to the chat scale and undo the stream's pre-wrap. */
+.tw-msg-about .tw-msg-body {
+  white-space: normal;
+  max-width: 72ch;
 }
-.tw-try-body h2 {
+.tw-msg-aboutbody {
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+.tw-msg-aboutbody h2 {
   color: var(--tw-accent);
   font-family: var(--tw-font-mono);
-  font-size: 1.15em;
-  margin-top: 28px;
-  margin-bottom: 8px;
+  font-size: 1.1em;
+  margin: 20px 0 6px;
 }
-.tw-try-body h2::before {
-  content: "## ";
-  color: var(--secondary);
-  opacity: 0.6;
+.tw-msg-aboutbody p { margin: 8px 0; }
+.tw-msg-aboutbody ul { margin: 8px 0 8px 20px; }
+.tw-msg-aboutbody a { color: var(--tw-cyan); }
+.tw-msg-aboutbody table {
+  display: block;
+  overflow-x: auto;
+  font-size: 12.5px;
+  margin: 10px 0;
 }
 
 /* ─── Mobile: off-canvas sidebar + tighter chrome ──── */
 @media (max-width: 768px) {
-  .tw-app {
-    font-size: 13px;
-    height: calc(100vh - 190px);
-    height: calc(100dvh - 190px);
-    min-height: 430px;
-  }
-  .tw-try-tag { display: none; }
-  .tw-tryapp .post-title { font-size: 1.1em; }
+  .tw-app { font-size: 13px; }
 
   .tw-side {
     position: absolute;
