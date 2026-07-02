@@ -393,20 +393,20 @@
     renderChatList();
     renderConversation();
     closeSide();
-    chatInput.focus();
+    chatInput.focus({ preventScroll: true });
   };
 
   const newChat = () => {
     if (state === 'LOADING' || state === 'GENERATING') return;
     const c = activeChat();
-    if (c && !c.messages.length) { closeSide(); chatInput.focus(); return; }  
+    if (c && !c.messages.length) { closeSide(); chatInput.focus({ preventScroll: true }); return; }  
     activeId = null;
     ensureChat();
     persist();
     renderChatList();
     renderConversation();
     closeSide();
-    chatInput.focus();
+    chatInput.focus({ preventScroll: true });
   };
 
   const deleteChat = (id) => {
@@ -552,7 +552,7 @@
           bootlog.hidden = true;
           const c = activeChat();
           if (!c || !c.messages.length) empty.hidden = false;
-          chatInput.focus();
+          chatInput.focus({ preventScroll: true });
         }, 600);
 
         
@@ -670,7 +670,7 @@
       setState('IDLE');
       refreshRegen();
       scrollToEnd();
-      chatInput.focus();
+      chatInput.focus({ preventScroll: true });
     }
   };
 
@@ -744,6 +744,43 @@
     chatInput.style.height = Math.min(chatInput.scrollHeight, 140) + 'px';
   };
   chatInput.addEventListener('input', autosize);
+
+  
+  
+  
+  
+  
+  
+  const coarse = window.matchMedia('(pointer: coarse)').matches;
+  let preFocusY = null;
+  const typing = () => {
+    const el = document.activeElement;
+    return !!el && (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT' || el.tagName === 'SELECT');
+  };
+  chatInput.addEventListener('focus', () => {
+    if (!coarse) return;
+    if (preFocusY === null) preFocusY = window.scrollY;
+    const rect = chatInput.getBoundingClientRect();
+    window.scrollTo(0, window.scrollY + rect.top - window.innerHeight * 0.3);
+  });
+  document.addEventListener('focusout', () => {
+    if (!coarse) return;
+    setTimeout(() => {
+      if (typing() || preFocusY === null) return;
+      window.scrollTo(0, preFocusY);
+      preFocusY = null;
+    }, 80);
+  });
+  
+  
+  window.visualViewport?.addEventListener('resize', () => {
+    if (!coarse || preFocusY === null) return;
+    if (window.visualViewport.height >= window.innerHeight - 60) {
+      window.scrollTo(0, preFocusY);
+      preFocusY = null;
+    }
+  });
+
   chatInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
