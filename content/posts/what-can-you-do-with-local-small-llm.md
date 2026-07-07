@@ -26,7 +26,7 @@ At the 3–4B parameter scale (Phi-4-mini, SmolLM3-3B, Gemma 3 4B), models run o
 
 This is the use case where local models are categorically better than cloud AI, not just comparable. Feed a confidential contract, a set of meeting notes, internal technical specifications, or a medical record into a model — ask questions, extract information, summarise — and nothing leaves your machine.
 
-The full production setup is a RAG (retrieval-augmented generation) pipeline: documents are chunked, embedded by a local embedding model, indexed in a local vector store (Chroma and Qdrant both run entirely offline), and the relevant chunks are injected into the model's context window at query time. For individual documents under roughly 50,000 words, Phi-4-mini's 128K context window makes the retrieval layer unnecessary: paste the full document directly into the prompt.
+The full production setup is a RAG (retrieval-augmented generation) pipeline: documents are chunked, embedded by a local embedding model, indexed in a local vector store (Chroma and Qdrant both run entirely offline), and the relevant chunks are injected into the model's context window at query time. The complete build, with an embedding-model comparison and a runnable Python script, is in [Local LLM for Private Document Q&A](/posts/local-llm-private-document-qa/). For individual documents under roughly 50,000 words, Phi-4-mini's 128K context window makes the retrieval layer unnecessary: paste the full document directly into the prompt.
 
 ```bash
 # Direct document Q&A with Ollama — no retrieval needed for shorter documents
