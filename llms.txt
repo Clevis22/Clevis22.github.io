@@ -1,6 +1,6 @@
 # TinyWeights.dev
 
-> Small language models — Gemma, Phi, SmolLM, Qwen, and the rest — are getting surprisingly capable. Benchmarks, local deployment, quantization, and hands-on guides for running small LLMs on real hardware.
+> Small language models like Gemma, Phi, SmolLM, and Qwen, run locally. Benchmarks, quantization, and hands-on deployment guides for small LLMs on real hardware.
 
 TinyWeights.dev is an independent blog focused exclusively on small language models (roughly 0.3B to 35B parameters) that run on local hardware: laptops, desktops, single-board computers, and phones. Coverage includes hands-on deployment guides, quantization explainers, benchmark comparisons, and hardware sizing. Posts cite official model cards, technical reports, and papers as primary sources, and include exact commands, measured file sizes, and RAM/VRAM requirements.
 
