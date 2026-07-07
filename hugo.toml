@@ -12,7 +12,7 @@ enableRobotsTXT = true
 [params]
   env = "production"
   title = "Tiny Weights"
-  description = "Small language models — Gemma, Phi, SmolLM, Qwen, and the rest — are getting surprisingly capable. Benchmarks, local deployment, quantization, and hands-on guides for running small LLMs on real hardware."
+  description = "Small language models like Gemma, Phi, SmolLM, and Qwen, run locally. Benchmarks, quantization, and hands-on deployment guides for small LLMs on real hardware."
   keywords = ["small language models", "SLM", "Gemma", "local AI", "edge AI"]
   author = "Clevis"
   defaultTheme = "dark"
