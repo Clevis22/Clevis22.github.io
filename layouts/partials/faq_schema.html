@@ -1,0 +1,72 @@
+{{- /*
+  faq_schema.html — extracts question/answer pairs from a post's markdown
+  and returns a slice of schema.org Question dicts (empty slice if none).
+
+  Two patterns are recognised, matching how posts on this blog actually
+  write Q&A sections:
+
+    1. An H2/H3 heading ending in "?" — the answer is the first prose
+       paragraph that follows it.
+    2. A standalone bold question paragraph (**Like this?**) — the answer
+       is the next prose paragraph.
+
+  "Prose" excludes tables, code fences, lists, blockquotes, shortcodes,
+  images, and further headings, so a question followed immediately by a
+  comparison table contributes nothing rather than garbage.
+
+  Used by templates/schema_json.html to emit FAQPage JSON-LD.
+*/ -}}
+{{- $faq := slice }}
+{{- $raw := replace .RawContent "\r" "" }}
+{{- /* drop fenced code blocks entirely so their interior lines can't be mistaken for prose */}}
+{{- $raw = replaceRE "(?s)```.*?```" "" $raw }}
+
+{{- /* normalise ### to ## so one split handles both heading levels */}}
+{{- $norm := replace $raw "\n### " "\n## " }}
+{{- $chunks := split $norm "\n## " }}
+
+{{- range $i, $chunk := $chunks }}
+  {{- if gt $i 0 }}
+    {{- $lines := split $chunk "\n" }}
+    {{- if gt (len $lines) 1 }}
+      {{- $q := trim (index $lines 0) " #" }}
+      {{- if strings.HasSuffix $q "?" }}
+        {{- $body := delimit (after 1 $lines) "\n" | printf "%s" }}
+        {{- $answer := "" }}
+        {{- range split $body "\n\n" }}
+          {{- $block := trim . " \n\t" }}
+          {{- if and (not $answer) $block }}
+            {{- $first := substr $block 0 2 }}
+            {{- if and (ne $first "{{") (ne $first "``") (ne $first "- ") (ne $first "* ") (ne $first "> ") (ne $first "![") (not (strings.HasPrefix $block "|")) (not (strings.HasPrefix $block "#")) (not (findRE `^\d+\. ` $block)) }}
+              {{- $answer = $block }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+        {{- with $answer }}
+          {{- $a := trim (. | $.RenderString | plainify | htmlUnescape) " \n" }}
+          {{- $faq = $faq | append (dict "@type" "Question" "name" $q "acceptedAnswer" (dict "@type" "Answer" "text" $a)) }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- /* standalone bold-question paragraphs: **Question?** followed by a prose block */}}
+{{- $blocks := split $raw "\n\n" }}
+{{- range $i, $block := $blocks }}
+  {{- $b := trim $block " \n\t" }}
+  {{- if findRE `^\*\*[^*\n]+\?\*\*$` $b }}
+    {{- $q := trim $b "*" }}
+    {{- $next := "" }}
+    {{- with index $blocks (add $i 1) }}{{ $next = trim . " \n\t" }}{{ end }}
+    {{- if $next }}
+      {{- $first := substr $next 0 2 }}
+      {{- if and (ne $first "{{") (ne $first "``") (ne $first "**") (ne $first "- ") (ne $first "* ") (ne $first "> ") (ne $first "![") (not (strings.HasPrefix $next "|")) (not (strings.HasPrefix $next "#")) }}
+        {{- $a := trim ($next | $.RenderString | plainify | htmlUnescape) " \n" }}
+        {{- $faq = $faq | append (dict "@type" "Question" "name" $q "acceptedAnswer" (dict "@type" "Answer" "text" $a)) }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- return $faq }}

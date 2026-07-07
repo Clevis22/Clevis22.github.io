@@ -68,5 +68,10 @@ enableRobotsTXT = true
   lineNos = false
   lineNumbersInTable = false
 
+[outputFormats.llms]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON", "llms"]
