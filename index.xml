@@ -254,6 +254,13 @@
       <description>Tiny Weights covers small language models — Gemma, Phi, SmolLM, Qwen, Mistral — with benchmarks, local deployment guides, and hands-on coverage for developers running AI on real hardware.</description>
     </item>
     <item>
+      <title>LLM VRAM &amp; RAM Calculator: Which Model Fits Your Hardware?</title>
+      <link>https://tinyweights.dev/fit/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/fit/</guid>
+      <description>Free LLM VRAM and RAM calculator. Enter your GPU VRAM, Apple Silicon unified memory, or system RAM and find out which small language models fit, at which quantization, with estimated memory use.</description>
+    </item>
+    <item>
       <title>Try a Small LLM in Your Browser</title>
       <link>https://tinyweights.dev/try/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
