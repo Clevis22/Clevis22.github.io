@@ -66,12 +66,14 @@
   display: flex;
   flex-direction: column;
   gap: 3px;
+  min-width: 0; /* let the grid track shrink below the select's intrinsic width */
 }
 .tw-fit-label {
   color: var(--tw-cyan);
   font-size: 12px;
 }
 .tw-fit-input {
+  width: 100%;
   padding: 6px 8px;
   background: var(--code-bg);
   border: 1px solid var(--border);
@@ -160,10 +162,21 @@
 @media (max-width: 600px) {
   .tw-fitapp { padding: 12px 10px; font-size: 13px; }
   .tw-fit-fields { grid-template-columns: 1fr 1fr; }
-  .tw-fit-name { min-width: 130px; }
-  .tw-fit-row { gap: 8px; }
-  /* rows scroll horizontally inside .tw-fit-out rather than wrapping into noise */
+  /* result rows wrap onto a second line instead of side-scrolling */
+  .tw-fit-row { white-space: normal; flex-wrap: wrap; gap: 2px 10px; }
+  .tw-fit-name,
+  .tw-fit-quant,
+  .tw-fit-gb,
+  .tw-fit-tier { min-width: 0; }
+  .tw-fit-note { padding-left: 14px; }
 }
 @media (max-width: 380px) {
   .tw-fit-fields { grid-template-columns: 1fr; }
+}
+
+/* ─── iOS focus-zoom fix ───────────────────────────── */
+/* Same trick as 08-try.css: iOS Safari auto-zooms when a focused field's
+ * font-size is under 16px; -webkit-touch-callout scopes the floor to iOS. */
+@supports (-webkit-touch-callout: none) {
+  .tw-fit-input { font-size: 16px; }
 }
