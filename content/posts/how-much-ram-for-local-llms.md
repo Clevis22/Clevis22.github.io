@@ -38,7 +38,7 @@ The table below shows verified Q4_K_M file sizes for five common parameter scale
 | ~14B | Qwen2.5-14B | 8.99 GB | 15.70 GB | 29.55 GB |
 | ~32B | Qwen2.5-32B | 19.85 GB | 34.82 GB | 65.54 GB |
 
-Q8_0 roughly doubles the file size relative to Q4_K_M while giving you near-lossless quality. F16 (full precision) costs about 2 bytes per weight — three times more than Q4_K_M for the same parameter count. For a practical guide to when each format makes sense, see our [GGUF vs ONNX vs MLX breakdown](/posts/gguf-vs-onnx-vs-mlx/).
+Q8_0 roughly doubles the file size relative to Q4_K_M while giving you near-lossless quality. F16 (full precision) costs about 2 bytes per weight — three times more than Q4_K_M for the same parameter count. For a practical guide to when each format makes sense, see our [GGUF vs ONNX vs MLX breakdown](/posts/gguf-vs-onnx-vs-mlx/). If you'd rather skip the arithmetic entirely, our [VRAM and RAM calculator](/fit/) runs these numbers for any model, quantization, and context length.
 
 ## The KV Cache Is the Hidden Multiplier
 

@@ -1,0 +1,366 @@
+{{- /*
+  fit.html — "will it fit?" hardware wizard + VRAM/RAM calculator.
+
+  Two modes in one terminal box:
+    wizard      pick hardware type + memory + use case → ranked list of
+                models from data/models.json that fit, with a recommended
+                GGUF quant and estimated total memory.
+    calculator  pick any model (or enter a param count) + quant + context
+                → estimated weights / KV cache / total.
+
+  Model facts live in data/models.json (single source of truth, updated
+  whenever a model post is published). All math constants are calibrated
+  against the measured file sizes published in the GGUF quantization and
+  RAM-requirements posts. Rendering is textContent-only; the only HTML
+  built from data is <a href> from our own data file.
+*/ -}}
+
+{{- define "main" -}}
+
+<article class="post-single tw-fit">
+
+  <div class="tw-prompt" aria-label="terminal prompt">
+    <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">./will-it-fit.sh --hardware-check</span>
+  </div>
+
+  <div class="tw-fit-tag" aria-hidden="true">[ estimates · gguf quants · {{ len hugo.Data.models.models }} models indexed · updated {{ hugo.Data.models.updated }} ]</div>
+
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+  </header>
+
+  <section class="tw-fitapp" aria-label="LLM memory fit tool">
+
+    <div class="tw-fit-tabs" role="tablist" aria-label="Tool mode">
+      <button type="button" class="tw-fit-tab" id="tw-fit-tab-wizard" role="tab" aria-selected="true" aria-controls="tw-fit-wizard">
+        <span class="tw-prompt-dollar">$</span> what fits my hardware
+      </button>
+      <button type="button" class="tw-fit-tab" id="tw-fit-tab-calc" role="tab" aria-selected="false" aria-controls="tw-fit-calc">
+        <span class="tw-prompt-dollar">$</span> calculator
+      </button>
+    </div>
+
+    <!-- ───────── wizard ───────── -->
+    <form class="tw-fit-pane" id="tw-fit-wizard" role="tabpanel" onsubmit="return false">
+      <div class="tw-fit-fields">
+        <label class="tw-fit-field">
+          <span class="tw-fit-label">--hardware</span>
+          <select class="tw-fit-input" id="tw-fit-hw">
+            <option value="apple">Apple Silicon (unified memory)</option>
+            <option value="gpu">discrete GPU (VRAM)</option>
+            <option value="cpu" selected>CPU only (system RAM)</option>
+          </select>
+        </label>
+        <label class="tw-fit-field">
+          <span class="tw-fit-label" id="tw-fit-memlabel">--ram-gb</span>
+          <select class="tw-fit-input" id="tw-fit-mem">
+            <option>4</option><option>6</option><option>8</option><option>12</option>
+            <option selected>16</option><option>24</option><option>32</option><option>48</option>
+            <option>64</option><option>96</option><option>128</option>
+          </select>
+        </label>
+        <label class="tw-fit-field">
+          <span class="tw-fit-label">--use-case</span>
+          <select class="tw-fit-input" id="tw-fit-use">
+            <option value="any" selected>anything</option>
+            <option value="chat">general chat</option>
+            <option value="coding">coding</option>
+            <option value="math">math &amp; reasoning</option>
+            <option value="vision">vision (images)</option>
+            <option value="long-context">long documents / RAG</option>
+            <option value="agents">agents &amp; tool use</option>
+            <option value="multilingual">multilingual</option>
+            <option value="embedded">tiny / embedded</option>
+          </select>
+        </label>
+        <label class="tw-fit-field">
+          <span class="tw-fit-label">--context</span>
+          <select class="tw-fit-input" id="tw-fit-ctx">
+            <option value="4">4K tokens</option>
+            <option value="8" selected>8K tokens</option>
+            <option value="16">16K tokens</option>
+            <option value="32">32K tokens</option>
+          </select>
+        </label>
+      </div>
+      <button type="button" class="tw-fit-run" id="tw-fit-run">
+        <span class="tw-prompt-dollar">$</span> run
+      </button>
+      <div class="tw-fit-out" id="tw-fit-wizout" role="status" aria-live="polite"></div>
+    </form>
+
+    <!-- ───────── calculator ───────── -->
+    <form class="tw-fit-pane" id="tw-fit-calc" role="tabpanel" hidden onsubmit="return false">
+      <div class="tw-fit-fields">
+        <label class="tw-fit-field">
+          <span class="tw-fit-label">--model</span>
+          <select class="tw-fit-input" id="tw-fit-model"></select>
+        </label>
+        <label class="tw-fit-field">
+          <span class="tw-fit-label">--params-b</span>
+          <input class="tw-fit-input" id="tw-fit-params" type="number" min="0.1" max="500" step="0.1" value="3.8" inputmode="decimal">
+        </label>
+        <label class="tw-fit-field">
+          <span class="tw-fit-label">--quant</span>
+          <select class="tw-fit-input" id="tw-fit-quant">
+            <option value="q4" selected>Q4_K_M (~4.5 bpw)</option>
+            <option value="q5">Q5_K_M (~5.5 bpw)</option>
+            <option value="q8">Q8_0 (8 bpw)</option>
+            <option value="f16">F16 (16 bpw)</option>
+          </select>
+        </label>
+        <label class="tw-fit-field">
+          <span class="tw-fit-label">--context-k</span>
+          <input class="tw-fit-input" id="tw-fit-ctxk" type="number" min="1" max="1024" step="1" value="8" inputmode="numeric">
+        </label>
+      </div>
+      <button type="button" class="tw-fit-run" id="tw-fit-calcrun">
+        <span class="tw-prompt-dollar">$</span> run
+      </button>
+      <div class="tw-fit-out" id="tw-fit-calcout" role="status" aria-live="polite"></div>
+    </form>
+
+    <div class="tw-fit-foot">
+      estimates only (±10–15%) · model facts come from the posts on this blog · quant math calibrated
+      against <a href="/posts/gguf-quantization-levels-q4-q5-q8/">measured GGUF file sizes</a>
+    </div>
+  </section>
+
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+
+</article>
+
+<script type="module">
+  const DATA = {{ hugo.Data.models | jsonify | safeJS }};
+  const MODELS = DATA.models;
+
+  // GB per billion params, calibrated against measured GGUF sizes
+  // (see /posts/gguf-quantization-levels-q4-q5-q8/ and /posts/how-much-ram-for-local-llms/).
+  const QUANTS = [
+    { id: 'q8',  label: 'Q8_0',   gbPerB: 1.07 },
+    { id: 'q5',  label: 'Q5_K_M', gbPerB: 0.72 },
+    { id: 'q4',  label: 'Q4_K_M', gbPerB: 0.65 },
+  ];
+  const QUANT_BY_ID = { q4: 0.65, q5: 0.72, q8: 1.07, f16: 2.0 };
+  const QUANT_LABEL = { q4: 'Q4_K_M', q5: 'Q5_K_M', q8: 'Q8_0', f16: 'F16' };
+  const RUNTIME_GB = 0.8;         // llama.cpp-class runtime overhead
+  const KV_GB_PER_B_PER_K = 0.016; // FP16 KV cache per B params per 1K tokens (GQA transformer)
+  const KV_LIGHT_FACTOR = 0.15;    // linear-attention / SSM hybrids
+
+  const $ = (id) => document.getElementById(id);
+
+  function kvGb(m, ctxK) {
+    const effCtx = m.ctx_k ? Math.min(ctxK, m.ctx_k) : ctxK;
+    const kvParams = m.active_b || m.params_b;
+    return KV_GB_PER_B_PER_K * kvParams * effCtx * (m.kv_light ? KV_LIGHT_FACTOR : 1);
+  }
+
+  function budgetGb(hw, mem) {
+    if (hw === 'apple') return mem * 0.7;      // default GPU-visible share of unified memory
+    if (hw === 'gpu')   return mem - 0.6;      // display + driver reserve
+    // OS reserve on system RAM: proportional on small (Pi-class) machines, flat 3 GB above 8 GB
+    const reserve = mem <= 8 ? mem * 0.25 : 3;
+    return Math.max(mem - reserve, 1);
+  }
+
+  function speedTier(m, hw) {
+    const act = m.active_b || m.params_b;
+    if (hw === 'cpu') {
+      if (act <= 1.5) return 'fast';
+      if (act <= 5)   return 'usable';
+      if (act <= 9)   return 'slow';
+      return 'impractical';
+    }
+    if (act <= 2)  return 'very fast';
+    if (act <= 4)  return 'fast';
+    if (act <= 9)  return 'good';
+    if (act <= 15) return 'moderate';
+    return 'heavy';
+  }
+
+  function bestQuant(m, budget, ctxK) {
+    const kv = kvGb(m, ctxK);
+    for (const q of QUANTS) {
+      const total = m.params_b * q.gbPerB + RUNTIME_GB + kv;
+      if (total <= budget) return { quant: q.label, total };
+    }
+    return null;
+  }
+
+  function fmtGb(x) { return (Math.round(x * 10) / 10).toFixed(1); }
+
+  function line(parent, cls) {
+    const div = document.createElement('div');
+    div.className = cls;
+    parent.appendChild(div);
+    return div;
+  }
+
+  function span(parent, cls, text) {
+    const s = document.createElement('span');
+    s.className = cls;
+    s.textContent = text;
+    parent.appendChild(s);
+    return s;
+  }
+
+  // ── wizard ──
+  function runWizard() {
+    const hw   = $('tw-fit-hw').value;
+    const mem  = Number($('tw-fit-mem').value);
+    const use  = $('tw-fit-use').value;
+    const ctxK = Number($('tw-fit-ctx').value);
+    const budget = budgetGb(hw, mem);
+
+    const out = $('tw-fit-wizout');
+    out.textContent = '';
+
+    const pool = MODELS.filter((m) => use === 'any' || m.use_cases.includes(use));
+    const fits = [];
+    for (const m of pool) {
+      const pick = bestQuant(m, budget, ctxK);
+      if (pick) fits.push({ m, ...pick, tier: speedTier(m, hw) });
+    }
+    // practical speeds first, then bigger (usually more capable) models
+    const tierRank = { 'very fast': 0, fast: 0, good: 0, usable: 0, moderate: 1, slow: 1, heavy: 2, impractical: 3 };
+    fits.sort((a, b) => (tierRank[a.tier] - tierRank[b.tier]) || (b.m.params_b - a.m.params_b));
+
+    const head = line(out, 'tw-fit-outhead');
+    head.textContent = `# ${fits.length} of ${pool.length} models fit in ~${fmtGb(budget)} GB usable (${mem} GB ${hw === 'gpu' ? 'VRAM' : 'RAM'}, ${ctxK}K context)`;
+
+    if (!fits.length) {
+      const none = line(out, 'tw-fit-row');
+      none.textContent = 'nothing fits at this size. Try a smaller context, more memory, or calculator mode with a lower quant.';
+      return;
+    }
+
+    for (const f of fits) {
+      const row = line(out, 'tw-fit-row');
+      span(row, 'tw-fit-ok', '✓');
+      span(row, 'tw-fit-name', f.m.name);
+      const badges = [];
+      if (f.m.active_b && f.m.active_b < f.m.params_b) badges.push('moe');
+      if (f.m.kv_light) badges.push('hybrid');
+      if (f.m.vision) badges.push('vision');
+      if (f.m.reasoning) badges.push('thinking');
+      if (badges.length) span(row, 'tw-fit-badges', '[' + badges.join('·') + ']');
+      span(row, 'tw-fit-quant', f.quant);
+      span(row, 'tw-fit-gb', `~${fmtGb(f.total)} GB`);
+      span(row, 'tw-fit-tier tw-fit-tier-' + f.tier.replace(' ', ''), f.tier);
+      if (f.m.post) {
+        const a = document.createElement('a');
+        a.className = 'tw-fit-link';
+        a.href = f.m.post;
+        a.textContent = 'guide →';
+        row.appendChild(a);
+      }
+      if (f.m.note) {
+        const noteRow = line(out, 'tw-fit-note');
+        noteRow.textContent = '  └ ' + f.m.note;
+      }
+    }
+
+    const foot = line(out, 'tw-fit-outfoot');
+    foot.textContent = `# quant shown is the highest quality that fits; ${hw === 'cpu' ? 'speed tiers assume a modern desktop CPU' : 'speed tiers scale with active parameter count'}`;
+  }
+
+  // ── calculator ──
+  function populateModelSelect() {
+    const sel = $('tw-fit-model');
+    const custom = document.createElement('option');
+    custom.value = 'custom';
+    custom.textContent = 'custom (enter params below)';
+    sel.appendChild(custom);
+    MODELS.forEach((m, i) => {
+      const o = document.createElement('option');
+      o.value = String(i);
+      o.textContent = `${m.name} · ${m.params_b}B`;
+      sel.appendChild(o);
+    });
+    sel.value = 'custom';
+    sel.addEventListener('change', () => {
+      if (sel.value !== 'custom') {
+        $('tw-fit-params').value = MODELS[Number(sel.value)].params_b;
+      }
+      runCalc();
+    });
+  }
+
+  function runCalc() {
+    const selVal = $('tw-fit-model').value;
+    const m = selVal === 'custom' ? null : MODELS[Number(selVal)];
+    const params = m ? m.params_b : Number($('tw-fit-params').value);
+    const quant = $('tw-fit-quant').value;
+    const ctxK = Number($('tw-fit-ctxk').value);
+    const out = $('tw-fit-calcout');
+    out.textContent = '';
+
+    if (!params || params <= 0 || !ctxK || ctxK <= 0) {
+      line(out, 'tw-fit-row').textContent = 'enter a parameter count and context length first.';
+      return;
+    }
+
+    const weights = params * QUANT_BY_ID[quant];
+    const kv = m ? kvGb(m, ctxK) : KV_GB_PER_B_PER_K * params * ctxK;
+    const total = weights + kv + RUNTIME_GB;
+
+    const rows = [
+      ['weights', `${fmtGb(weights)} GB`, `${params}B × ${QUANT_LABEL[quant]}`],
+      ['kv cache', `${fmtGb(kv)} GB`, `${ctxK}K context${m && m.kv_light ? ' (hybrid attention: grows slowly)' : ''}${m && m.ctx_k && ctxK > m.ctx_k ? ` (capped at model max ${m.ctx_k}K)` : ''}`],
+      ['runtime', `${fmtGb(RUNTIME_GB)} GB`, 'llama.cpp-class overhead'],
+      ['total', `~${fmtGb(total)} GB`, 'VRAM or unified/system RAM'],
+    ];
+    for (const [k, v, note] of rows) {
+      const row = line(out, 'tw-fit-row' + (k === 'total' ? ' tw-fit-total' : ''));
+      span(row, 'tw-fit-name', k);
+      span(row, 'tw-fit-gb', v);
+      span(row, 'tw-fit-badges', note);
+    }
+    if (m && m.active_b && m.active_b < m.params_b) {
+      line(out, 'tw-fit-note').textContent = `  └ MoE: all ${m.params_b}B must be resident; only ${m.active_b}B compute per token, so it decodes like a ${m.active_b}B dense model.`;
+    }
+    if (m && m.post) {
+      const row = line(out, 'tw-fit-note');
+      row.textContent = '  └ ';
+      const a = document.createElement('a');
+      a.className = 'tw-fit-link';
+      a.href = m.post;
+      a.textContent = `our ${m.name} guide →`;
+      row.appendChild(a);
+    }
+  }
+
+  // ── tabs + wiring ──
+  function showTab(which) {
+    const wizard = which === 'wizard';
+    $('tw-fit-wizard').hidden = !wizard;
+    $('tw-fit-calc').hidden = wizard;
+    $('tw-fit-tab-wizard').setAttribute('aria-selected', String(wizard));
+    $('tw-fit-tab-calc').setAttribute('aria-selected', String(!wizard));
+  }
+  $('tw-fit-tab-wizard').addEventListener('click', () => showTab('wizard'));
+  $('tw-fit-tab-calc').addEventListener('click', () => showTab('calc'));
+
+  $('tw-fit-hw').addEventListener('change', () => {
+    $('tw-fit-memlabel').textContent = $('tw-fit-hw').value === 'gpu' ? '--vram-gb' : '--ram-gb';
+    runWizard();
+  });
+  for (const id of ['tw-fit-mem', 'tw-fit-use', 'tw-fit-ctx']) {
+    $(id).addEventListener('change', runWizard);
+  }
+  $('tw-fit-run').addEventListener('click', runWizard);
+
+  populateModelSelect();
+  for (const id of ['tw-fit-params', 'tw-fit-ctxk']) {
+    $(id).addEventListener('input', () => { $('tw-fit-model').value = 'custom'; runCalc(); });
+  }
+  $('tw-fit-quant').addEventListener('change', runCalc);
+  $('tw-fit-calcrun').addEventListener('click', runCalc);
+
+  runWizard();
+  runCalc();
+</script>
+
+{{- end }}{{/* end define main */}}

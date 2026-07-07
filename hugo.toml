@@ -1,5 +1,5 @@
 baseURL = "https://tinyweights.dev"
-languageCode = "en-us"
+locale = "en-us"
 title = "TinyWeights.dev"
 theme = "PaperMod"
 pagerSize = 10
@@ -51,10 +51,15 @@ enableRobotsTXT = true
     url = "/try/"
     weight = 4
   [[menu.main]]
+    name = "/fit"
+    title = "Which model fits your hardware?"
+    url = "/fit/"
+    weight = 5
+  [[menu.main]]
     name = "/about"
     title = "About"
     url = "/about/"
-    weight = 5
+    weight = 6
 
 [markup.highlight]
   noClasses = false

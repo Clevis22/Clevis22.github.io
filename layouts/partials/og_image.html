@@ -1,0 +1,65 @@
+{{- /*
+  og_image.html — generates a terminal-window social card for a page.
+
+  Overlays the page title (plus a fake `$ cat` command line and a meta
+  line) onto assets/images/og-base.png using images.Text and the bundled
+  JetBrains Mono TTFs. 1200x630. Returns the image resource; call through
+  partialCached keyed by .Permalink so each card renders once per build:
+
+    {{ partialCached "og_image.html" . .Permalink }}
+
+  The title is word-wrapped manually (images.Text only wraps at the image
+  edge, which would run text into the window border), and the font size
+  steps down for long titles so nothing collides with the footer.
+*/ -}}
+{{- $base := resources.Get "images/og-base.png" }}
+{{- $fontBold := resources.Get "fonts/JetBrainsMono-Bold.ttf" }}
+{{- $fontReg := resources.Get "fonts/JetBrainsMono-Regular.ttf" }}
+
+{{- $title := (or .Title site.Title) | plainify }}
+
+{{- /* fake command line: $ cat ./posts/<slug>.md for posts, $ cat ./<slug>.md for pages */}}
+{{- $cmd := "$ motd" }}
+{{- if not .IsHome }}
+  {{- $slug := path.Base (strings.TrimSuffix "/" .RelPermalink) }}
+  {{- if eq .Section "posts" }}
+    {{- if .IsPage }}{{ $cmd = printf "$ cat ./posts/%s.md" $slug }}{{ else }}{{ $cmd = "$ ls ./posts/" }}{{ end }}
+  {{- else if .IsPage }}
+    {{- $cmd = printf "$ cat ./%s.md" $slug }}
+  {{- else }}
+    {{- $cmd = printf "$ ls ./%s/" $slug }}
+  {{- end }}
+{{- end }}
+
+{{- /* meta line under the title */}}
+{{- $meta := "# tinyweights.dev" }}
+{{- if and .IsPage (not .Date.IsZero) }}
+  {{- $meta = printf "# %s · %d min read" (.Date.Format "2006-01-02") .ReadingTime }}
+{{- end }}
+
+{{- /* size + wrap width step down as the title grows */}}
+{{- $size := 56 }}{{ $maxchars := 31 }}
+{{- if gt (len $title) 75 }}{{ $size = 38 }}{{ $maxchars = 46 }}
+{{- else if gt (len $title) 40 }}{{ $size = 46 }}{{ $maxchars = 38 }}
+{{- end }}
+
+{{- /* manual word wrap */}}
+{{- $lines := slice }}
+{{- $cur := "" }}
+{{- range split $title " " }}
+  {{- if and $cur (gt (add (len $cur) (add (len .) 1)) $maxchars) }}
+    {{- $lines = $lines | append $cur }}
+    {{- $cur = . }}
+  {{- else }}
+    {{- $cur = trim (printf "%s %s" $cur .) " " }}
+  {{- end }}
+{{- end }}
+{{- if $cur }}{{ $lines = $lines | append $cur }}{{ end }}
+{{- $wrapped := delimit $lines "\n" }}
+
+{{- $img := $base.Filter
+      (images.Text $cmd (dict "font" $fontReg "color" "#7ec96a" "size" 24 "x" 76 "y" 104))
+      (images.Text $wrapped (dict "font" $fontBold "color" "#e6dcc0" "size" $size "x" 76 "y" 164 "linespacing" 14))
+      (images.Text $meta (dict "font" $fontReg "color" "#8a7c5c" "size" 24 "x" 76 "y" 492))
+}}
+{{- return $img }}

@@ -45,4 +45,4 @@ A model that runs in your browser inverts all of that. It costs the host nothing
 - Mobile is hit-or-miss. Some phones have WebGPU; many don't have enough free memory for the larger models, especially the 1B and 1.5B options.
 - Sub-2B models hallucinate a lot. Treat outputs as a tech demo, not a reference.
 
-If you want to actually use a small model for real work, the rest of [the blog](/) covers how to run bigger ones (3B, 4B, 7B) locally via Ollama, llama.cpp, and LM Studio.
+If you want to actually use a small model for real work, the rest of [the blog](/) covers how to run bigger ones (3B, 4B, 7B) locally via Ollama, llama.cpp, and LM Studio. Not sure what your machine can handle? The [will-it-fit tool](/fit/) works it out from your RAM or VRAM.
