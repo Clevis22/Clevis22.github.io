@@ -1,0 +1,220 @@
+{{- /*
+  models.html — the /models comparison hub.
+
+  A single browsable, sortable, filterable table of every model in
+  data/models.json (the same single source of truth that powers /fit).
+
+  Rows are rendered server-side (full HTML, crawlable, complete with JS
+  off) and progressively enhanced: clicking a column header sorts, the
+  search box and use-case/capability filters hide non-matching rows.
+  All row markup comes from our own data file; no user input is echoed
+  into the DOM, so there is nothing to sanitise.
+
+  Columns: model (→ its guide) · params (+ MoE active) · context ·
+  estimated Q4 GGUF size · capability badges · use cases · license.
+  Q4 size = params_b × 0.65 GB, the weights-only approximation calibrated
+  in /posts/gguf-quantization-levels-q4-q5-q8/ (KV cache + runtime on top,
+  which is what /fit adds).
+*/ -}}
+
+{{- define "main" -}}
+
+{{- $data := hugo.Data.models -}}
+
+<article class="post-single tw-models">
+
+  <div class="tw-prompt" aria-label="terminal prompt">
+    <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">./list-models.sh --sort params</span>
+  </div>
+
+  <div class="tw-mdl-tag" aria-hidden="true">[ {{ len $data.models }} models indexed · sortable · filterable · updated {{ $data.updated }} ]</div>
+
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+  </header>
+
+  <section class="tw-mdlapp" id="tw-mdl" aria-label="Small language model comparison table">
+
+    <div class="tw-mdl-controls">
+      <div class="tw-mdl-field">
+        <label class="tw-mdl-clabel" for="tw-mdl-search">--find</label>
+        <input class="tw-mdl-search" id="tw-mdl-search" type="search" placeholder="model name" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="tw-mdl-field">
+        <label class="tw-mdl-clabel" for="tw-mdl-use">--use-case</label>
+        <select class="tw-mdl-select" id="tw-mdl-use">
+          <option value="any" selected>anything</option>
+          <option value="chat">chat</option>
+          <option value="coding">coding</option>
+          <option value="math">math</option>
+          <option value="vision">vision</option>
+          <option value="long-context">long-context</option>
+          <option value="agents">agents</option>
+          <option value="multilingual">multilingual</option>
+          <option value="rag">rag</option>
+          <option value="embedded">embedded</option>
+        </select>
+      </div>
+      <div class="tw-mdl-chips" role="group" aria-label="Filter by capability">
+        <button type="button" class="tw-mdl-chip" data-cap="vision" aria-pressed="false">vision</button>
+        <button type="button" class="tw-mdl-chip" data-cap="reasoning" aria-pressed="false">thinking</button>
+        <button type="button" class="tw-mdl-chip" data-cap="hybrid" aria-pressed="false">hybrid</button>
+        <button type="button" class="tw-mdl-chip" data-cap="moe" aria-pressed="false">moe</button>
+      </div>
+    </div>
+
+    <div class="tw-mdl-count" id="tw-mdl-count" role="status" aria-live="polite"># {{ len $data.models }} of {{ len $data.models }} models</div>
+
+    <div class="tw-mdl-tablewrap">
+      <table class="tw-mdl-table">
+        <thead>
+          <tr>
+            <th scope="col" class="tw-mdl-th" data-key="name" data-type="str" role="columnheader" aria-sort="none" tabindex="0">model<span class="tw-mdl-arrow"></span></th>
+            <th scope="col" class="tw-mdl-th" data-key="params" data-type="num" role="columnheader" aria-sort="ascending" tabindex="0">params<span class="tw-mdl-arrow"> ▲</span></th>
+            <th scope="col" class="tw-mdl-th" data-key="ctx" data-type="num" role="columnheader" aria-sort="none" tabindex="0">context<span class="tw-mdl-arrow"></span></th>
+            <th scope="col" class="tw-mdl-th" data-key="q4" data-type="num" role="columnheader" aria-sort="none" tabindex="0">~Q4<span class="tw-mdl-arrow"></span></th>
+            <th scope="col">type</th>
+            <th scope="col">use cases</th>
+            <th scope="col" class="tw-mdl-th" data-key="license" data-type="str" role="columnheader" aria-sort="none" tabindex="0">license<span class="tw-mdl-arrow"></span></th>
+          </tr>
+        </thead>
+        <tbody class="tw-mdl-tbody">
+          {{- range $m := $data.models }}
+          {{- $moe := false }}
+          {{- with $m.active_b }}{{ if lt . $m.params_b }}{{ $moe = true }}{{ end }}{{ end }}
+          {{- $q4 := mul $m.params_b 0.65 }}
+          <tr class="tw-mdl-row"
+              data-name="{{ lower $m.name }}"
+              data-params="{{ $m.params_b }}"
+              data-ctx="{{ with $m.ctx_k }}{{ . }}{{ end }}"
+              data-q4="{{ $q4 }}"
+              data-license="{{ lower $m.license }}"
+              data-use="{{ delimit $m.use_cases " " }}"
+              data-vision="{{ cond $m.vision "1" "0" }}"
+              data-reasoning="{{ cond $m.reasoning "1" "0" }}"
+              data-hybrid="{{ cond $m.kv_light "1" "0" }}"
+              data-moe="{{ cond $moe "1" "0" }}">
+            <td class="tw-mdl-c-name">{{ with $m.post }}<a class="tw-mdl-link" href="{{ . }}">{{ $m.name }}</a>{{ else }}{{ $m.name }}{{ end }}</td>
+            <td class="tw-mdl-c-num">{{ $m.params_b }}B{{ if $moe }}<span class="tw-mdl-sub">{{ $m.active_b }}B act</span>{{ end }}</td>
+            <td class="tw-mdl-c-num">{{ with $m.ctx_k }}{{ . }}K{{ else }}—{{ end }}</td>
+            <td class="tw-mdl-c-num">{{ printf "%.1f" $q4 }} GB</td>
+            <td class="tw-mdl-c-type">
+              {{- if $m.vision }}<span class="tw-mdl-badge tw-b-vision">vision</span>{{ end }}
+              {{- if $m.reasoning }}<span class="tw-mdl-badge tw-b-think">thinking</span>{{ end }}
+              {{- if $m.kv_light }}<span class="tw-mdl-badge tw-b-hybrid">hybrid</span>{{ end }}
+              {{- if $moe }}<span class="tw-mdl-badge tw-b-moe">moe</span>{{ end }}
+            </td>
+            <td class="tw-mdl-c-use">{{ delimit $m.use_cases ", " }}</td>
+            <td class="tw-mdl-c-lic">{{ $m.license }}</td>
+          </tr>
+          {{- end }}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tw-mdl-foot">
+      params drive memory, active params drive speed. <strong>~Q4</strong> is the weights-only GGUF
+      size (params &times; 0.65 GB); add KV cache and runtime for real memory use, which the
+      <a href="/fit/">hardware-fit calculator</a> estimates for your setup. Facts come from the
+      hands-on posts on this blog; each model links to its guide.
+    </div>
+  </section>
+
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+
+</article>
+
+<script>
+(function () {
+  var app = document.getElementById('tw-mdl');
+  if (!app) return;
+  var tbody = app.querySelector('.tw-mdl-tbody');
+  var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+  var search = document.getElementById('tw-mdl-search');
+  var useSel = document.getElementById('tw-mdl-use');
+  var chips = Array.prototype.slice.call(app.querySelectorAll('.tw-mdl-chip'));
+  var count = document.getElementById('tw-mdl-count');
+  var ths = Array.prototype.slice.call(app.querySelectorAll('.tw-mdl-th'));
+  var total = rows.length;
+
+  var sortKey = 'params', sortDir = 1;
+
+  function thFor(key) {
+    for (var i = 0; i < ths.length; i++) { if (ths[i].dataset.key === key) return ths[i]; }
+    return null;
+  }
+
+  function sortRows() {
+    var th = thFor(sortKey);
+    var type = th ? th.dataset.type : 'num';
+    rows.sort(function (a, b) {
+      if (type === 'num') {
+        var av = parseFloat(a.dataset[sortKey]);
+        var bv = parseFloat(b.dataset[sortKey]);
+        var an = isNaN(av), bn = isNaN(bv);
+        if (an && bn) return 0;
+        if (an) return 1;        // missing values always sort last
+        if (bn) return -1;
+        return (av - bv) * sortDir;
+      }
+      return (a.dataset[sortKey] || '').localeCompare(b.dataset[sortKey] || '') * sortDir;
+    });
+    rows.forEach(function (r) { tbody.appendChild(r); });
+    ths.forEach(function (t) {
+      var arrow = t.querySelector('.tw-mdl-arrow');
+      var active = t.dataset.key === sortKey;
+      if (arrow) arrow.textContent = active ? (sortDir === 1 ? ' ▲' : ' ▼') : '';
+      t.setAttribute('aria-sort', active ? (sortDir === 1 ? 'ascending' : 'descending') : 'none');
+    });
+  }
+
+  function filterRows() {
+    var q = (search.value || '').trim().toLowerCase();
+    var use = useSel.value;
+    var caps = chips.filter(function (c) { return c.getAttribute('aria-pressed') === 'true'; })
+                    .map(function (c) { return c.dataset.cap; });
+    var shown = 0;
+    rows.forEach(function (r) {
+      var ok = true;
+      if (q && r.dataset.name.indexOf(q) === -1) ok = false;
+      if (ok && use !== 'any' && (' ' + r.dataset.use + ' ').indexOf(' ' + use + ' ') === -1) ok = false;
+      if (ok) {
+        for (var i = 0; i < caps.length; i++) {
+          if (r.dataset[caps[i]] !== '1') { ok = false; break; }
+        }
+      }
+      r.hidden = !ok;
+      if (ok) shown++;
+    });
+    count.textContent = '# ' + shown + ' of ' + total + ' models';
+  }
+
+  function onSort(t) {
+    if (sortKey === t.dataset.key) sortDir = -sortDir;
+    else { sortKey = t.dataset.key; sortDir = 1; }
+    sortRows();
+  }
+
+  ths.forEach(function (t) {
+    t.addEventListener('click', function () { onSort(t); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSort(t); }
+    });
+  });
+  search.addEventListener('input', filterRows);
+  useSel.addEventListener('change', filterRows);
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+      filterRows();
+    });
+  });
+
+  sortRows();
+  filterRows();
+})();
+</script>
+
+{{- end }}{{/* end define main */}}

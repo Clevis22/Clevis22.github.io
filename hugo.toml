@@ -56,10 +56,15 @@ enableRobotsTXT = true
     url = "/fit/"
     weight = 5
   [[menu.main]]
+    name = "/models"
+    title = "Compare every small model"
+    url = "/models/"
+    weight = 6
+  [[menu.main]]
     name = "/about"
     title = "About"
     url = "/about/"
-    weight = 6
+    weight = 7
 
 [markup.highlight]
   noClasses = false

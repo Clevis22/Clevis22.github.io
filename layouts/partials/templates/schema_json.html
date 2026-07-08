@@ -134,7 +134,7 @@
   }
 }
 </script>
-{{- if eq .Section "posts" }}
+{{- if or (eq .Section "posts") (in (slice "fit" "models") .Layout) }}
 {{- $faq := partial "faq_schema.html" . }}
 {{- if $faq }}
 <script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $faq | jsonify | safeJS }}</script>
