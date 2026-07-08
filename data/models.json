@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-06",
+  "updated": "2026-07-07",
   "note": "Facts sourced from tinyweights.dev posts (which cite official model cards). params_b = total parameters (drives memory); active_b = activated per token (drives speed) for MoE/effective-param models. ctx_k = context window in K tokens. kv_light = linear-attention/SSM hybrid whose KV cache grows far slower than a standard transformer.",
   "models": [
     {
@@ -92,6 +92,19 @@
       "license": "Apache 2.0",
       "post": "/posts/run-llm-in-browser-webllm/",
       "note": null
+    },
+    {
+      "name": "BitNet b1.58 2B4T",
+      "params_b": 2.0,
+      "active_b": null,
+      "ctx_k": 4,
+      "vision": false,
+      "reasoning": false,
+      "kv_light": false,
+      "use_cases": ["chat", "embedded"],
+      "license": "MIT",
+      "post": "/posts/1-bit-llms-bitnet-ternary-weights/",
+      "note": "native 1.58-bit ternary weights (not a post-training quant); run via bitnet.cpp, where the i2_s build is ~1.1 GB and CPU-first. The Q4 memory/speed estimate here is only a rough proxy."
     },
     {
       "name": "Jamba Reasoning 3B",
