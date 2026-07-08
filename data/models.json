@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07",
+  "updated": "2026-07-08",
   "note": "Facts sourced from tinyweights.dev posts (which cite official model cards). params_b = total parameters (drives memory); active_b = activated per token (drives speed) for MoE/effective-param models. ctx_k = context window in K tokens. kv_light = linear-attention/SSM hybrid whose KV cache grows far slower than a standard transformer.",
   "models": [
     {
@@ -365,6 +365,19 @@
       "license": "Apache 2.0",
       "post": "/posts/run-diffusiongemma-locally/",
       "note": "text-diffusion decoding: generates tokens in parallel instead of one at a time"
+    },
+    {
+      "name": "North Mini Code 1.0",
+      "params_b": 30.0,
+      "active_b": 3.0,
+      "ctx_k": 256,
+      "vision": false,
+      "reasoning": true,
+      "kv_light": false,
+      "use_cases": ["coding", "agents", "long-context"],
+      "license": "Apache 2.0",
+      "post": "/posts/run-north-mini-code-locally/",
+      "note": "coding-only MoE; 19 GB at Q4, decodes like a dense 3B. Needs a llama.cpp build with cohere2moe support"
     },
     {
       "name": "Qwen3.6-35B-A3B",
