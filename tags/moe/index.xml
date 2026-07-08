@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Moe on TinyWeights.dev</title>
+    <title>MoE on TinyWeights.dev</title>
     <link>https://tinyweights.dev/tags/moe/</link>
-    <description>Recent content in Moe on TinyWeights.dev</description>
+    <description>Recent content in MoE on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/moe/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Run North Mini Code Locally: Cohere&#39;s 30B-A3B Coding Model</title>
+      <link>https://tinyweights.dev/posts/run-north-mini-code-locally/</link>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-north-mini-code-locally/</guid>
+      <description>Run North Mini Code 1.0 locally: Cohere&amp;#39;s 30B-A3B open-weight coding MoE. GGUF sizes, the llama.cpp build for the cohere2moe architecture, hardware requirements, and benchmarks.</description>
+    </item>
     <item>
       <title>How to Run Qwen3.6-35B-A3B Locally: A 35B MoE Model on One GPU</title>
       <link>https://tinyweights.dev/posts/run-qwen3-6-35b-a3b-locally/</link>

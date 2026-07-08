@@ -11,6 +11,7 @@ TinyWeights.dev is an independent blog focused exclusively on small language mod
 
 ## Posts
 
+- [How to Run North Mini Code Locally: Cohere's 30B-A3B Coding Model](https://tinyweights.dev/posts/run-north-mini-code-locally/): Run North Mini Code 1.0 locally: Cohere's 30B-A3B open-weight coding MoE. GGUF sizes, the llama.cpp build for the cohere2moe architecture, hardware requirements, and benchmarks.
 - [Local LLM for Private Document Q&A: Build an Offline RAG Pipeline](https://tinyweights.dev/posts/local-llm-private-document-qa/): How to build a fully private, offline document Q&A system with a local small LLM and an embedding model: exact Ollama commands, a runnable Python RAG script, and hardware requirements.
 - [How to Quantize a Model with llama.cpp: From Safetensors to GGUF](https://tinyweights.dev/posts/how-to-quantize-model-llama-cpp/): Step-by-step guide to quantize a model with llama.cpp: convert HuggingFace safetensors to GGUF, run llama-quantize, and improve low-bit quants with an importance matrix.
 - [DiffusionGemma: Google's Text-Diffusion Model That Generates 4x Faster, and How to Run It Locally](https://tinyweights.dev/posts/run-diffusiongemma-locally/): DiffusionGemma is Google's open-weight text-diffusion model: 25.2B total, 3.8B active, up to 4x faster generation than Gemma 4. How discrete text diffusion works, honest benchmarks, and how to run DiffusionGemma locally with vLLM, Transformers, and MLX.
