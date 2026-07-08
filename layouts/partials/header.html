@@ -15,6 +15,11 @@
     </a>
     <span class="tw-window-title" aria-hidden="true">clevis@tinyweights — zsh — 132×38</span>
 
+    <button type="button" class="tw-nav-burger" id="tw-nav-burger" aria-expanded="false" aria-controls="menu" aria-label="Toggle navigation menu">
+      <span class="tw-nav-burger-open">≡ menu</span>
+      <span class="tw-nav-burger-close">× close</span>
+    </button>
+
     <ul id="menu" class="menu">
       {{- range site.Menus.main }}
       {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL)) | absLangURL }}
