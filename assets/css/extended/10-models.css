@@ -143,6 +143,12 @@
 }
 .tw-mdl-foot a { color: var(--tw-cyan); }
 
+/* ─── body prose below the table ────────────────────── */
+/* The prose div carries .entry-content so it inherits post typography;
+ * paragraphs get a full blank line (~line-height) so breaks read clearly
+ * in the mono face — same treatment as /fit and /try. */
+.tw-models .post-content p { margin: 0 0 22px; }
+
 /* ─── mobile ────────────────────────────────────────── */
 @media (max-width: 600px) {
   .tw-mdlapp { padding: 12px 10px; font-size: 13px; }
