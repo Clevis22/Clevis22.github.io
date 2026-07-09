@@ -158,6 +158,12 @@
 }
 .tw-fit-foot a { color: var(--tw-cyan); }
 
+/* ─── body prose below the tool ─────────────────────── */
+/* The prose div carries .entry-content so it inherits post typography;
+ * paragraphs get a full blank line (~line-height) so breaks read clearly
+ * in the mono face. */
+.tw-fit .post-content p { margin: 0 0 22px; }
+
 /* ─── mobile ────────────────────────────────────────── */
 @media (max-width: 600px) {
   .tw-fitapp { padding: 12px 10px; font-size: 13px; }

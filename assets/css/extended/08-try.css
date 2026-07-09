@@ -729,6 +729,9 @@
   margin-top: 24px;
   max-width: 720px;
 }
+/* Paragraph breaks get a full blank line (~line-height) so they read
+ * clearly in the mono face; the default 16px is less than one line. */
+.tw-try-body p { margin: 0 0 22px; }
 .tw-try-body h2 {
   color: var(--tw-accent);
   font-family: var(--tw-font-mono);
