@@ -2,10 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://tinyweights.dev/tags/agentic-coding/</loc>
-    <lastmod>2026-07-08T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://tinyweights.dev/categories/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/edge-ai/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/posts/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/qwen/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/slm/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/categories/small-ai-models/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/small-models/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/posts/best-local-vision-language-models-2026/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/vision-language-models/</loc>
+    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://tinyweights.dev/tags/agentic-coding/</loc>
     <lastmod>2026-07-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/cohere/</loc>
@@ -19,27 +49,6 @@
   </url><url>
     <loc>https://tinyweights.dev/tags/moe/</loc>
     <lastmod>2026-07-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/posts/</loc>
-    <lastmod>2026-07-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/slm/</loc>
-    <lastmod>2026-07-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/categories/small-ai-models/</loc>
-    <lastmod>2026-07-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/small-models/</loc>
-    <lastmod>2026-07-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/</loc>
-    <lastmod>2026-07-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/</loc>
-    <lastmod>2026-07-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/edge-ai/</loc>
-    <lastmod>2026-07-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/posts/local-llm-private-document-qa/</loc>
     <lastmod>2026-07-07T00:00:00+00:00</lastmod>
@@ -96,9 +105,6 @@
     <lastmod>2026-06-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/posts/run-qwen3-6-35b-a3b-locally/</loc>
-    <lastmod>2026-06-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/qwen/</loc>
     <lastmod>2026-06-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/tags/ibm-granite/</loc>
@@ -279,9 +285,6 @@
     <lastmod>2026-03-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/categories/tutorials/</loc>
-    <lastmod>2026-03-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://tinyweights.dev/tags/vision-language-models/</loc>
     <lastmod>2026-03-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://tinyweights.dev/posts/ai-in-your-pocket-liquid-ai-apollo/</loc>
