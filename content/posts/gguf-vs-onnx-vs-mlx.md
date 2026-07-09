@@ -1,6 +1,7 @@
 ---
 title: "GGUF vs ONNX vs MLX: Which Model Format Should You Use for Local Inference?"
 date: 2026-05-15
+lastmod: 2026-07-09
 draft: false
 tags: ["small-models", "slm", "edge-ai", "gguf", "mlx", "onnx", "quantization", "local-inference"]
 categories: ["small-ai-models"]
@@ -30,7 +31,7 @@ The main reason GGUF dominates local inference is its quantization library. The 
 | Q8_0 | ~7.7 GB | ~+0.001 ppl | Near-lossless, 8 GB+ VRAM |
 | IQ2_M | ~2.7 GB | +0.19 ppl | CPU-only, very tight RAM |
 
-Q4_K_M is the default recommendation for most users. The ~0.054 perplexity increase over the full FP16 model is imperceptible in practice for chat and coding tasks. If you're fitting a 7B model on a 6 GB GPU alongside your desktop, Q4_K_M is what you want. If RAM is no constraint, Q8_0 is effectively lossless.
+Q4_K_M is the default recommendation for most users. The ~0.054 perplexity increase over the full FP16 model is imperceptible in practice for chat and coding tasks. If you're fitting a 7B model on a 6 GB GPU alongside your desktop, Q4_K_M is what you want. If RAM is no constraint, Q8_0 is effectively lossless. For a deeper treatment of exactly what each level gives up, see [Q4 vs Q5 vs Q8: what you're actually giving up](/posts/gguf-quantization-levels-q4-q5-q8/).
 
 GGUF's weakness: it's primarily an inference format. You cannot fine-tune a model that's already been converted to GGUF. If you want to fine-tune and then deploy, you train from safetensors and convert afterward.
 
@@ -100,6 +101,8 @@ python convert_hf_to_gguf.py /path/to/hf-model --outtype f16 --outfile model-f16
 # Quantize to Q4_K_M
 ./llama-quantize model-f16.gguf model-q4_k_m.gguf Q4_K_M
 ```
+
+The [full llama.cpp quantization walkthrough](/posts/how-to-quantize-model-llama-cpp/) covers this end to end, including imatrix calibration and how to verify the output.
 
 To convert a HuggingFace model to MLX:
 

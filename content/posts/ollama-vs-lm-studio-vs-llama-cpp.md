@@ -1,6 +1,7 @@
 ---
 title: "Ollama vs LM Studio vs llama.cpp: Which Local AI Runtime Should You Use?"
 date: 2026-05-14
+lastmod: 2026-07-09
 draft: false
 tags: ["small-models", "slm", "local-inference", "ollama", "llama.cpp", "tools"]
 categories: ["small-ai-models"]
@@ -128,7 +129,7 @@ cmake --build build --config Release -j $(nproc)
 
 The build process. Unless you are on a platform with a pre-built binary, you are compiling from source. The cmake flags for enabling CUDA, ROCm, or Metal are documented but not trivial. First-time setup takes 20–40 minutes and requires the right CUDA toolkit version installed alongside the right driver.
 
-There is no model management. You download GGUF files manually from HuggingFace, track them yourself, and pass the full path to each command. Ollama's `ollama pull <model>` abstraction is genuinely convenient by comparison.
+There is no model management. You download GGUF files manually from HuggingFace, track them yourself, and pass the full path to each command. Ollama's `ollama pull <model>` abstraction is genuinely convenient by comparison. If you're unsure which quantization variant to grab, our [Q4 vs Q5 vs Q8 breakdown](/posts/gguf-quantization-levels-q4-q5-q8/) covers what each level actually costs in quality, and llama.cpp can also [produce its own quants from any HuggingFace checkpoint](/posts/how-to-quantize-model-llama-cpp/) when the variant you want doesn't exist.
 
 ## Performance benchmark summary
 
@@ -157,9 +158,9 @@ The decision tree is short.
 
 **You need maximum throughput**, are running a production serving setup, have unusual hardware, or want to tune inference parameters precisely — llama.cpp. Accept the steeper setup in exchange for the performance ceiling and control.
 
-**You are on Apple Silicon and primarily care about speed** — Ollama with MLX backend since March 2026, or llama.cpp with Metal. LM Studio's MLX support (added in v0.4.13) also delivers well on M-series chips.
+**You are on Apple Silicon and primarily care about speed** — Ollama with MLX backend since March 2026, or llama.cpp with Metal. LM Studio's MLX support (added in v0.4.13) also delivers well on M-series chips. Our [Apple Silicon deployment guide](/posts/run-small-llms-apple-silicon/) covers the full Mac setup, including unified-memory sizing.
 
-**You have limited RAM** (8 GB or less) — llama.cpp's lower overhead gives you more headroom for the model itself. On an 8 GB machine the 1.2 GB Ollama overhead is real.
+**You have limited RAM** (8 GB or less) — llama.cpp's lower overhead gives you more headroom for the model itself. On an 8 GB machine the 1.2 GB Ollama overhead is real. See [how much RAM you actually need for local LLMs](/posts/how-much-ram-for-local-llms/) for the full sizing math, and the [low-VRAM Windows GPU guide](/posts/run-local-llms-low-vram-windows-gpu/) if your constraint is video memory rather than system RAM.
 
 ## Frequently asked questions
 

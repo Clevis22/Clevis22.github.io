@@ -1,6 +1,7 @@
 ---
 title: "The Best Small Language Models in 2026: A Practical Comparison"
 date: 2026-05-14
+lastmod: 2026-07-09
 draft: false
 tags: ["small-models", "slm", "benchmark", "local-inference", "edge-ai"]
 categories: ["small-ai-models"]
@@ -115,6 +116,29 @@ Numbers sourced from each model's official HuggingFace model card or technical r
 ★ Leads the 7–8B class on code generation benchmarks per independent evaluations.  
 ⁶ Qwen3 8B native context is 32K tokens; YaRN scaling (enabled by default in Ollama) extends this to 128K.
 
+## July 2026 update: what has shipped since this guide was written
+
+The two months since this post went up have been unusually busy, and several releases deserve a place in the conversation. Every model below has a full hands-on deployment guide on this blog; the table sticks to the facts that decide whether a model fits your hardware.
+
+| Model | Params (active) | Context | License | Why it matters | Deep dive |
+|---|---|---|---|---|---|
+| LFM2.5-1.2B-Thinking | 1.2B | 32K | LFM Open | Reasoning-only: every answer includes a thinking trace | [Guide](/posts/run-lfm2-5-1-2b-thinking-locally/) |
+| BitNet b1.58 2B4T | 2B | 4K | MIT | Native ternary weights, ~1.1 GB, CPU-first via bitnet.cpp | [Guide](/posts/1-bit-llms-bitnet-ternary-weights/) |
+| Jamba Reasoning 3B | 3B | 256K | Apache 2.0 | Mamba/Transformer hybrid, under 2 GB at Q4, speed holds at long context | [Guide](/posts/run-jamba-reasoning-3b-locally/) |
+| Granite 4.1 (3B / 8B) | 3B / 8B | 128K / 512K | Apache 2.0 | Strong coding and tool calling; 512K context on the 8B | [Guide](/posts/run-ibm-granite-4-1-locally/) |
+| Ministral 3 (3B / 8B / 14B) | 3B to 14B | 256K | Apache 2.0 | Vision input and native tool use at every size | [Guide](/posts/run-ministral-3-locally/) |
+| Phi-4-mini-reasoning | 3.8B | 128K | MIT | Math-specialist fine-tune of Phi-4-mini | [Guide](/posts/run-phi-4-mini-reasoning-locally/) |
+| Qwen3.5-4B | 4B | 262K | Apache 2.0 | Image and video input, on-demand thinking, 201 languages | [vs Phi-4-mini](/posts/qwen3-5-4b-vs-phi-4-mini/) |
+| LFM2.5-8B-A1B | 8.3B (1.5B) | 128K | LFM Open | MoE at roughly 4.8 GB at Q4, reasoning with strong tool use | [Guide](/posts/run-lfm2-5-8b-a1b-locally/) |
+| ZAYA1-8B | 8.4B (0.76B) | 128K | Apache 2.0 | Top-1 routed MoE: 8B-class quality at sub-1B generation speed | [Guide](/posts/run-zaya1-8b-locally/) |
+| DiffusionGemma | 25.2B (3.8B) | 256K | Apache 2.0 | Text-diffusion decoding generates tokens in parallel | [Guide](/posts/run-diffusiongemma-locally/) |
+| North Mini Code 1.0 | 30B (3B) | 256K | Apache 2.0 | Coding-only MoE, 19 GB at Q4, decodes like a dense 3B | [Guide](/posts/run-north-mini-code-locally/) |
+| Qwen3.6-35B-A3B | 35B (3B) | 262K | Apache 2.0 | 22 GB at Q4 but decodes like a dense 3B; 1M context via YaRN | [Guide](/posts/run-qwen3-6-35b-a3b-locally/) |
+
+Two of these change the recommendations in this guide. Qwen3.5-4B is the strongest challenger yet to Phi-4-mini's crown at the 4B scale: it adds image and video input, a 262K context window, and a hybrid attention design that keeps long-context inference cheap. Our [Qwen3.5-4B vs Phi-4-mini head-to-head](/posts/qwen3-5-4b-vs-phi-4-mini/) covers where each one wins. And the small-active-parameter MoE wave (ZAYA1, LFM2.5-8B-A1B, Qwen3.6-35B-A3B) means "how many parameters" is no longer one number: total parameters decide whether a model fits in memory, while active parameters decide how fast it runs.
+
+If your interest is specifically vision, the newer [best local vision language models in 2026](/posts/best-local-vision-language-models-2026/) pillar covers that category properly, including specialist models like [MedGemma 1.5](/posts/medgemma-1-5/).
+
 ## Which model is best for your use case?
 
 **Coding and software development:** Gemma 3 4B at the 3–4B scale (71.3% HumanEval), Qwen3 8B if you have 5+ GB VRAM free. For a frontier-level coding agent that runs locally, see [Qwen3-Coder-Next](/posts/qwen3-coder-next-local-coding-agent/).
@@ -152,13 +176,15 @@ If you're on Apple Silicon, all of these models run efficiently via Metal and Ap
 
 If multimodal input (images) is a requirement, Gemma 3 4B is the swap — and it beats Phi-4-mini on coding tasks (HumanEval 71.3% vs. not measured). If you need the most permissive license and a fully open training pipeline, SmolLM3-3B is the principled choice. If you can spare 5 GB of VRAM and need the strongest code output, Qwen3 8B is the upgrade path.
 
+Since this guide was first published, the strongest challenger at this scale is Qwen3.5-4B, which adds image and video input plus a 262K context window. Whether it displaces Phi-4-mini depends on your workload; our [Qwen3.5-4B vs Phi-4-mini comparison](/posts/qwen3-5-4b-vs-phi-4-mini/) breaks down where each wins.
+
 The only case where none of these apply is if you're deploying on severely resource-constrained hardware — sub-1 GB RAM — at which point you're in a different product category entirely.
 
 ## What's next
 
 The 3–4B class has genuinely matured. In 2024, a 3B model was a curiosity. In 2026, Phi-4-mini and Gemma 3 4B handle production workloads — coding assistants, document Q&A, local agents — on hardware most developers already own.
 
-The model landscape moves fast. This post will be updated as significant new releases land. Check the [small-models tag](/tags/small-models/) for the latest coverage, and the [benchmark tag](/tags/benchmark/) for head-to-head comparisons.
+This post gets updated as significant releases land; the July 2026 update section above covers everything added since original publication. Check the [small-models tag](/tags/small-models/) for the latest coverage, the [benchmark tag](/tags/benchmark/) for head-to-head comparisons, and the [/models comparison table](/models/) for a sortable index of every model this blog has covered.
 
 ## Sources
 
