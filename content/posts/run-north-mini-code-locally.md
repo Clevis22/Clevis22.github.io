@@ -10,7 +10,7 @@ slug: "run-north-mini-code-locally"
 
 North Mini Code 1.0 is Cohere's first agentic coding model, and you can run North Mini Code locally without a datacenter behind it. It is a Mixture of Experts model with 30 billion total parameters but only 3 billion active per token, released under Apache 2.0 on June 9, 2026. The sparsity is the entire point: a 3B active count gives decode speed close to a small dense model, while the full 30B of weights (about 19 GB at Q4) fits on a single 24 GB consumer GPU. This guide covers what the model is, the benchmark numbers, the hardware you need, and the exact steps to get it running with llama.cpp.
 
-One caveat up front, because it will bite you otherwise: North Mini Code uses a new `cohere2moe` architecture that stock llama.cpp and Ollama cannot load yet. You have to build llama.cpp from an open pull request. The steps are below.
+*Update, July 10: the `cohere2moe` architecture support described below has merged into llama.cpp, and Ollama now hosts the model natively as `north-mini-code-1.0`. The build-from-source path is no longer required; the relevant sections have been revised. For how this model stacks up against its closest rival, see our [North Mini Code vs Qwen3.6-35B-A3B comparison](/posts/north-mini-code-vs-qwen3-6-35b-a3b/).*
 
 ## What North Mini Code Is
 
@@ -61,14 +61,12 @@ Cohere's own recommended server deployment is a single H100 at FP8 or FP4, which
 
 ## Running North Mini Code Locally with llama.cpp
 
-The `cohere2moe` architecture is not in a stock llama.cpp release at the time of writing. Support lives in an open pull request (#24260), so you build from that branch. Once the PR merges into a tagged release, a normal `llama.cpp` build will work and this step goes away.
+The `cohere2moe` architecture merged into llama.cpp via pull request #24260, so a current release loads these GGUFs directly. Make sure you are on a build from mid-June 2026 or later; older builds fail with an unknown-architecture error.
 
 ```bash
-# Clone and check out the cohere2moe PR branch
+# Clone and build current llama.cpp
 git clone https://github.com/ggml-org/llama.cpp
 cd llama.cpp
-git fetch origin pull/24260/head:cohere2-moe
-git checkout cohere2-moe
 
 # Build (CUDA example; drop -DGGML_CUDA=ON for CPU-only)
 cmake -B build -DGGML_CUDA=ON
@@ -109,9 +107,15 @@ For agent workflows, run it as an OpenAI-compatible server instead and point you
 
 Lower `--n-gpu-layers` if the model does not fit your VRAM; each layer you keep off the GPU spills to system RAM and costs some speed. Raise `--ctx-size` toward the model's 256K ceiling only as far as your memory allows, since the KV cache grows with context even on this windowed-attention design.
 
-## Why Ollama and LM Studio Cannot Run It Yet
+## Running It in Ollama
 
-Both Ollama and LM Studio use llama.cpp under the hood, so they inherit the same limitation: until the `cohere2moe` pull request lands in a released llama.cpp version they bundle, neither can load these GGUFs. Trying to `ollama run` a North Mini Code GGUF today will fail with an unknown-architecture error. Once the support is merged and those tools update their bundled llama.cpp, importing the GGUF through a Modelfile (Ollama) or the local model folder (LM Studio) will work with no special steps. Until then, the build-from-PR path above is the only local option. If you want a coding model that runs in Ollama today, our [Qwen3-Coder-Next walkthrough](/posts/qwen3-coder-next-local-coding-agent/) has a model with native runtime support.
+Ollama now hosts the model natively, which is the fastest route if you do not need llama.cpp's per-flag control:
+
+```bash
+ollama run north-mini-code-1.0
+```
+
+The default tag is the Q4_K_M build at 19 GB. Ollama also lists a `q8_0` tag (32 GB) and MLX-format tags for Apple Silicon, including `mlx-nvfp4` at 20 GB. LM Studio inherits the same architecture support through its bundled llama.cpp; import the GGUF through the local model folder as usual. For another coding model with native Ollama support, our [Qwen3-Coder-Next walkthrough](/posts/qwen3-coder-next-local-coding-agent/) covers the 80B-A3B option for bigger boxes.
 
 ## Common Questions About North Mini Code
 
@@ -121,11 +125,11 @@ Yes, that is what it was built for. It supports tool use and interleaved thinkin
 
 **How does it compare to Qwen3.6-35B-A3B?**
 
-They share the same shape, 3B active parameters, but Qwen3.6-35B-A3B is the stronger raw coder (73.4% vs 67.6% on SWE-bench Verified) and has native Ollama support today. North Mini Code is a smaller download (19.2 GB vs 22.1 GB at Q4) and Cohere targets it squarely at agentic and terminal tasks. If you want the higher SWE-bench score and easier setup, Qwen wins; if you want the lighter footprint under Apache 2.0 and are comfortable building llama.cpp, North Mini Code is a reasonable pick.
+They share the same shape, 3B active parameters, but Qwen3.6-35B-A3B is the stronger raw coder (73.4% vs 67.6% on SWE-bench Verified). North Mini Code is a smaller download (19.2 GB vs 22.1 GB at Q4), which buys more KV-cache headroom on a 24 GB card, and it edges Qwen on SciCode. Both now run natively in Ollama. We put the two models side by side in a full [North Mini Code vs Qwen3.6-35B-A3B comparison](/posts/north-mini-code-vs-qwen3-6-35b-a3b/).
 
 **Can it run on a laptop?**
 
-On a laptop with a 24 GB unified-memory Apple Silicon chip or a 16 GB discrete GPU, yes, using UD-Q4_K_M or UD-Q3_K_M respectively. On a typical 16 GB RAM laptop with no capable GPU it will run on CPU but slowly, so it is better suited to a background task than live pair programming. There is no MLX build published yet, so Apple Silicon users go through the same llama.cpp route rather than mlx_lm.
+On a laptop with a 24 GB unified-memory Apple Silicon chip or a 16 GB discrete GPU, yes, using UD-Q4_K_M or UD-Q3_K_M respectively. On a typical 16 GB RAM laptop with no capable GPU it will run on CPU but slowly, so it is better suited to a background task than live pair programming. Apple Silicon users can now pull the MLX-format `mlx-nvfp4` tag (20 GB) straight from Ollama instead of going through llama.cpp.
 
 **Is commercial use allowed?**
 
