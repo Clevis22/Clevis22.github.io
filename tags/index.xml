@@ -6,34 +6,62 @@
     <description>Recent content in Tags on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Edge-Ai</title>
-      <link>https://tinyweights.dev/tags/edge-ai/</link>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/edge-ai/</guid>
+      <title>Agentic-Coding</title>
+      <link>https://tinyweights.dev/tags/agentic-coding/</link>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/agentic-coding/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cohere</title>
+      <link>https://tinyweights.dev/tags/cohere/</link>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/cohere/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Comparison</title>
+      <link>https://tinyweights.dev/tags/comparison/</link>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/comparison/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Moe</title>
+      <link>https://tinyweights.dev/tags/moe/</link>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/moe/</guid>
       <description></description>
     </item>
     <item>
       <title>Qwen</title>
       <link>https://tinyweights.dev/tags/qwen/</link>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/qwen/</guid>
       <description></description>
     </item>
     <item>
       <title>Slm</title>
       <link>https://tinyweights.dev/tags/slm/</link>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/slm/</guid>
       <description></description>
     </item>
     <item>
       <title>Small-Models</title>
       <link>https://tinyweights.dev/tags/small-models/</link>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/small-models/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Edge-Ai</title>
+      <link>https://tinyweights.dev/tags/edge-ai/</link>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/edge-ai/</guid>
       <description></description>
     </item>
     <item>
@@ -44,31 +72,10 @@
       <description></description>
     </item>
     <item>
-      <title>Agentic-Coding</title>
-      <link>https://tinyweights.dev/tags/agentic-coding/</link>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/agentic-coding/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cohere</title>
-      <link>https://tinyweights.dev/tags/cohere/</link>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/cohere/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Local-Inference</title>
       <link>https://tinyweights.dev/tags/local-inference/</link>
       <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/local-inference/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>MoE</title>
-      <link>https://tinyweights.dev/tags/moe/</link>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/moe/</guid>
       <description></description>
     </item>
     <item>
@@ -121,7 +128,7 @@
       <description></description>
     </item>
     <item>
-      <title>Lfm2</title>
+      <title>LFM2</title>
       <link>https://tinyweights.dev/tags/lfm2/</link>
       <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/lfm2/</guid>
@@ -265,13 +272,6 @@
       <link>https://tinyweights.dev/tags/benchmark/</link>
       <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/benchmark/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Comparison</title>
-      <link>https://tinyweights.dev/tags/comparison/</link>
-      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/comparison/</guid>
       <description></description>
     </item>
     <item>
