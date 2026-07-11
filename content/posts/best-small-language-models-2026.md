@@ -1,7 +1,7 @@
 ---
 title: "The Best Small Language Models in 2026: A Practical Comparison"
 date: 2026-05-14
-lastmod: 2026-07-10
+lastmod: 2026-07-11
 draft: false
 tags: ["small-models", "slm", "benchmark", "local-inference", "edge-ai"]
 categories: ["small-ai-models"]
@@ -135,7 +135,7 @@ The two months since this post went up have been unusually busy, and several rel
 | North Mini Code 1.0 | 30B (3B) | 256K | Apache 2.0 | Coding-only MoE, 19 GB at Q4, decodes like a dense 3B | [Guide](/posts/run-north-mini-code-locally/) |
 | Qwen3.6-35B-A3B | 35B (3B) | 262K | Apache 2.0 | 22 GB at Q4 but decodes like a dense 3B; 1M context via YaRN | [Guide](/posts/run-qwen3-6-35b-a3b-locally/) |
 
-Two of these change the recommendations in this guide. Qwen3.5-4B is the strongest challenger yet to Phi-4-mini's crown at the 4B scale: it adds image and video input, a 262K context window, and a hybrid attention design that keeps long-context inference cheap. Our [Qwen3.5-4B vs Phi-4-mini head-to-head](/posts/qwen3-5-4b-vs-phi-4-mini/) covers where each one wins. And the small-active-parameter MoE wave (ZAYA1, LFM2.5-8B-A1B, Qwen3.6-35B-A3B) means "how many parameters" is no longer one number: total parameters decide whether a model fits in memory, while active parameters decide how fast it runs. The last two rows of the table are direct rivals, and our [North Mini Code vs Qwen3.6-35B-A3B head-to-head](/posts/north-mini-code-vs-qwen3-6-35b-a3b/) settles which of the two coding MoEs earns a spot on a 24 GB GPU.
+Two of these change the recommendations in this guide. Qwen3.5-4B is the strongest challenger yet to Phi-4-mini's crown at the 4B scale: it adds image and video input, a 262K context window, and a hybrid attention design that keeps long-context inference cheap. Our [Qwen3.5-4B vs Phi-4-mini head-to-head](/posts/qwen3-5-4b-vs-phi-4-mini/) covers where each one wins. And the small-active-parameter MoE wave (ZAYA1, LFM2.5-8B-A1B, Qwen3.6-35B-A3B) means "how many parameters" is no longer one number: total parameters decide whether a model fits in memory, while active parameters decide how fast it runs. The two 8B-class entries are near-identical in footprint but built for opposite jobs; our [LFM2.5-8B-A1B vs ZAYA1-8B head-to-head](/posts/lfm2-5-8b-a1b-vs-zaya1-8b/) sorts out which one belongs on your machine. The last two rows of the table are direct rivals, and our [North Mini Code vs Qwen3.6-35B-A3B head-to-head](/posts/north-mini-code-vs-qwen3-6-35b-a3b/) settles which of the two coding MoEs earns a spot on a 24 GB GPU.
 
 If your interest is specifically vision, the newer [best local vision language models in 2026](/posts/best-local-vision-language-models-2026/) pillar covers that category properly, including specialist models like [MedGemma 1.5](/posts/medgemma-1-5/).
 
