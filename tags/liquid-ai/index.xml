@@ -6,8 +6,15 @@
     <description>Recent content in Liquid-Ai on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 11 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/liquid-ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LFM2.5-8B-A1B vs ZAYA1-8B: Which 8B MoE Reasoning Model Should You Run Locally?</title>
+      <link>https://tinyweights.dev/posts/lfm2-5-8b-a1b-vs-zaya1-8b/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/lfm2-5-8b-a1b-vs-zaya1-8b/</guid>
+      <description>LFM2.5-8B-A1B vs ZAYA1-8B: two 8B-class sparse MoE reasoning models compared on benchmarks, generation speed, memory footprint, deployment, and licensing.</description>
+    </item>
     <item>
       <title>How to Run LFM2.5-8B-A1B Locally: Liquid AI&#39;s On-Device Tool-Calling MoE</title>
       <link>https://tinyweights.dev/posts/run-lfm2-5-8b-a1b-locally/</link>

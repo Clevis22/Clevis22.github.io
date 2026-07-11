@@ -6,8 +6,57 @@
     <description>Recent content in Tags on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 11 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Comparison</title>
+      <link>https://tinyweights.dev/tags/comparison/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/comparison/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Edge-Ai</title>
+      <link>https://tinyweights.dev/tags/edge-ai/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/edge-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Liquid-Ai</title>
+      <link>https://tinyweights.dev/tags/liquid-ai/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/liquid-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mixture-of-Experts</title>
+      <link>https://tinyweights.dev/tags/mixture-of-experts/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/mixture-of-experts/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Slm</title>
+      <link>https://tinyweights.dev/tags/slm/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/slm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Small-Models</title>
+      <link>https://tinyweights.dev/tags/small-models/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/small-models/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Zaya1</title>
+      <link>https://tinyweights.dev/tags/zaya1/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/zaya1/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Agentic-Coding</title>
       <link>https://tinyweights.dev/tags/agentic-coding/</link>
@@ -23,13 +72,6 @@
       <description></description>
     </item>
     <item>
-      <title>Comparison</title>
-      <link>https://tinyweights.dev/tags/comparison/</link>
-      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/comparison/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Moe</title>
       <link>https://tinyweights.dev/tags/moe/</link>
       <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
@@ -41,27 +83,6 @@
       <link>https://tinyweights.dev/tags/qwen/</link>
       <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/qwen/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Slm</title>
-      <link>https://tinyweights.dev/tags/slm/</link>
-      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/slm/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Small-Models</title>
-      <link>https://tinyweights.dev/tags/small-models/</link>
-      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/small-models/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Edge-Ai</title>
-      <link>https://tinyweights.dev/tags/edge-ai/</link>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/edge-ai/</guid>
       <description></description>
     </item>
     <item>
@@ -121,24 +142,10 @@
       <description></description>
     </item>
     <item>
-      <title>Mixture-of-Experts</title>
-      <link>https://tinyweights.dev/tags/mixture-of-experts/</link>
-      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/mixture-of-experts/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>LFM2</title>
       <link>https://tinyweights.dev/tags/lfm2/</link>
       <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/lfm2/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Liquid-Ai</title>
-      <link>https://tinyweights.dev/tags/liquid-ai/</link>
-      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/liquid-ai/</guid>
       <description></description>
     </item>
     <item>
@@ -181,13 +188,6 @@
       <link>https://tinyweights.dev/tags/bitnet/</link>
       <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/bitnet/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Zaya1</title>
-      <link>https://tinyweights.dev/tags/zaya1/</link>
-      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/zaya1/</guid>
       <description></description>
     </item>
     <item>
