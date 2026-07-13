@@ -6,8 +6,15 @@
     <description>Recent content in Jamba on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/jamba/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jamba Reasoning 3B vs Phi-4-mini-reasoning: Which Small Reasoning Model Should You Run Locally?</title>
+      <link>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/</guid>
+      <description>Jamba Reasoning 3B vs Phi-4-mini-reasoning: architecture, benchmarks, context length, RAM requirements, and which small reasoning model to run locally.</description>
+    </item>
     <item>
       <title>How to Run Jamba Reasoning 3B Locally: AI21&#39;s Hybrid SSM-Transformer With a 256K Context</title>
       <link>https://tinyweights.dev/posts/run-jamba-reasoning-3b-locally/</link>

@@ -11,6 +11,7 @@ TinyWeights.dev is an independent blog focused exclusively on small language mod
 
 ## Posts
 
+- [Jamba Reasoning 3B vs Phi-4-mini-reasoning: Which Small Reasoning Model Should You Run Locally?](https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/): Jamba Reasoning 3B vs Phi-4-mini-reasoning: architecture, benchmarks, context length, RAM requirements, and which small reasoning model to run locally.
 - [LFM2.5-8B-A1B vs ZAYA1-8B: Which 8B MoE Reasoning Model Should You Run Locally?](https://tinyweights.dev/posts/lfm2-5-8b-a1b-vs-zaya1-8b/): LFM2.5-8B-A1B vs ZAYA1-8B: two 8B-class sparse MoE reasoning models compared on benchmarks, generation speed, memory footprint, deployment, and licensing.
 - [North Mini Code vs Qwen3.6-35B-A3B: Which Local Coding MoE Wins?](https://tinyweights.dev/posts/north-mini-code-vs-qwen3-6-35b-a3b/): North Mini Code 1.0 vs Qwen3.6-35B-A3B head-to-head: coding benchmarks, GGUF sizes, VRAM headroom on a 24 GB GPU, context windows, and which 3B-active MoE to pick.
 - [The Best Local Vision Language Models in 2026: Small VLMs You Can Actually Run](https://tinyweights.dev/posts/best-local-vision-language-models-2026/): A practical comparison of the best local vision language models in 2026, from 4B VLMs to 32B, with real MMMU and DocVQA benchmarks and VRAM estimates.

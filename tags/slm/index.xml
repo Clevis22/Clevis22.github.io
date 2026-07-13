@@ -6,8 +6,15 @@
     <description>Recent content in Slm on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/slm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jamba Reasoning 3B vs Phi-4-mini-reasoning: Which Small Reasoning Model Should You Run Locally?</title>
+      <link>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/</guid>
+      <description>Jamba Reasoning 3B vs Phi-4-mini-reasoning: architecture, benchmarks, context length, RAM requirements, and which small reasoning model to run locally.</description>
+    </item>
     <item>
       <title>LFM2.5-8B-A1B vs ZAYA1-8B: Which 8B MoE Reasoning Model Should You Run Locally?</title>
       <link>https://tinyweights.dev/posts/lfm2-5-8b-a1b-vs-zaya1-8b/</link>
