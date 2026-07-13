@@ -15,5 +15,12 @@
       <guid>https://tinyweights.dev/posts/run-ministral-3-locally/</guid>
       <description>A practical guide to running Ministral-3 (3B, 8B, 14B) locally with Ollama and LM Studio: compact models with vision, tool use, and 256K context in under 10GB.</description>
     </item>
+    <item>
+      <title>The &#39;Small&#39; Model That Does It All: How Mistral Small 4&#39;s Unified Architecture Kills the Need for Specialized AI</title>
+      <link>https://tinyweights.dev/posts/the/</link>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/the/</guid>
+      <description>Discover how Mistral Small 4 unifies reasoning, multimodal, and coding into an efficient 119B MoE model that runs locally and slashes API costs.</description>
+    </item>
   </channel>
 </rss>

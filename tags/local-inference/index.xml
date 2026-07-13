@@ -9,13 +9,6 @@
     <lastBuildDate>Mon, 13 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/local-inference/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Jamba Reasoning 3B vs Phi-4-mini-reasoning: Which Small Reasoning Model Should You Run Locally?</title>
-      <link>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/</link>
-      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/</guid>
-      <description>Jamba Reasoning 3B vs Phi-4-mini-reasoning: architecture, benchmarks, context length, RAM requirements, and which small reasoning model to run locally.</description>
-    </item>
-    <item>
       <title>How to Run North Mini Code Locally: Cohere&#39;s 30B-A3B Coding Model</title>
       <link>https://tinyweights.dev/posts/run-north-mini-code-locally/</link>
       <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
@@ -65,6 +58,13 @@
       <description>How to run IBM Granite 4.1 locally with Ollama or llama.cpp. Full setup guide covering the 3B, 8B, and 30B models, hardware requirements, benchmark scores, and tool-calling.</description>
     </item>
     <item>
+      <title>Run ZAYA1-8B Locally: The 8B Reasoning MoE Trained on AMD</title>
+      <link>https://tinyweights.dev/posts/run-zaya1-8b-locally/</link>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-zaya1-8b-locally/</guid>
+      <description>How to run ZAYA1-8B locally: a 8.4B-total, 760M-active reasoning MoE from Zyphra, with setup steps, memory requirements, and benchmark numbers.</description>
+    </item>
+    <item>
       <title>How to Run LFM2.5-1.2B-Thinking Locally: On-Device Reasoning Under 1GB</title>
       <link>https://tinyweights.dev/posts/run-lfm2-5-1-2b-thinking-locally/</link>
       <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
@@ -100,13 +100,6 @@
       <description>A practical guide to running Ministral-3 (3B, 8B, 14B) locally with Ollama and LM Studio: compact models with vision, tool use, and 256K context in under 10GB.</description>
     </item>
     <item>
-      <title>Qwen3.5-4B vs Phi-4-mini: Choosing the Right 4B Model for Local Inference</title>
-      <link>https://tinyweights.dev/posts/qwen3-5-4b-vs-phi-4-mini/</link>
-      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/qwen3-5-4b-vs-phi-4-mini/</guid>
-      <description>Qwen3.5-4B vs Phi-4-mini: a direct comparison of benchmarks, VRAM, context windows, and multimodal support for the two best 4B local models in 2026.</description>
-    </item>
-    <item>
       <title>Running Local LLMs on Low-VRAM Windows GPUs (6GB and 8GB Cards) in 2026</title>
       <link>https://tinyweights.dev/posts/run-local-llms-low-vram-windows-gpu/</link>
       <pubDate>Sat, 23 May 2026 00:00:00 +0000</pubDate>
@@ -121,20 +114,6 @@
       <description>A practical guide to real use cases for running small language models locally—from private document Q&amp;amp;A to offline coding assistants—with model and hardware recommendations for each.</description>
     </item>
     <item>
-      <title>Running LLMs on Raspberry Pi 5: A Practical Guide with Real Benchmarks</title>
-      <link>https://tinyweights.dev/posts/run-llms-raspberry-pi-5/</link>
-      <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/run-llms-raspberry-pi-5/</guid>
-      <description>How to run small language models on Raspberry Pi 5 using Ollama and llama.cpp, with real token-speed benchmarks by model size and specific model recommendations for the 8 GB Pi.</description>
-    </item>
-    <item>
-      <title>The Complete Guide to Running Small LLMs on Apple Silicon (2026)</title>
-      <link>https://tinyweights.dev/posts/run-small-llms-apple-silicon/</link>
-      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/run-small-llms-apple-silicon/</guid>
-      <description>Complete guide to running small language models on Apple Silicon — MLX vs Ollama, real benchmark data by chip generation, and setup commands for M1 through M5.</description>
-    </item>
-    <item>
       <title>How to Run Phi-4-mini Locally: Microsoft&#39;s 3.8B Model with 128K Context</title>
       <link>https://tinyweights.dev/posts/run-phi-4-mini-locally/</link>
       <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
@@ -142,11 +121,11 @@
       <description>Step-by-step guide to running Phi-4-mini locally with Ollama, llama.cpp, and Python — with verified benchmarks and RAM requirements for Microsoft&amp;#39;s 3.8B reasoning model.</description>
     </item>
     <item>
-      <title>GGUF vs ONNX vs MLX: Which Model Format Should You Use for Local Inference?</title>
-      <link>https://tinyweights.dev/posts/gguf-vs-onnx-vs-mlx/</link>
-      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/gguf-vs-onnx-vs-mlx/</guid>
-      <description>GGUF, ONNX, and MLX compared: what each format is for, which quantization levels to pick, and how to choose the right one for your hardware.</description>
+      <title>How Much RAM Do You Actually Need to Run Local LLMs?</title>
+      <link>https://tinyweights.dev/posts/how-much-ram-for-local-llms/</link>
+      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/how-much-ram-for-local-llms/</guid>
+      <description>Verified RAM and VRAM requirements for running local LLMs, with real Q4_K_M file size data for models from 1B to 32B parameters.</description>
     </item>
     <item>
       <title>Ollama vs LM Studio vs llama.cpp: Which Local AI Runtime Should You Use?</title>

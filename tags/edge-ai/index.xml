@@ -9,20 +9,6 @@
     <lastBuildDate>Mon, 13 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/edge-ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Jamba Reasoning 3B vs Phi-4-mini-reasoning: Which Small Reasoning Model Should You Run Locally?</title>
-      <link>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/</link>
-      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/</guid>
-      <description>Jamba Reasoning 3B vs Phi-4-mini-reasoning: architecture, benchmarks, context length, RAM requirements, and which small reasoning model to run locally.</description>
-    </item>
-    <item>
-      <title>LFM2.5-8B-A1B vs ZAYA1-8B: Which 8B MoE Reasoning Model Should You Run Locally?</title>
-      <link>https://tinyweights.dev/posts/lfm2-5-8b-a1b-vs-zaya1-8b/</link>
-      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/lfm2-5-8b-a1b-vs-zaya1-8b/</guid>
-      <description>LFM2.5-8B-A1B vs ZAYA1-8B: two 8B-class sparse MoE reasoning models compared on benchmarks, generation speed, memory footprint, deployment, and licensing.</description>
-    </item>
-    <item>
       <title>The Best Local Vision Language Models in 2026: Small VLMs You Can Actually Run</title>
       <link>https://tinyweights.dev/posts/best-local-vision-language-models-2026/</link>
       <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
@@ -30,39 +16,11 @@
       <description>A practical comparison of the best local vision language models in 2026, from 4B VLMs to 32B, with real MMMU and DocVQA benchmarks and VRAM estimates.</description>
     </item>
     <item>
-      <title>Local LLM for Private Document Q&amp;A: Build an Offline RAG Pipeline</title>
-      <link>https://tinyweights.dev/posts/local-llm-private-document-qa/</link>
-      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/local-llm-private-document-qa/</guid>
-      <description>How to build a fully private, offline document Q&amp;amp;A system with a local small LLM and an embedding model: exact Ollama commands, a runnable Python RAG script, and hardware requirements.</description>
-    </item>
-    <item>
-      <title>How to Quantize a Model with llama.cpp: From Safetensors to GGUF</title>
-      <link>https://tinyweights.dev/posts/how-to-quantize-model-llama-cpp/</link>
-      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/how-to-quantize-model-llama-cpp/</guid>
-      <description>Step-by-step guide to quantize a model with llama.cpp: convert HuggingFace safetensors to GGUF, run llama-quantize, and improve low-bit quants with an importance matrix.</description>
-    </item>
-    <item>
-      <title>DiffusionGemma: Google&#39;s Text-Diffusion Model That Generates 4x Faster, and How to Run It Locally</title>
-      <link>https://tinyweights.dev/posts/run-diffusiongemma-locally/</link>
-      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/run-diffusiongemma-locally/</guid>
-      <description>DiffusionGemma is Google&amp;#39;s open-weight text-diffusion model: 25.2B total, 3.8B active, up to 4x faster generation than Gemma 4. How discrete text diffusion works, honest benchmarks, and how to run DiffusionGemma locally with vLLM, Transformers, and MLX.</description>
-    </item>
-    <item>
       <title>How to Run LFM2.5-8B-A1B Locally: Liquid AI&#39;s On-Device Tool-Calling MoE</title>
       <link>https://tinyweights.dev/posts/run-lfm2-5-8b-a1b-locally/</link>
       <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/posts/run-lfm2-5-8b-a1b-locally/</guid>
       <description>A practical guide to running LFM2.5-8B-A1B locally: Liquid AI&amp;#39;s 8.3B mixture-of-experts activates only 1.5B parameters per token, fits in ~4.8GB at Q4, and ships with day-one Ollama, llama.cpp, and MLX support.</description>
-    </item>
-    <item>
-      <title>How to Run Phi-4-mini-reasoning Locally: Microsoft&#39;s 3.8B Math Model</title>
-      <link>https://tinyweights.dev/posts/run-phi-4-mini-reasoning-locally/</link>
-      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/run-phi-4-mini-reasoning-locally/</guid>
-      <description>Step-by-step guide to running Phi-4-mini-reasoning locally with Ollama and llama.cpp: Microsoft&amp;#39;s 3.8B model that outscores 7B distillation models on AIME and MATH-500.</description>
     </item>
     <item>
       <title>1-bit LLMs Explained: How BitNet&#39;s Ternary Weights Actually Work</title>
@@ -86,18 +44,11 @@
       <description>A practical guide to running LFM2.5-1.2B-Thinking locally: Liquid AI&amp;#39;s 1.2B reasoning model fits in under 1GB and runs on a phone CPU, with llama.cpp, LM Studio, and MLX support.</description>
     </item>
     <item>
-      <title>GGUF Quantization Levels Explained: Q4, Q5, Q8, and IQ Quants</title>
-      <link>https://tinyweights.dev/posts/gguf-quantization-levels-q4-q5-q8/</link>
-      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/gguf-quantization-levels-q4-q5-q8/</guid>
-      <description>What Q4_K_M, Q5_K_M, Q8_0, and the IQ-series quants actually cost you in file size, quality, and speed, with real benchmark numbers.</description>
-    </item>
-    <item>
-      <title>How to Run Jamba Reasoning 3B Locally: AI21&#39;s Hybrid SSM-Transformer With a 256K Context</title>
-      <link>https://tinyweights.dev/posts/run-jamba-reasoning-3b-locally/</link>
-      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/run-jamba-reasoning-3b-locally/</guid>
-      <description>A practical guide to running AI21&amp;#39;s Jamba Reasoning 3B locally with Ollama and llama.cpp: a hybrid Mamba/Transformer 3B model with a 256K context window in under 2 GB at Q4.</description>
+      <title>How to Run a Small LLM in Your Browser with WebLLM (No Install, No API)</title>
+      <link>https://tinyweights.dev/posts/run-llm-in-browser-webllm/</link>
+      <pubDate>Mon, 25 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-llm-in-browser-webllm/</guid>
+      <description>Run a small open LLM (Qwen2.5, SmolLM2, Llama-3.2) entirely in your browser using WebLLM and WebGPU. How it works, browser support, model sizes, and a live demo you can try right now.</description>
     </item>
     <item>
       <title>How to Run Ministral 3 Locally: Mistral&#39;s 3B, 8B, and 14B Vision Models</title>
@@ -105,20 +56,6 @@
       <pubDate>Mon, 25 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/posts/run-ministral-3-locally/</guid>
       <description>A practical guide to running Ministral-3 (3B, 8B, 14B) locally with Ollama and LM Studio: compact models with vision, tool use, and 256K context in under 10GB.</description>
-    </item>
-    <item>
-      <title>MedGemma 1.5: Google&#39;s 4B Medical Vision-Language Model You Can Run Locally</title>
-      <link>https://tinyweights.dev/posts/medgemma-1-5/</link>
-      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/medgemma-1-5/</guid>
-      <description>MedGemma 1.5 is Google&amp;#39;s 4B medical multimodal model: Gemma 3 backbone, MedSigLIP encoder, 128K context. Runs in 3.3GB on Ollama. Benchmarks, deployment, and the limits.</description>
-    </item>
-    <item>
-      <title>Qwen3.5-4B vs Phi-4-mini: Choosing the Right 4B Model for Local Inference</title>
-      <link>https://tinyweights.dev/posts/qwen3-5-4b-vs-phi-4-mini/</link>
-      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/qwen3-5-4b-vs-phi-4-mini/</guid>
-      <description>Qwen3.5-4B vs Phi-4-mini: a direct comparison of benchmarks, VRAM, context windows, and multimodal support for the two best 4B local models in 2026.</description>
     </item>
     <item>
       <title>What Can You Actually Do With a Local Small LLM? A Practical Guide</title>
@@ -135,27 +72,6 @@
       <description>How to run small language models on Raspberry Pi 5 using Ollama and llama.cpp, with real token-speed benchmarks by model size and specific model recommendations for the 8 GB Pi.</description>
     </item>
     <item>
-      <title>How to Run Phi-4-mini Locally: Microsoft&#39;s 3.8B Model with 128K Context</title>
-      <link>https://tinyweights.dev/posts/run-phi-4-mini-locally/</link>
-      <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/run-phi-4-mini-locally/</guid>
-      <description>Step-by-step guide to running Phi-4-mini locally with Ollama, llama.cpp, and Python — with verified benchmarks and RAM requirements for Microsoft&amp;#39;s 3.8B reasoning model.</description>
-    </item>
-    <item>
-      <title>How Much RAM Do You Actually Need to Run Local LLMs?</title>
-      <link>https://tinyweights.dev/posts/how-much-ram-for-local-llms/</link>
-      <pubDate>Sun, 17 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/how-much-ram-for-local-llms/</guid>
-      <description>Verified RAM and VRAM requirements for running local LLMs, with real Q4_K_M file size data for models from 1B to 32B parameters.</description>
-    </item>
-    <item>
-      <title>GGUF vs ONNX vs MLX: Which Model Format Should You Use for Local Inference?</title>
-      <link>https://tinyweights.dev/posts/gguf-vs-onnx-vs-mlx/</link>
-      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/gguf-vs-onnx-vs-mlx/</guid>
-      <description>GGUF, ONNX, and MLX compared: what each format is for, which quantization levels to pick, and how to choose the right one for your hardware.</description>
-    </item>
-    <item>
       <title>The Best Small Language Models in 2026: A Practical Comparison</title>
       <link>https://tinyweights.dev/posts/best-small-language-models-2026/</link>
       <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
@@ -168,13 +84,6 @@
       <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/posts/qwen3-5-tiny-multimodal-thinking-model/</guid>
       <description>Qwen3.5-0.8B packs multimodal vision, a 262K context window, and an on-demand thinking mode into a 1GB file. Here&amp;#39;s the architecture behind it and how to run it locally.</description>
-    </item>
-    <item>
-      <title>Qwen3-Coder-Next: Run a Frontier-Level Coding Agent Locally on Consumer Hardware</title>
-      <link>https://tinyweights.dev/posts/qwen3-coder-next-local-coding-agent/</link>
-      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/qwen3-coder-next-local-coding-agent/</guid>
-      <description>Alibaba&amp;#39;s Qwen3-Coder-Next packs 80B total parameters into a 3B-active MoE, scores 70.6% on SWE-Bench Verified, and runs on a single RTX 5090 or 128GB Mac Studio.</description>
     </item>
     <item>
       <title>Gemma 4: Taking Agentic Workflows to the Edge</title>

@@ -16,6 +16,13 @@
       <description>Complete guide to running small language models on Apple Silicon — MLX vs Ollama, real benchmark data by chip generation, and setup commands for M1 through M5.</description>
     </item>
     <item>
+      <title>Deep Dive: Running Reka Edge Locally for Frontier-Level Vision AI on Mac and PC</title>
+      <link>https://tinyweights.dev/posts/run-reka-edge-locally-vision-model-mac/</link>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-reka-edge-locally-vision-model-mac/</guid>
+      <description>An in-depth look at Reka Edge, the 7B multimodal vision-language model. Learn about its ConvNeXt V2 architecture, token efficiency, and how to run it locally on consumer hardware.</description>
+    </item>
+    <item>
       <title>Fine-Tune Gemma 3 270M on Apple Silicon with MLX-LM and Python</title>
       <link>https://tinyweights.dev/posts/fi/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>

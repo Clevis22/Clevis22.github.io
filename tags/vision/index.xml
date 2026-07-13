@@ -6,14 +6,42 @@
     <description>Recent content in Vision on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/vision/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Best Local Vision Language Models in 2026: Small VLMs You Can Actually Run</title>
+      <link>https://tinyweights.dev/posts/best-local-vision-language-models-2026/</link>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/best-local-vision-language-models-2026/</guid>
+      <description>A practical comparison of the best local vision language models in 2026, from 4B VLMs to 32B, with real MMMU and DocVQA benchmarks and VRAM estimates.</description>
+    </item>
     <item>
       <title>How to Run Ministral 3 Locally: Mistral&#39;s 3B, 8B, and 14B Vision Models</title>
       <link>https://tinyweights.dev/posts/run-ministral-3-locally/</link>
       <pubDate>Mon, 25 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/posts/run-ministral-3-locally/</guid>
       <description>A practical guide to running Ministral-3 (3B, 8B, 14B) locally with Ollama and LM Studio: compact models with vision, tool use, and 256K context in under 10GB.</description>
+    </item>
+    <item>
+      <title>MedGemma 1.5: Google&#39;s 4B Medical Vision-Language Model You Can Run Locally</title>
+      <link>https://tinyweights.dev/posts/medgemma-1-5/</link>
+      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/medgemma-1-5/</guid>
+      <description>MedGemma 1.5 is Google&amp;#39;s 4B medical multimodal model: Gemma 3 backbone, MedSigLIP encoder, 128K context. Runs in 3.3GB on Ollama. Benchmarks, deployment, and the limits.</description>
+    </item>
+    <item>
+      <title>Qwen3.5-0.8B: A Multimodal Thinking Model That Fits in 1 Gigabyte</title>
+      <link>https://tinyweights.dev/posts/qwen3-5-tiny-multimodal-thinking-model/</link>
+      <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/qwen3-5-tiny-multimodal-thinking-model/</guid>
+      <description>Qwen3.5-0.8B packs multimodal vision, a 262K context window, and an on-demand thinking mode into a 1GB file. Here&amp;#39;s the architecture behind it and how to run it locally.</description>
+    </item>
+    <item>
+      <title>Deep Dive: Running Reka Edge Locally for Frontier-Level Vision AI on Mac and PC</title>
+      <link>https://tinyweights.dev/posts/run-reka-edge-locally-vision-model-mac/</link>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-reka-edge-locally-vision-model-mac/</guid>
+      <description>An in-depth look at Reka Edge, the 7B multimodal vision-language model. Learn about its ConvNeXt V2 architecture, token efficiency, and how to run it locally on consumer hardware.</description>
     </item>
   </channel>
 </rss>

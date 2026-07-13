@@ -16,11 +16,25 @@
       <description>Jamba Reasoning 3B vs Phi-4-mini-reasoning: architecture, benchmarks, context length, RAM requirements, and which small reasoning model to run locally.</description>
     </item>
     <item>
+      <title>How to Run Phi-4-mini-reasoning Locally: Microsoft&#39;s 3.8B Math Model</title>
+      <link>https://tinyweights.dev/posts/run-phi-4-mini-reasoning-locally/</link>
+      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-phi-4-mini-reasoning-locally/</guid>
+      <description>Step-by-step guide to running Phi-4-mini-reasoning locally with Ollama and llama.cpp: Microsoft&amp;#39;s 3.8B model that outscores 7B distillation models on AIME and MATH-500.</description>
+    </item>
+    <item>
       <title>How to Run LFM2.5-1.2B-Thinking Locally: On-Device Reasoning Under 1GB</title>
       <link>https://tinyweights.dev/posts/run-lfm2-5-1-2b-thinking-locally/</link>
       <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/posts/run-lfm2-5-1-2b-thinking-locally/</guid>
       <description>A practical guide to running LFM2.5-1.2B-Thinking locally: Liquid AI&amp;#39;s 1.2B reasoning model fits in under 1GB and runs on a phone CPU, with llama.cpp, LM Studio, and MLX support.</description>
+    </item>
+    <item>
+      <title>How to Run Jamba Reasoning 3B Locally: AI21&#39;s Hybrid SSM-Transformer With a 256K Context</title>
+      <link>https://tinyweights.dev/posts/run-jamba-reasoning-3b-locally/</link>
+      <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-jamba-reasoning-3b-locally/</guid>
+      <description>A practical guide to running AI21&amp;#39;s Jamba Reasoning 3B locally with Ollama and llama.cpp: a hybrid Mamba/Transformer 3B model with a 256K context window in under 2 GB at Q4.</description>
     </item>
   </channel>
 </rss>

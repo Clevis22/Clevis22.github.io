@@ -16,13 +16,6 @@
       <description>Step-by-step guide to quantize a model with llama.cpp: convert HuggingFace safetensors to GGUF, run llama-quantize, and improve low-bit quants with an importance matrix.</description>
     </item>
     <item>
-      <title>How to Run Phi-4-mini-reasoning Locally: Microsoft&#39;s 3.8B Math Model</title>
-      <link>https://tinyweights.dev/posts/run-phi-4-mini-reasoning-locally/</link>
-      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/run-phi-4-mini-reasoning-locally/</guid>
-      <description>Step-by-step guide to running Phi-4-mini-reasoning locally with Ollama and llama.cpp: Microsoft&amp;#39;s 3.8B model that outscores 7B distillation models on AIME and MATH-500.</description>
-    </item>
-    <item>
       <title>GGUF Quantization Levels Explained: Q4, Q5, Q8, and IQ Quants</title>
       <link>https://tinyweights.dev/posts/gguf-quantization-levels-q4-q5-q8/</link>
       <pubDate>Wed, 27 May 2026 00:00:00 +0000</pubDate>

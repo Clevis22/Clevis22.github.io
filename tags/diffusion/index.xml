@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Diffusion on TinyWeights.dev</title>
+    <link>https://tinyweights.dev/tags/diffusion/</link>
+    <description>Recent content in Diffusion on TinyWeights.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://tinyweights.dev/tags/diffusion/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DiffusionGemma: Google&#39;s Text-Diffusion Model That Generates 4x Faster, and How to Run It Locally</title>
+      <link>https://tinyweights.dev/posts/run-diffusiongemma-locally/</link>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-diffusiongemma-locally/</guid>
+      <description>DiffusionGemma is Google&amp;#39;s open-weight text-diffusion model: 25.2B total, 3.8B active, up to 4x faster generation than Gemma 4. How discrete text diffusion works, honest benchmarks, and how to run DiffusionGemma locally with vLLM, Transformers, and MLX.</description>
+    </item>
+  </channel>
+</rss>

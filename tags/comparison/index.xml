@@ -30,11 +30,32 @@
       <description>North Mini Code 1.0 vs Qwen3.6-35B-A3B head-to-head: coding benchmarks, GGUF sizes, VRAM headroom on a 24 GB GPU, context windows, and which 3B-active MoE to pick.</description>
     </item>
     <item>
+      <title>The Best Local Vision Language Models in 2026: Small VLMs You Can Actually Run</title>
+      <link>https://tinyweights.dev/posts/best-local-vision-language-models-2026/</link>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/best-local-vision-language-models-2026/</guid>
+      <description>A practical comparison of the best local vision language models in 2026, from 4B VLMs to 32B, with real MMMU and DocVQA benchmarks and VRAM estimates.</description>
+    </item>
+    <item>
       <title>Qwen3.5-4B vs Phi-4-mini: Choosing the Right 4B Model for Local Inference</title>
       <link>https://tinyweights.dev/posts/qwen3-5-4b-vs-phi-4-mini/</link>
       <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/posts/qwen3-5-4b-vs-phi-4-mini/</guid>
       <description>Qwen3.5-4B vs Phi-4-mini: a direct comparison of benchmarks, VRAM, context windows, and multimodal support for the two best 4B local models in 2026.</description>
+    </item>
+    <item>
+      <title>Ollama vs LM Studio vs llama.cpp: Which Local AI Runtime Should You Use?</title>
+      <link>https://tinyweights.dev/posts/ollama-vs-lm-studio-vs-llama-cpp/</link>
+      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/ollama-vs-lm-studio-vs-llama-cpp/</guid>
+      <description>Ollama vs LM Studio vs llama.cpp compared: setup, performance, API support, and which runtime to pick for your hardware and use case in 2026.</description>
+    </item>
+    <item>
+      <title>The Best Small Language Models in 2026: A Practical Comparison</title>
+      <link>https://tinyweights.dev/posts/best-small-language-models-2026/</link>
+      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/best-small-language-models-2026/</guid>
+      <description>A practical guide to the best small language models in 2026—Phi-4-mini, SmolLM3-3B, Gemma 3 4B, Qwen3, and more—with benchmarks, VRAM requirements, and honest use-case picks.</description>
     </item>
   </channel>
 </rss>

@@ -6,14 +6,14 @@
     <description>Recent content in Moe on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 11 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/moe/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>North Mini Code vs Qwen3.6-35B-A3B: Which Local Coding MoE Wins?</title>
-      <link>https://tinyweights.dev/posts/north-mini-code-vs-qwen3-6-35b-a3b/</link>
-      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/posts/north-mini-code-vs-qwen3-6-35b-a3b/</guid>
-      <description>North Mini Code 1.0 vs Qwen3.6-35B-A3B head-to-head: coding benchmarks, GGUF sizes, VRAM headroom on a 24 GB GPU, context windows, and which 3B-active MoE to pick.</description>
+      <title>LFM2.5-8B-A1B vs ZAYA1-8B: Which 8B MoE Reasoning Model Should You Run Locally?</title>
+      <link>https://tinyweights.dev/posts/lfm2-5-8b-a1b-vs-zaya1-8b/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/lfm2-5-8b-a1b-vs-zaya1-8b/</guid>
+      <description>LFM2.5-8B-A1B vs ZAYA1-8B: two 8B-class sparse MoE reasoning models compared on benchmarks, generation speed, memory footprint, deployment, and licensing.</description>
     </item>
     <item>
       <title>How to Run North Mini Code Locally: Cohere&#39;s 30B-A3B Coding Model</title>
@@ -21,6 +21,20 @@
       <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/posts/run-north-mini-code-locally/</guid>
       <description>Run North Mini Code 1.0 locally: Cohere&amp;#39;s 30B-A3B open-weight coding MoE. GGUF sizes, the llama.cpp build for the cohere2moe architecture, hardware requirements, and benchmarks.</description>
+    </item>
+    <item>
+      <title>DiffusionGemma: Google&#39;s Text-Diffusion Model That Generates 4x Faster, and How to Run It Locally</title>
+      <link>https://tinyweights.dev/posts/run-diffusiongemma-locally/</link>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-diffusiongemma-locally/</guid>
+      <description>DiffusionGemma is Google&amp;#39;s open-weight text-diffusion model: 25.2B total, 3.8B active, up to 4x faster generation than Gemma 4. How discrete text diffusion works, honest benchmarks, and how to run DiffusionGemma locally with vLLM, Transformers, and MLX.</description>
+    </item>
+    <item>
+      <title>How to Run LFM2.5-8B-A1B Locally: Liquid AI&#39;s On-Device Tool-Calling MoE</title>
+      <link>https://tinyweights.dev/posts/run-lfm2-5-8b-a1b-locally/</link>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-lfm2-5-8b-a1b-locally/</guid>
+      <description>A practical guide to running LFM2.5-8B-A1B locally: Liquid AI&amp;#39;s 8.3B mixture-of-experts activates only 1.5B parameters per token, fits in ~4.8GB at Q4, and ships with day-one Ollama, llama.cpp, and MLX support.</description>
     </item>
     <item>
       <title>How to Run Qwen3.6-35B-A3B Locally: A 35B MoE Model on One GPU</title>
