@@ -18,7 +18,7 @@ The full family is Apache 2.0 licensed. All three sizes support tool calling wit
 
 IBM used a four-stage reinforcement learning pipeline after supervised fine-tuning. The stages cover multi-domain reasoning, RLHF on chat quality, identity and knowledge calibration, and a final math RL pass. The RLHF stage improved Alpaca-Eval scores by roughly 18.9 points; the math RL stage recovered about 3.8 points on GSM8K that were lost during general RLHF.
 
-{{< figure src="https://cdn-uploads.huggingface.co/production/uploads/6658c911e238275ea9efc339/GWOYmx9r07aJFaJZXmx.png" alt="Granite 4.1 model family benchmark comparison showing instruct performance across 3B, 8B, and 30B sizes" caption="Benchmark comparison across the Granite 4.1 instruct family. Source: IBM Granite / HuggingFace" >}}
+{{< figure src="https://cdn-uploads.huggingface.co/production/uploads/6658c911e238275ea9efc339/GWOOEjb2Nr07aJFaJZXmx.png" alt="Granite 4.1 model family benchmark comparison showing instruct performance across 3B, 8B, and 30B sizes" caption="Benchmark comparison across the Granite 4.1 instruct family. Source: IBM Granite / HuggingFace" >}}
 
 ## Model Sizes and Hardware Requirements
 

@@ -60,13 +60,13 @@ What Microsoft reports for Phi-4-mini-reasoning, against reasoning-tuned models 
 
 Read side by side, the tables still tell you something. Phi-4-mini-reasoning's 94.6% on MATH-500 is the highest score we have seen published for any sub-4B model; Microsoft's card shows the base Phi-4-mini at 71.8% on the same test, so the math fine-tune buys about 23 points. Jamba's 52% on IFBench, roughly double the scores of Gemma 3 4B and Llama 3.2 3B, points at unusually reliable multi-step instruction following, which matters more than raw math for agent pipelines. And the fact that AI21 publishes no math benchmarks while Microsoft publishes nothing else is itself informative: each vendor is showing you where its model lives.
 
-{{< figure src="https://huggingface.co/ai21labs/AI21-Jamba-Reasoning-3B-GGUF/resolve/main/assets/Intelligence%20vs%20Speed%20Jamba%20Reasoning%203B.png" alt="Scatter plot placing Jamba Reasoning 3B ahead of other small models on combined intelligence versus output speed" caption="AI21's intelligence-versus-speed framing for Jamba Reasoning 3B against other small models. Vendor chart, so read it as a claim, not a neutral measurement. (Image: AI21 Labs model card, Apache 2.0)" >}}
-
 ## Speed and memory at long context
 
 At short prompts, the two models perform similarly on modest hardware: both Q4 files load in under 4 GB of RAM and generate at usable speeds on CPU. The gap opens as context grows.
 
 Jamba's Mamba-heavy stack processes the sequence as a recurrence, so per-token cost stays close to flat as the prompt lengthens. AI21's launch post claims 40 tokens per second on an M3 MacBook Pro at 32K tokens of context, and 2 to 5x efficiency gains over competing small models. The 256K window is actually reachable on a laptop: budget roughly 6 to 8 GB of RAM at full context with Q4 weights.
+
+{{< figure src="https://huggingface.co/ai21labs/AI21-Jamba-Reasoning-3B-GGUF/resolve/main/assets/Speed%20vs%20Context%20Length.png" alt="Line chart of output tokens per second versus context length on an M3 MacBook Pro, showing Jamba Reasoning 3B staying above 25 tokens per second out to 256K while Phi-4 Mini and other small transformers drop toward single digits" caption="AI21's on-device throughput measurements on an M3 MacBook Pro: Jamba holds speed as context grows while Phi-4 Mini and other transformers fall off. Vendor chart, so read it as a claim, not a neutral measurement. (Image: AI21 Labs model card, Apache 2.0)" >}}
 
 Phi-4-mini-reasoning supports 128K tokens on paper, but as a dense transformer its KV cache and attention cost grow with every token. On CPU or a small GPU, long-context prompts get slow well before the architectural limit. In practice this rarely hurts it, because math problems are short. A competition problem fits in a few hundred tokens; the model's output, which can run several thousand tokens of chain-of-thought on hard problems, dominates the compute, not the prompt.
 
