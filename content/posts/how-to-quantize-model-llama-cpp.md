@@ -2,7 +2,7 @@
 title: "How to Quantize a Model with llama.cpp: From Safetensors to GGUF"
 date: 2026-07-02
 draft: false
-tags: ["small-models", "slm", "edge-ai", "gguf", "quantization", "llama-cpp"]
+tags: ["quantization", "gguf", "llama-cpp", "small-models"]
 categories: ["small-ai-models"]
 description: "Step-by-step guide to quantize a model with llama.cpp: convert HuggingFace safetensors to GGUF, run llama-quantize, and improve low-bit quants with an importance matrix."
 slug: "how-to-quantize-model-llama-cpp"

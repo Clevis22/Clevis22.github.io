@@ -2,7 +2,7 @@
 title: "GPT-5.4 Nano: The Fastest, Cheapest OpenAI Model Yet — What Developers Need to Know"
 date: 2026-03-22
 draft: false
-tags: ["small-models", "slm", "edge-ai", "gpt-5.4-nano", "openai", "api"]
+tags: ["openai", "edge-ai", "small-models"]
 categories: ["small-ai-models"]
 description: "GPT-5.4 nano is OpenAI's most efficient model yet — $0.20/M input tokens, 400k context, API-only. Here's what it can do and when to reach for it."
 ---

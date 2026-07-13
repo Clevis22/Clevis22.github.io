@@ -2,7 +2,7 @@
 title: "Jamba Reasoning 3B vs Phi-4-mini-reasoning: Which Small Reasoning Model Should You Run Locally?"
 date: 2026-07-13
 draft: false
-tags: ["small-models", "slm", "edge-ai", "jamba", "phi", "ai21", "microsoft", "reasoning", "comparison", "local-inference"]
+tags: ["comparison", "jamba", "phi", "reasoning", "small-models"]
 categories: ["small-ai-models"]
 description: "Jamba Reasoning 3B vs Phi-4-mini-reasoning: architecture, benchmarks, context length, RAM requirements, and which small reasoning model to run locally."
 slug: "jamba-reasoning-3b-vs-phi-4-mini-reasoning"

@@ -2,7 +2,7 @@
 title: "Run ZAYA1-8B Locally: The 8B Reasoning MoE Trained on AMD"
 date: 2026-06-01
 draft: false
-tags: ["small-models", "slm", "edge-ai", "zaya1"]
+tags: ["zaya1", "local-inference", "edge-ai", "small-models"]
 categories: ["small-ai-models"]
 description: "How to run ZAYA1-8B locally: a 8.4B-total, 760M-active reasoning MoE from Zyphra, with setup steps, memory requirements, and benchmark numbers."
 slug: "run-zaya1-8b-locally"

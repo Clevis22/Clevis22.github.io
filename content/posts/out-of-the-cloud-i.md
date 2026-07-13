@@ -2,7 +2,7 @@
 title: "Out of the Cloud, Into the Wild: How Small AI Models and Physical AI Are Taking Over the Edge"
 date: 2026-03-23
 draft: false
-tags: ["small-models", "slm", "edge-ai", "phi-4-mini", "gemma-3n"]
+tags: ["edge-ai", "phi", "gemma", "small-models"]
 categories: ["small-ai-models"]
 description: "Why the AI industry is pivoting from massive data centers to Small Language Models (SLMs) running locally on devices, factories, and 5G networks."
 slug: "out-of-the-cloud-into-the-wild"

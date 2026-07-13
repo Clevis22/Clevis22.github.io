@@ -2,7 +2,7 @@
 title: "LFM2.5-8B-A1B vs ZAYA1-8B: Which 8B MoE Reasoning Model Should You Run Locally?"
 date: 2026-07-11
 draft: false
-tags: ["small-models", "slm", "edge-ai", "liquid-ai", "zaya1", "mixture-of-experts", "comparison"]
+tags: ["comparison", "liquid-ai", "zaya1", "moe", "small-models"]
 categories: ["small-ai-models"]
 description: "LFM2.5-8B-A1B vs ZAYA1-8B: two 8B-class sparse MoE reasoning models compared on benchmarks, generation speed, memory footprint, deployment, and licensing."
 slug: "lfm2-5-8b-a1b-vs-zaya1-8b"

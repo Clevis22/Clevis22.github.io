@@ -2,7 +2,7 @@
 title: "North Mini Code vs Qwen3.6-35B-A3B: Which Local Coding MoE Wins?"
 date: 2026-07-10
 draft: false
-tags: ["small-models", "slm", "cohere", "qwen", "moe", "agentic-coding", "comparison"]
+tags: ["comparison", "cohere", "qwen", "agentic-coding", "small-models"]
 categories: ["small-ai-models"]
 description: "North Mini Code 1.0 vs Qwen3.6-35B-A3B head-to-head: coding benchmarks, GGUF sizes, VRAM headroom on a 24 GB GPU, context windows, and which 3B-active MoE to pick."
 slug: "north-mini-code-vs-qwen3-6-35b-a3b"

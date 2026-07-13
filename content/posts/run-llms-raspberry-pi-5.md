@@ -2,7 +2,7 @@
 title: "Running LLMs on Raspberry Pi 5: A Practical Guide with Real Benchmarks"
 date: 2026-05-20
 draft: false
-tags: ["small-models", "slm", "raspberry-pi", "edge-ai", "local-inference", "hardware", "llama-cpp", "ollama"]
+tags: ["raspberry-pi", "hardware", "llama-cpp", "edge-ai", "small-models"]
 categories: ["small-ai-models"]
 description: "How to run small language models on Raspberry Pi 5 using Ollama and llama.cpp, with real token-speed benchmarks by model size and specific model recommendations for the 8 GB Pi."
 slug: "run-llms-raspberry-pi-5"

@@ -3,7 +3,7 @@ title: "GGUF vs ONNX vs MLX: Which Model Format Should You Use for Local Inferen
 date: 2026-05-15
 lastmod: 2026-07-09
 draft: false
-tags: ["small-models", "slm", "edge-ai", "gguf", "mlx", "onnx", "quantization", "local-inference"]
+tags: ["gguf", "onnx", "mlx", "quantization", "small-models"]
 categories: ["small-ai-models"]
 description: "GGUF, ONNX, and MLX compared: what each format is for, which quantization levels to pick, and how to choose the right one for your hardware."
 slug: "gguf-vs-onnx-vs-mlx"

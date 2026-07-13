@@ -2,7 +2,7 @@
 title: "SmolLM3-3B: The Fully Open Small Language Model That Punches Way Above Its Weight"
 date: 2026-03-22
 draft: false
-tags: ["small-models", "slm", "edge-ai", "SmolLM3", "local-inference", "quantization"]
+tags: ["smollm", "quantization", "local-inference", "edge-ai", "small-models"]
 categories: ["small-ai-models"]
 description: "SmolLM3-3B from HuggingFace is a fully open 3B SLM with 128k context, dual-mode reasoning, and multilingual support. Here's how to run it locally."
 image: "https://cdn-uploads.huggingface.co/production/uploads/61c141342aac764ce1654e43/zy0dqTCCt5IHmuzwoqtJ9.png"

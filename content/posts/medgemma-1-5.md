@@ -2,7 +2,7 @@
 title: "MedGemma 1.5: Google's 4B Medical Vision-Language Model You Can Run Locally"
 date: 2026-05-24
 draft: false
-tags: ["small-models", "slm", "edge-ai", "medgemma", "gemma", "medical-ai", "multimodal", "ollama"]
+tags: ["medical-ai", "gemma", "vision", "ollama", "small-models"]
 categories: ["small-ai-models"]
 description: "MedGemma 1.5 is Google's 4B medical multimodal model: Gemma 3 backbone, MedSigLIP encoder, 128K context. Runs in 3.3GB on Ollama. Benchmarks, deployment, and the limits."
 slug: "medgemma-1-5"

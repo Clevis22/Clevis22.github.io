@@ -2,7 +2,7 @@
 title: "How to Run a Small LLM in Your Browser with WebLLM (No Install, No API)"
 date: 2026-05-25
 draft: false
-tags: ["small-models", "slm", "webllm", "webgpu", "browser", "local-inference"]
+tags: ["webgpu", "edge-ai", "local-inference", "small-models"]
 categories: ["small-ai-models"]
 description: "Run a small open LLM (Qwen2.5, SmolLM2, Llama-3.2) entirely in your browser using WebLLM and WebGPU. How it works, browser support, model sizes, and a live demo you can try right now."
 slug: "run-llm-in-browser-webllm"

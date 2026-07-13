@@ -2,7 +2,7 @@
 title: "1-bit LLMs Explained: How BitNet's Ternary Weights Actually Work"
 date: 2026-06-01
 draft: false
-tags: ["small-models", "slm", "edge-ai", "bitnet", "quantization"]
+tags: ["bitnet", "quantization", "edge-ai", "small-models"]
 categories: ["small-ai-models"]
 description: "A deep guide to 1-bit LLMs: how 1.58-bit ternary weights work, BitNet b1.58 2B4T benchmarks, running them on CPU with bitnet.cpp, and whether they beat 4-bit quantization."
 slug: "1-bit-llms-bitnet-ternary-weights"

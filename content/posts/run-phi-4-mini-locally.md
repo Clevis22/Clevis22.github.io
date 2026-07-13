@@ -2,7 +2,7 @@
 title: "How to Run Phi-4-mini Locally: Microsoft's 3.8B Model with 128K Context"
 date: 2026-05-18
 draft: false
-tags: ["small-models", "slm", "edge-ai", "phi", "microsoft", "local-inference", "gguf", "ollama"]
+tags: ["phi", "ollama", "gguf", "local-inference", "small-models"]
 categories: ["small-ai-models"]
 description: "Step-by-step guide to running Phi-4-mini locally with Ollama, llama.cpp, and Python — with verified benchmarks and RAM requirements for Microsoft's 3.8B reasoning model."
 slug: "run-phi-4-mini-locally"

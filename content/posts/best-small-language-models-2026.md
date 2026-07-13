@@ -3,7 +3,7 @@ title: "The Best Small Language Models in 2026: A Practical Comparison"
 date: 2026-05-14
 lastmod: 2026-07-13
 draft: false
-tags: ["small-models", "slm", "benchmark", "local-inference", "edge-ai"]
+tags: ["comparison", "benchmark", "local-inference", "edge-ai", "small-models"]
 categories: ["small-ai-models"]
 description: "A practical guide to the best small language models in 2026—Phi-4-mini, SmolLM3-3B, Gemma 3 4B, Qwen3, and more—with benchmarks, VRAM requirements, and honest use-case picks."
 slug: "best-small-language-models-2026"

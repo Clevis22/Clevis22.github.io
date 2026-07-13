@@ -2,7 +2,7 @@
 title: "Qwen3-Coder-Next: Run a Frontier-Level Coding Agent Locally on Consumer Hardware"
 date: 2026-05-11
 draft: false
-tags: ["small-models", "slm", "edge-ai", "Qwen3-Coder-Next", "coding-agents", "local-inference", "MoE"]
+tags: ["qwen", "agentic-coding", "moe", "local-inference", "small-models"]
 categories: ["small-ai-models"]
 description: "Alibaba's Qwen3-Coder-Next packs 80B total parameters into a 3B-active MoE, scores 70.6% on SWE-Bench Verified, and runs on a single RTX 5090 or 128GB Mac Studio."
 slug: "qwen3-coder-next-local-coding-agent"

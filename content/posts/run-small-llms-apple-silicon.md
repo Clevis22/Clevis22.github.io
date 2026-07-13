@@ -2,7 +2,7 @@
 title: "The Complete Guide to Running Small LLMs on Apple Silicon (2026)"
 date: 2026-05-19
 draft: false
-tags: ["small-models", "slm", "apple-silicon", "mlx", "ollama", "local-inference", "hardware"]
+tags: ["apple-silicon", "mlx", "ollama", "hardware", "small-models"]
 categories: ["small-ai-models"]
 description: "Complete guide to running small language models on Apple Silicon — MLX vs Ollama, real benchmark data by chip generation, and setup commands for M1 through M5."
 slug: "run-small-llms-apple-silicon"
