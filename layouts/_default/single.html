@@ -66,6 +66,26 @@
     <div class="tw-eof-result">0</div>
   </div>
 
+  {{- /* Related posts — ranked by shared tags (see [related] in hugo.toml).
+        Placed after the `cd ..` prompt, so the fictional cwd is /home/posts. */ -}}
+  {{- $posts := where site.RegularPages "Section" "posts" }}
+  {{- $related := $posts.Related . | first 3 }}
+  {{- with $related }}
+  <nav class="tw-related" aria-label="Related posts">
+    <div class="tw-prompt">
+      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home/posts</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">ls ./related/</span>
+    </div>
+    {{- range . }}
+    <a class="tw-postrow" href="{{ .Permalink }}">
+      <span class="tw-col-date">{{ .Date.Format "01-02" }}</span>
+      <span class="tw-col-read">{{ .ReadingTime }}min</span>
+      <span class="tw-col-tag">{{- with (index .Params.tags 0) -}}#{{ . }}{{- end -}}</span>
+      <span class="tw-col-title">{{ .Title }}</span>
+    </a>
+    {{- end }}
+  </nav>
+  {{- end }}
+
   {{- if .Params.ShowPostNavLinks | default site.Params.ShowPostNavLinks -}}
     {{- partial "post_nav_links.html" . -}}
   {{- end -}}

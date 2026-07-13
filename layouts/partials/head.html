@@ -14,8 +14,15 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{{- /* Term pages with fewer than 2 posts are thin content — keep them
+       crawlable (follow) but out of the index until they grow. */ -}}
+{{- $thinTerm := and (eq .Kind "term") (lt (len .Pages) 2) }}
 {{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
+{{- if $thinTerm }}
+<meta name="robots" content="noindex, follow">
+{{- else }}
 <meta name="robots" content="index, follow">
+{{- end }}
 {{- else }}
 <meta name="robots" content="noindex, nofollow">
 {{- end }}

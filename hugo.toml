@@ -2,8 +2,24 @@ baseURL = "https://tinyweights.dev"
 locale = "en-us"
 title = "TinyWeights.dev"
 theme = "PaperMod"
-pagerSize = 10
 enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 10
+
+# Powers the related-posts block on single pages (layouts/_default/single.html).
+# threshold is deliberately low: every post shares the site-wide "small-models"
+# tag, so ranking (shared-tag count, then recency) does the real work.
+[related]
+  includeNewer = true
+  threshold = 20
+  toLower = true
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+  [[related.indices]]
+    name = "date"
+    weight = 10
 
 [minify]
   disableXML = true

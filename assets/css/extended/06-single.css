@@ -164,3 +164,12 @@
   .post-title { font-size: 26px; }
   .paginav { grid-template-columns: 1fr; }
 }
+
+/* Related posts — `$ ls ./related/` block after the end-of-post prompt.
+ * Rows reuse .tw-postrow / column styles from 05-list.css. */
+.tw-related {
+  margin-top: 36px;
+}
+.tw-related .tw-prompt {
+  margin-bottom: 8px;
+}
