@@ -52,7 +52,7 @@ AI21's headline comparison is against three other small models released in 2025:
 
 A few things to read out of that table. The MMLU-Pro gap is large enough that it cannot be explained by training data overlap alone; Jamba Reasoning 3B is doing genuinely better on the harder graduate-knowledge subset of MMLU. IFBench, which tests instruction-following on multi-step prompts, is where the gap is widest. Humanity's Last Exam scores are uniformly low across the entire sub-4B class, which says more about the benchmark than the models. None of these small models are close to solving the hardest tier of academic questions.
 
-The other claim worth checking is speed. AI21 reports 35 tokens per second at 32K context on a MacBook Pro, versus 8–15 tok/s for competitor 3B-class models at the same context length. That ratio comes from the Mamba-heavy architecture: SSM layers do not slow down as the context grows the way attention layers do.
+The other claim worth checking is speed. AI21's launch post claims 40 tokens per second on an M3 MacBook Pro at 32K context, and 2 to 5x efficiency gains over competing small models. That ratio comes from the Mamba-heavy architecture: SSM layers do not slow down as the context grows the way attention layers do.
 
 ## How to run Jamba Reasoning 3B locally with Ollama
 
