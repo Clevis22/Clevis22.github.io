@@ -1,7 +1,7 @@
 ---
 title: "The Best Small Language Models in 2026: A Practical Comparison"
 date: 2026-05-14
-lastmod: 2026-07-13
+lastmod: 2026-07-14
 draft: false
 tags: ["comparison", "benchmark", "local-inference", "edge-ai", "small-models"]
 categories: ["small-ai-models"]
@@ -44,7 +44,7 @@ HuggingFace's SmolLM3-3B is the most genuinely open model in this class: Apache 
 
 SmolLM3 was specifically trained with multi-stage context extension: pretraining at 4K context, then two 50B-token extension phases pushing it to 32K and then 64K, with a further 2× YARN extrapolation reaching 128K at inference. The quality at long context is engineered rather than incidental.
 
-We covered SmolLM3-3B in detail when it launched: [SmolLM3-3B: The Fully Open Small Language Model That Punches Way Above Its Weight](/posts/smollm3-3b-the-fully-ope/).
+We covered SmolLM3-3B in detail when it launched: [SmolLM3-3B: The Fully Open Small Language Model That Punches Way Above Its Weight](/posts/smollm3-3b-the-fully-ope/). For how it stacks up directly against the section above, our [SmolLM3-3B vs Phi-4-mini head-to-head](/posts/smollm3-3b-vs-phi-4-mini/) compares the two on benchmarks, reasoning modes, and language coverage.
 
 - **Context window:** 128K tokens
 - **License:** Apache 2.0 — fully permissive, commercial use
@@ -124,6 +124,7 @@ The two months since this post went up have been unusually busy, and several rel
 |---|---|---|---|---|---|
 | LFM2.5-1.2B-Thinking | 1.2B | 32K | LFM Open | Reasoning-only: every answer includes a thinking trace | [Guide](/posts/run-lfm2-5-1-2b-thinking-locally/) |
 | BitNet b1.58 2B4T | 2B | 4K | MIT | Native ternary weights, ~1.1 GB, CPU-first via bitnet.cpp | [Guide](/posts/1-bit-llms-bitnet-ternary-weights/) |
+| Bonsai 27B | 27B | 262K | Apache 2.0 | Binary-weight rebuild of Qwen3.6-27B: 3.9 GB deployed, ~90% of FP16 scores per PrismML, runs on an iPhone 17 Pro Max | [Guide](/posts/run-bonsai-27b-locally/) |
 | Jamba Reasoning 3B | 3B | 256K | Apache 2.0 | Mamba/Transformer hybrid, under 2 GB at Q4, speed holds at long context | [Guide](/posts/run-jamba-reasoning-3b-locally/) |
 | Granite 4.1 (3B / 8B) | 3B / 8B | 128K / 512K | Apache 2.0 | Strong coding and tool calling; 512K context on the 8B | [Guide](/posts/run-ibm-granite-4-1-locally/) |
 | Ministral 3 (3B / 8B / 14B) | 3B to 14B | 256K | Apache 2.0 | Vision input and native tool use at every size | [Guide](/posts/run-ministral-3-locally/) |

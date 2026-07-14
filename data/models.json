@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-10",
+  "updated": "2026-07-14",
   "note": "Facts sourced from tinyweights.dev posts (which cite official model cards). params_b = total parameters (drives memory); active_b = activated per token (drives speed) for MoE/effective-param models. ctx_k = context window in K tokens. kv_light = linear-attention/SSM hybrid whose KV cache grows far slower than a standard transformer.",
   "models": [
     {
@@ -10,7 +10,10 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat", "embedded"],
+      "use_cases": [
+        "chat",
+        "embedded"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-llm-in-browser-webllm/",
       "note": "small enough to run in a browser tab; try it on /try"
@@ -23,7 +26,9 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["embedded"],
+      "use_cases": [
+        "embedded"
+      ],
       "license": "Gemma",
       "post": "/posts/fi/",
       "note": "fine-tunes on a laptop; built for classification and extraction, not chat"
@@ -36,7 +41,10 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat", "embedded"],
+      "use_cases": [
+        "chat",
+        "embedded"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-llm-in-browser-webllm/",
       "note": "the default model in this site's /try demo"
@@ -49,7 +57,13 @@
       "vision": true,
       "reasoning": true,
       "kv_light": true,
-      "use_cases": ["chat", "vision", "long-context", "multilingual", "embedded"],
+      "use_cases": [
+        "chat",
+        "vision",
+        "long-context",
+        "multilingual",
+        "embedded"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/qwen3-5-tiny-multimodal-thinking-model/",
       "note": "Gated DeltaNet hybrid; 262K context stays practical on small hardware"
@@ -62,7 +76,11 @@
       "vision": false,
       "reasoning": true,
       "kv_light": false,
-      "use_cases": ["math", "chat", "embedded"],
+      "use_cases": [
+        "math",
+        "chat",
+        "embedded"
+      ],
       "license": "LFM Open License",
       "post": "/posts/run-lfm2-5-1-2b-thinking-locally/",
       "note": "reasoning-only: every answer includes a thinking trace"
@@ -75,7 +93,10 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat", "embedded"],
+      "use_cases": [
+        "chat",
+        "embedded"
+      ],
       "license": "Llama 3.2 Community",
       "post": "/posts/run-llm-in-browser-webllm/",
       "note": null
@@ -88,7 +109,10 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat", "embedded"],
+      "use_cases": [
+        "chat",
+        "embedded"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-llm-in-browser-webllm/",
       "note": null
@@ -101,7 +125,10 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat", "embedded"],
+      "use_cases": [
+        "chat",
+        "embedded"
+      ],
       "license": "MIT",
       "post": "/posts/1-bit-llms-bitnet-ternary-weights/",
       "note": "native 1.58-bit ternary weights (not a post-training quant); run via bitnet.cpp, where the i2_s build is ~1.1 GB and CPU-first. The Q4 memory/speed estimate here is only a rough proxy."
@@ -114,7 +141,11 @@
       "vision": false,
       "reasoning": true,
       "kv_light": true,
-      "use_cases": ["long-context", "math", "chat"],
+      "use_cases": [
+        "long-context",
+        "math",
+        "chat"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-jamba-reasoning-3b-locally/",
       "note": "Mamba/Transformer hybrid; under 2 GB at Q4, speed holds up at long context"
@@ -127,10 +158,15 @@
       "vision": false,
       "reasoning": true,
       "kv_light": false,
-      "use_cases": ["chat", "multilingual", "long-context"],
+      "use_cases": [
+        "chat",
+        "multilingual",
+        "long-context",
+        "agents"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/smollm3-3b-the-fully-ope/",
-      "note": "fully open training recipe; toggleable thinking mode, six languages"
+      "note": "fully open training recipe; toggleable thinking mode, six languages, native tool calling"
     },
     {
       "name": "Granite 4.1 3B",
@@ -140,7 +176,11 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["coding", "agents", "multilingual"],
+      "use_cases": [
+        "coding",
+        "agents",
+        "multilingual"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-ibm-granite-4-1-locally/",
       "note": "79.3 HumanEval at 3B; solid structured tool calling"
@@ -153,7 +193,10 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat", "rag"],
+      "use_cases": [
+        "chat",
+        "rag"
+      ],
       "license": "Llama 3.2 Community",
       "post": "/posts/best-small-language-models-2026/",
       "note": "the compatibility baseline: every framework is tested against it first"
@@ -166,7 +209,11 @@
       "vision": true,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat", "vision", "agents"],
+      "use_cases": [
+        "chat",
+        "vision",
+        "agents"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-ministral-3-locally/",
       "note": "0.4B vision encoder and native tool use in every size"
@@ -179,7 +226,11 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat", "coding", "math"],
+      "use_cases": [
+        "chat",
+        "coding",
+        "math"
+      ],
       "license": "MIT",
       "post": "/posts/run-phi-4-mini-locally/",
       "note": "strongest sub-4B math and reasoning; 88.6% GSM8K"
@@ -192,7 +243,9 @@
       "vision": false,
       "reasoning": true,
       "kv_light": false,
-      "use_cases": ["math"],
+      "use_cases": [
+        "math"
+      ],
       "license": "MIT",
       "post": "/posts/run-phi-4-mini-reasoning-locally/",
       "note": "math-specialist fine-tune; always emits chain of thought"
@@ -205,7 +258,13 @@
       "vision": true,
       "reasoning": true,
       "kv_light": true,
-      "use_cases": ["chat", "coding", "vision", "long-context", "multilingual"],
+      "use_cases": [
+        "chat",
+        "coding",
+        "vision",
+        "long-context",
+        "multilingual"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/qwen3-5-4b-vs-phi-4-mini/",
       "note": "image and video input, on-demand thinking, 201 languages"
@@ -218,7 +277,9 @@
       "vision": true,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["vision"],
+      "use_cases": [
+        "vision"
+      ],
       "license": "Health AI Developer Foundations",
       "post": "/posts/medgemma-1-5/",
       "note": "medical imaging specialist (X-ray, dermatology, pathology); not a general chat model"
@@ -231,7 +292,11 @@
       "vision": true,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat", "coding", "vision"],
+      "use_cases": [
+        "chat",
+        "coding",
+        "vision"
+      ],
       "license": "Gemma",
       "post": "/posts/best-small-language-models-2026/",
       "note": "89.2% GSM8K and 71.3% HumanEval; the multimodal pick at 4B"
@@ -244,7 +309,12 @@
       "vision": true,
       "reasoning": true,
       "kv_light": false,
-      "use_cases": ["chat", "vision", "embedded", "agents"],
+      "use_cases": [
+        "chat",
+        "vision",
+        "embedded",
+        "agents"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/gemma-4-taking-agentic-workflows-to-the-edge/",
       "note": "effective-2B architecture (5.1B total incl. embeddings); text, image, and audio input"
@@ -257,7 +327,9 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat"],
+      "use_cases": [
+        "chat"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/best-small-language-models-2026/",
       "note": "fastest wall-clock throughput in the 7B class"
@@ -270,7 +342,10 @@
       "vision": true,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["vision", "agents"],
+      "use_cases": [
+        "vision",
+        "agents"
+      ],
       "license": "BSL 1.1",
       "post": "/posts/run-reka-edge-locally-vision-model-mac/",
       "note": "vision-language specialist: image, video, and object detection"
@@ -283,7 +358,12 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["coding", "agents", "long-context", "multilingual"],
+      "use_cases": [
+        "coding",
+        "agents",
+        "long-context",
+        "multilingual"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-ibm-granite-4-1-locally/",
       "note": "512K context; 87.2 HumanEval; matches last-gen 32B MoE"
@@ -296,7 +376,11 @@
       "vision": true,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat", "vision", "agents"],
+      "use_cases": [
+        "chat",
+        "vision",
+        "agents"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-ministral-3-locally/",
       "note": null
@@ -309,7 +393,10 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["coding", "chat"],
+      "use_cases": [
+        "coding",
+        "chat"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/best-small-language-models-2026/",
       "note": "32K native context, 128K via YaRN; leads the 7-8B class on code"
@@ -322,7 +409,11 @@
       "vision": false,
       "reasoning": true,
       "kv_light": false,
-      "use_cases": ["chat", "agents", "math"],
+      "use_cases": [
+        "chat",
+        "agents",
+        "math"
+      ],
       "license": "LFM Open License",
       "post": "/posts/run-lfm2-5-8b-a1b-locally/",
       "note": "MoE, ~4.8 GB at Q4; reasoning-only with strong tool use"
@@ -335,7 +426,10 @@
       "vision": false,
       "reasoning": true,
       "kv_light": false,
-      "use_cases": ["math", "coding"],
+      "use_cases": [
+        "math",
+        "coding"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-zaya1-8b-locally/",
       "note": "top-1 routed MoE: 8B-class quality at sub-1B generation speed"
@@ -348,7 +442,12 @@
       "vision": true,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat", "vision", "coding", "agents"],
+      "use_cases": [
+        "chat",
+        "vision",
+        "coding",
+        "agents"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-ministral-3-locally/",
       "note": null
@@ -361,7 +460,10 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["chat", "coding"],
+      "use_cases": [
+        "chat",
+        "coding"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-diffusiongemma-locally/",
       "note": "text-diffusion decoding: generates tokens in parallel instead of one at a time"
@@ -374,7 +476,11 @@
       "vision": false,
       "reasoning": true,
       "kv_light": false,
-      "use_cases": ["coding", "agents", "long-context"],
+      "use_cases": [
+        "coding",
+        "agents",
+        "long-context"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-north-mini-code-locally/",
       "note": "coding-only MoE; 19 GB at Q4, decodes like a dense 3B. Native Ollama support since June 2026"
@@ -387,7 +493,11 @@
       "vision": false,
       "reasoning": true,
       "kv_light": true,
-      "use_cases": ["coding", "agents", "long-context"],
+      "use_cases": [
+        "coding",
+        "agents",
+        "long-context"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/run-qwen3-6-35b-a3b-locally/",
       "note": "22 GB at Q4 but decodes like a dense 3B; 1M context via YaRN"
@@ -400,7 +510,10 @@
       "vision": false,
       "reasoning": false,
       "kv_light": false,
-      "use_cases": ["coding", "agents"],
+      "use_cases": [
+        "coding",
+        "agents"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/qwen3-coder-next-local-coding-agent/",
       "note": "70.6% SWE-Bench Verified; wants a single RTX 5090 or a 128 GB Mac"
@@ -413,10 +526,34 @@
       "vision": true,
       "reasoning": true,
       "kv_light": false,
-      "use_cases": ["chat", "coding", "vision", "agents"],
+      "use_cases": [
+        "chat",
+        "coding",
+        "vision",
+        "agents"
+      ],
       "license": "Apache 2.0",
       "post": "/posts/the/",
       "note": "128-expert MoE: 119B of knowledge at ~7B-class inference speed; needs a 96-128 GB box"
+    },
+    {
+      "name": "Bonsai 27B",
+      "params_b": 27.3,
+      "active_b": null,
+      "ctx_k": 262,
+      "vision": true,
+      "reasoning": true,
+      "kv_light": true,
+      "use_cases": [
+        "chat",
+        "coding",
+        "math",
+        "long-context",
+        "vision"
+      ],
+      "license": "Apache 2.0",
+      "post": "/posts/run-bonsai-27b-locally/",
+      "note": "binary/ternary QAT rebuild of Qwen3.6-27B; 3.9 GB deployed at 1.125 bits/weight, runs on recent iPhones"
     }
   ]
 }
