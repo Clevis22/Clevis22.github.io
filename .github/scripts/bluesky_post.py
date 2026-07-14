@@ -133,18 +133,25 @@ def build_card(fm, url, token):
     }
     image_url = og_content(html, "og:image")
     if image_url and token:
-        try:
-            img, headers = http(image_url, timeout=30)
-            if len(img) <= MAX_THUMB_BYTES:
-                body, _ = http(
-                    PDS + "/xrpc/com.atproto.repo.uploadBlob", data=img,
-                    headers={
-                        "Content-Type": headers.get("Content-Type", "image/png"),
-                        "Authorization": "Bearer " + token,
-                    })
-                card["external"]["thumb"] = json.loads(body)["blob"]
-        except Exception as e:
-            print("  thumb upload failed (%s) — card without image" % e)
+        # the og image asset can lag the page HTML by a bit on the Pages
+        # CDN right after a deploy, so retry before giving up on the thumb
+        for attempt in range(4):
+            try:
+                img, headers = http(image_url, timeout=30)
+                if len(img) <= MAX_THUMB_BYTES:
+                    body, _ = http(
+                        PDS + "/xrpc/com.atproto.repo.uploadBlob", data=img,
+                        headers={
+                            "Content-Type": headers.get("Content-Type", "image/png"),
+                            "Authorization": "Bearer " + token,
+                        })
+                    card["external"]["thumb"] = json.loads(body)["blob"]
+                break
+            except Exception as e:
+                if attempt < 3:
+                    time.sleep(20)
+                else:
+                    print("  thumb upload failed (%s) — card without image" % e)
     return card
 
 
