@@ -6,8 +6,15 @@
     <description>Recent content in Qwen on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/qwen/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Run Bonsai 27B Locally: A 27B Model in 3.9 GB, Even on a Phone</title>
+      <link>https://tinyweights.dev/posts/run-bonsai-27b-locally/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/run-bonsai-27b-locally/</guid>
+      <description>How to run Bonsai 27B locally: PrismML&amp;#39;s 1-bit and ternary builds of Qwen3.6-27B fit in 3.9 to 7.2 GB, keep 90-95% of FP16 benchmark scores, and reach 11 tok/s on an iPhone 17 Pro Max.</description>
+    </item>
     <item>
       <title>North Mini Code vs Qwen3.6-35B-A3B: Which Local Coding MoE Wins?</title>
       <link>https://tinyweights.dev/posts/north-mini-code-vs-qwen3-6-35b-a3b/</link>

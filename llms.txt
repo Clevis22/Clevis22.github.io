@@ -11,6 +11,7 @@ TinyWeights.dev is an independent blog focused exclusively on small language mod
 
 ## Posts
 
+- [Run Bonsai 27B Locally: A 27B Model in 3.9 GB, Even on a Phone](https://tinyweights.dev/posts/run-bonsai-27b-locally/): How to run Bonsai 27B locally: PrismML's 1-bit and ternary builds of Qwen3.6-27B fit in 3.9 to 7.2 GB, keep 90-95% of FP16 benchmark scores, and reach 11 tok/s on an iPhone 17 Pro Max.
 - [Jamba Reasoning 3B vs Phi-4-mini-reasoning: Which Small Reasoning Model Should You Run Locally?](https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/): Jamba Reasoning 3B vs Phi-4-mini-reasoning: architecture, benchmarks, context length, RAM requirements, and which small reasoning model to run locally.
 - [LFM2.5-8B-A1B vs ZAYA1-8B: Which 8B MoE Reasoning Model Should You Run Locally?](https://tinyweights.dev/posts/lfm2-5-8b-a1b-vs-zaya1-8b/): LFM2.5-8B-A1B vs ZAYA1-8B: two 8B-class sparse MoE reasoning models compared on benchmarks, generation speed, memory footprint, deployment, and licensing.
 - [North Mini Code vs Qwen3.6-35B-A3B: Which Local Coding MoE Wins?](https://tinyweights.dev/posts/north-mini-code-vs-qwen3-6-35b-a3b/): North Mini Code 1.0 vs Qwen3.6-35B-A3B head-to-head: coding benchmarks, GGUF sizes, VRAM headroom on a 24 GB GPU, context windows, and which 3B-active MoE to pick.

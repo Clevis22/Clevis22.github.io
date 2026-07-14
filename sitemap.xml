@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://tinyweights.dev/tags/bitnet/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
     <loc>https://tinyweights.dev/categories/</loc>
-    <lastmod>2026-07-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/edge-ai/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/posts/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/quantization/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/qwen/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/posts/run-bonsai-27b-locally/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/categories/small-ai-models/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/small-models/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/comparison/</loc>
-    <lastmod>2026-07-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/jamba/</loc>
@@ -21,27 +61,7 @@
     <lastmod>2026-07-13T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://tinyweights.dev/posts/</loc>
-    <lastmod>2026-07-13T00:00:00+00:00</lastmod>
-  </url>
-  <url>
     <loc>https://tinyweights.dev/tags/reasoning/</loc>
-    <lastmod>2026-07-13T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/categories/small-ai-models/</loc>
-    <lastmod>2026-07-13T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/tags/small-models/</loc>
-    <lastmod>2026-07-13T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/tags/</loc>
-    <lastmod>2026-07-13T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/</loc>
     <lastmod>2026-07-13T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -73,14 +93,6 @@
     <lastmod>2026-07-10T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://tinyweights.dev/tags/qwen/</loc>
-    <lastmod>2026-07-10T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/tags/edge-ai/</loc>
-    <lastmod>2026-07-13T00:00:00+00:00</lastmod>
-  </url>
-  <url>
     <loc>https://tinyweights.dev/posts/best-local-vision-language-models-2026/</loc>
     <lastmod>2026-07-09T00:00:00+00:00</lastmod>
   </url>
@@ -94,7 +106,7 @@
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/local-inference/</loc>
-    <lastmod>2026-07-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/local-llm-private-document-qa/</loc>
@@ -114,10 +126,6 @@
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/llama-cpp/</loc>
-    <lastmod>2026-07-09T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/tags/quantization/</loc>
     <lastmod>2026-07-09T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -186,7 +194,7 @@
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/benchmark/</loc>
-    <lastmod>2026-07-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/medgemma-1-5/</loc>
@@ -242,7 +250,7 @@
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/best-small-language-models-2026/</loc>
-    <lastmod>2026-07-13T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/qwen3-5-tiny-multimodal-thinking-model/</loc>

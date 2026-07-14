@@ -6,8 +6,43 @@
     <description>Recent content in Tags on TinyWeights.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bitnet</title>
+      <link>https://tinyweights.dev/tags/bitnet/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/bitnet/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Edge-Ai</title>
+      <link>https://tinyweights.dev/tags/edge-ai/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/edge-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Quantization</title>
+      <link>https://tinyweights.dev/tags/quantization/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/quantization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Qwen</title>
+      <link>https://tinyweights.dev/tags/qwen/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/qwen/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Small-Models</title>
+      <link>https://tinyweights.dev/tags/small-models/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/small-models/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Comparison</title>
       <link>https://tinyweights.dev/tags/comparison/</link>
@@ -34,13 +69,6 @@
       <link>https://tinyweights.dev/tags/reasoning/</link>
       <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/reasoning/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Small-Models</title>
-      <link>https://tinyweights.dev/tags/small-models/</link>
-      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/small-models/</guid>
       <description></description>
     </item>
     <item>
@@ -76,20 +104,6 @@
       <link>https://tinyweights.dev/tags/cohere/</link>
       <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/cohere/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Qwen</title>
-      <link>https://tinyweights.dev/tags/qwen/</link>
-      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/qwen/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Edge-Ai</title>
-      <link>https://tinyweights.dev/tags/edge-ai/</link>
-      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/edge-ai/</guid>
       <description></description>
     </item>
     <item>
@@ -135,13 +149,6 @@
       <description></description>
     </item>
     <item>
-      <title>Quantization</title>
-      <link>https://tinyweights.dev/tags/quantization/</link>
-      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/quantization/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Diffusion</title>
       <link>https://tinyweights.dev/tags/diffusion/</link>
       <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
@@ -167,13 +174,6 @@
       <link>https://tinyweights.dev/tags/granite/</link>
       <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/granite/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Bitnet</title>
-      <link>https://tinyweights.dev/tags/bitnet/</link>
-      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/bitnet/</guid>
       <description></description>
     </item>
     <item>
