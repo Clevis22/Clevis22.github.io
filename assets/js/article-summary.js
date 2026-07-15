@@ -1,6 +1,7 @@
-const CACHE_PREFIX = "tw-article-summary-v2";
+const CACHE_PREFIX = "tw-article-summary-v3";
 const MAX_ARTICLE_CHARS = 20000;
 const INFERENCE_TIMEOUT_MS = 90000;
+const DEFAULT_NOTE = "MiniLM · private · runs in a worker · about 23 MB on first use";
 
 const root = document.querySelector("[data-article-summary]");
 
@@ -33,6 +34,7 @@ if (root) {
   let statusBase = "";
   let elapsedTimer = null;
   let inferenceTimer = null;
+  let currentArticle = "";
 
   const elapsedSeconds = () => Math.max(0, Math.round((performance.now() - startedAt) / 1000));
 
@@ -95,8 +97,8 @@ if (root) {
     ui.bottom.textContent = summary.bottom_line;
     ui.bottomWrap.hidden = !summary.bottom_line;
     ui.model.textContent = summary.runtime
-      ? `generated locally · T5-small · ${summary.runtime}`
-      : "generated locally · T5-small";
+      ? `generated locally · ${summary.runtime}`
+      : "generated locally";
     ui.result.hidden = false;
     ui.status.hidden = true;
     ui.progress.hidden = true;
@@ -161,6 +163,37 @@ if (root) {
     summaryWorker = null;
   };
 
+  const sentenceList = (text) => {
+    const segments = "Segmenter" in Intl
+      ? [...new Intl.Segmenter("en", { granularity: "sentence" }).segment(text)].map((item) => item.segment)
+      : (text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || []);
+    return segments
+      .map((sentence) => sentence.replace(/\s+/g, " ").trim())
+      .filter((sentence) => sentence.length >= 35 && sentence.length <= 360)
+      .filter((sentence) => /[.!?]["')\]]?$/.test(sentence))
+      .filter((sentence) => !sentence.includes(" | "))
+      .filter((sentence) => !/\b(this post|this blog|posts? on this blog|see the .* (guide|comparison|post))\b/i.test(sentence));
+  };
+
+  const createSourceFallback = (article) => {
+    const sentences = sentenceList(article);
+    if (!sentences.length) throw new Error("Article text could not be summarized.");
+    const candidates = sentences.slice(2);
+    const points = candidates.length <= 4
+      ? candidates
+      : [0, 1, 2, 3].map((index) => candidates[Math.round(index * (candidates.length - 1) / 3)]);
+    const ending = sentences.slice(Math.max(0, sentences.length - 12));
+    const bottomLine = [...ending].reverse().find((sentence) =>
+      /^(run|choose|use|pick|start|avoid|prefer|try)\b/i.test(sentence),
+    ) || ending.at(-1) || sentences.at(-1);
+    return {
+      summary: sentences.slice(0, 2).join(" "),
+      takeaways: points,
+      bottom_line: bottomLine,
+      runtime: "source-only fallback",
+    };
+  };
+
   const finishRun = () => {
     clearInferenceTimer();
     setRunning(false);
@@ -173,11 +206,21 @@ if (root) {
     ui.progress.hidden = true;
   };
 
+  const showSourceFallback = () => {
+    try {
+      destroyWorker();
+      renderSummary(createSourceFallback(currentArticle));
+      ui.note.textContent = "MiniLM was unavailable, so this device is showing a source-only local summary.";
+      finishRun();
+    } catch (error) {
+      failRun(error.message || "Local summarization failed.");
+    }
+  };
+
   const armInferenceTimeout = () => {
     clearInferenceTimer();
     inferenceTimer = setTimeout(() => {
-      destroyWorker();
-      failRun("local inference timed out after 90 seconds");
+      showSourceFallback();
     }, INFERENCE_TIMEOUT_MS);
   };
 
@@ -210,6 +253,7 @@ if (root) {
         const summary = normalizeSummary(message.summary);
         writeCache(summary);
         renderSummary(summary);
+        destroyWorker();
         finishRun();
       } catch (error) {
         failRun(error.message || "The summary could not be displayed.");
@@ -218,8 +262,7 @@ if (root) {
     }
 
     if (message.type === "error") {
-      destroyWorker();
-      failRun(message.message || "Local summarization failed.");
+      showSourceFallback();
     }
   };
 
@@ -228,8 +271,8 @@ if (root) {
     summaryWorker = new Worker(root.dataset.workerUrl, { type: "module" });
     summaryWorker.addEventListener("message", handleWorkerMessage);
     summaryWorker.addEventListener("error", (event) => {
-      destroyWorker();
-      failRun(event.message || "The local summarizer worker failed to start.");
+      event.preventDefault();
+      showSourceFallback();
     });
     return summaryWorker;
   };
@@ -244,11 +287,13 @@ if (root) {
 
     try {
       const article = extractArticle();
+      currentArticle = article;
       runId += 1;
       startedAt = performance.now();
       ui.result.hidden = true;
       setProgress(0);
       setRunning(true);
+      ui.note.textContent = DEFAULT_NOTE;
       setStatus("starting local summarizer", "loading", "[LOAD]");
       getWorker().postMessage({
         type: "summarize",
@@ -271,7 +316,7 @@ if (root) {
     ui.run.disabled = true;
     ui.note.textContent = "This browser does not support the worker required for local summarization.";
   } else {
-    ui.note.textContent = "T5-small · private · runs in a worker · about 78 MB on first use";
+    ui.note.textContent = DEFAULT_NOTE;
     const cached = readCache();
     if (cached) renderSummary(cached);
   }
