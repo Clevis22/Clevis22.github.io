@@ -9,6 +9,13 @@
     <lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/benchmark/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>SmolLM3-3B vs Phi-4-mini: Which Small Model Should You Run Locally?</title>
+      <link>https://tinyweights.dev/posts/smollm3-3b-vs-phi-4-mini/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/smollm3-3b-vs-phi-4-mini/</guid>
+      <description>SmolLM3-3B vs Phi-4-mini compared: verified benchmarks, GGUF sizes, reasoning modes, multilingual support, and which sub-4B model fits your local workload.</description>
+    </item>
+    <item>
       <title>Qwen3.5-4B vs Phi-4-mini: Choosing the Right 4B Model for Local Inference</title>
       <link>https://tinyweights.dev/posts/qwen3-5-4b-vs-phi-4-mini/</link>
       <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>

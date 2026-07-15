@@ -9,6 +9,13 @@
     <lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Benchmark</title>
+      <link>https://tinyweights.dev/tags/benchmark/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/benchmark/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Bitnet</title>
       <link>https://tinyweights.dev/tags/bitnet/</link>
       <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
@@ -16,10 +23,24 @@
       <description></description>
     </item>
     <item>
+      <title>Comparison</title>
+      <link>https://tinyweights.dev/tags/comparison/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/comparison/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Edge-Ai</title>
       <link>https://tinyweights.dev/tags/edge-ai/</link>
       <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/edge-ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Phi</title>
+      <link>https://tinyweights.dev/tags/phi/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/phi/</guid>
       <description></description>
     </item>
     <item>
@@ -44,10 +65,10 @@
       <description></description>
     </item>
     <item>
-      <title>Comparison</title>
-      <link>https://tinyweights.dev/tags/comparison/</link>
-      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/comparison/</guid>
+      <title>Smollm</title>
+      <link>https://tinyweights.dev/tags/smollm/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/tags/smollm/</guid>
       <description></description>
     </item>
     <item>
@@ -55,13 +76,6 @@
       <link>https://tinyweights.dev/tags/jamba/</link>
       <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/jamba/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Phi</title>
-      <link>https://tinyweights.dev/tags/phi/</link>
-      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/phi/</guid>
       <description></description>
     </item>
     <item>
@@ -198,13 +212,6 @@
       <description></description>
     </item>
     <item>
-      <title>Benchmark</title>
-      <link>https://tinyweights.dev/tags/benchmark/</link>
-      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/benchmark/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Medical-Ai</title>
       <link>https://tinyweights.dev/tags/medical-ai/</link>
       <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
@@ -258,13 +265,6 @@
       <link>https://tinyweights.dev/tags/openai/</link>
       <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://tinyweights.dev/tags/openai/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Smollm</title>
-      <link>https://tinyweights.dev/tags/smollm/</link>
-      <pubDate>Sun, 22 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/tags/smollm/</guid>
       <description></description>
     </item>
   </channel>

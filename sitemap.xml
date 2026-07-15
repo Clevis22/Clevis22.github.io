@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://tinyweights.dev/tags/benchmark/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
     <loc>https://tinyweights.dev/tags/bitnet/</loc>
     <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
@@ -9,7 +13,15 @@
     <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
   <url>
+    <loc>https://tinyweights.dev/tags/comparison/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
     <loc>https://tinyweights.dev/tags/edge-ai/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/phi/</loc>
     <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -37,6 +49,14 @@
     <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
   <url>
+    <loc>https://tinyweights.dev/tags/smollm/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/posts/smollm3-3b-vs-phi-4-mini/</loc>
+    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
     <loc>https://tinyweights.dev/tags/</loc>
     <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
@@ -45,19 +65,11 @@
     <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://tinyweights.dev/tags/comparison/</loc>
-    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
-  </url>
-  <url>
     <loc>https://tinyweights.dev/tags/jamba/</loc>
     <lastmod>2026-07-13T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/</loc>
-    <lastmod>2026-07-13T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/tags/phi/</loc>
     <lastmod>2026-07-13T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -191,10 +203,6 @@
   <url>
     <loc>https://tinyweights.dev/tags/mistral/</loc>
     <lastmod>2026-05-25T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/tags/benchmark/</loc>
-    <lastmod>2026-07-14T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/medgemma-1-5/</loc>

@@ -16,6 +16,13 @@
       <description>How to run Bonsai 27B locally: PrismML&amp;#39;s 1-bit and ternary builds of Qwen3.6-27B fit in 3.9 to 7.2 GB, keep 90-95% of FP16 benchmark scores, and reach 11 tok/s on an iPhone 17 Pro Max.</description>
     </item>
     <item>
+      <title>SmolLM3-3B vs Phi-4-mini: Which Small Model Should You Run Locally?</title>
+      <link>https://tinyweights.dev/posts/smollm3-3b-vs-phi-4-mini/</link>
+      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://tinyweights.dev/posts/smollm3-3b-vs-phi-4-mini/</guid>
+      <description>SmolLM3-3B vs Phi-4-mini compared: verified benchmarks, GGUF sizes, reasoning modes, multilingual support, and which sub-4B model fits your local workload.</description>
+    </item>
+    <item>
       <title>Jamba Reasoning 3B vs Phi-4-mini-reasoning: Which Small Reasoning Model Should You Run Locally?</title>
       <link>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/</link>
       <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
