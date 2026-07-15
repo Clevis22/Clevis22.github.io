@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Categories on TinyWeights.dev</title>
+    <title>TinyWeights.dev</title>
     <link>https://tinyweights.dev/categories/</link>
-    <description>Recent content in Categories on TinyWeights.dev</description>
+    <description>Small language models like Gemma, Phi, SmolLM, and Qwen, run locally. Benchmarks, quantization, and hands-on deployment guides for small LLMs on real hardware.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate></lastBuildDate>
     <atom:link href="https://tinyweights.dev/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Small-Ai-Models</title>
-      <link>https://tinyweights.dev/categories/small-ai-models/</link>
-      <pubDate>Tue, 14 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/categories/small-ai-models/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tutorials</title>
-      <link>https://tinyweights.dev/categories/tutorials/</link>
-      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://tinyweights.dev/categories/tutorials/</guid>
-      <description></description>
-    </item>
   </channel>
 </rss>
