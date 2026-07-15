@@ -71,10 +71,10 @@ Let's get into the part that actually matters for day-to-day use.
 
 ### Option 1: Ollama (Easiest Path, M4 Mac or Linux)
 
-If you just want to chat with it immediately:
+If you just want to chat with it immediately, pull the official ggml-org GGUF straight from HuggingFace (there is no `smollm3` entry in the Ollama library itself):
 
 ```bash
-ollama run smollm3
+ollama run hf.co/ggml-org/SmolLM3-3B-GGUF:Q4_K_M
 ```
 
 Ollama handles quantization and memory mapping automatically. On an M4 Mac with 16GB unified memory, a Q4 quantized 3B model runs comfortably with fast token generation. The quantized GGUF variant comes in around 2.1GB for Q5_K_M, so it fits easily even on base-tier hardware.
