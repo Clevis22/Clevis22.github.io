@@ -25,6 +25,7 @@ import os
 import re
 import sys
 import time
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 
@@ -33,6 +34,8 @@ PDS = "https://bsky.social"
 PUBLIC_API = "https://public.api.bsky.app"
 MAX_LEN = 300
 MAX_THUMB_BYTES = 950_000
+# IndexNow key is public by design; the matching static/<key>.txt proves ownership
+INDEXNOW_KEY = "903e19d32e8f182d0eef14e04e9204c8"
 
 
 def http(url, data=None, headers=None, timeout=30):
@@ -155,6 +158,17 @@ def build_card(fm, url, token):
     return card
 
 
+def index_now(url):
+    """Tell Bing (and ChatGPT search, which rides on it) about the new URL."""
+    try:
+        ping = ("https://api.indexnow.org/indexnow?url=%s&key=%s"
+                % (urllib.parse.quote(url, safe=""), INDEXNOW_KEY))
+        http(ping, timeout=20)
+        print("  indexnow pinged")
+    except Exception as e:
+        print("  indexnow ping failed (%s) — non-fatal" % e)
+
+
 def create_session(identifier, password):
     body, _ = http(
         PDS + "/xrpc/com.atproto.server.createSession",
@@ -174,6 +188,8 @@ def announce(path, identifier, password, dry_run):
         print("  draft — skipping")
         return
     url = "%s/posts/%s/" % (SITE, fm["slug"])
+    if not dry_run:
+        index_now(url)
     if already_posted(identifier, fm["slug"]):
         print("  already announced — skipping")
         return

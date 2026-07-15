@@ -3,6 +3,15 @@ locale = "en-us"
 title = "TinyWeights.dev"
 theme = "PaperMod"
 enableRobotsTXT = true
+# real dateModified for schema/OG freshness signals: prefer explicit
+# frontmatter lastmod, then the file's last git commit, then date
+enableGitInfo = true
+
+[frontmatter]
+  lastmod = ["lastmod", ":git", "date"]
+
+[services.rss]
+  limit = 20
 
 [pagination]
   pagerSize = 10
