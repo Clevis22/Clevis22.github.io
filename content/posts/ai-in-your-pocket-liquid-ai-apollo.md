@@ -36,7 +36,7 @@ Recently, Liquid AI officially launched **LEAP (the Liquid Edge AI Platform)**, 
 
 ### How Small Language Models Change the Math
 
-Apollo leverages Small Language Models (SLMs)—specifically, models like Liquid's own new generation of explicitly designed **LFM2** models.
+Apollo leverages Small Language Models (SLMs)—specifically, models like Liquid's own new generation of explicitly designed **LFM2** models. That family has since grown into LFM2.5; our guides to [LFM2.5-1.2B-Thinking](/posts/run-lfm2-5-1-2b-thinking-locally/) and the [LFM2.5-8B-A1B MoE](/posts/run-lfm2-5-8b-a1b-locally/) cover where the lineage went next.
 
 Large models (LLMs) are generalists. They are designed to do many things well, requiring hundreds of gigabytes of VRAM. Small models, by contrast, are either average at many tasks or excellent at a select few. Liquid’s architecture aggressively compresses state-of-the-art capabilities down to file sizes built explicitly for the edge. 
 
@@ -49,7 +49,7 @@ Once you download the model weights in Apollo (ideally via Wi-Fi), the inferenci
 Having capable AI on-device completely alters when, where, and how you decide to use it. When connectivity and privacy barriers are removed, the utility of language models skyrockets. 
 
 ### 1. Drafting Without Connection
-Next time you’re on a long flight without costly Wi-Fi access, you don't have to pause your workflow. You can still outline emails, structure complex blog posts, organize meeting notes, or brainstorm project names right inside the Apollo app. By the time you touch down, your drafts are ready to send.
+Next time you’re on a long flight without costly Wi-Fi access, you don't have to pause your workflow. You can still outline emails, structure complex blog posts, organize meeting notes, or brainstorm project names right inside the Apollo app. By the time you touch down, your drafts are ready to send. (For a fuller tour of offline-capable workloads, see [what you can actually do with a local small LLM](/posts/what-can-you-do-with-local-small-llm/).)
 
 ### 2. The 100% Private Sounding Board
 We all have moments where we need a second opinion on a sensitive HR email, an unannounced product launch, or a highly confidential coding problem. Because the Apollo AI runs purely locally on your phone, there are absolutely zero outbound data transmissions during inference. Your prompts and the model's outputs never leave the secure enclave of your device. 

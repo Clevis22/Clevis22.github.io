@@ -27,7 +27,7 @@ The model is roughly split into two primary components:
 
 ### The Secret Weapon: Extreme Token Efficiency
 
-The most significant bottleneck in local Vision-Language Models (VLMs) is the context window. High-definition images usually flood the context window with thousands of tokens, slowing down inference drastically. 
+The most significant bottleneck in local Vision-Language Models (VLMs) is the context window. High-definition images usually flood the context window with thousands of tokens, slowing down inference drastically. How the current crop of models handles this is half the story of our [local vision model roundup](/posts/best-local-vision-language-models-2026/). 
 
 Reka Edge solves this by strictly outputting **only 64 tokens per image tile**. 
 
@@ -54,7 +54,7 @@ Speed is just as critical a benchmark as accuracy. Because of its token efficien
 
 ## Hardware Requirements and Quantization
 
-So what hardware do you actually need to run it? At its default float16 precision, the model requires roughly 14 GB of memory. To leave sufficient headroom for your operating system and generation buffers, **a Mac with 32 GB of unified memory is heavily recommended**. For PC users, an RTX 3090/4090 or a system with 24GB+ VRAM makes an ideal host.
+So what hardware do you actually need to run it? At its default float16 precision, the model requires roughly 14 GB of memory. To leave sufficient headroom for your operating system and generation buffers, **a Mac with 32 GB of unified memory is heavily recommended**. For PC users, an RTX 3090/4090 or a system with 24GB+ VRAM makes an ideal host. The [Apple Silicon guide](/posts/run-small-llms-apple-silicon/) walks through the unified-memory math.
 
 However, edge computing often demands extreme resource constraints. For deployment on tighter hardware, Reka Edge is heavily optimized for quantization:
 *   **4-bit Quantization:** Slashes memory consumption from 13GB to just **5GB** (a 62% reduction). Reka notes that this crushed footprint retains over 98% of the original model's multimodal performance while delivering up to 2.3x higher throughput.

@@ -43,7 +43,7 @@ One important caveat: this model does not support thinking mode. Unlike some Qwe
 
 ## What You Need to Run It
 
-Qwen3-Coder-Next ships in GGUF quantizations via Unsloth and the official Qwen GGUF repository on Hugging Face. The Q4_K_M quantization requires approximately 48GB of combined VRAM and system RAM. Because of the MoE offload pattern, that 48GB does not all need to be fast GPU memory — llama.cpp's `--n-gpu-layers` flag lets you pin the active layers in VRAM while streaming idle experts from DDR5.
+Qwen3-Coder-Next ships in GGUF quantizations via Unsloth and the official Qwen GGUF repository on Hugging Face. The Q4_K_M quantization requires approximately 48GB of combined VRAM and system RAM (our [Q4/Q5/Q8 guide](/posts/gguf-quantization-levels-q4-q5-q8/) explains what the K-quant levels trade away). Because of the MoE offload pattern, that 48GB does not all need to be fast GPU memory — llama.cpp's `--n-gpu-layers` flag lets you pin the active layers in VRAM while streaming idle experts from DDR5.
 
 The practical minimum comfortable setup on NVIDIA hardware is a **single RTX 5090 (32GB) paired with 64GB DDR5-6000**, which runs Q4_K_M at 38–48 tokens/second with full 256K context headroom. On Apple Silicon, the **Mac Studio M4 Max with 128GB unified memory** runs Q4_K_M at 22–28 tokens/second via MLX or 18–24 tokens/second via llama.cpp with Metal acceleration. The 64GB M4 Max SKU is too tight once you account for macOS overhead and KV cache at longer contexts.
 
@@ -59,7 +59,7 @@ Context length is worth watching carefully. The KV cache grows at approximately 
 ollama run qwen3-coder-next
 ```
 
-Ollama handles quantization selection and memory mapping automatically. This is the right path if you want to be talking to the model in under five minutes.
+Ollama handles quantization selection and memory mapping automatically. This is the right path if you want to be talking to the model in under five minutes. (Weighing runtimes more broadly? See [Ollama vs LM Studio vs llama.cpp](/posts/ollama-vs-lm-studio-vs-llama-cpp/).)
 
 ### llama.cpp Server (OpenAI-Compatible Endpoint)
 

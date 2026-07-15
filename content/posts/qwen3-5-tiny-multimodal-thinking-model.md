@@ -10,7 +10,7 @@ slug: "qwen3-5-tiny-multimodal-thinking-model"
 
 800 million parameters. 262,000-token context window. Images, video, and text — all handled natively. Thinking mode on demand. Apache 2.0 license. And the entire model weighs in at 1GB on Ollama.
 
-That's the Qwen3.5-0.8B, the smallest member of Alibaba's Qwen3.5 family, released in February 2026. It is not a general-purpose language model pretending to be multimodal — it was trained with early fusion on multimodal tokens from the start, covering 201 languages and dialects. At sub-gigabyte scale, very little competes with its feature set.
+That's the Qwen3.5-0.8B, the smallest member of Alibaba's Qwen3.5 family, released in February 2026. (Its 4B sibling gets a full [head-to-head against Phi-4-mini](/posts/qwen3-5-4b-vs-phi-4-mini/).) It is not a general-purpose language model pretending to be multimodal — it was trained with early fusion on multimodal tokens from the start, covering 201 languages and dialects. At sub-gigabyte scale, very little competes with its feature set.
 
 But the headline number here isn't the parameter count or the context window. It's the architecture underneath: Gated DeltaNet, a hybrid linear attention mechanism that makes 262K-token context genuinely practical on constrained hardware. That's worth understanding before you just run `ollama pull`.
 
@@ -233,7 +233,7 @@ Practical guidance:
 
 Qwen3.5-0.8B is the most capable sub-1GB model currently available for local deployment. The Gated DeltaNet architecture makes the 262K context window genuinely usable on constrained hardware in a way that naive long-context transformers cannot match. The multimodal capability — images and video, not just text — at this size is unprecedented.
 
-The right use case is focused, not general. Pick a task, test it against the 0.8B, and only step up to the 4B or 9B if you need the extra headroom. For document understanding, image analysis, and multilingual routing on tight hardware budgets, this is the model to beat right now.
+The right use case is focused, not general. Pick a task, test it against the 0.8B, and only step up to the 4B or 9B if you need the extra headroom. For document understanding, image analysis, and multilingual routing on tight hardware budgets, this is the model to beat right now. When the workload outgrows it, the [local vision model roundup](/posts/best-local-vision-language-models-2026/) covers the next size classes up.
 
 ```bash
 # Get started in 60 seconds

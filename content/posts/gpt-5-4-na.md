@@ -122,7 +122,7 @@ This is a meaningful constraint worth repeating plainly: **GPT-5.4 nano is not a
 
 GPT-5.4 mini, by contrast, is available in ChatGPT as the default "Thinking" model for Free and Go tier users, and as the fallback model for other users who have hit their GPT-5.4 Thinking rate limit. Nano stays behind the API wall — which is actually appropriate positioning. Consumer users generally want a conversational interface. Developers building pipelines want a model ID and a price sheet, and that's exactly what nano delivers.
 
-It's available via OpenAI's API directly and via aggregators like OpenRouter, where it's listed with a 400k context window and standard tool-use support.
+It's available via OpenAI's API directly and via aggregators like OpenRouter, where it's listed with a 400k context window and standard tool-use support. If the API wall is a dealbreaker, the current sub-4B local class covers a surprising share of nano's use cases; our [best small language models guide](/posts/best-small-language-models-2026/) and [local use-case tour](/posts/what-can-you-do-with-local-small-llm/) map that territory.
 
 ---
 

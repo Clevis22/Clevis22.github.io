@@ -35,7 +35,7 @@ The killer feature for fine-tuning purposes: it's small enough to fit comfortabl
 
 ## The Stack: MLX-LM Explained
 
-Apple's [MLX framework](https://github.com/ml-explore/mlx-lm) is a NumPy-like array framework designed specifically for Apple Silicon's unified memory architecture. Unlike PyTorch or TensorFlow, MLX doesn't shuttle data between CPU and GPU — the CPU, GPU, and Neural Engine all share the same memory pool. For fine-tuning, this matters enormously: you're not paying the memory bandwidth tax of discrete GPU setups.
+Apple's [MLX framework](https://github.com/ml-explore/mlx-lm) is a NumPy-like array framework designed specifically for Apple Silicon's unified memory architecture. Unlike PyTorch or TensorFlow, MLX doesn't shuttle data between CPU and GPU — the CPU, GPU, and Neural Engine all share the same memory pool. For fine-tuning, this matters enormously: you're not paying the memory bandwidth tax of discrete GPU setups. We compare MLX against GGUF and ONNX in our [format guide](/posts/gguf-vs-onnx-vs-mlx/); if you want to run models on a Mac rather than tune them, start with the [Apple Silicon deployment guide](/posts/run-small-llms-apple-silicon/).
 
 `mlx-lm` is the high-level package built on top of MLX that handles LLM inference and fine-tuning. It integrates directly with Hugging Face Hub, supports LoRA and QLoRA out of the box, and ships with a clean CLI so you can get a training run going in a single command.
 

@@ -24,7 +24,7 @@ Google has split the Gemma 4 release into two distinct tiers: **Edge models** bu
 ### The Edge Models: E2B and E4B
 To optimize for low-power silicon, the smaller variants use "effective" parameter counts, aggressively optimizing their memory footprints structure to fit under 1.5GB memory on some devices while delivering top performance via LiteRT.
 
-* **Gemma 4 E2B (Effective 2B):** A 35-layer architecture with 2.3 billion active parameters (5.1B total with embeddings). It is engineered for phones and single-board computers. On a Raspberry Pi 5 running purely on CPU, this model reaches 133 prefill and 7.6 decode tokens/s. Accelerated by the Qualcomm Dragonwing IQ8 NPU, it boasts a staggering 3,700 prefill and 31 decode tokens/s.
+* **Gemma 4 E2B (Effective 2B):** A 35-layer architecture with 2.3 billion active parameters (5.1B total with embeddings). It is engineered for phones and single-board computers. On a Raspberry Pi 5 running purely on CPU, this model reaches 133 prefill and 7.6 decode tokens/s (our [Raspberry Pi 5 LLM guide](/posts/run-llms-raspberry-pi-5/) covers what that class of board handles in practice). Accelerated by the Qualcomm Dragonwing IQ8 NPU, it boasts a staggering 3,700 prefill and 31 decode tokens/s.
 * **Gemma 4 E4B (Effective 4B):** A step up in reasoning capability with 42 layers and 4.5 billion active parameters. Both the E2B and E4B support text, images, and audio natively out of the box, with built-in encoders of ~150M parameters for vision and ~300M parameters for audio. 
 
 What makes these edge models truly remarkable is the **128K context window**, a massive jump for models in the sub-5B category.
@@ -76,7 +76,7 @@ For example, pulling the edge-optimized 4-Billion model locally is as simple as:
 ```bash
 ollama run gemma4:e4b
 ```
-Similarly, **LM Studio** users can download GGUF formats formatted for optimal quantized inferencing directly from their model hubs, configuring custom fields like "Enable Thinking" directly within the GUI.
+Similarly, **LM Studio** users can download GGUF formats formatted for optimal quantized inferencing directly from their model hubs, configuring custom fields like "Enable Thinking" directly within the GUI. If you're unsure which runtime fits your setup, see [Ollama vs LM Studio vs llama.cpp](/posts/ollama-vs-lm-studio-vs-llama-cpp/).
 
 For hardware integrations, Google launched Python bindings and a new `litert-lm` CLI tool spanning Linux, macOS, and Raspberry Pi. This enables devs to run Gemma-based Python pipelines for IoT devices without relying strictly on heavyweight inference engines.
 

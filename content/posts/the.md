@@ -88,7 +88,7 @@ Mistral Small 4 arrives when the industry desperately needs sustainable options.
 
 Mistral Small 4’s intelligent MoE design shows that you can have your cake and eat it too. By packing 128 experts into 119 billion total parameters but only accessing 6 billion per pass, efficiency hits an all-time high. Combine that with a unified capability set—reasoning, multimodality, and coding agents all natively integrated—and a dynamically adjustable `reasoning_effort` dial, you get a tool perfectly molded for local hosting, budget-friendly enterprise usage, and modern AI app development. 
 
-Such releases continue the 2026 industry trend toward maximum efficiency per token. The open-source AI community doesn't just have a competent new instruct model; it has a versatile engine poised to redefine hardware-efficient inference logic.
+Such releases continue the 2026 industry trend toward maximum efficiency per token. The open-source AI community doesn't just have a competent new instruct model; it has a versatile engine poised to redefine hardware-efficient inference logic. For Mistral's genuinely small end of the lineup, see our [Ministral 3 guide](/posts/run-ministral-3-locally/); for the efficiency race across every scale we track, the [best small language models guide](/posts/best-small-language-models-2026/) has the full field.
 
 ## Sources
 *   [Introducing Mistral Small 4 | Mistral AI](https://mistral.ai/news/mistral-small-4)

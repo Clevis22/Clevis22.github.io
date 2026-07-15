@@ -145,6 +145,8 @@ The recommended sampling parameters are `temperature=0.6` and `top_p=0.95` — w
 
 ## SmolLM3 vs. The Competition: Where It Fits
 
+For the full head-to-head against its closest rival in this table, see our [SmolLM3-3B vs Phi-4-mini comparison](/posts/smollm3-3b-vs-phi-4-mini/).
+
 | Model | Params | Context | Reasoning Mode | Multilingual | License | Fully Open Training |
 |---|---|---|---|---|---|---|
 | **SmolLM3-3B** | 3B | 128k | ✅ (dual) | ✅ (6 native langs) | Apache 2.0 | ✅ |
@@ -192,7 +194,7 @@ Given the feature set, here's where SmolLM3 genuinely earns its keep in producti
 
 ## Conclusion: What to Try Today
 
-SmolLM3-3B is the kind of release that makes you update your mental model of what a "small" model can do. A year ago, 128k context and toggleable chain-of-thought reasoning were features reserved for much larger, API-only models. Now they ship in a 2GB GGUF file you can run on a laptop.
+SmolLM3-3B is the kind of release that makes you update your mental model of what a "small" model can do. A year ago, 128k context and toggleable chain-of-thought reasoning were features reserved for much larger, API-only models. Now they ship in a 2GB GGUF file you can run on a laptop. Where it slots among everything else at this scale is mapped in our [best small language models guide](/posts/best-small-language-models-2026/).
 
 Here's a concrete to-do list for this weekend:
 

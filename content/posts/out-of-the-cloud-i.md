@@ -18,7 +18,7 @@ Not long ago, the tech industry was caught in a parameter arms race. But running
 
 Enter the hero of 2026: The Small Language Model (SLM). 
 
-SLMs are highly optimized, purpose-built models designed to punch above their weight class. By training on higher-quality, curated datasets rather than scraping the entire internet, models like Microsoft’s Phi-4-mini and Google’s Gemma 3n can handle complex, multimodal reasoning tasks entirely on consumer hardware. We’ve hit an inflection point where you can run a highly capable SLM locally on an Apple M4 Mac or a cheap VPS without breaking a sweat—or your budget.
+SLMs are highly optimized, purpose-built models designed to punch above their weight class. By training on higher-quality, curated datasets rather than scraping the entire internet, models like [Microsoft’s Phi-4-mini](/posts/run-phi-4-mini-locally/) and Google’s Gemma 3n can handle complex, multimodal reasoning tasks entirely on consumer hardware. We’ve hit an inflection point where you can run a highly capable SLM locally on an [Apple M4 Mac](/posts/run-small-llms-apple-silicon/) or a cheap VPS without breaking a sweat—or your budget.
 
 [![Edge Computing](https://upload.wikimedia.org/wikipedia/commons/3/34/Edge_computing_paradigm%2C_2019-07-03.svg)](https://commons.wikimedia.org/wiki/File:Edge_computing_paradigm,_2019-07-03.svg)
 *Visualizing the Edge Computing Paradigm. [Source Link](https://commons.wikimedia.org/wiki/File:Edge_computing_paradigm,_2019-07-03.svg) · Wikimedia Commons*
