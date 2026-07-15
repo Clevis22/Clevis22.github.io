@@ -59,6 +59,55 @@
 
   <div class="tw-rule-bottom" aria-hidden="true">╚══════════════════════════════════════════════════════════════╝</div>
 
+  {{- if eq .Section "posts" }}
+  <section class="tw-summary"
+           data-article-summary
+           data-title="{{ .Title }}"
+           data-slug="{{ .File.ContentBaseName }}"
+           data-version="{{ .Lastmod.Unix }}"
+           aria-labelledby="tw-summary-title">
+    <div class="tw-summary-bar">
+      <div class="tw-summary-command" id="tw-summary-title">
+        <span class="tw-summary-dollar" aria-hidden="true">$</span>
+        <span>summarize --local ./{{ .File.ContentBaseName }}.md</span>
+      </div>
+      <button class="tw-summary-run" type="button" data-summary-run>summarize</button>
+    </div>
+    <p class="tw-summary-note" data-summary-note>
+      Qwen3-0.6B · private · runs in this tab · about 352 MB on first use
+    </p>
+
+    <div class="tw-summary-output" data-summary-output hidden>
+      <div class="tw-summary-status" data-summary-status role="status" aria-live="polite">
+        <span class="tw-summary-status-mark" aria-hidden="true">[....]</span>
+        <span data-summary-status-text>preparing local model</span>
+      </div>
+      <div class="tw-summary-progress" data-summary-progress hidden aria-hidden="true">
+        <span data-summary-progress-bar></span>
+      </div>
+
+      <div class="tw-summary-result" data-summary-result hidden>
+        <p class="tw-summary-lead" data-summary-lead></p>
+        <div class="tw-summary-points" data-summary-points-wrap>
+          <div class="tw-summary-label">key_points[]</div>
+          <ul data-summary-points></ul>
+        </div>
+        <div class="tw-summary-bottom-line" data-summary-bottom-wrap>
+          <span class="tw-summary-label">bottom_line:</span>
+          <span data-summary-bottom></span>
+        </div>
+        <div class="tw-summary-result-meta">
+          <span>generated locally · Qwen3-0.6B Q4</span>
+          <span class="tw-summary-actions">
+            <button type="button" data-summary-regenerate>regenerate</button>
+            <button type="button" data-summary-hide>hide</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
   <div class="post-content entry-content">
     {{- .Content -}}
   </div>
@@ -95,5 +144,10 @@
   {{- end -}}
 
 </article>
+
+{{- if eq .Section "posts" }}
+  {{- $summaryJS := resources.Get "js/article-summary.js" | minify | fingerprint "sha384" -}}
+  <script type="module" src="{{ $summaryJS.RelPermalink }}" integrity="{{ $summaryJS.Data.Integrity }}" crossorigin="anonymous"></script>
+{{- end }}
 
 {{- end -}}
