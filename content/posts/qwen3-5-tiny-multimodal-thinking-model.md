@@ -103,7 +103,7 @@ ollama run qwen3.5:0.8b
 ollama run qwen3.5:9b
 ```
 
-Thinking mode in Ollama is toggled via the system prompt. To enable it, prepend `/think` to your message. To force it off, use `/no_think`. Ollama handles quantization automatically.
+Thinking mode is off by default. In Ollama, enable it with the `--think` flag (`ollama run qwen3.5:0.8b --think`) or `/set think` inside a session. Note that Qwen3.5 dropped the `/think` and `/no_think` soft switches that Qwen3 supported. Ollama handles quantization automatically.
 
 ### Option 2: vLLM (OpenAI-compatible server)
 

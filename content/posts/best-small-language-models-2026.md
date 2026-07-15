@@ -1,7 +1,7 @@
 ---
 title: "The Best Small Language Models in 2026: A Practical Comparison"
 date: 2026-05-14
-lastmod: 2026-07-14
+lastmod: 2026-07-15
 draft: false
 tags: ["comparison", "benchmark", "local-inference", "edge-ai", "small-models"]
 categories: ["small-ai-models"]
@@ -122,7 +122,7 @@ The two months since this post went up have been unusually busy, and several rel
 
 | Model | Params (active) | Context | License | Why it matters | Deep dive |
 |---|---|---|---|---|---|
-| LFM2.5-1.2B-Thinking | 1.2B | 32K | LFM Open | Reasoning-only: every answer includes a thinking trace | [Guide](/posts/run-lfm2-5-1-2b-thinking-locally/) |
+| LFM2.5-1.2B-Thinking | 1.2B | 32K | LFM Open | Reasoning-only: every answer includes a thinking trace | [Guide](/posts/run-lfm2-5-1-2b-thinking-locally/) · [vs Qwen3.5-0.8B](/posts/lfm2-5-1-2b-thinking-vs-qwen3-5-0-8b/) |
 | BitNet b1.58 2B4T | 2B | 4K | MIT | Native ternary weights, ~1.1 GB, CPU-first via bitnet.cpp | [Guide](/posts/1-bit-llms-bitnet-ternary-weights/) |
 | Bonsai 27B | 27B | 262K | Apache 2.0 | Binary-weight rebuild of Qwen3.6-27B: 3.9 GB deployed, ~90% of FP16 scores per PrismML, runs on an iPhone 17 Pro Max | [Guide](/posts/run-bonsai-27b-locally/) |
 | Jamba Reasoning 3B | 3B | 256K | Apache 2.0 | Mamba/Transformer hybrid, under 2 GB at Q4, speed holds at long context | [Guide](/posts/run-jamba-reasoning-3b-locally/) |
@@ -150,7 +150,7 @@ If your interest is specifically vision, the newer [best local vision language m
 
 **Multimodal tasks (image + text):** Gemma 3 4B is the only 3–4B option here. For vision-capable models with optimised Mac performance, also see our [Reka Edge](/posts/run-reka-edge-locally-vision-model-mac/) coverage.
 
-**Edge and offline-first deployments:** If you need something that fits in under 1 GB of RAM, [Qwen3.5-0.8B](/posts/qwen3-5-tiny-multimodal-thinking-model/) and [Liquid AI Apollo](/posts/ai-in-your-pocket-liquid-ai-apollo/) are both worth a look at the sub-1B scale.
+**Edge and offline-first deployments:** If you need something that fits in under 1 GB of RAM, [Qwen3.5-0.8B](/posts/qwen3-5-tiny-multimodal-thinking-model/) and [Liquid AI Apollo](/posts/ai-in-your-pocket-liquid-ai-apollo/) are both worth a look at the sub-1B scale. If you are torn between the two strongest thinking models in the roughly 1 GB class, our [LFM2.5-1.2B-Thinking vs Qwen3.5-0.8B head-to-head](/posts/lfm2-5-1-2b-thinking-vs-qwen3-5-0-8b/) settles it by workload.
 
 **Maximum throughput and lowest latency:** Mistral 7B. If response speed matters for your interface — streaming chat, autocomplete, voice pipelines — it produces the highest tokens-per-second in this table at comparable quality.
 
