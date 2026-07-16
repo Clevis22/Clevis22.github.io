@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-14",
+  "updated": "2026-07-16",
   "note": "Facts sourced from tinyweights.dev posts (which cite official model cards). params_b = total parameters (drives memory); active_b = activated per token (drives speed) for MoE/effective-param models. ctx_k = context window in K tokens. kv_light = linear-attention/SSM hybrid whose KV cache grows far slower than a standard transformer.",
   "models": [
     {
@@ -354,7 +354,7 @@
       "name": "Granite 4.1 8B",
       "params_b": 8.0,
       "active_b": null,
-      "ctx_k": 512,
+      "ctx_k": 128,
       "vision": false,
       "reasoning": false,
       "kv_light": false,
@@ -366,11 +366,11 @@
       ],
       "license": "Apache 2.0",
       "post": "/posts/run-ibm-granite-4-1-locally/",
-      "note": "512K context; 87.2 HumanEval; matches last-gen 32B MoE"
+      "note": "128K sequence length on the model card and in Ollama (IBM's blog cites 512K from the long-context training phase); BFCL v3 68.3 for tool calling"
     },
     {
       "name": "Ministral 3 8B",
-      "params_b": 8.0,
+      "params_b": 8.8,
       "active_b": null,
       "ctx_k": 256,
       "vision": true,
@@ -383,7 +383,7 @@
       ],
       "license": "Apache 2.0",
       "post": "/posts/run-ministral-3-locally/",
-      "note": null
+      "note": "8.4B language model plus a 0.4B vision encoder; ships in base, instruct, and reasoning variants"
     },
     {
       "name": "Qwen3 8B",

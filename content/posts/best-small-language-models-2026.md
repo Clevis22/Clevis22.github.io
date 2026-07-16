@@ -1,7 +1,7 @@
 ---
 title: "The Best Small Language Models in 2026: A Practical Comparison"
 date: 2026-05-14
-lastmod: 2026-07-15
+lastmod: 2026-07-16
 draft: false
 tags: ["comparison", "benchmark", "local-inference", "edge-ai", "small-models"]
 categories: ["small-ai-models"]
@@ -126,8 +126,8 @@ The two months since this post went up have been unusually busy, and several rel
 | BitNet b1.58 2B4T | 2B | 4K | MIT | Native ternary weights, ~1.1 GB, CPU-first via bitnet.cpp | [Guide](/posts/1-bit-llms-bitnet-ternary-weights/) |
 | Bonsai 27B | 27B | 262K | Apache 2.0 | Binary-weight rebuild of Qwen3.6-27B: 3.9 GB deployed, ~90% of FP16 scores per PrismML, runs on an iPhone 17 Pro Max | [Guide](/posts/run-bonsai-27b-locally/) |
 | Jamba Reasoning 3B | 3B | 256K | Apache 2.0 | Mamba/Transformer hybrid, under 2 GB at Q4, speed holds at long context | [Guide](/posts/run-jamba-reasoning-3b-locally/) |
-| Granite 4.1 (3B / 8B) | 3B / 8B | 128K / 512K | Apache 2.0 | Strong coding and tool calling; 512K context on the 8B | [Guide](/posts/run-ibm-granite-4-1-locally/) |
-| Ministral 3 (3B / 8B / 14B) | 3B to 14B | 256K | Apache 2.0 | Vision input and native tool use at every size | [Guide](/posts/run-ministral-3-locally/) |
+| Granite 4.1 (3B / 8B) | 3B / 8B | 128K | Apache 2.0 | Strong coding and the best-documented tool calling at 8B (BFCL v3 68.3) | [Guide](/posts/run-ibm-granite-4-1-locally/) · [vs Ministral 3 8B](/posts/granite-4-1-8b-vs-ministral-3-8b/) |
+| Ministral 3 (3B / 8B / 14B) | 3B to 14B | 256K | Apache 2.0 | Vision input and native tool use at every size | [Guide](/posts/run-ministral-3-locally/) · [vs Granite 4.1 8B](/posts/granite-4-1-8b-vs-ministral-3-8b/) |
 | Phi-4-mini-reasoning | 3.8B | 128K | MIT | Math-specialist fine-tune of Phi-4-mini | [Guide](/posts/run-phi-4-mini-reasoning-locally/) |
 | Qwen3.5-4B | 4B | 262K | Apache 2.0 | Image and video input, on-demand thinking, 201 languages | [vs Phi-4-mini](/posts/qwen3-5-4b-vs-phi-4-mini/) |
 | LFM2.5-8B-A1B | 8.3B (1.5B) | 128K | LFM Open | MoE at roughly 4.8 GB at Q4, reasoning with strong tool use | [Guide](/posts/run-lfm2-5-8b-a1b-locally/) |
@@ -136,7 +136,7 @@ The two months since this post went up have been unusually busy, and several rel
 | North Mini Code 1.0 | 30B (3B) | 256K | Apache 2.0 | Coding-only MoE, 19 GB at Q4, decodes like a dense 3B | [Guide](/posts/run-north-mini-code-locally/) |
 | Qwen3.6-35B-A3B | 35B (3B) | 262K | Apache 2.0 | 22 GB at Q4 but decodes like a dense 3B; 1M context via YaRN | [Guide](/posts/run-qwen3-6-35b-a3b-locally/) |
 
-Two of these change the recommendations in this guide. Qwen3.5-4B is the strongest challenger yet to Phi-4-mini's crown at the 4B scale: it adds image and video input, a 262K context window, and a hybrid attention design that keeps long-context inference cheap. Our [Qwen3.5-4B vs Phi-4-mini head-to-head](/posts/qwen3-5-4b-vs-phi-4-mini/) covers where each one wins. And the small-active-parameter MoE wave (ZAYA1, LFM2.5-8B-A1B, Qwen3.6-35B-A3B) means "how many parameters" is no longer one number: total parameters decide whether a model fits in memory, while active parameters decide how fast it runs. The two 8B-class entries are near-identical in footprint but built for opposite jobs; our [LFM2.5-8B-A1B vs ZAYA1-8B head-to-head](/posts/lfm2-5-8b-a1b-vs-zaya1-8b/) sorts out which one belongs on your machine. The last two rows of the table are direct rivals, and our [North Mini Code vs Qwen3.6-35B-A3B head-to-head](/posts/north-mini-code-vs-qwen3-6-35b-a3b/) settles which of the two coding MoEs earns a spot on a 24 GB GPU. The two reasoning specialists in the table pull in opposite directions too: our [Jamba Reasoning 3B vs Phi-4-mini-reasoning head-to-head](/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/) covers when a 256K-context generalist beats a math specialist and when it doesn't.
+Two of these change the recommendations in this guide. Qwen3.5-4B is the strongest challenger yet to Phi-4-mini's crown at the 4B scale: it adds image and video input, a 262K context window, and a hybrid attention design that keeps long-context inference cheap. Our [Qwen3.5-4B vs Phi-4-mini head-to-head](/posts/qwen3-5-4b-vs-phi-4-mini/) covers where each one wins. And the small-active-parameter MoE wave (ZAYA1, LFM2.5-8B-A1B, Qwen3.6-35B-A3B) means "how many parameters" is no longer one number: total parameters decide whether a model fits in memory, while active parameters decide how fast it runs. The two 8B-class entries are near-identical in footprint but built for opposite jobs; our [LFM2.5-8B-A1B vs ZAYA1-8B head-to-head](/posts/lfm2-5-8b-a1b-vs-zaya1-8b/) sorts out which one belongs on your machine. The last two rows of the table are direct rivals, and our [North Mini Code vs Qwen3.6-35B-A3B head-to-head](/posts/north-mini-code-vs-qwen3-6-35b-a3b/) settles which of the two coding MoEs earns a spot on a 24 GB GPU. The two reasoning specialists in the table pull in opposite directions too: our [Jamba Reasoning 3B vs Phi-4-mini-reasoning head-to-head](/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/) covers when a 256K-context generalist beats a math specialist and when it doesn't. Granite 4.1 8B and Ministral 3 8B are the closest pair in the table on paper (both Apache 2.0, both around 8B, both under 6 GB) and yet they share almost no published benchmarks; our [Granite 4.1 8B vs Ministral 3 8B comparison](/posts/granite-4-1-8b-vs-ministral-3-8b/) works out how to choose when the vendors measure different things.
 
 If your interest is specifically vision, the newer [best local vision language models in 2026](/posts/best-local-vision-language-models-2026/) pillar covers that category properly, including specialist models like [MedGemma 1.5](/posts/medgemma-1-5/).
 
