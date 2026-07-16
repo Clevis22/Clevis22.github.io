@@ -11,6 +11,7 @@ TinyWeights.dev is an independent blog focused exclusively on small language mod
 
 ## Posts
 
+- [SmolLM3-3B: The Fully Open Small Language Model That Punches Way Above Its Weight](https://tinyweights.dev/posts/smollm3-3b-the-fully-ope/): SmolLM3-3B from HuggingFace is a fully open 3B SLM with 128k context, dual-mode reasoning, and multilingual support. Here's how to run it locally.
 - [Granite 4.1 8B vs Ministral 3 8B: Which 8B Model Should You Run Locally?](https://tinyweights.dev/posts/granite-4-1-8b-vs-ministral-3-8b/): A head-to-head comparison of IBM Granite 4.1 8B and Mistral's Ministral 3 8B: benchmarks, tool calling, vision, context windows, and which one to run locally.
 - [LFM2.5-1.2B-Thinking vs Qwen3.5-0.8B: Which Tiny Model Deserves Your Gigabyte?](https://tinyweights.dev/posts/lfm2-5-1-2b-thinking-vs-qwen3-5-0-8b/): LFM2.5-1.2B-Thinking vs Qwen3.5-0.8B: benchmarks, architectures, thinking modes, and which sub-1.5B model to run for math, vision, or long documents.
 - [SmolLM3-3B vs Phi-4-mini: Which Small Model Should You Run Locally?](https://tinyweights.dev/posts/smollm3-3b-vs-phi-4-mini/): SmolLM3-3B vs Phi-4-mini compared: verified benchmarks, GGUF sizes, reasoning modes, multilingual support, and which sub-4B model fits your local workload.
@@ -52,7 +53,6 @@ TinyWeights.dev is an independent blog focused exclusively on small language mod
 - [The 'Small' Model That Does It All: How Mistral Small 4's Unified Architecture Kills the Need for Specialized AI](https://tinyweights.dev/posts/the/): Discover how Mistral Small 4 unifies reasoning, multimodal, and coding into an efficient 119B MoE model that runs locally and slashes API costs.
 - [AI in Your Pocket: How Liquid AI’s Apollo App Lets You Run Chatbots Completely Offline](https://tinyweights.dev/posts/ai-in-your-pocket-liquid-ai-apollo/): Discover how Liquid AI's Apollo app and LEAP platform bring fully private, offline small language models (SLMs) straight to your smartphone.
 - [Out of the Cloud, Into the Wild: How Small AI Models and Physical AI Are Taking Over the Edge](https://tinyweights.dev/posts/out-of-the-cloud-into-the-wild/): Why the AI industry is pivoting from massive data centers to Small Language Models (SLMs) running locally on devices, factories, and 5G networks.
-- [SmolLM3-3B: The Fully Open Small Language Model That Punches Way Above Its Weight](https://tinyweights.dev/posts/smollm3-3b-the-fully-ope/): SmolLM3-3B from HuggingFace is a fully open 3B SLM with 128k context, dual-mode reasoning, and multilingual support. Here's how to run it locally.
 - [GPT-5.4 Nano: The Fastest, Cheapest OpenAI Model Yet — What Developers Need to Know](https://tinyweights.dev/posts/gpt-5-4-na/): GPT-5.4 nano is OpenAI's most efficient model yet — $0.20/M input tokens, 400k context, API-only. Here's what it can do and when to reach for it.
 - [Fine-Tune Gemma 3 270M on Apple Silicon with MLX-LM and Python](https://tinyweights.dev/posts/fi/): A practical, step-by-step guide to fine-tuning Google's Gemma 3 270M on your Mac using Apple's MLX framework, LoRA, and Python.
 

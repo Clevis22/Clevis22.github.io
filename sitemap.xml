@@ -2,11 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tinyweights.dev/categories/</loc>
-    <lastmod>2026-07-16T08:10:40-04:00</lastmod>
+    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/comparison/</loc>
     <lastmod>2026-07-16T08:10:40-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/edge-ai/</loc>
+    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/granite/</loc>
@@ -18,7 +22,7 @@
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/local-inference/</loc>
-    <lastmod>2026-07-16T08:10:40-04:00</lastmod>
+    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/mistral/</loc>
@@ -26,23 +30,35 @@
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/</loc>
-    <lastmod>2026-07-16T08:10:40-04:00</lastmod>
+    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/quantization/</loc>
+    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/categories/small-ai-models/</loc>
-    <lastmod>2026-07-16T08:10:40-04:00</lastmod>
+    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/small-models/</loc>
-    <lastmod>2026-07-16T08:10:40-04:00</lastmod>
+    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/smollm/</loc>
+    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/posts/smollm3-3b-the-fully-ope/</loc>
+    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/</loc>
-    <lastmod>2026-07-16T08:10:40-04:00</lastmod>
+    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/</loc>
-    <lastmod>2026-07-16T08:10:40-04:00</lastmod>
+    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/lfm2-5-1-2b-thinking-vs-qwen3-5-0-8b/</loc>
@@ -69,24 +85,12 @@
     <lastmod>2026-07-14T15:24:04-04:00</lastmod>
   </url>
   <url>
-    <loc>https://tinyweights.dev/tags/edge-ai/</loc>
-    <lastmod>2026-07-16T00:00:00+00:00</lastmod>
-  </url>
-  <url>
     <loc>https://tinyweights.dev/tags/phi/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/tags/quantization/</loc>
     <lastmod>2026-07-14T20:30:55-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-bonsai-27b-locally/</loc>
     <lastmod>2026-07-14T15:24:04-04:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/tags/smollm/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/smollm3-3b-vs-phi-4-mini/</loc>
@@ -310,10 +314,6 @@
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/gpt-5-4-na/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/posts/smollm3-3b-the-fully-ope/</loc>
     <lastmod>2026-07-14T20:30:55-04:00</lastmod>
   </url>
   <url>
