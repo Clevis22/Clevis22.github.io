@@ -11,6 +11,7 @@ TinyWeights.dev is an independent blog focused exclusively on small language mod
 
 ## Posts
 
+- [Granite 4.1 8B vs LFM2.5-8B-A1B: Dense vs MoE at 8B for Local Inference](https://tinyweights.dev/posts/granite-4-1-8b-vs-lfm2-5-8b-a1b/): A head-to-head comparison of IBM Granite 4.1 8B and Liquid AI's LFM2.5-8B-A1B: dense vs mixture-of-experts, tool-calling benchmarks, speed, licensing, and which 8B model to run locally.
 - [SmolLM3-3B: The Fully Open Small Language Model That Punches Way Above Its Weight](https://tinyweights.dev/posts/smollm3-3b-the-fully-ope/): SmolLM3-3B from HuggingFace is a fully open 3B SLM with 128k context, dual-mode reasoning, and multilingual support. Here's how to run it locally.
 - [Granite 4.1 8B vs Ministral 3 8B: Which 8B Model Should You Run Locally?](https://tinyweights.dev/posts/granite-4-1-8b-vs-ministral-3-8b/): A head-to-head comparison of IBM Granite 4.1 8B and Mistral's Ministral 3 8B: benchmarks, tool calling, vision, context windows, and which one to run locally.
 - [LFM2.5-1.2B-Thinking vs Qwen3.5-0.8B: Which Tiny Model Deserves Your Gigabyte?](https://tinyweights.dev/posts/lfm2-5-1-2b-thinking-vs-qwen3-5-0-8b/): LFM2.5-1.2B-Thinking vs Qwen3.5-0.8B: benchmarks, architectures, thinking modes, and which sub-1.5B model to run for math, vision, or long documents.
