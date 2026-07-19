@@ -2,11 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tinyweights.dev/categories/</loc>
-    <lastmod>2026-07-18T08:13:09-04:00</lastmod>
+    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/comparison/</loc>
-    <lastmod>2026-07-18T08:13:09-04:00</lastmod>
+    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/jamba/</loc>
+    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-smollm3-3b/</loc>
+    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/posts/</loc>
+    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/categories/small-ai-models/</loc>
+    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/small-models/</loc>
+    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/smollm/</loc>
+    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/ssm/</loc>
+    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/tags/</loc>
+    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/</loc>
+    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/granite/</loc>
@@ -25,28 +61,8 @@
     <lastmod>2026-07-18T08:13:09-04:00</lastmod>
   </url>
   <url>
-    <loc>https://tinyweights.dev/posts/</loc>
-    <lastmod>2026-07-18T08:13:09-04:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/categories/small-ai-models/</loc>
-    <lastmod>2026-07-18T08:13:09-04:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/tags/small-models/</loc>
-    <lastmod>2026-07-18T08:13:09-04:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/tags/</loc>
-    <lastmod>2026-07-18T08:13:09-04:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/</loc>
-    <lastmod>2026-07-18T08:13:09-04:00</lastmod>
-  </url>
-  <url>
     <loc>https://tinyweights.dev/tags/edge-ai/</loc>
-    <lastmod>2026-07-18T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/granite-4-1-8b-vs-ministral-3-8b/</loc>
@@ -54,7 +70,7 @@
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/local-inference/</loc>
-    <lastmod>2026-07-18T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/mistral/</loc>
@@ -62,10 +78,6 @@
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/quantization/</loc>
-    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/tags/smollm/</loc>
     <lastmod>2026-07-16T09:34:03-04:00</lastmod>
   </url>
   <url>
@@ -86,7 +98,7 @@
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/benchmark/</loc>
-    <lastmod>2026-07-18T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/bitnet/</loc>
@@ -103,10 +115,6 @@
   <url>
     <loc>https://tinyweights.dev/posts/smollm3-3b-vs-phi-4-mini/</loc>
     <lastmod>2026-07-14T20:25:41-04:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/tags/jamba/</loc>
-    <lastmod>2026-07-13T17:02:17-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/</loc>
@@ -213,10 +221,6 @@
     <lastmod>2026-07-13T16:58:27-04:00</lastmod>
   </url>
   <url>
-    <loc>https://tinyweights.dev/tags/ssm/</loc>
-    <lastmod>2026-07-15T08:12:31-04:00</lastmod>
-  </url>
-  <url>
     <loc>https://tinyweights.dev/posts/run-llm-in-browser-webllm/</loc>
     <lastmod>2026-07-13T16:58:27-04:00</lastmod>
   </url>
@@ -278,7 +282,7 @@
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/best-small-language-models-2026/</loc>
-    <lastmod>2026-07-18T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/qwen3-5-tiny-multimodal-thinking-model/</loc>
