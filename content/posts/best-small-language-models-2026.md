@@ -1,7 +1,7 @@
 ---
 title: "The Best Small Language Models in 2026: A Practical Comparison"
 date: 2026-05-14
-lastmod: 2026-07-18
+lastmod: 2026-07-19
 draft: false
 tags: ["comparison", "benchmark", "local-inference", "edge-ai", "small-models"]
 categories: ["small-ai-models"]
@@ -44,7 +44,7 @@ HuggingFace's SmolLM3-3B is the most genuinely open model in this class: Apache 
 
 SmolLM3 was specifically trained with multi-stage context extension: pretraining at 4K context, then two 50B-token extension phases pushing it to 32K and then 64K, with a further 2× YARN extrapolation reaching 128K at inference. The quality at long context is engineered rather than incidental.
 
-We covered SmolLM3-3B in detail when it launched: [SmolLM3-3B: The Fully Open Small Language Model That Punches Way Above Its Weight](/posts/smollm3-3b-the-fully-ope/). For how it stacks up directly against the section above, our [SmolLM3-3B vs Phi-4-mini head-to-head](/posts/smollm3-3b-vs-phi-4-mini/) compares the two on benchmarks, reasoning modes, and language coverage.
+We covered SmolLM3-3B in detail when it launched: [SmolLM3-3B: The Fully Open Small Language Model That Punches Way Above Its Weight](/posts/smollm3-3b-the-fully-ope/). For how it stacks up directly against the section above, our [SmolLM3-3B vs Phi-4-mini head-to-head](/posts/smollm3-3b-vs-phi-4-mini/) compares the two on benchmarks, reasoning modes, and language coverage. For a same-scale open alternative built on a hybrid state-space architecture, see our [Jamba Reasoning 3B vs SmolLM3-3B](/posts/jamba-reasoning-3b-vs-smollm3-3b/) breakdown.
 
 - **Context window:** 128K tokens
 - **License:** Apache 2.0 — fully permissive, commercial use
