@@ -3,17 +3,12 @@
 
   Renders the home page AND any list/section page as a terminal `ls -lh` table.
 
-  Structure on home:
-    {{ partial "home_info.html" }}          (ASCII banner + MOTD)
-    section label `$ ls -lh --sort=time`
-    <header row>
-    {{ range posts }} one row per post {{ end }}
-    trailing blinking prompt
-
-  Structure on /posts/ or /tags/<x>/ list page:
-    section label `$ ls -lh ./<path>/`
-    <header row>
-    {{ range posts }} one row per post {{ end }}
+  Home and the four category term pages share the full "home screen"
+  treatment: hero banner, type-filter bar, paginated list, trailing
+  blinking prompt. A category page is the home screen filtered to one
+  type: its prompt reads `ls -lh --sort=time | grep <type>` and the
+  filter bar marks that type active ("all" links back to home).
+  /posts/ and /tags/<x>/ keep the plain archive treatment.
 
   Each row is a single <a> (so the whole line is clickable AND announces as
   a link to assistive tech). Row internals are spans inside a CSS grid.
@@ -21,30 +16,32 @@
 
 {{- define "main" -}}
 
-  {{- /* Home page only — render the hero. */ -}}
-  {{- if .IsHome -}}
+  {{- /* A category term page is "home, filtered" — detect it once. */ -}}
+  {{- $curTerm := "" }}
+  {{- if and (eq .Kind "term") (eq .Data.Plural "categories") }}{{ $curTerm = .Data.Term }}{{ end }}
+  {{- $homeLike := or .IsHome (ne $curTerm "") }}
+
+  {{- if $homeLike -}}
     {{- partial "home_info.html" . -}}
   {{- end -}}
 
   <div class="tw-home-info">
-    {{- /* Section label — context-sensitive command */ -}}
+    {{- /* Section label — context-sensitive command. Home-like pages all
+          claim the /home path; category pages filter it with a grep. */ -}}
     <div class="tw-prompt" aria-label="terminal prompt">
-      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home{{ if not .IsHome }}{{ .RelPermalink | strings.TrimRight "/" }}{{ end }}</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd"{{ if .IsHome }} data-list-cmd{{ end }}>ls -lh --sort=time</span>
+      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home{{ if not $homeLike }}{{ .RelPermalink | strings.TrimRight "/" }}{{ end }}</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">ls -lh --sort=time{{ with $curTerm }} | grep {{ . }}{{ end }}</span>
     </div>
 
-    {{- /* Type filter — links to the four category term pages. Shown on
-          home, /posts/, and the category pages themselves. On home the
-          links are progressively enhanced into in-place row filtering
-          (assets/js/list-filter.js); elsewhere they navigate. */ -}}
-    {{- $curTerm := "" }}{{ if eq .Kind "term" }}{{ $curTerm = .Data.Term }}{{ end }}
-    {{- $showFilter := or .IsHome (and (eq .Kind "section") (eq .Section "posts")) (and (eq .Kind "term") (eq .Data.Plural "categories")) }}
+    {{- /* Type filter — `all` is the home page itself; each type links to
+          its category page, which renders this same home-screen layout. */ -}}
+    {{- $showFilter := or $homeLike (and (eq .Kind "section") (eq .Section "posts")) }}
     {{- if $showFilter }}
-    <nav class="tw-filter"{{ if .IsHome }} data-list-filter{{ end }} aria-label="Filter posts by type">
+    <nav class="tw-filter" aria-label="Filter posts by type">
       <span class="tw-filter-label">type:</span>
-      <a href="{{ "posts/" | relURL }}" data-cat="all"{{ if eq $curTerm "" }} class="tw-filter-active"{{ end }}>all</a>
+      <a href="{{ site.BaseURL }}"{{ if eq $curTerm "" }} class="tw-filter-active" aria-current="true"{{ end }}>all</a>
       {{- range $slug := slice "guides" "comparisons" "analysis" "news" }}
       {{- with index site.Taxonomies.categories $slug }}
-      <a class="tw-cat-{{ $slug }}{{ if eq $curTerm $slug }} tw-filter-active{{ end }}" data-cat="{{ $slug }}" href="{{ .Page.RelPermalink }}">{{ $slug }}<span class="tw-filter-count">({{ len . }})</span></a>
+      <a class="tw-cat-{{ $slug }}{{ if eq $curTerm $slug }} tw-filter-active{{ end }}"{{ if eq $curTerm $slug }} aria-current="true"{{ end }} href="{{ .Page.RelPermalink }}">{{ $slug }}<span class="tw-filter-count">({{ len . }})</span></a>
       {{- end }}
       {{- end }}
     </nav>
@@ -58,19 +55,15 @@
     </div>
 
     {{- $pages := where .RegularPages "Type" "in" site.Params.mainSections -}}
-    {{- $paginator := "" -}}
     {{- if .IsHome -}}
-      {{- /* Home lists every post unpaginated so the type filter can work
-            entirely client-side; a one-line-per-post `ls` stays cheap. */ -}}
       {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections -}}
-    {{- else -}}
-      {{- $paginator = .Paginate $pages -}}
-      {{- $pages = $paginator.Pages -}}
     {{- end -}}
 
-    {{- range $pages }}
+    {{- $paginator := .Paginate $pages -}}
+
+    {{- range $paginator.Pages }}
     {{- $cat := "" }}{{ with .Params.categories }}{{ $cat = index . 0 }}{{ end }}
-    <a class="tw-postrow" data-cat="{{ $cat }}" href="{{ .Permalink }}">
+    <a class="tw-postrow" href="{{ .Permalink }}">
       <span class="tw-col-date">{{ .Date.Format "01-02" }}</span>
       <span class="tw-col-read">{{ .ReadingTime }}min</span>
       <span class="tw-col-cat{{ with $cat }} tw-cat-{{ . | urlize }}{{ end }}">{{ $cat }}</span>
@@ -78,27 +71,20 @@
     </a>
     {{- end }}
 
-    {{- /* Pagination (non-home pages with more than one page of results) */ -}}
-    {{- with $paginator }}
-    {{- if gt .TotalPages 1 }}
+    {{- /* Pagination (when more than one page of results) */ -}}
+    {{- if gt $paginator.TotalPages 1 }}
     <nav class="pagination" aria-label="Pagination">
-      {{- if .HasPrev }}<a class="page-link" href="{{ .Prev.URL }}">← prev</a>{{- else }}<span></span>{{- end }}
-      <span class="page-indicator">page {{ .PageNumber }} of {{ .TotalPages }}</span>
-      {{- if .HasNext }}<a class="page-link" href="{{ .Next.URL }}">next →</a>{{- else }}<span></span>{{- end }}
+      {{- if $paginator.HasPrev }}<a class="page-link" href="{{ $paginator.Prev.URL }}">← prev</a>{{- else }}<span></span>{{- end }}
+      <span class="page-indicator">page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+      {{- if $paginator.HasNext }}<a class="page-link" href="{{ $paginator.Next.URL }}">next →</a>{{- else }}<span></span>{{- end }}
     </nav>
     {{- end }}
-    {{- end }}
 
-    {{- if .IsHome }}
+    {{- if $homeLike }}
     <div class="tw-prompt" aria-hidden="true" style="margin-top: 32px;">
       <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">_</span><span class="tw-cursor">▊</span>
     </div>
     {{- end }}
   </div>
-
-  {{- if .IsHome }}
-  {{- $filterJS := resources.Get "js/list-filter.js" | minify | fingerprint "sha384" }}
-  <script type="module" src="{{ $filterJS.RelPermalink }}" integrity="{{ $filterJS.Data.Integrity }}" crossorigin="anonymous"></script>
-  {{- end }}
 
 {{- end -}}

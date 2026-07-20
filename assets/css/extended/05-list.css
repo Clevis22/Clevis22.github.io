@@ -50,9 +50,6 @@ article.first-entry:hover {
   background: var(--tw-selection);
 }
 
-/* Row hidden by the client-side type filter (list-filter.js) */
-.tw-postrow.tw-hide { display: none; }
-
 .tw-postrow .tw-col-date    { color: var(--secondary); }
 .tw-postrow .tw-col-read    { color: var(--tw-cyan); }
 
