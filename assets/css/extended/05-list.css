@@ -103,6 +103,10 @@ article.first-entry .entry-footer {
   width: auto !important;
 }
 
+/* Anchor target for filter/pagination links (#list) — leave a little
+   breathing room above the prompt when the browser jumps to it */
+#list { scroll-margin-top: 16px; }
+
 /* Type filter — `type: all guides comparisons analysis news` under the prompt */
 .tw-filter {
   display: flex;

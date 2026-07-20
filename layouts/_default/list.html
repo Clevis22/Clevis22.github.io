@@ -25,7 +25,10 @@
     {{- partial "home_info.html" . -}}
   {{- end -}}
 
-  <div class="tw-home-info">
+  {{- /* id="list" is the anchor the filter bar and pagination links target,
+        so list-to-list clicks land at the prompt/list instead of re-showing
+        the hero. Direct visits still start at the top. */ -}}
+  <div class="tw-home-info" id="list">
     {{- /* Section label — context-sensitive command. Home-like pages all
           claim the /home path; category pages filter it with a grep. */ -}}
     <div class="tw-prompt" aria-label="terminal prompt">
@@ -38,10 +41,10 @@
     {{- if $showFilter }}
     <nav class="tw-filter" aria-label="Filter posts by type">
       <span class="tw-filter-label">type:</span>
-      <a href="{{ site.BaseURL }}"{{ if eq $curTerm "" }} class="tw-filter-active" aria-current="true"{{ end }}>all</a>
+      <a href="{{ site.BaseURL }}#list"{{ if eq $curTerm "" }} class="tw-filter-active" aria-current="true"{{ end }}>all</a>
       {{- range $slug := slice "guides" "comparisons" "analysis" "news" }}
       {{- with index site.Taxonomies.categories $slug }}
-      <a class="tw-cat-{{ $slug }}{{ if eq $curTerm $slug }} tw-filter-active{{ end }}"{{ if eq $curTerm $slug }} aria-current="true"{{ end }} href="{{ .Page.RelPermalink }}">{{ $slug }}<span class="tw-filter-count">({{ len . }})</span></a>
+      <a class="tw-cat-{{ $slug }}{{ if eq $curTerm $slug }} tw-filter-active{{ end }}"{{ if eq $curTerm $slug }} aria-current="true"{{ end }} href="{{ .Page.RelPermalink }}#list">{{ $slug }}<span class="tw-filter-count">({{ len . }})</span></a>
       {{- end }}
       {{- end }}
     </nav>
@@ -74,9 +77,9 @@
     {{- /* Pagination (when more than one page of results) */ -}}
     {{- if gt $paginator.TotalPages 1 }}
     <nav class="pagination" aria-label="Pagination">
-      {{- if $paginator.HasPrev }}<a class="page-link" href="{{ $paginator.Prev.URL }}">← prev</a>{{- else }}<span></span>{{- end }}
+      {{- if $paginator.HasPrev }}<a class="page-link" href="{{ $paginator.Prev.URL }}#list">← prev</a>{{- else }}<span></span>{{- end }}
       <span class="page-indicator">page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
-      {{- if $paginator.HasNext }}<a class="page-link" href="{{ $paginator.Next.URL }}">next →</a>{{- else }}<span></span>{{- end }}
+      {{- if $paginator.HasNext }}<a class="page-link" href="{{ $paginator.Next.URL }}#list">next →</a>{{- else }}<span></span>{{- end }}
     </nav>
     {{- end }}
 
