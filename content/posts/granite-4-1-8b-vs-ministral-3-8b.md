@@ -3,7 +3,7 @@ title: "Granite 4.1 8B vs Ministral 3 8B: Which 8B Model Should You Run Locally?
 date: 2026-07-16
 draft: false
 tags: ["granite", "mistral", "comparison", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["comparisons"]
 description: "A head-to-head comparison of IBM Granite 4.1 8B and Mistral's Ministral 3 8B: benchmarks, tool calling, vision, context windows, and which one to run locally."
 bluesky: "Granite 4.1 8B and Ministral 3 8B are both Apache 2.0, both ~8B, both around 6GB. Their model cards share almost no benchmarks. Here's how to actually choose."
 slug: "granite-4-1-8b-vs-ministral-3-8b"

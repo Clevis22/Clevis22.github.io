@@ -3,7 +3,7 @@ title: "How to Run LFM2.5-1.2B-Thinking Locally: On-Device Reasoning Under 1GB"
 date: 2026-05-28
 draft: false
 tags: ["liquid-ai", "reasoning", "edge-ai", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "A practical guide to running LFM2.5-1.2B-Thinking locally: Liquid AI's 1.2B reasoning model fits in under 1GB and runs on a phone CPU, with llama.cpp, LM Studio, and MLX support."
 slug: "run-lfm2-5-1-2b-thinking-locally"
 ---

@@ -3,7 +3,7 @@ title: "DiffusionGemma: Google's Text-Diffusion Model That Generates 4x Faster, 
 date: 2026-07-01
 draft: false
 tags: ["diffusion", "gemma", "moe", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "DiffusionGemma is Google's open-weight text-diffusion model: 25.2B total, 3.8B active, up to 4x faster generation than Gemma 4. How discrete text diffusion works, honest benchmarks, and how to run DiffusionGemma locally with vLLM, Transformers, and MLX."
 slug: "run-diffusiongemma-locally"
 ---

@@ -3,7 +3,7 @@ title: "How to Run Phi-4-mini-reasoning Locally: Microsoft's 3.8B Math Model"
 date: 2026-06-08
 draft: false
 tags: ["phi", "reasoning", "ollama", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "Step-by-step guide to running Phi-4-mini-reasoning locally with Ollama and llama.cpp: Microsoft's 3.8B model that outscores 7B distillation models on AIME and MATH-500."
 slug: "run-phi-4-mini-reasoning-locally"
 ---

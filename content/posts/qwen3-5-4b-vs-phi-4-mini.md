@@ -3,7 +3,7 @@ title: "Qwen3.5-4B vs Phi-4-mini: Choosing the Right 4B Model for Local Inferenc
 date: 2026-05-24
 draft: false
 tags: ["comparison", "qwen", "phi", "benchmark", "small-models"]
-categories: ["small-ai-models"]
+categories: ["comparisons"]
 description: "Qwen3.5-4B vs Phi-4-mini: a direct comparison of benchmarks, VRAM, context windows, and multimodal support for the two best 4B local models in 2026."
 slug: "qwen3-5-4b-vs-phi-4-mini"
 ---

@@ -3,7 +3,7 @@ title: "Granite 4.1 8B vs LFM2.5-8B-A1B: Dense vs MoE at 8B for Local Inference"
 date: 2026-07-18
 draft: false
 tags: ["granite", "liquid-ai", "moe", "comparison", "small-models"]
-categories: ["small-ai-models"]
+categories: ["comparisons"]
 description: "A head-to-head comparison of IBM Granite 4.1 8B and Liquid AI's LFM2.5-8B-A1B: dense vs mixture-of-experts, tool-calling benchmarks, speed, licensing, and which 8B model to run locally."
 bluesky: "Granite 4.1 8B runs all 8B per token; LFM2.5-8B-A1B fires just 1.5B. Both are ~5GB tool-callers, but on the one benchmark they share, the dense model wins."
 slug: "granite-4-1-8b-vs-lfm2-5-8b-a1b"

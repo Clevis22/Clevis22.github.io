@@ -3,7 +3,7 @@ title: "Jamba Reasoning 3B vs Phi-4-mini-reasoning: Which Small Reasoning Model 
 date: 2026-07-13
 draft: false
 tags: ["comparison", "jamba", "phi", "reasoning", "small-models"]
-categories: ["small-ai-models"]
+categories: ["comparisons"]
 description: "Jamba Reasoning 3B vs Phi-4-mini-reasoning: architecture, benchmarks, context length, RAM requirements, and which small reasoning model to run locally."
 slug: "jamba-reasoning-3b-vs-phi-4-mini-reasoning"
 ---

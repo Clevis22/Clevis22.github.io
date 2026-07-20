@@ -3,7 +3,7 @@ title: "GGUF Quantization Levels Explained: Q4, Q5, Q8, and IQ Quants"
 date: 2026-05-27
 draft: false
 tags: ["quantization", "gguf", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "What Q4_K_M, Q5_K_M, Q8_0, and the IQ-series quants actually cost you in file size, quality, and speed, with real benchmark numbers."
 slug: "gguf-quantization-levels-q4-q5-q8"
 ---

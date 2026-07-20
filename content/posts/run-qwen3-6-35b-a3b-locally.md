@@ -3,7 +3,7 @@ title: "How to Run Qwen3.6-35B-A3B Locally: A 35B MoE Model on One GPU"
 date: 2026-06-07
 draft: false
 tags: ["qwen", "moe", "agentic-coding", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "Run Qwen3.6-35B-A3B locally with Ollama, llama.cpp, or MLX. Hardware requirements, GGUF quantization sizes, and thinking-mode setup for the 35B model that activates only 3B parameters per token."
 slug: "run-qwen3-6-35b-a3b-locally"
 ---

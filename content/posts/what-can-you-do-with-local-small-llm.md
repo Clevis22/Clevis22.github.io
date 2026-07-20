@@ -3,7 +3,7 @@ title: "What Can You Actually Do With a Local Small LLM? A Practical Guide"
 date: 2026-05-21
 draft: false
 tags: ["use-cases", "local-inference", "edge-ai", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "A practical guide to real use cases for running small language models locally—from private document Q&A to offline coding assistants—with model and hardware recommendations for each."
 slug: "what-can-you-do-with-local-small-llm"
 ---

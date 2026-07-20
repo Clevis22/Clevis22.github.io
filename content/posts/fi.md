@@ -3,7 +3,7 @@ title: "Fine-Tune Gemma 3 270M on Apple Silicon with MLX-LM and Python"
 date: 2026-03-22
 draft: false
 tags: ["gemma", "apple-silicon", "mlx", "edge-ai", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "A practical, step-by-step guide to fine-tuning Google's Gemma 3 270M on your Mac using Apple's MLX framework, LoRA, and Python."
 ---
 

@@ -3,7 +3,7 @@ title: "How to Run North Mini Code Locally: Cohere's 30B-A3B Coding Model"
 date: 2026-07-08
 draft: false
 tags: ["cohere", "agentic-coding", "moe", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "Run North Mini Code 1.0 locally: Cohere's 30B-A3B open-weight coding MoE. GGUF sizes, the llama.cpp build for the cohere2moe architecture, hardware requirements, and benchmarks."
 slug: "run-north-mini-code-locally"
 ---

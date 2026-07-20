@@ -3,7 +3,7 @@ title: "Running Local LLMs on Low-VRAM Windows GPUs (6GB and 8GB Cards) in 2026"
 date: 2026-05-23
 draft: false
 tags: ["windows", "hardware", "llama-cpp", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "Practical guide to running small language models on budget Windows GPUs with 6 GB or 8 GB of VRAM, with real token-speed benchmarks for RTX 3050, RTX 4060, and RTX 3060."
 slug: "run-local-llms-low-vram-windows-gpu"
 ---

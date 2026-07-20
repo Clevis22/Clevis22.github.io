@@ -3,7 +3,7 @@ title: "How to Run Jamba Reasoning 3B Locally: AI21's Hybrid SSM-Transformer Wit
 date: 2026-05-27
 draft: false
 tags: ["jamba", "reasoning", "ssm", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "A practical guide to running AI21's Jamba Reasoning 3B locally with Ollama and llama.cpp: a hybrid Mamba/Transformer 3B model with a 256K context window in under 2 GB at Q4."
 slug: "run-jamba-reasoning-3b-locally"
 ---

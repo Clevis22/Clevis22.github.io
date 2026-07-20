@@ -3,7 +3,7 @@ title: "Deep Dive: Running Reka Edge Locally for Frontier-Level Vision AI on Mac
 date: 2026-03-25
 draft: false
 tags: ["vision", "apple-silicon", "edge-ai", "small-models"]
-categories: ["small-ai-models", "tutorials"]
+categories: ["guides"]
 description: "An in-depth look at Reka Edge, the 7B multimodal vision-language model. Learn about its ConvNeXt V2 architecture, token efficiency, and how to run it locally on consumer hardware."
 slug: "run-reka-edge-locally-vision-model-mac"
 ---

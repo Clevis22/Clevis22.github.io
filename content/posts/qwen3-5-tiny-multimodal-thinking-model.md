@@ -3,7 +3,7 @@ title: "Qwen3.5-0.8B: A Multimodal Thinking Model That Fits in 1 Gigabyte"
 date: 2026-05-13
 draft: false
 tags: ["qwen", "vision", "ssm", "edge-ai", "small-models"]
-categories: ["small-ai-models"]
+categories: ["news"]
 description: "Qwen3.5-0.8B packs multimodal vision, a 262K context window, and an on-demand thinking mode into a 1GB file. Here's the architecture behind it and how to run it locally."
 slug: "qwen3-5-tiny-multimodal-thinking-model"
 ---

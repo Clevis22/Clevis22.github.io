@@ -3,7 +3,7 @@ title: "Gemma 4: Taking Agentic Workflows to the Edge"
 date: 2026-04-05
 draft: false
 tags: ["gemma", "edge-ai", "small-models"]
-categories: ["small-ai-models"]
+categories: ["news"]
 description: "DeepMind's Gemma 4 brings 128K contexts, native 'thinking', and powerful multimodal agentic workflows to constrained devices and local hardware."
 slug: "gemma-4-taking-agentic-workflows-to-the-edge"
 ---

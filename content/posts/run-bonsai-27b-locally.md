@@ -3,7 +3,7 @@ title: "Run Bonsai 27B Locally: A 27B Model in 3.9 GB, Even on a Phone"
 date: 2026-07-14
 draft: false
 tags: ["bitnet", "quantization", "qwen", "edge-ai", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "How to run Bonsai 27B locally: PrismML's 1-bit and ternary builds of Qwen3.6-27B fit in 3.9 to 7.2 GB, keep 90-95% of FP16 benchmark scores, and reach 11 tok/s on an iPhone 17 Pro Max."
 bluesky: "PrismML rebuilt Qwen3.6-27B with binary and ternary weights: 3.9 GB deployed, ~90% of its FP16 benchmark average, 262K context, and ~11 tok/s on an iPhone 17 Pro Max."
 slug: "run-bonsai-27b-locally"

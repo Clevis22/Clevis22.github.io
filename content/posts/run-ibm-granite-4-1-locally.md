@@ -3,7 +3,7 @@ title: "Run IBM Granite 4.1 Locally: 3B, 8B, and 30B Setup Guide"
 date: 2026-06-04
 draft: false
 tags: ["granite", "ollama", "llama-cpp", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "How to run IBM Granite 4.1 locally with Ollama or llama.cpp. Full setup guide covering the 3B, 8B, and 30B models, hardware requirements, benchmark scores, and tool-calling."
 slug: "run-ibm-granite-4-1-locally"
 ---

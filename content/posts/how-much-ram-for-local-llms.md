@@ -3,7 +3,7 @@ title: "How Much RAM Do You Actually Need to Run Local LLMs?"
 date: 2026-05-17
 draft: false
 tags: ["hardware", "gguf", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "Verified RAM and VRAM requirements for running local LLMs, with real Q4_K_M file size data for models from 1B to 32B parameters."
 slug: "how-much-ram-for-local-llms"
 ---

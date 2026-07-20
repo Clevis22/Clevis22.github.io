@@ -32,10 +32,26 @@
       <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home{{ if not .IsHome }}{{ .RelPermalink | strings.TrimRight "/" }}{{ end }}</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">ls -lh --sort=time</span>
     </div>
 
+    {{- /* Type filter — links to the four category term pages. Shown on
+          home, /posts/, and the category pages themselves. */ -}}
+    {{- $curTerm := "" }}{{ if eq .Kind "term" }}{{ $curTerm = .Data.Term }}{{ end }}
+    {{- $showFilter := or .IsHome (and (eq .Kind "section") (eq .Section "posts")) (and (eq .Kind "term") (eq .Data.Plural "categories")) }}
+    {{- if $showFilter }}
+    <nav class="tw-filter" aria-label="Filter posts by type">
+      <span class="tw-filter-label">type:</span>
+      <a href="{{ "posts/" | relURL }}"{{ if eq $curTerm "" }} class="tw-filter-active"{{ end }}>all</a>
+      {{- range $slug := slice "guides" "comparisons" "analysis" "news" }}
+      {{- with index site.Taxonomies.categories $slug }}
+      <a class="tw-cat-{{ $slug }}{{ if eq $curTerm $slug }} tw-filter-active{{ end }}" href="{{ .Page.RelPermalink }}">{{ $slug }}<span class="tw-filter-count">({{ len . }})</span></a>
+      {{- end }}
+      {{- end }}
+    </nav>
+    {{- end }}
+
     <div class="tw-listhead" aria-hidden="true">
       <span>date</span>
       <span>read</span>
-      <span>tag</span>
+      <span>type</span>
       <span>title</span>
     </div>
 
@@ -50,7 +66,8 @@
     <a class="tw-postrow" href="{{ .Permalink }}">
       <span class="tw-col-date">{{ .Date.Format "01-02" }}</span>
       <span class="tw-col-read">{{ .ReadingTime }}min</span>
-      <span class="tw-col-tag">{{- with (index .Params.tags 0) -}}#{{ . }}{{- end -}}</span>
+      {{- $cat := "" }}{{ with .Params.categories }}{{ $cat = index . 0 }}{{ end }}
+      <span class="tw-col-cat{{ with $cat }} tw-cat-{{ . | urlize }}{{ end }}">{{ $cat }}</span>
       <span class="tw-col-title">{{ .Title }}</span>
     </a>
     {{- end }}

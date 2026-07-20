@@ -3,7 +3,7 @@ title: "SmolLM3-3B vs Phi-4-mini: Which Small Model Should You Run Locally?"
 date: 2026-07-14
 draft: false
 tags: ["comparison", "smollm", "phi", "benchmark", "small-models"]
-categories: ["small-ai-models"]
+categories: ["comparisons"]
 description: "SmolLM3-3B vs Phi-4-mini compared: verified benchmarks, GGUF sizes, reasoning modes, multilingual support, and which sub-4B model fits your local workload."
 bluesky: "HuggingFace's fully open SmolLM3-3B vs Microsoft's math-tuned Phi-4-mini: the sub-4B head-to-head, with the benchmark caveats nobody prints."
 slug: "smollm3-3b-vs-phi-4-mini"

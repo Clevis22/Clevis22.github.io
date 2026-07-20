@@ -3,7 +3,7 @@ title: "LFM2.5-1.2B-Thinking vs Qwen3.5-0.8B: Which Tiny Model Deserves Your Gig
 date: 2026-07-15
 draft: false
 tags: ["comparison", "liquid-ai", "qwen", "reasoning", "small-models"]
-categories: ["small-ai-models"]
+categories: ["comparisons"]
 description: "LFM2.5-1.2B-Thinking vs Qwen3.5-0.8B: benchmarks, architectures, thinking modes, and which sub-1.5B model to run for math, vision, or long documents."
 bluesky: "Two thinking models around 1 GB: LFM2.5-1.2B-Thinking wins math by a mile, Qwen3.5-0.8B reads images and 262K tokens. Which earns the spot on your phone?"
 slug: "lfm2-5-1-2b-thinking-vs-qwen3-5-0-8b"

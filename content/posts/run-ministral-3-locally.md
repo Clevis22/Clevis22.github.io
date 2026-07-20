@@ -3,7 +3,7 @@ title: "How to Run Ministral 3 Locally: Mistral's 3B, 8B, and 14B Vision Models"
 date: 2026-05-25
 draft: false
 tags: ["mistral", "vision", "edge-ai", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "A practical guide to running Ministral-3 (3B, 8B, 14B) locally with Ollama and LM Studio: compact models with vision, tool use, and 256K context in under 10GB."
 slug: "run-ministral-3-locally"
 ---

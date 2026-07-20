@@ -22,7 +22,7 @@
   padding: 6px 12px;
   border-bottom: 1px dashed var(--border);
   display: grid;
-  grid-template-columns: 88px 56px 80px 1fr;
+  grid-template-columns: 88px 56px 96px 1fr;
   gap: 16px;
 }
 
@@ -31,7 +31,7 @@
 article.post-entry,
 article.first-entry {
   display: grid;
-  grid-template-columns: 88px 56px 80px 1fr;
+  grid-template-columns: 88px 56px 96px 1fr;
   gap: 16px;
   padding: 7px 12px;
   border-radius: 2px;
@@ -52,7 +52,15 @@ article.first-entry:hover {
 
 .tw-postrow .tw-col-date    { color: var(--secondary); }
 .tw-postrow .tw-col-read    { color: var(--tw-cyan); }
-.tw-postrow .tw-col-tag     { color: var(--tw-magenta); }
+
+/* Post-type (category) column + shared per-type colors.
+ * .tw-cat-* is also used by the filter bar links and the single-page
+ * meta line, so these stay low-specificity and load before 06-single. */
+.tw-col-cat         { color: var(--tw-magenta); } /* fallback */
+.tw-cat-guides      { color: var(--tw-green); }
+.tw-cat-comparisons { color: var(--tw-magenta); }
+.tw-cat-analysis    { color: var(--tw-accent); }
+.tw-cat-news        { color: var(--tw-cyan); }
 .tw-postrow .tw-col-title   {
   color: var(--primary);
   /* min-width:0 lets the grid column shrink below its content's intrinsic
@@ -94,6 +102,25 @@ article.first-entry .entry-footer {
   height: auto !important;
   width: auto !important;
 }
+
+/* Type filter — `type: all guides comparisons analysis news` under the prompt */
+.tw-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  padding: 8px 12px 2px;
+  font-size: 12.5px;
+  font-family: var(--tw-font-mono);
+}
+.tw-filter-label { color: var(--secondary); }
+.tw-filter a {
+  color: var(--tw-magenta); /* fallback; tw-cat-* class recolors per type */
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+}
+.tw-filter a:hover { border-bottom-color: currentColor; background: var(--tw-selection); }
+.tw-filter a.tw-filter-active { border-bottom-color: currentColor; }
+.tw-filter-count { color: var(--secondary); margin-left: 1px; }
 
 /* Pagination — `← prev` / `next →` styled like nav buttons */
 .pagination,
@@ -245,11 +272,12 @@ input#searchInput:focus,
     font-size: 15px;
     padding: 10px 12px;
   }
-  /* Collapse: hide read+tag on mobile to keep the row readable */
+  /* Collapse: hide read+type on mobile to keep the row readable
+     (the filter bar still gives access to the types) */
   .tw-listhead > :nth-child(2),
   .tw-listhead > :nth-child(3),
   .tw-postrow .tw-col-read,
-  .tw-postrow .tw-col-tag {
+  .tw-postrow .tw-col-cat {
     display: none;
   }
   .tw-listhead { font-size: 13px; }

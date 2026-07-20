@@ -4,7 +4,7 @@ date: 2026-05-14
 lastmod: 2026-07-09
 draft: false
 tags: ["comparison", "ollama", "llama-cpp", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["comparisons"]
 description: "Ollama vs LM Studio vs llama.cpp compared: setup, performance, API support, and which runtime to pick for your hardware and use case in 2026."
 slug: "ollama-vs-lm-studio-vs-llama-cpp"
 ---

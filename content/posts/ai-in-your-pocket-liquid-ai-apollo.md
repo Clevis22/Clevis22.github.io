@@ -3,7 +3,7 @@ title: "AI in Your Pocket: How Liquid AI’s Apollo App Lets You Run Chatbots Co
 date: "2026-03-24"
 draft: false
 tags: ["liquid-ai", "edge-ai", "small-models"]
-categories: ["small-ai-models"]
+categories: ["news"]
 description: "Discover how Liquid AI's Apollo app and LEAP platform bring fully private, offline small language models (SLMs) straight to your smartphone."
 slug: "ai-in-your-pocket-liquid-ai-apollo"
 author: "Edwin"

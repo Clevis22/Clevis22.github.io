@@ -3,7 +3,7 @@ title: "The 'Small' Model That Does It All: How Mistral Small 4's Unified Archit
 date: 2026-03-24
 draft: false
 tags: ["mistral", "edge-ai", "small-models"]
-categories: ["small-ai-models", "tutorials"]
+categories: ["analysis"]
 description: "Discover how Mistral Small 4 unifies reasoning, multimodal, and coding into an efficient 119B MoE model that runs locally and slashes API costs."
 ---
 

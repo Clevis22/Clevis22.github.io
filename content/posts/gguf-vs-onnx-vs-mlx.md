@@ -4,7 +4,7 @@ date: 2026-05-15
 lastmod: 2026-07-09
 draft: false
 tags: ["gguf", "onnx", "mlx", "quantization", "small-models"]
-categories: ["small-ai-models"]
+categories: ["comparisons"]
 description: "GGUF, ONNX, and MLX compared: what each format is for, which quantization levels to pick, and how to choose the right one for your hardware."
 slug: "gguf-vs-onnx-vs-mlx"
 ---

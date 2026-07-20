@@ -3,7 +3,7 @@ title: "Local LLM for Private Document Q&A: Build an Offline RAG Pipeline"
 date: 2026-07-07
 draft: false
 tags: ["rag", "use-cases", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "How to build a fully private, offline document Q&A system with a local small LLM and an embedding model: exact Ollama commands, a runnable Python RAG script, and hardware requirements."
 slug: "local-llm-private-document-qa"
 ---

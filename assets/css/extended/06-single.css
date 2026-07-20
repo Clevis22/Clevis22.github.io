@@ -83,6 +83,14 @@
 .post-meta .tw-meta-sep      { color: var(--tw-very-dim); margin: 0 8px; }
 .post-meta .tw-meta-hardware { color: var(--tw-cyan); }
 
+/* Category link in the meta line — colored by the shared .tw-cat-* classes
+   (05-list.css); this only adds link affordance. */
+.post-meta a.tw-meta-cat {
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+}
+.post-meta a.tw-meta-cat:hover { border-bottom-color: currentColor; }
+
 /* Tag chips under the meta line */
 .post-tags {
   margin: 10px 0;

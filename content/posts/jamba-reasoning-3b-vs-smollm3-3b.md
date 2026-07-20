@@ -3,7 +3,7 @@ title: "Jamba Reasoning 3B vs SmolLM3-3B: Which Open 3B Model to Run Locally?"
 date: 2026-07-19
 draft: false
 tags: ["jamba", "smollm", "ssm", "comparison", "small-models"]
-categories: ["small-ai-models"]
+categories: ["comparisons"]
 description: "Jamba Reasoning 3B vs SmolLM3-3B: architecture, benchmarks, context length, RAM, and which open 3B model to run locally for agents and long documents."
 bluesky: "Two open 3B reasoners at the same 1.9GB footprint: Jamba's Mamba hybrid holds speed to 256K context; SmolLM3 toggles reasoning off and ships its full training recipe."
 slug: "jamba-reasoning-3b-vs-smollm3-3b"

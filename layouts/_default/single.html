@@ -37,6 +37,11 @@
       {{- if gt (.Lastmod.Sub .Date).Hours 72 }}
       <span class="tw-meta-sep">·</span><span>updated {{ .Lastmod.Format "2006-01-02" }}</span>
       {{- end }}
+      {{- with .Params.categories }}
+      {{- with index . 0 }}
+      <span class="tw-meta-sep">·</span><a class="tw-meta-cat tw-cat-{{ . | urlize }}" href="{{ "categories/" | absURL }}{{ . | urlize }}/">{{ . }}</a>
+      {{- end }}
+      {{- end }}
       {{- if site.Params.ShowReadingTime }}
       <span class="tw-meta-sep">·</span><span>{{ .ReadingTime }} min read</span>
       {{- end }}
@@ -134,7 +139,8 @@
     <a class="tw-postrow" href="{{ .Permalink }}">
       <span class="tw-col-date">{{ .Date.Format "01-02" }}</span>
       <span class="tw-col-read">{{ .ReadingTime }}min</span>
-      <span class="tw-col-tag">{{- with (index .Params.tags 0) -}}#{{ . }}{{- end -}}</span>
+      {{- $cat := "" }}{{ with .Params.categories }}{{ $cat = index . 0 }}{{ end }}
+      <span class="tw-col-cat{{ with $cat }} tw-cat-{{ . | urlize }}{{ end }}">{{ $cat }}</span>
       <span class="tw-col-title">{{ .Title }}</span>
     </a>
     {{- end }}

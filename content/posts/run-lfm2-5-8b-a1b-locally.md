@@ -3,7 +3,7 @@ title: "How to Run LFM2.5-8B-A1B Locally: Liquid AI's On-Device Tool-Calling MoE
 date: 2026-06-30
 draft: false
 tags: ["liquid-ai", "moe", "edge-ai", "local-inference", "small-models"]
-categories: ["small-ai-models"]
+categories: ["guides"]
 description: "A practical guide to running LFM2.5-8B-A1B locally: Liquid AI's 8.3B mixture-of-experts activates only 1.5B parameters per token, fits in ~4.8GB at Q4, and ships with day-one Ollama, llama.cpp, and MLX support."
 slug: "run-lfm2-5-8b-a1b-locally"
 ---

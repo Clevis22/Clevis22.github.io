@@ -3,7 +3,7 @@ title: "The Best Local Vision Language Models in 2026: Small VLMs You Can Actual
 date: 2026-07-09
 draft: false
 tags: ["vision", "comparison", "qwen", "edge-ai", "small-models"]
-categories: ["small-ai-models"]
+categories: ["comparisons"]
 description: "A practical comparison of the best local vision language models in 2026, from 4B VLMs to 32B, with real MMMU and DocVQA benchmarks and VRAM estimates."
 slug: "best-local-vision-language-models-2026"
 ---
