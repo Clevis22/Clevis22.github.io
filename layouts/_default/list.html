@@ -29,20 +29,22 @@
   <div class="tw-home-info">
     {{- /* Section label — context-sensitive command */ -}}
     <div class="tw-prompt" aria-label="terminal prompt">
-      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home{{ if not .IsHome }}{{ .RelPermalink | strings.TrimRight "/" }}{{ end }}</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd">ls -lh --sort=time</span>
+      <span class="tw-prompt-user">clevis@tinyweights</span><span class="tw-prompt-sep">:</span><span class="tw-prompt-path">/home{{ if not .IsHome }}{{ .RelPermalink | strings.TrimRight "/" }}{{ end }}</span><span class="tw-prompt-dollar">$</span> <span class="tw-prompt-cmd"{{ if .IsHome }} data-list-cmd{{ end }}>ls -lh --sort=time</span>
     </div>
 
     {{- /* Type filter — links to the four category term pages. Shown on
-          home, /posts/, and the category pages themselves. */ -}}
+          home, /posts/, and the category pages themselves. On home the
+          links are progressively enhanced into in-place row filtering
+          (assets/js/list-filter.js); elsewhere they navigate. */ -}}
     {{- $curTerm := "" }}{{ if eq .Kind "term" }}{{ $curTerm = .Data.Term }}{{ end }}
     {{- $showFilter := or .IsHome (and (eq .Kind "section") (eq .Section "posts")) (and (eq .Kind "term") (eq .Data.Plural "categories")) }}
     {{- if $showFilter }}
-    <nav class="tw-filter" aria-label="Filter posts by type">
+    <nav class="tw-filter"{{ if .IsHome }} data-list-filter{{ end }} aria-label="Filter posts by type">
       <span class="tw-filter-label">type:</span>
-      <a href="{{ "posts/" | relURL }}"{{ if eq $curTerm "" }} class="tw-filter-active"{{ end }}>all</a>
+      <a href="{{ "posts/" | relURL }}" data-cat="all"{{ if eq $curTerm "" }} class="tw-filter-active"{{ end }}>all</a>
       {{- range $slug := slice "guides" "comparisons" "analysis" "news" }}
       {{- with index site.Taxonomies.categories $slug }}
-      <a class="tw-cat-{{ $slug }}{{ if eq $curTerm $slug }} tw-filter-active{{ end }}" href="{{ .Page.RelPermalink }}">{{ $slug }}<span class="tw-filter-count">({{ len . }})</span></a>
+      <a class="tw-cat-{{ $slug }}{{ if eq $curTerm $slug }} tw-filter-active{{ end }}" data-cat="{{ $slug }}" href="{{ .Page.RelPermalink }}">{{ $slug }}<span class="tw-filter-count">({{ len . }})</span></a>
       {{- end }}
       {{- end }}
     </nav>
@@ -56,29 +58,35 @@
     </div>
 
     {{- $pages := where .RegularPages "Type" "in" site.Params.mainSections -}}
+    {{- $paginator := "" -}}
     {{- if .IsHome -}}
+      {{- /* Home lists every post unpaginated so the type filter can work
+            entirely client-side; a one-line-per-post `ls` stays cheap. */ -}}
       {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections -}}
+    {{- else -}}
+      {{- $paginator = .Paginate $pages -}}
+      {{- $pages = $paginator.Pages -}}
     {{- end -}}
 
-    {{- $paginator := .Paginate $pages -}}
-
-    {{- range $paginator.Pages }}
-    <a class="tw-postrow" href="{{ .Permalink }}">
+    {{- range $pages }}
+    {{- $cat := "" }}{{ with .Params.categories }}{{ $cat = index . 0 }}{{ end }}
+    <a class="tw-postrow" data-cat="{{ $cat }}" href="{{ .Permalink }}">
       <span class="tw-col-date">{{ .Date.Format "01-02" }}</span>
       <span class="tw-col-read">{{ .ReadingTime }}min</span>
-      {{- $cat := "" }}{{ with .Params.categories }}{{ $cat = index . 0 }}{{ end }}
       <span class="tw-col-cat{{ with $cat }} tw-cat-{{ . | urlize }}{{ end }}">{{ $cat }}</span>
       <span class="tw-col-title">{{ .Title }}</span>
     </a>
     {{- end }}
 
-    {{- /* Pagination (when more than one page of results) */ -}}
-    {{- if gt $paginator.TotalPages 1 }}
+    {{- /* Pagination (non-home pages with more than one page of results) */ -}}
+    {{- with $paginator }}
+    {{- if gt .TotalPages 1 }}
     <nav class="pagination" aria-label="Pagination">
-      {{- if $paginator.HasPrev }}<a class="page-link" href="{{ $paginator.Prev.URL }}">← prev</a>{{- else }}<span></span>{{- end }}
-      <span class="page-indicator">page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
-      {{- if $paginator.HasNext }}<a class="page-link" href="{{ $paginator.Next.URL }}">next →</a>{{- else }}<span></span>{{- end }}
+      {{- if .HasPrev }}<a class="page-link" href="{{ .Prev.URL }}">← prev</a>{{- else }}<span></span>{{- end }}
+      <span class="page-indicator">page {{ .PageNumber }} of {{ .TotalPages }}</span>
+      {{- if .HasNext }}<a class="page-link" href="{{ .Next.URL }}">next →</a>{{- else }}<span></span>{{- end }}
     </nav>
+    {{- end }}
     {{- end }}
 
     {{- if .IsHome }}
@@ -87,5 +95,10 @@
     </div>
     {{- end }}
   </div>
+
+  {{- if .IsHome }}
+  {{- $filterJS := resources.Get "js/list-filter.js" | minify | fingerprint "sha384" }}
+  <script type="module" src="{{ $filterJS.RelPermalink }}" integrity="{{ $filterJS.Data.Integrity }}" crossorigin="anonymous"></script>
+  {{- end }}
 
 {{- end -}}
