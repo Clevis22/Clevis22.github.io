@@ -2,275 +2,283 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tinyweights.dev/categories/</loc>
-    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/comparison/</loc>
-    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/categories/comparisons/</loc>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/jamba/</loc>
-    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-smollm3-3b/</loc>
-    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/</loc>
-    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/categories/small-ai-models/</loc>
-    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/small-models/</loc>
-    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/smollm/</loc>
-    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/ssm/</loc>
-    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/</loc>
-    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/</loc>
-    <lastmod>2026-07-19T08:10:21-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/granite/</loc>
-    <lastmod>2026-07-18T08:13:09-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/granite-4-1-8b-vs-lfm2-5-8b-a1b/</loc>
-    <lastmod>2026-07-18T08:13:09-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/liquid-ai/</loc>
-    <lastmod>2026-07-18T08:13:09-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/moe/</loc>
-    <lastmod>2026-07-18T08:13:09-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/edge-ai/</loc>
-    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/granite-4-1-8b-vs-ministral-3-8b/</loc>
-    <lastmod>2026-07-16T08:10:40-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/local-inference/</loc>
-    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/mistral/</loc>
-    <lastmod>2026-07-16T08:10:40-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/categories/news/</loc>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/quantization/</loc>
-    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/smollm3-3b-the-fully-ope/</loc>
-    <lastmod>2026-07-16T09:34:03-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/lfm2-5-1-2b-thinking-vs-qwen3-5-0-8b/</loc>
-    <lastmod>2026-07-15T08:12:31-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/qwen/</loc>
-    <lastmod>2026-07-15T08:12:31-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/reasoning/</loc>
-    <lastmod>2026-07-15T08:12:31-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/benchmark/</loc>
-    <lastmod>2026-07-19T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/bitnet/</loc>
-    <lastmod>2026-07-14T15:24:04-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/categories/guides/</loc>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/phi/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-bonsai-27b-locally/</loc>
-    <lastmod>2026-07-14T15:24:04-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/smollm3-3b-vs-phi-4-mini/</loc>
-    <lastmod>2026-07-14T20:25:41-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/jamba-reasoning-3b-vs-phi-4-mini-reasoning/</loc>
-    <lastmod>2026-07-13T17:02:17-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/lfm2-5-8b-a1b-vs-zaya1-8b/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/zaya1/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/agentic-coding/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/cohere/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/north-mini-code-vs-qwen3-6-35b-a3b/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/best-local-vision-language-models-2026/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/vision/</loc>
-    <lastmod>2026-07-15T08:12:31-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-north-mini-code-locally/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/local-llm-private-document-qa/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/use-cases/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/gguf/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/how-to-quantize-model-llama-cpp/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/llama-cpp/</loc>
-    <lastmod>2026-07-13T17:02:17-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-diffusiongemma-locally/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/gemma/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-lfm2-5-8b-a1b-locally/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-phi-4-mini-reasoning-locally/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/ollama/</loc>
-    <lastmod>2026-07-13T17:02:17-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-qwen3-6-35b-a3b-locally/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-ibm-granite-4-1-locally/</loc>
-    <lastmod>2026-07-13T17:02:17-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/1-bit-llms-bitnet-ternary-weights/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-zaya1-8b-locally/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-lfm2-5-1-2b-thinking-locally/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/gguf-quantization-levels-q4-q5-q8/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-jamba-reasoning-3b-locally/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-llm-in-browser-webllm/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-ministral-3-locally/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/medgemma-1-5/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/qwen3-5-4b-vs-phi-4-mini/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/hardware/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-local-llms-low-vram-windows-gpu/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/what-can-you-do-with-local-small-llm/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-llms-raspberry-pi-5/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/apple-silicon/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/tags/mlx/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-small-llms-apple-silicon/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-phi-4-mini-locally/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/how-much-ram-for-local-llms/</loc>
-    <lastmod>2026-07-13T16:58:27-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/gguf-vs-onnx-vs-mlx/</loc>
@@ -286,43 +294,43 @@
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/qwen3-5-tiny-multimodal-thinking-model/</loc>
-    <lastmod>2026-07-15T08:12:31-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/qwen3-coder-next-local-coding-agent/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/gemma-4-taking-agentic-workflows-to-the-edge/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/run-reka-edge-locally-vision-model-mac/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyweights.dev/categories/tutorials/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/ai-in-your-pocket-liquid-ai-apollo/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyweights.dev/categories/analysis/</loc>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/the/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/out-of-the-cloud-into-the-wild/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/fi/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/posts/gpt-5-4-na/</loc>
-    <lastmod>2026-07-14T20:30:55-04:00</lastmod>
+    <lastmod>2026-07-19T20:18:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://tinyweights.dev/about/</loc>

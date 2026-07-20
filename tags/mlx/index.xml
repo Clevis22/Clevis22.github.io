@@ -6,7 +6,7 @@
     <description>Small language models like Gemma, Phi, SmolLM, and Qwen, run locally. Benchmarks, quantization, and hands-on deployment guides for small LLMs on real hardware.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Jul 2026 20:30:55 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jul 2026 20:18:43 -0400</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/mlx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Complete Guide to Running Small LLMs on Apple Silicon (2026)</title>

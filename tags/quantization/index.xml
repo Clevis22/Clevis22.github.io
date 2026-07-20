@@ -6,7 +6,7 @@
     <description>Small language models like Gemma, Phi, SmolLM, and Qwen, run locally. Benchmarks, quantization, and hands-on deployment guides for small LLMs on real hardware.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jul 2026 09:34:03 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jul 2026 20:18:43 -0400</lastBuildDate>
     <atom:link href="https://tinyweights.dev/tags/quantization/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SmolLM3-3B: The Fully Open Small Language Model That Punches Way Above Its Weight</title>
